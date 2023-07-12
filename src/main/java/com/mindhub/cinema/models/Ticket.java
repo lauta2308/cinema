@@ -17,6 +17,10 @@ public class Ticket {
 
     private Integer seatPlace;
 
+    private TicketPromo ticketPromo = TicketPromo.NORMAL;
+
+    private CustomerAge customerAge = CustomerAge.ADULT;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="purchase_id")
     private Purchase purchase;

@@ -26,9 +26,9 @@ public class Client {
 
     private LocalDate bornDate;
 
-    private ClientRol clientRol;
+    private ClientRol clientRol = ClientRol.CLIENT;
 
-    private ClientLevel clientLevel;
+    private ClientLevel clientLevel = ClientLevel.BASIC;
 
     @OneToMany(mappedBy="client", fetch=FetchType.EAGER)
     private Set<Review> reviews = new HashSet<>();

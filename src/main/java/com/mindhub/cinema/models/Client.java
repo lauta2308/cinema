@@ -4,6 +4,7 @@ package com.mindhub.cinema.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,10 +20,11 @@ public class Client {
 
     private String lastName;
 
-
     private String email;
 
     private String password;
+
+    private LocalDate bornDate;
 
     private ClientRol clientRol;
 
@@ -39,19 +41,18 @@ public class Client {
     public Client() {
     }
 
-    public Client(String name, String lastName, String email) {
+    public Client(String name, String lastName, String email, String password, LocalDate bornDate) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
+        this.bornDate = bornDate;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -75,6 +76,22 @@ public class Client {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public LocalDate getBornDate() {
+        return bornDate;
+    }
+
+    public void setBornDate(LocalDate bornDate) {
+        this.bornDate = bornDate;
     }
 
     public ClientRol getClientRol() {

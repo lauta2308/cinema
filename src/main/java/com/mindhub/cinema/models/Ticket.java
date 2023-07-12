@@ -1,6 +1,8 @@
 package com.mindhub.cinema.models;
 
 
+import com.mindhub.cinema.utils.enums.CustomerAge;
+import com.mindhub.cinema.utils.enums.TicketPromo;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

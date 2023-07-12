@@ -1,6 +1,8 @@
 package com.mindhub.cinema.models;
 
 
+import com.mindhub.cinema.utils.enums.ClientLevel;
+import com.mindhub.cinema.utils.enums.ClientRol;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

@@ -1,4 +1,4 @@
-package com.mindhub.cinema.models;
+package com.mindhub.cinema.utils.enums;
 
 public enum ClientLevel {
     BASIC,

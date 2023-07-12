@@ -1,5 +1,8 @@
 package com.mindhub.cinema.models;
 
+import com.mindhub.cinema.utils.enums.MovieGenre;
+import com.mindhub.cinema.utils.enums.MovieRestriction;
+import com.mindhub.cinema.utils.enums.MovieType;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

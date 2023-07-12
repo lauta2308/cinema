@@ -1,6 +1,8 @@
 package com.mindhub.cinema.models;
 
 
+import com.mindhub.cinema.utils.enums.RoomStatus;
+import com.mindhub.cinema.utils.enums.RoomType;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

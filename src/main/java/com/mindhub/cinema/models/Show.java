@@ -1,6 +1,7 @@
 package com.mindhub.cinema.models;
 
 
+import com.mindhub.cinema.utils.enums.ShowStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

@@ -60,4 +60,22 @@ public class PurchaseItem {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+
+    // Método para calcular el precio total del PurchaseItem
+    public double getTotalPrice() {
+        return product.getProductPrice() * quantity;
+    }
+
+    // Sumo el precio del purchase item al precio de la compra
+    public void addPriceToPurchase(){
+        this.purchase.setPurchase_price(this.purchase.getPurchase_price() + this.getTotalPrice());
+
+    }
+
+    // Método para disminuir el stock del producto
+    public void decreaseProductStock() {
+        int updatedStock = product.getStock() - quantity;
+        product.setStock(updatedStock);
+    }
 }

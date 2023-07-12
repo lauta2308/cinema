@@ -23,6 +23,8 @@ public class Ticket {
 
     private CustomerAge customerAge = CustomerAge.ADULT;
 
+    private Double ticketPrice;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="purchase_id")
     private Purchase purchase;
@@ -77,4 +79,35 @@ public class Ticket {
     public void setShow(Show show) {
         this.show = show;
     }
+
+    public TicketPromo getTicketPromo() {
+        return ticketPromo;
+    }
+
+    public void setTicketPromo(TicketPromo ticketPromo) {
+        this.ticketPromo = ticketPromo;
+    }
+
+    public CustomerAge getCustomerAge() {
+        return customerAge;
+    }
+
+    public void setCustomerAge(CustomerAge customerAge) {
+        this.customerAge = customerAge;
+    }
+
+    public Double getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(Double ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
+
+    // Sumo el precio del purchase item al precio de la compra
+    public void addPriceToPurchase(){
+        this.purchase.setPurchase_price(this.purchase.getPurchase_price() + this.getTicketPrice());
+
+    }
+
 }

@@ -2,10 +2,7 @@ package com.mindhub.cinema;
 
 import com.mindhub.cinema.models.*;
 import com.mindhub.cinema.repositories.*;
-import com.mindhub.cinema.utils.enums.MovieGenre;
-import com.mindhub.cinema.utils.enums.MovieRestriction;
-import com.mindhub.cinema.utils.enums.MovieType;
-import com.mindhub.cinema.utils.enums.RoomType;
+import com.mindhub.cinema.utils.enums.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -168,6 +165,9 @@ public class CinemaApplication {
 
 			Ticket ticketForShowOne1 = ticketRepository.save(new Ticket(seatSelected.getId(), seatSelected.getSeatPlace(), purchaseOne, showOne));
 
+			ticketForShowOne1.setTicketPrice(ticketForShowOne1.getShow().getStandardPrice());
+			ticketForShowOne1.addPriceToPurchase();
+
 			// Actualizo los tickets vendidos para la funcion 1
 
 			showOneTicketsSold = ticketRepository.findAll().stream().filter(ticket -> ticket.getShow().getId() == showOne.getId()).collect(Collectors.toSet());
@@ -194,6 +194,9 @@ public class CinemaApplication {
 
 			Ticket ticket2ForShowOne1 = ticketRepository.save(new Ticket(seatSelected2.getId(), seatSelected2.getSeatPlace(), purchaseOne, showOne));
 
+			ticket2ForShowOne1.setTicketPrice(ticket2ForShowOne1.getShow().getStandardPrice());
+			ticket2ForShowOne1.addPriceToPurchase();
+
 			// Actualizo los tickets vendidos para la funcion 1
 
 			showOneTicketsSold = ticketRepository.findAll().stream().filter(ticket -> ticket.getShow().getId() == showOne.getId()).collect(Collectors.toSet());
@@ -212,6 +215,40 @@ public class CinemaApplication {
 			System.out.println(unassignedSeats.size() + " cantidad de asientos no asignados");
 
 
+
+
+
+
+			// Productos
+
+			Product cocaChica = productRepository.save(new Product("Coca-cola vaso chico", 200.00, 20, ProductType.DRINK, 236));
+
+			Product cocaMedia = productRepository.save(new Product("Coca-cola vaso mediano", 300.00, 20, ProductType.DRINK, 354));
+
+			Product cocaGrande = productRepository.save(new Product("Coca-cola vaso grande", 350.00, 20, ProductType.DRINK, 473));
+
+			Product pochocloChico = productRepository.save(new Product("Balde pochoclo chico", 500.00, 20, ProductType.FOOD, 300));
+
+			Product pochocloMediano = productRepository.save(new Product("Balde pochoclo mediano", 700.00, 20, ProductType.FOOD, 500));
+
+			Product pochocloGrande = productRepository.save(new Product("Balde pochoclo grande", 800.00, 20, ProductType.FOOD,800 ));
+
+
+			PurchaseItem purchaseItem = purchaseItemRepository.save(new PurchaseItem(3,purchaseOne, cocaMedia));
+
+			purchaseItem.addPriceToPurchase();
+			purchaseItem.decreaseProductStock();
+			productRepository.save(cocaMedia);
+
+
+
+			PurchaseItem purchaseItem1 = purchaseItemRepository.save(new PurchaseItem(3,purchaseOne, pochocloMediano));
+			purchaseItem1.addPriceToPurchase();
+			purchaseItem1.decreaseProductStock();
+			productRepository.save(pochocloMediano);
+
+
+			purchaseRepository.save(purchaseOne);
 		};
 
 	}

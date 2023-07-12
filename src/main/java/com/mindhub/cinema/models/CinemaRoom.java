@@ -20,7 +20,7 @@ public class CinemaRoom {
 
     private Integer capacity;
 
-    private RoomStatus roomStatus;
+    private RoomStatus roomStatus = RoomStatus.AVAILABLE;
 
     private RoomType roomType;
 

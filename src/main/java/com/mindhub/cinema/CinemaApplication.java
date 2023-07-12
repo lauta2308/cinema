@@ -1,6 +1,9 @@
 package com.mindhub.cinema;
 
+import com.mindhub.cinema.models.CinemaRoom;
 import com.mindhub.cinema.models.Client;
+import com.mindhub.cinema.models.RoomType;
+import com.mindhub.cinema.models.Seat;
 import com.mindhub.cinema.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,6 +26,7 @@ public class CinemaApplication {
 		return (args) -> {
 
 
+			// save customers
 
 			Client clientOne = clientRepository.save(new Client("Abdul", "Randall", "abdulrandall@gmail.com", "1234", LocalDate.of(1994, 07, 20)));
 
@@ -50,11 +54,34 @@ public class CinemaApplication {
 
 
 
+			// save cinema rooms
+
+			CinemaRoom cinemaRoomOne = cinemaRoomRepository.save(new CinemaRoom("SALA 1 2D", 100, RoomType.ROOM_2D));
+
+			CinemaRoom cinemaRoomTwo = cinemaRoomRepository.save(new CinemaRoom("SALA 2 3D", 50, RoomType.ROOM_3D));
+
+			CinemaRoom cinemaRoomThree = cinemaRoomRepository.save(new CinemaRoom("SALA 3 IMAX", 30, RoomType.ROOM_IMAX));
 
 
+			// Seats for room 1
+
+			for (int i = 0; i <= cinemaRoomOne.getCapacity() ; i++) {
+				seatRepository.save(new Seat(i, cinemaRoomOne));
+
+			}
+
+			// Seats for room 2
+
+			for (int i = 0; i <= cinemaRoomTwo.getCapacity() ; i++) {
+				seatRepository.save(new Seat(i, cinemaRoomTwo));
+			}
 
 
+			// Seats for room 3
 
+			for (int i = 0; i <= cinemaRoomThree.getCapacity() ; i++) {
+				seatRepository.save(new Seat(i, cinemaRoomThree));
+			}
 
 		};
 

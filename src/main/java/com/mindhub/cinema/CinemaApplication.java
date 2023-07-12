@@ -65,21 +65,21 @@ public class CinemaApplication {
 
 			// Seats for room 1
 
-			for (int i = 0; i <= cinemaRoomOne.getCapacity() ; i++) {
+			for (int i = 1; i <= cinemaRoomOne.getCapacity() ; i++) {
 				seatRepository.save(new Seat(i, cinemaRoomOne));
 
 			}
 
 			// Seats for room 2
 
-			for (int i = 0; i <= cinemaRoomTwo.getCapacity() ; i++) {
+			for (int i = 1; i <= cinemaRoomTwo.getCapacity() ; i++) {
 				seatRepository.save(new Seat(i, cinemaRoomTwo));
 			}
 
 
 			// Seats for room 3
 
-			for (int i = 0; i <= cinemaRoomThree.getCapacity() ; i++) {
+			for (int i = 1; i <= cinemaRoomThree.getCapacity() ; i++) {
 				seatRepository.save(new Seat(i, cinemaRoomThree));
 			}
 

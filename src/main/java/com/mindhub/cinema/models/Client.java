@@ -21,6 +21,8 @@ public class Client {
 
     private String email;
 
+    private String password;
+
     private ClientRol clientRol;
 
     private ClientLevel clientLevel;

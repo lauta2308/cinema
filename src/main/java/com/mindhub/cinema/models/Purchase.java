@@ -15,11 +15,11 @@ public class Purchase {
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
 
-    private Double purchase_price;
+    private Double purchase_price = 0.0;
 
-    private PurchaseStatus purchaseStatus;
+    private PurchaseStatus purchaseStatus = PurchaseStatus.IN_PROGRESS;
 
-    private PaymentMethod paymentMethod;
+    private PaymentMethod paymentMethod = PaymentMethod.NOT_SELECTED;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")

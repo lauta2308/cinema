@@ -1,9 +1,6 @@
 package com.mindhub.cinema;
 
-import com.mindhub.cinema.models.CinemaRoom;
-import com.mindhub.cinema.models.Client;
-import com.mindhub.cinema.models.RoomType;
-import com.mindhub.cinema.models.Seat;
+import com.mindhub.cinema.models.*;
 import com.mindhub.cinema.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class CinemaApplication {
@@ -22,7 +23,7 @@ public class CinemaApplication {
 
 
 	@Bean
-	public CommandLineRunner initData(ActorRepository actorRepository, CinemaRoomRepository cinemaRoomRepository, ClientRepository clientRepository, MovieRepository movieRepository, ProductRepository productRepository, PurchaseItemRepository purchaseItemRepository, PurchaseRepository purchaseRepository, ReviewRepository reviewRepository, SeatRepository seatRepository, ShowRepository showRepository, TicketRepository ticketRepository) {
+	public CommandLineRunner initData(ActorRepository actorRepository, CinemaRoomRepository cinemaRoomRepository, ClientRepository clientRepository, DirectorRepository directorRepository, MovieRepository movieRepository, ProductRepository productRepository, PurchaseItemRepository purchaseItemRepository, PurchaseRepository purchaseRepository, ReviewRepository reviewRepository, SeatRepository seatRepository, ShowRepository showRepository, TicketRepository ticketRepository) {
 		return (args) -> {
 
 
@@ -82,6 +83,130 @@ public class CinemaApplication {
 			for (int i = 1; i <= cinemaRoomThree.getCapacity() ; i++) {
 				seatRepository.save(new Seat(i, cinemaRoomThree));
 			}
+
+
+			// Actores
+
+			Actor harrisonFord = actorRepository.save(new Actor("Harrison", "Ford"));
+
+			// Directores
+
+			Director jamesMangold = directorRepository.save(new Director("James", "Mangold"));
+
+
+			// PELICULAS
+
+			Movie indianaJones2d = movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.RATED_PG, 152, MovieGenre.Adventure, MovieType.MOVIE_2D, Set.of(harrisonFord), jamesMangold));
+
+
+			harrisonFord.getMovies().add(indianaJones2d);
+			actorRepository.save(harrisonFord);
+
+
+
+			// Creo un show
+
+			Show showOne = showRepository.save(new Show(LocalDateTime.of(2023,07,15,19,00,00), LocalDateTime.of(2023,07,15,21,30,00), 1000.00, indianaJones2d, cinemaRoomOne));
+
+
+			// Creo una compra
+
+			Purchase purchaseOne = purchaseRepository.save(new Purchase());
+
+			// Le asigno un cliente
+
+			purchaseOne.setClient(clientOne);
+
+			purchaseRepository.save(purchaseOne);
+
+			// Averiguo la edad del cliente 1
+
+			Integer clientAge = LocalDate.now().getYear() - clientOne.getBornDate().getYear();
+			System.out.println("El cliente uno tiene " + clientAge);
+
+
+			// Creo una variable y le asigno los asientos de la sala donde se va a hacer la función
+
+			Set<Seat> roomOneSeats = cinemaRoomRepository.findById(showOne.getCinemaRoom().getId()).get().getSeats().stream().collect(Collectors.toSet());
+
+			System.out.println(roomOneSeats.size() + " cantidad de asientos sala");
+
+
+			// Creo una variable y le asigno los tickets que se hayan sacado para la funcion
+
+			Set<Ticket> showOneTicketsSold = ticketRepository.findAll().stream().filter(ticket -> ticket.getShow().getId() == showOne.getId()).collect(Collectors.toSet());
+
+			System.out.println(showOneTicketsSold.size() + " tickets vendidos para la funcion 1");
+
+
+
+
+			// Creo una variable y le asigno los asientos de la sala
+
+			Set<Seat> unassignedSeats = new HashSet<>(roomOneSeats);
+
+			for (Ticket ticket : showOneTicketsSold) {
+				Long seatId = ticket.getSeatId();
+
+				// Filtro los asientos de la sala y solo dejo aquellos que no estén asignados a ningun ticket
+				unassignedSeats.removeIf(seat -> seat.getId() == seatId);
+			}
+
+			System.out.println(unassignedSeats.size() + " cantidad de asientos no asignados");
+
+
+			// Selecciono un asiento de los asientos no asignados
+
+			Seat seatSelected = unassignedSeats.stream().findFirst().get();
+
+
+			// Creo un ticket, le paso los parámetros del asiento y de la compra
+
+			Ticket ticketForShowOne1 = ticketRepository.save(new Ticket(seatSelected.getId(), seatSelected.getSeatPlace(), purchaseOne, showOne));
+
+			// Actualizo los tickets vendidos para la funcion 1
+
+			showOneTicketsSold = ticketRepository.findAll().stream().filter(ticket -> ticket.getShow().getId() == showOne.getId()).collect(Collectors.toSet());
+
+			System.out.println(showOneTicketsSold.size() + " tickets vendidos para la funcion 1");
+
+			// Vuelvo a iterar los tickets vendidos para la funcion 1
+
+			for (Ticket ticket : showOneTicketsSold) {
+				Long seatId = ticket.getSeatId();
+
+				// Filtro los asientos de la sala y solo dejo aquellos que no estén asignados a ningun ticket
+				unassignedSeats.removeIf(seat -> seat.getId() == seatId);
+			}
+
+			System.out.println(unassignedSeats.size() + " cantidad de asientos no asignados");
+
+
+			// Selecciono un asiento de los asientos no asignados
+
+			Seat seatSelected2 = unassignedSeats.stream().findFirst().get();
+
+			// Creo un ticket, le paso los parámetros del asiento y de la compra
+
+			Ticket ticket2ForShowOne1 = ticketRepository.save(new Ticket(seatSelected2.getId(), seatSelected2.getSeatPlace(), purchaseOne, showOne));
+
+			// Actualizo los tickets vendidos para la funcion 1
+
+			showOneTicketsSold = ticketRepository.findAll().stream().filter(ticket -> ticket.getShow().getId() == showOne.getId()).collect(Collectors.toSet());
+
+			System.out.println(showOneTicketsSold.size() + " tickets vendidos para la funcion 1");
+
+			// Vuelvo a iterar los tickets vendidos para la funcion 1
+
+			for (Ticket ticket : showOneTicketsSold) {
+				Long seatId = ticket.getSeatId();
+
+				// Filtro los asientos de la sala y solo dejo aquellos que no estén asignados a ningun ticket
+				unassignedSeats.removeIf(seat -> seat.getId() == seatId);
+			}
+
+			System.out.println(unassignedSeats.size() + " cantidad de asientos no asignados");
+
 
 		};
 

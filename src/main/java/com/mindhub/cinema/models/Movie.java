@@ -14,6 +14,10 @@ public class Movie {
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
 
+    private String movieImg;
+
+    private String movieTrailer;
+
     private String name;
 
     private String description;
@@ -24,24 +28,29 @@ public class Movie {
 
     private MovieGenre movieGenre;
 
-    private Integer timesPlayed;
+    private Integer timesPlayed = 0;
 
-    private Integer ticketsSold;
+    private Integer ticketsSold = 0;
 
     private MovieType movieType;
 
-    @ManyToMany
-    Set<Actor> actors;
+    @ManyToMany(fetch=FetchType.EAGER)
+    Set<Actor> actors = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="director_id")
     private Director director;
 
+    @OneToMany(mappedBy="movie", fetch=FetchType.EAGER)
+    private Set<Show> shows = new HashSet<>();
+
 
     public Movie() {
     }
 
-    public Movie(String name, String description, MovieRestriction movieRestriction, Integer duration, MovieGenre movieGenre, MovieType movieType, Set<Actor> actors, Director director) {
+    public Movie(String movieImg, String trailer, String name, String description, MovieRestriction movieRestriction, Integer duration, MovieGenre movieGenre, MovieType movieType, Set<Actor> actors, Director director) {
+        this.movieImg = movieImg;
+        this.movieTrailer = trailer;
         this.name = name;
         this.description = description;
         this.movieRestriction = movieRestriction;
@@ -50,11 +59,28 @@ public class Movie {
         this.movieType = movieType;
         this.actors = actors;
         this.director = director;
+
     }
 
 
     public long getId() {
         return id;
+    }
+
+    public String getMovieImg() {
+        return movieImg;
+    }
+
+    public void setMovieImg(String movieImg) {
+        this.movieImg = movieImg;
+    }
+
+    public String getMovieTrailer() {
+        return movieTrailer;
+    }
+
+    public void setMovieTrailer(String movieTrailer) {
+        this.movieTrailer = movieTrailer;
     }
 
     public String getName() {
@@ -135,5 +161,13 @@ public class Movie {
 
     public void setDirector(Director director) {
         this.director = director;
+    }
+
+    public Set<Show> getShows() {
+        return shows;
+    }
+
+    public void setShows(Set<Show> shows) {
+        this.shows = shows;
     }
 }

@@ -3,6 +3,7 @@ package com.mindhub.cinema.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,8 +17,8 @@ public class Actor {
 
     private String lastName;
 
-    @ManyToMany
-    Set<Movie> movies;
+    @ManyToMany(fetch=FetchType.EAGER)
+    Set<Movie> movies = new HashSet<>();
 
     public Actor() {
     }

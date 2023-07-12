@@ -24,9 +24,9 @@ public class Show {
 
     private Integer ticketsSold = 0;
 
-    private Double occupationPercent;
+    private Double occupationPercent = 0.0;
 
-    private ShowStatus showStatus;
+    private ShowStatus showStatus = ShowStatus.NOT_STARTED;
 
     @OneToMany(mappedBy="show", fetch=FetchType.EAGER)
     private Set<Ticket> tickets = new HashSet<>();

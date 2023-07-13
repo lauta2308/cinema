@@ -1,11 +1,12 @@
 package com.mindhub.cinema.controllers;
 
 
+import com.mindhub.cinema.dtos.ClientDto;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
-import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,8 +24,11 @@ public class ClientController {
     @Autowired
     ClientServiceInterface clientService;
 
+
+    // Register one client
+
     @PostMapping("/api/register_client")
-    public ResponseEntity<String> register(
+    public ResponseEntity<String> register_client(
 
             @RequestParam String name, @RequestParam String lastName,
 
@@ -35,8 +39,20 @@ public class ClientController {
 
 
 
+    }
+
+
+    // Get authenticated user
+
+    @GetMapping("/api/authenticated_user")
+    public ClientDto get_authenticated_user (Authentication authentication){
+
+        return clientService.get_authenticated_user(authentication);
 
     }
+
+
+
 
 
 

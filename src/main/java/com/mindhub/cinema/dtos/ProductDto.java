@@ -3,9 +3,6 @@ package com.mindhub.cinema.dtos;
 import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.utils.enums.ProductType;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-
 public class ProductDto {
 
     private long id;
@@ -20,7 +17,7 @@ public class ProductDto {
 
     private Integer net_content;
 
-    private Set<PurchaseItemDto> productCombos;
+
 
 
     public ProductDto(Product product) {
@@ -30,7 +27,7 @@ public class ProductDto {
         this.stock = product.getStock();
         this.productType = product.getProductType();
         this.net_content = product.getNet_content();
-        this.productCombos = product.getProductCombos().stream().map(purchaseItem -> new PurchaseItemDto(purchaseItem)).collect(Collectors.toSet());
+
     }
 
     public long getId() {
@@ -57,7 +54,4 @@ public class ProductDto {
         return net_content;
     }
 
-    public Set<PurchaseItemDto> getProductCombos() {
-        return productCombos;
-    }
 }

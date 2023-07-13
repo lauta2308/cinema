@@ -13,7 +13,7 @@ public class ActorDto {
 
     private String lastName;
 
-    Set<MovieDto> movies;
+    private Set<MovieDto> movies;
 
     public ActorDto(Actor actor) {
         this.id = actor.getId();

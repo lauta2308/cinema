@@ -24,7 +24,6 @@ public class ShowDto {
     private ShowStatus showStatus;
 
 
-    private Set<TicketDto> tickets;
 
 
     private MovieDto movie;
@@ -40,7 +39,6 @@ public class ShowDto {
         this.ticketsSold = show.getTicketsSold();
         this.occupationPercent = show.getOccupationPercent();
         this.showStatus = show.getShowStatus();
-        this.tickets = show.getTickets().stream().map(ticket -> new TicketDto(ticket)).collect(Collectors.toSet());
         this.movie = new MovieDto(show.getMovie());
         this.cinemaRoom = new CinemaRoomDto(show.getCinemaRoom());
     }
@@ -73,9 +71,7 @@ public class ShowDto {
         return showStatus;
     }
 
-    public Set<TicketDto> getTickets() {
-        return tickets;
-    }
+
 
     public MovieDto getMovie() {
         return movie;

@@ -32,13 +32,9 @@ public class MovieDto {
 
     private MovieType movieType;
 
-    Set<ActorDto> actors;
 
 
-    private DirectorDto director;
 
-
-    private Set<ShowDto> shows;
 
 
     public MovieDto(Movie movie) {
@@ -53,9 +49,6 @@ public class MovieDto {
         this.timesPlayed = movie.getTimesPlayed();
         this.ticketsSold = movie.getTicketsSold();
         this.movieType = movie.getMovieType();
-        this.actors = movie.getActors().stream().map(actor -> new ActorDto(actor)).collect(Collectors.toSet());
-        this.director = new DirectorDto(movie.getDirector());
-        this.shows = movie.getShows().stream().map(show -> new ShowDto(show)).collect(Collectors.toSet());
     }
 
     public long getId() {
@@ -102,15 +95,7 @@ public class MovieDto {
         return movieType;
     }
 
-    public Set<ActorDto> getActors() {
-        return actors;
-    }
 
-    public DirectorDto getDirector() {
-        return director;
-    }
 
-    public Set<ShowDto> getShows() {
-        return shows;
-    }
+
 }

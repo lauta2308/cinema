@@ -10,14 +10,14 @@ public class SeatDto {
 
     private Boolean available;
 
-    private CinemaRoomDto cinemaRoom;
+
 
 
     public SeatDto(Seat seat) {
         this.id = seat.getId();
         this.seatPlace = seat.getSeatPlace();
         this.available = seat.getAvailable();
-        this.cinemaRoom = new CinemaRoomDto(seat.getCinemaRoom());
+
     }
 
     public long getId() {
@@ -32,7 +32,5 @@ public class SeatDto {
         return available;
     }
 
-    public CinemaRoomDto getCinemaRoom() {
-        return cinemaRoom;
-    }
+
 }

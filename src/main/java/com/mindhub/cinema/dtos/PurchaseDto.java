@@ -17,8 +17,6 @@ public class PurchaseDto {
 
     private PaymentMethod paymentMethod;
 
-
-
     private Set<TicketDto> tickets;
 
     private Set<PurchaseItemDto> purchaseItems;

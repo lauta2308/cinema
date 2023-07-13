@@ -1,12 +1,14 @@
 package com.mindhub.cinema.services;
 
 
+import com.mindhub.cinema.dtos.ClientDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.repositories.ClientRepository;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +57,11 @@ public class ClientService implements ClientServiceInterface {
 
 
 
+    }
+
+    @Override
+    public ClientDto get_authenticated_user(Authentication authentication) {
+        return new ClientDto(clientRepository.findByEmail(authentication.getName()));
     }
 
 

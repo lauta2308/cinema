@@ -19,10 +19,9 @@ public class CinemaRoomDto {
 
     private RoomType roomType;
 
-    private Set<SeatDto> seats;
 
 
-    private Set<ShowDto> shows;
+
 
 
     public CinemaRoomDto(CinemaRoom cinemaRoom) {
@@ -31,8 +30,6 @@ public class CinemaRoomDto {
         this.capacity = cinemaRoom.getCapacity();
         this.roomStatus = cinemaRoom.getRoomStatus();
         this.roomType = cinemaRoom.getRoomType();
-        this.seats = cinemaRoom.getSeats().stream().map(seat -> new SeatDto(seat)).collect(Collectors.toSet());
-        this.shows = cinemaRoom.getShows().stream().map(show -> new ShowDto(show)).collect(Collectors.toSet());
     }
 
     public long getId() {
@@ -55,11 +52,7 @@ public class CinemaRoomDto {
         return roomType;
     }
 
-    public Set<SeatDto> getSeats() {
-        return seats;
-    }
 
-    public Set<ShowDto> getShows() {
-        return shows;
-    }
+
+
 }

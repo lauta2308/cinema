@@ -19,7 +19,7 @@ public class TicketDto {
     private Double ticketPrice;
 
 
-    private PurchaseDto purchase;
+
 
 
     private ShowDto show;
@@ -31,7 +31,7 @@ public class TicketDto {
         this.ticketPromo = ticket.getTicketPromo();
         this.customerAge = ticket.getCustomerAge();
         this.ticketPrice = ticket.getTicketPrice();
-        this.purchase = new PurchaseDto(ticket.getPurchase());
+
         this.show = new ShowDto(ticket.getShow());
     }
 
@@ -59,9 +59,6 @@ public class TicketDto {
         return ticketPrice;
     }
 
-    public PurchaseDto getPurchase() {
-        return purchase;
-    }
 
     public ShowDto getShow() {
         return show;

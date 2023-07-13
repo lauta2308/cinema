@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "2ee15343-1929-465b-96f1-e68e342d214f",
+		"name": "cinema",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8567103"
+	},
+	"item": [
+		{
+			"name": "register client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/register_client",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"register_client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/login?email=abdulrandall@gmail.com&password=1234",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "abdulrandall@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get logged client",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/authenticated_user",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"authenticated_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create cinema room",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/admin/cinema_room?roomName=sala de pruebaSwssuu&capacity=85&roomType=ROOM_2D",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"cinema_room"
+					],
+					"query": [
+						{
+							"key": "roomName",
+							"value": "sala de pruebaSwssuu"
+						},
+						{
+							"key": "capacity",
+							"value": "85"
+						},
+						{
+							"key": "roomType",
+							"value": "ROOM_2D"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

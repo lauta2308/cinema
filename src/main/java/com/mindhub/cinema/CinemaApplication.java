@@ -215,10 +215,6 @@ public class CinemaApplication {
 			System.out.println(unassignedSeats.size() + " cantidad de asientos no asignados");
 
 
-
-
-
-
 			// Productos
 
 			Product cocaChica = productRepository.save(new Product("Coca-cola vaso chico", 200.00, 20, ProductType.DRINK, 236));

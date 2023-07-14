@@ -9,5 +9,5 @@ import java.util.Set;
 public interface TicketServiceInterface {
     Set<Ticket> getTicketsTaken(Long showId);
 
-    ResponseEntity<String> createTicket(Authentication authentication, Long showId, Long seatId, Integer seatPlace);
+    ResponseEntity<String> createTicket(Authentication authentication, Long purchaseId, Long showId, Long seatId, Integer seatPlace);
 }

@@ -35,11 +35,11 @@ public class TicketController {
 
     // Create ticket
     @PostMapping("/api/current/create_ticket")
-    public ResponseEntity<String> create_ticket(Authentication authentication, @RequestParam Long showId, @RequestParam Long seatId, @RequestParam Integer seatPlace){
+    public ResponseEntity<String> create_ticket(Authentication authentication, @RequestParam Long purchaseId, @RequestParam Long showId, @RequestParam Long seatId, @RequestParam Integer seatPlace){
 
 
 
-        return  ticketService.createTicket(authentication, showId, seatId, seatPlace);
+        return  ticketService.createTicket(authentication,purchaseId, showId, seatId, seatPlace);
 
 
 

@@ -42,7 +42,7 @@ public class TicketService implements TicketServiceInterface {
 
     @Override
     @Transactional
-    public ResponseEntity<String> createTicket(Authentication authentication, Long showId, Long seatId, Integer seatPlace) {
+    public ResponseEntity<String> createTicket(Authentication authentication, Long purchaseId, Long showId, Long seatId, Integer seatPlace) {
         Client clientAuth = clientService.get_full_client(authentication);
 
         if(clientAuth == null){
@@ -50,12 +50,13 @@ public class TicketService implements TicketServiceInterface {
         }
 
 
-        // Creo una compra y se la agrego al cliente
+        // Verifico que la compra sea del cliente y la obtengo
 
-        Purchase createPurchaseToClient = purchaseService.addPurchaseToClient(clientAuth);
+        Purchase clientPurchase = clientAuth.getPurchases().stream().filter(purchase -> purchase.getId() == purchaseId).findFirst().get();
 
-        if(createPurchaseToClient == null){
-            return new ResponseEntity<>("Could not make the purchase", HttpStatus.CONFLICT);
+
+        if(clientPurchase == null){
+            return new ResponseEntity<>("Could not find the purchase", HttpStatus.CONFLICT);
         }
 
         // Busco el show seleccionado
@@ -73,10 +74,10 @@ public class TicketService implements TicketServiceInterface {
             return new ResponseEntity<>("Seat already taken, take another", HttpStatus.CONFLICT);
         }
 
-        Ticket ticket = ticketRepository.save(new Ticket(seatId, seatPlace, createPurchaseToClient, showSelected));
+        Ticket ticket = ticketRepository.save(new Ticket(seatId, seatPlace, clientPurchase, showSelected));
 
         if(ticket != null){
-            return new ResponseEntity<>("Purchase created, ticket added, seat assigned", HttpStatus.CREATED);
+            return new ResponseEntity<>("Ticket added to purchase, seat assigned", HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>("Something went wrong", HttpStatus.CONFLICT);
         }

@@ -14,14 +14,14 @@ public class DirectorDto {
 
     private String lastName;
 
-    private Set<MovieDto> movies;
+
 
 
     public DirectorDto(Director director) {
         this.id = director.getId();
         this.name = director.getName();
         this.lastName = director.getLastName();
-        this.movies = director.getMovies().stream().map(movie -> new MovieDto(movie)).collect(Collectors.toSet());
+
     }
 
     public long getId() {
@@ -36,7 +36,5 @@ public class DirectorDto {
         return lastName;
     }
 
-    public Set<MovieDto> getMovies() {
-        return movies;
-    }
+
 }

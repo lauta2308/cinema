@@ -13,13 +13,12 @@ public class ActorDto {
 
     private String lastName;
 
-    private Set<MovieDto> movies;
+
 
     public ActorDto(Actor actor) {
         this.id = actor.getId();
         this.name = actor.getName();
         this.lastName = actor.getLastName();
-        this.movies = actor.getMovies().stream().map(movie -> new MovieDto(movie)).collect(Collectors.toSet());
     }
 
     public long getId() {
@@ -34,7 +33,5 @@ public class ActorDto {
         return lastName;
     }
 
-    public Set<MovieDto> getMovies() {
-        return movies;
-    }
+
 }

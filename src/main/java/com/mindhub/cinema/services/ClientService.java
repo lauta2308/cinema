@@ -5,6 +5,7 @@ import com.mindhub.cinema.dtos.ClientDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.repositories.ClientRepository;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
+import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,9 @@ public class ClientService implements ClientServiceInterface {
 
     @Autowired
     ClientRepository clientRepository;
+
+    @Autowired
+    PurchaseServiceInterface purchaseService;
 
     @Override
     public ResponseEntity<String> registerClient(String name, String lastName, String email, String password , String bornDate) {
@@ -63,6 +67,13 @@ public class ClientService implements ClientServiceInterface {
     public ClientDto get_authenticated_user(Authentication authentication) {
         return new ClientDto(clientRepository.findByEmail(authentication.getName()));
     }
+
+    @Override
+    public Client get_full_client(Authentication authentication) {
+        return clientRepository.findByEmail(authentication.getName());
+    }
+
+
 
 
     // Método para verificar que el password tenga 8 caracteres y al menos 1 mayus, 1 minuscula, 1 numero y 1 simbolo

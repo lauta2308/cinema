@@ -1,6 +1,7 @@
 package com.mindhub.cinema.dtos;
 
 import com.mindhub.cinema.models.Movie;
+import com.mindhub.cinema.utils.enums.MovieAvailability;
 import com.mindhub.cinema.utils.enums.MovieGenre;
 import com.mindhub.cinema.utils.enums.MovieRestriction;
 import com.mindhub.cinema.utils.enums.MovieType;
@@ -32,8 +33,11 @@ public class MovieDto {
 
     private MovieType movieType;
 
+    private MovieAvailability movieAvailability;
 
+    private Set<ActorDto> actors;
 
+    private DirectorDto director;
 
 
 
@@ -49,6 +53,9 @@ public class MovieDto {
         this.timesPlayed = movie.getTimesPlayed();
         this.ticketsSold = movie.getTicketsSold();
         this.movieType = movie.getMovieType();
+        this.movieAvailability = movie.getMovieAvailability();
+        this.actors = movie.getActors().stream().map(actor -> new ActorDto(actor)).collect(Collectors.toSet());
+        this.director = new DirectorDto(movie.getDirector());
     }
 
     public long getId() {
@@ -95,7 +102,15 @@ public class MovieDto {
         return movieType;
     }
 
+    public MovieAvailability getMovieAvailability() {
+        return movieAvailability;
+    }
 
+    public Set<ActorDto> getActors() {
+        return actors;
+    }
 
-
+    public DirectorDto getDirector() {
+        return director;
+    }
 }

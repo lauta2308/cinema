@@ -1,8 +1,10 @@
 package com.mindhub.cinema.services;
 
-import com.mindhub.cinema.models.CinemaRoom;
-import com.mindhub.cinema.models.Seat;
+import com.mindhub.cinema.dtos.SeatDto;
+import com.mindhub.cinema.models.*;
+import com.mindhub.cinema.repositories.PurchaseRepository;
 import com.mindhub.cinema.repositories.SeatRepository;
+import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.SeatServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class SeatService implements SeatServiceInterface {
@@ -36,4 +41,26 @@ public class SeatService implements SeatServiceInterface {
         }
 
     }
+
+    @Override
+    public Set<Seat> getRoomSeats(CinemaRoom cinemaRoom) {
+        return seatRepository.findAll().stream().filter(seat -> seat.getCinemaRoom() == cinemaRoom).collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<SeatDto> availableSeats(Set<Seat> show_room_seats, Set<Ticket> showTicketsSold) {
+        Set<Seat> unassignedSeats = new HashSet<>(show_room_seats);
+
+        for (Ticket ticket : showTicketsSold) {
+            Long seatId = ticket.getSeatId();
+
+            // Filtro los asientos de la sala y solo dejo aquellos que no estén asignados a ningun ticket
+            unassignedSeats.removeIf(seat -> seat.getId() == seatId);
+        }
+
+        return unassignedSeats.stream().map(seat -> new SeatDto(seat)).collect(Collectors.toSet());
+
+    }
+
+
 }

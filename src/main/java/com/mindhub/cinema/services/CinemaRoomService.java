@@ -29,7 +29,7 @@ public class CinemaRoomService implements CinemaRoomServiceInterface {
 
         if(roomName.isBlank() || capacity <= 0 || roomType.toString().isBlank()){
 
-            return new ResponseEntity<>("fields not complete", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("parameters not valid", HttpStatus.BAD_REQUEST);
         }
 
 
@@ -54,7 +54,6 @@ public class CinemaRoomService implements CinemaRoomServiceInterface {
 
 
                 return new ResponseEntity<>("Room made, seats added", HttpStatus.CREATED);
-
 
 
         }

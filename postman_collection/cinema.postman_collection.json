@@ -106,6 +106,109 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get all movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/all_movies",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"all_movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get movie shows from now",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/movie_shows?movieId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movie_shows"
+					],
+					"query": [
+						{
+							"key": "movieId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get seats available",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/seats_available?showId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"seats_available"
+					],
+					"query": [
+						{
+							"key": "showId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create ticket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/current/create_ticket?showId=1&seatId=87&seatPlace=87",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"current",
+						"create_ticket"
+					],
+					"query": [
+						{
+							"key": "showId",
+							"value": "1"
+						},
+						{
+							"key": "seatId",
+							"value": "87"
+						},
+						{
+							"key": "seatPlace",
+							"value": "87"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

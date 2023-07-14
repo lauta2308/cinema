@@ -38,6 +38,11 @@ public class Purchase {
     public Purchase() {
     }
 
+    public Purchase(Client client) {
+        this.client = client;
+        client.getPurchases().add(this);
+    }
+
     public long getId() {
         return id;
     }

@@ -1,5 +1,6 @@
 package com.mindhub.cinema.models;
 
+import com.mindhub.cinema.utils.enums.MovieAvailability;
 import com.mindhub.cinema.utils.enums.MovieGenre;
 import com.mindhub.cinema.utils.enums.MovieRestriction;
 import com.mindhub.cinema.utils.enums.MovieType;
@@ -37,6 +38,8 @@ public class Movie {
 
     private MovieType movieType;
 
+    private MovieAvailability movieAvailability;
+
     @ManyToMany(fetch=FetchType.EAGER)
     Set<Actor> actors = new HashSet<>();
 
@@ -51,7 +54,7 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String movieImg, String trailer, String name, String description, MovieRestriction movieRestriction, Integer duration, MovieGenre movieGenre, MovieType movieType, Set<Actor> actors, Director director) {
+    public Movie(String movieImg, String trailer, String name, String description, MovieRestriction movieRestriction, Integer duration, MovieGenre movieGenre, MovieType movieType, MovieAvailability movieAvailability, Set<Actor> actors, Director director) {
         this.movieImg = movieImg;
         this.movieTrailer = trailer;
         this.name = name;
@@ -60,6 +63,7 @@ public class Movie {
         this.duration = duration;
         this.movieGenre = movieGenre;
         this.movieType = movieType;
+        this.movieAvailability = movieAvailability;
         this.actors = actors;
         this.director = director;
 
@@ -146,8 +150,17 @@ public class Movie {
         return movieType;
     }
 
+
     public void setMovieType(MovieType movieType) {
         this.movieType = movieType;
+    }
+
+    public MovieAvailability getMovieAvailability() {
+        return movieAvailability;
+    }
+
+    public void setMovieAvailability(MovieAvailability movieAvailability) {
+        this.movieAvailability = movieAvailability;
     }
 
     public Set<Actor> getActors() {

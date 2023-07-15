@@ -24,4 +24,16 @@ public class PurchaseService implements PurchaseServiceInterface {
 
 
     }
+
+    @Override
+    public Purchase findPurchaseById(Long id) {
+        return purchaseRepository.findById(id).get();
+    }
+
+    @Override
+    public Boolean existById(Long purchaseId) {
+        return purchaseRepository.existsById(purchaseId);
+    }
+
+
 }

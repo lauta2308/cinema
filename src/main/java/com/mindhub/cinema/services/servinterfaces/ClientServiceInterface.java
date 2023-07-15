@@ -15,4 +15,6 @@ public interface ClientServiceInterface {
     Client get_full_client(Authentication authentication);
 
 
+    // Check if user is admin
+
 }

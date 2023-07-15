@@ -55,7 +55,7 @@ public class SeatService implements SeatServiceInterface {
             Long seatId = ticket.getSeatId();
 
             // Filtro los asientos de la sala y solo dejo aquellos que no estén asignados a ningun ticket
-            unassignedSeats.removeIf(seat -> seat.getId() == seatId);
+            unassignedSeats.removeIf(seat -> seat.getId() == seatId || !seat.getAvailable());
         }
 
         return unassignedSeats.stream().map(seat -> new SeatDto(seat)).collect(Collectors.toSet());

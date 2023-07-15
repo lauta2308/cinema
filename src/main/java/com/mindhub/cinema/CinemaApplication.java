@@ -3,10 +3,12 @@ package com.mindhub.cinema;
 import com.mindhub.cinema.models.*;
 import com.mindhub.cinema.repositories.*;
 import com.mindhub.cinema.utils.enums.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,6 +23,8 @@ public class CinemaApplication {
 		SpringApplication.run(CinemaApplication.class, args);
 	}
 
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 
 	@Bean
@@ -28,10 +32,16 @@ public class CinemaApplication {
 		return (args) -> {
 
 
+
 			// save customers
 
-			Client clientOne = clientRepository.save(new Client("Abdul", "Randall", "abdulrandall@gmail.com", "1234", LocalDate.of(1994, 07, 20)));
+			Client clientOne = clientRepository.save(new Client("Abdul", "Randall", "abdulrandall@gmail.com", "1234", LocalDate.of(1994,07,20)));
 
+			Client clientAdmin = clientRepository.save(new Client("admin", "admin", "cineadmin@cinema.com", "admin", LocalDate.parse("1994-08-23")));
+
+
+			clientAdmin.setClientRol(ClientRol.ADMIN);
+			clientRepository.save(clientAdmin);
 			/*
 			Client clientTwo = clientRepository.save(new Client("Bobby", "Pearce", "bobby_pearce@gmail.com", "1234", LocalDate.of(1993, 07, 20)));
 

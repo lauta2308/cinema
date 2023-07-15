@@ -55,6 +55,35 @@
 			"response": []
 		},
 		{
+			"name": "login admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/login?email=cineadmin@cinema.com&password=admin",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "cineadmin@cinema.com"
+						},
+						{
+							"key": "password",
+							"value": "admin"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "get logged client",
 			"request": {
 				"method": "GET",
@@ -177,6 +206,64 @@
 			"response": []
 		},
 		{
+			"name": "get all products",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "add product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/admin/add_product?productName=pochoclos_prueba&productPrice=500.00&stock=20&productType=DRINK&net_content=500",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"add_product"
+					],
+					"query": [
+						{
+							"key": "productName",
+							"value": "pochoclos_prueba"
+						},
+						{
+							"key": "productPrice",
+							"value": "500.00"
+						},
+						{
+							"key": "stock",
+							"value": "20"
+						},
+						{
+							"key": "productType",
+							"value": "DRINK"
+						},
+						{
+							"key": "net_content",
+							"value": "500"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create purchase and add to client",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
 			"name": "create ticket",
 			"request": {
 				"method": "POST",
@@ -204,6 +291,41 @@
 						{
 							"key": "seatPlace",
 							"value": "87"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add purchase item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/current/purchase/add_purchase_item?productQuantity=2&purchaseId=2&productId=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"current",
+						"purchase",
+						"add_purchase_item"
+					],
+					"query": [
+						{
+							"key": "productQuantity",
+							"value": "2"
+						},
+						{
+							"key": "purchaseId",
+							"value": "2"
+						},
+						{
+							"key": "productId",
+							"value": "2"
 						}
 					]
 				}

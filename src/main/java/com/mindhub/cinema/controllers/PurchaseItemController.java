@@ -1,7 +1,15 @@
 package com.mindhub.cinema.controllers;
 
+import com.mindhub.cinema.models.Product;
+import com.mindhub.cinema.models.Purchase;
+import com.mindhub.cinema.models.PurchaseItem;
+import com.mindhub.cinema.services.PurchaseService;
+import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.PurchaseItemServiceInterface;
+import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
+import com.mindhub.cinema.utils.enums.PurchaseStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,12 +22,55 @@ public class PurchaseItemController {
     @Autowired
     PurchaseItemServiceInterface purchaseItemService;
 
+    @Autowired
+    PurchaseServiceInterface purchaseService;
+
+    @Autowired
+    ProductServiceInterface productService;
+
     @PostMapping("/api/current/purchase/add_purchase_item")
     public ResponseEntity<String> add_purchase_item(Authentication authentication, @RequestParam Integer productQuantity, @RequestParam Long purchaseId, @RequestParam Long productId){
 
 
-       return purchaseItemService.add_purchase_item(authentication, productQuantity, purchaseId, productId);
 
+        Purchase purchase;
+
+        if(!purchaseService.existById(purchaseId)){
+            return new ResponseEntity<String>("Purchase not found", HttpStatus.CONFLICT);
+        } else {
+            purchase = purchaseService.findPurchaseById(purchaseId);
+        }
+
+        if(purchase.getPurchaseStatus() != PurchaseStatus.IN_PROGRESS){
+            return new ResponseEntity<String>("Purchase not valid", HttpStatus.CONFLICT);
+        }
+
+
+
+
+        Product product;
+        if(!productService.existById(productId)){
+            return new ResponseEntity<String>("Product not found", HttpStatus.CONFLICT);
+        } else {
+            product = productService.findProductByid(productId);
+        }
+
+
+        if (purchase.getClient().getEmail() != authentication.getName()) {
+
+            return new ResponseEntity<String>("Purchase and user not match", HttpStatus.CONFLICT);
+
+        }
+
+
+        if (product.getStock() < productQuantity) {
+            return new ResponseEntity<String>("Less stock than quantity", HttpStatus.CONFLICT);
+
+        }
+
+
+
+       return purchaseItemService.add_purchase_item(productQuantity, purchase, product);
 
 
     }

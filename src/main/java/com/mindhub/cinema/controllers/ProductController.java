@@ -68,7 +68,7 @@ public class ProductController {
                 .anyMatch(role -> role.equals("ADMIN"))){
             return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
         }
-        
+
 
 
         return productService.add_product(productName, productPrice, stock, productType, net_content);

@@ -12,7 +12,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/register_client",
+					"raw": "localhost:8080/api/register_client?name=Bobby&lastName=Pearce&email=bobby_pearce@gmail.com&password=Mc1r43r!ewff&bornDate=1993-07-20",
 					"host": [
 						"localhost"
 					],
@@ -20,6 +20,28 @@
 					"path": [
 						"api",
 						"register_client"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Bobby"
+						},
+						{
+							"key": "lastName",
+							"value": "Pearce"
+						},
+						{
+							"key": "email",
+							"value": "bobby_pearce@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "Mc1r43r!ewff"
+						},
+						{
+							"key": "bornDate",
+							"value": "1993-07-20"
+						}
 					]
 				}
 			},

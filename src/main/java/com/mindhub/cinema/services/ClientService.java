@@ -58,7 +58,7 @@ public class ClientService implements ClientServiceInterface {
 
     @Override
     public ResponseEntity<String> saveClient(String name, String lastName, String email, String password, String bornDate) {
-        clientRepository.save(new Client(name, lastName, passwordEncoder.encode(password), email, LocalDate.parse(bornDate)));
+        clientRepository.save(new Client(name, lastName, email, passwordEncoder.encode(password), LocalDate.parse(bornDate)));
 
         return new ResponseEntity<>("User created", HttpStatus.CREATED);
     }

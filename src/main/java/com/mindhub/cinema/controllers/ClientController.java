@@ -83,12 +83,16 @@ public class ClientController {
         }
 
 
+
         if(clientRepository.existsByEmail(email)) {
             return new ResponseEntity<>("Email already registered", HttpStatus.CONFLICT);
         }  else {
             return clientService.saveClient(name, lastName, email, password, bornDate);
 
         }
+
+
+
 
 
 

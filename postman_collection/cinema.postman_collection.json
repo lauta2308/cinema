@@ -331,6 +331,14 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get combos",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }

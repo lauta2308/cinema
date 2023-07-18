@@ -54,11 +54,11 @@ public class PurchaseItemService implements PurchaseItemServiceInterface {
             return new ResponseEntity<String>("Purchase not valid", HttpStatus.CONFLICT);
         }
 
-        Boolean productExists = productService.existById(productId);
+
 
 
         Product product;
-        if(!productExists){
+        if(!productService.existById(productId)){
             return new ResponseEntity<String>("Product not found", HttpStatus.CONFLICT);
         } else {
             product = productService.findProductByid(productId);

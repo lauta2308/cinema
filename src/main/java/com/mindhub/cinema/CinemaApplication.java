@@ -2,6 +2,7 @@ package com.mindhub.cinema;
 
 import com.mindhub.cinema.models.*;
 import com.mindhub.cinema.repositories.*;
+import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
 import com.mindhub.cinema.utils.enums.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,6 +27,9 @@ public class CinemaApplication {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
+	@Autowired
+	ClientServiceInterface clientService;
+
 
 	@Bean
 	public CommandLineRunner initData(ActorRepository actorRepository, CinemaRoomRepository cinemaRoomRepository, ClientRepository clientRepository, DirectorRepository directorRepository, MovieRepository movieRepository, ProductRepository productRepository, PurchaseItemRepository purchaseItemRepository, PurchaseRepository purchaseRepository, ReviewRepository reviewRepository, SeatRepository seatRepository, ShowRepository showRepository, TicketRepository ticketRepository) {
@@ -42,6 +46,9 @@ public class CinemaApplication {
 
 			clientAdmin.setClientRol(ClientRol.ADMIN);
 			clientRepository.save(clientAdmin);
+
+
+
 			/*
 			Client clientTwo = clientRepository.save(new Client("Bobby", "Pearce", "bobby_pearce@gmail.com", "1234", LocalDate.of(1993, 07, 20)));
 
@@ -118,7 +125,7 @@ public class CinemaApplication {
 
 			// Creo un show
 
-			Show showOne = showRepository.save(new Show(LocalDateTime.of(2023,07,15,19,00,00), LocalDateTime.of(2023,07,15,21,30,00), 1000.00, indianaJones2d, cinemaRoomOne));
+			Show showOne = showRepository.save(new Show(LocalDateTime.of(2023,07,18,19,00,00), LocalDateTime.of(2023,07,15,21,30,00), 1000.00, indianaJones2d, cinemaRoomOne));
 
 
 			// Creo una compra
@@ -134,7 +141,7 @@ public class CinemaApplication {
 			// Averiguo la edad del cliente 1
 
 			Integer clientAge = LocalDate.now().getYear() - clientOne.getBornDate().getYear();
-			System.out.println("El cliente uno tiene " + clientAge);
+
 
 
 			// Creo una variable y le asigno los asientos de la sala donde se va a hacer la función

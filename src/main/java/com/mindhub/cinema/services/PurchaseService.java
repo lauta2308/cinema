@@ -32,6 +32,7 @@ public class PurchaseService implements PurchaseServiceInterface {
 
     @Override
     public Boolean existById(Long purchaseId) {
+
         return purchaseRepository.existsById(purchaseId);
     }
 

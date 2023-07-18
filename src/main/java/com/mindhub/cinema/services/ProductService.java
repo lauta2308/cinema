@@ -12,7 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -73,5 +73,48 @@ public class ProductService implements ProductServiceInterface {
     @Override
     public Boolean existById(Long productId) {
         return productRepository.existsById(productId);
+    }
+
+    @Override
+    public Set<List<ProductDto>> getCombos() {
+        List<ProductDto> combo1 = new ArrayList<>();
+
+        Product cocaMedia = productRepository.findByName("Coca-cola vaso mediano");
+
+        Product pochocloMedio = productRepository.findByName("Balde pochoclo mediano");
+
+        combo1.add(new ProductDto(cocaMedia));
+        combo1.add(new ProductDto(pochocloMedio));
+
+
+        List<ProductDto> comboFamilia = new ArrayList<>();
+
+        comboFamilia.add(new ProductDto(cocaMedia));
+        comboFamilia.add(new ProductDto(cocaMedia));
+        comboFamilia.add(new ProductDto(cocaMedia));
+        comboFamilia.add(new ProductDto(cocaMedia));
+        comboFamilia.add(new ProductDto(pochocloMedio));
+        comboFamilia.add(new ProductDto(pochocloMedio));
+
+        Set productos = new HashSet<>();
+
+        productos.add(combo1);
+        productos.add(comboFamilia);
+
+
+        Product pochocloGrande = productRepository.findByName("Balde pochoclo grande");
+        Product cocaGrande = productRepository.findByName("Coca-cola vaso grande");
+
+
+        List<ProductDto> comboMega = new ArrayList<>();
+
+        comboMega.add(new ProductDto(pochocloGrande));
+        comboMega.add(new ProductDto(cocaGrande));
+        comboMega.add(new ProductDto(cocaGrande));
+
+        productos.add(comboMega);
+
+        return  productos;
+
     }
 }

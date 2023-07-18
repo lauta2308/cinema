@@ -6,6 +6,7 @@ import com.mindhub.cinema.utils.enums.ProductType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 
+import java.util.List;
 import java.util.Set;
 
 public interface ProductServiceInterface {
@@ -16,4 +17,6 @@ public interface ProductServiceInterface {
     Product findProductByid(Long productId);
 
     Boolean existById(Long productId);
+
+    Set<List<ProductDto>> getCombos();
 }

@@ -5,7 +5,6 @@ import com.mindhub.cinema.dtos.ClientDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.repositories.ClientRepository;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
-import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class ClientService implements ClientServiceInterface {
@@ -24,44 +25,9 @@ public class ClientService implements ClientServiceInterface {
     @Autowired
     ClientRepository clientRepository;
 
-    @Autowired
-    PurchaseServiceInterface purchaseService;
-
-    @Override
-    public ResponseEntity<String> registerClient(String name, String lastName, String email, String password , String bornDate) {
-
-        if(name.isBlank() || lastName.isBlank() || email.isBlank() || password.isBlank() || bornDate.isBlank()){
-
-            return new ResponseEntity<>("Empty fields", HttpStatus.BAD_REQUEST);
-        }
-
-        // Validar que el password cumpla con los requisitos
-
-        if (!isValidPassword(password)) {
-            return new ResponseEntity<>("The password should be at least 8 characters long and include 1 uppercase, 1 lowercase, 1 number and 1 symbol", HttpStatus.BAD_REQUEST);
-        }
-
-
-        // Busco en la base de datos que no haya un cliente registrado con el mismo email
-
-        Client findClient = clientRepository.findByEmail(email);
-
-        // Si findClient es diferente a nulo, devuelvo error.
-
-        if(findClient != null ) {
-            return new ResponseEntity<>("Email already registered", HttpStatus.CONFLICT);
-        }
-
-        else {
-            Client newClient = new Client(name, lastName, email, passwordEncoder.encode(password) , LocalDate.parse(bornDate));
-            clientRepository.save(newClient);
-            return new ResponseEntity<>("User created", HttpStatus.CREATED);
-        }
 
 
 
-
-    }
 
     @Override
     public ClientDto get_authenticated_user(Authentication authentication) {
@@ -77,12 +43,50 @@ public class ClientService implements ClientServiceInterface {
 
 
     // Método para verificar que el password tenga 8 caracteres y al menos 1 mayus, 1 minuscula, 1 numero y 1 simbolo
-    private boolean isValidPassword(String password) {
+
+
+    public boolean checkInvalidPassword(String password) {
         // Verificar que el password cumpla con los requisitos (al menos una mayúscula, una minúscula, un número, un símbolo y una longitud mínima de 8 caracteres)
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=.*[a-zA-Z\\d@#$%^&+=!]).{8,}$";
-        return password.matches(regex);
+        return !password.matches(regex);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return clientRepository.existsByEmail(email);
+    }
+
+    @Override
+    public ResponseEntity<String> saveClient(String name, String lastName, String email, String password, String bornDate) {
+        clientRepository.save(new Client(name, lastName, passwordEncoder.encode(password), email, LocalDate.parse(bornDate)));
+
+        return new ResponseEntity<>("User created", HttpStatus.CREATED);
     }
 
 
+    public Matcher checkNumbersAndSymbols(String name){
+        // Definir la expresión regular que busca números y símbolos
+        String regex = ".*[0-9\\p{Punct}].*";
 
+        // Crear un objeto Pattern con la expresión regular
+        Pattern pattern = Pattern.compile(regex);
+
+        return pattern.matcher(name);
+    }
+
+    @Override
+    public boolean notValidNameLength(String name) {
+        return name.length() <= 2;
+    }
+
+    @Override
+    public Matcher checkEmail(String email) {
+        // Definir la expresión regular para validar el formato de correo electrónico
+        String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+
+        // Crear un objeto Pattern con la expresión regular
+        Pattern pattern = Pattern.compile(regex);
+
+        return pattern.matcher(email);
+    }
 }

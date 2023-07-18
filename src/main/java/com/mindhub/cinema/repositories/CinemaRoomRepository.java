@@ -10,6 +10,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface CinemaRoomRepository extends JpaRepository<CinemaRoom, Long> {
 
 
-    CinemaRoom findByroomName(String roomName);
+    boolean existsByRoomName(String roomName);
 
 }

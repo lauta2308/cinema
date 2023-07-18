@@ -39,11 +39,7 @@ public class ClientService implements ClientServiceInterface {
         return clientRepository.findByEmail(authentication.getName());
     }
 
-
-
-
     // Método para verificar que el password tenga 8 caracteres y al menos 1 mayus, 1 minuscula, 1 numero y 1 simbolo
-
 
     public boolean checkInvalidPassword(String password) {
         // Verificar que el password cumpla con los requisitos (al menos una mayúscula, una minúscula, un número, un símbolo y una longitud mínima de 8 caracteres)

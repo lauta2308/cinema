@@ -21,8 +21,8 @@ public class MovieService implements MovieServiceInterface {
     public Set<MovieDto> getAllMovies() {
         Set<Movie> movies = movieRepository.findAll().stream().filter(movie -> movie.getMovieAvailability() == MovieAvailability.AVAILABLE || movie.getMovieAvailability() == MovieAvailability.COMING_SOON).collect(Collectors.toSet());
 
-        Set<MovieDto> moviesDto = movies.stream().map(movie -> new MovieDto(movie)).collect(Collectors.toSet());
+        return movies.stream().map(movie -> new MovieDto(movie)).collect(Collectors.toSet());
 
-        return moviesDto;
+
     }
 }

@@ -5,4 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface CinemaRoomServiceInterface {
     ResponseEntity<String> create_cinema_room(String roomName, Integer capacity, RoomType roomType);
+
+
+    boolean roomNameDuplicated(String roomName);
 }

@@ -22,40 +22,12 @@ public class ProductService implements ProductServiceInterface {
     ProductRepository productRepository;
 
     @Override
-    public ResponseEntity<String> add_product(Authentication authentication, String productName, Double productPrice, Integer stock, ProductType productType, Integer net_content) {
+    public ResponseEntity<String> add_product(String productName, Double productPrice, Integer stock, ProductType productType, Integer net_content) {
 
 
-        if(authentication == null){
-            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
-        }
+        productRepository.save(new Product(productName, productPrice, stock, productType, net_content));
 
-        if(productName.isBlank() || productPrice.toString().isBlank() || stock.toString().isBlank() || productType.toString().isBlank() || net_content.toString().isBlank()){
-
-            return new ResponseEntity<>("Empty fields", HttpStatus.BAD_REQUEST);
-        }
-
-
-
-        boolean isAdmin = authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .anyMatch(role -> role.equals("ADMIN"));
-
-
-        if(!isAdmin){
-            return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
-        } else {
-            Product product = productRepository.save(new Product(productName, productPrice, stock, productType, net_content));
-
-
-            if(product != null){
-                return new ResponseEntity<>("Product added", HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<>("There was a problem saving the product", HttpStatus.CONFLICT);
-            }
-
-        }
-
-
+        return new ResponseEntity<>("Product saved", HttpStatus.CREATED);
 
 
     }

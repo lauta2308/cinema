@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface ProductServiceInterface {
-    ResponseEntity<String> add_product(Authentication authentication, String productName, Double productPrice, Integer stock, ProductType productType, Integer net_content);
+    ResponseEntity<String> add_product(String productName, Double productPrice, Integer stock, ProductType productType, Integer net_content);
 
    Set<ProductDto> getAllProducts();
 

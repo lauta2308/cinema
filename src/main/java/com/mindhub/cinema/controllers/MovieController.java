@@ -26,7 +26,7 @@ public class MovieController {
 
     @PostMapping("/api/admin/add_movie")
     public ResponseEntity<String> add_movie(Authentication authentication){
-        return new ResponseEntity<String>("hey", HttpStatus.CREATED);
+        return new ResponseEntity<String>("test", HttpStatus.CREATED);
     }
 
 }

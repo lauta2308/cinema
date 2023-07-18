@@ -6,8 +6,10 @@ import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;
 import com.mindhub.cinema.utils.enums.ProductType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,8 +35,43 @@ public class ProductController {
     @PostMapping("/api/admin/add_product")
     public ResponseEntity<String> add_product(Authentication authentication, @RequestParam String productName, @RequestParam Double productPrice, @RequestParam Integer stock, @RequestParam ProductType productType, @RequestParam Integer net_content){
 
+        if(authentication == null){
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
 
-        return productService.add_product(authentication, productName, productPrice, stock, productType, net_content);
+
+        if(productName.isBlank() && productPrice.toString().isBlank() && stock.toString().isBlank() && productType.toString().isBlank() && net_content.toString().isBlank()){
+            return new ResponseEntity<>("Empty fields", HttpStatus.BAD_REQUEST);
+        }
+
+        if(productPrice.toString().isBlank()){
+            return new ResponseEntity<>("Product price can not be empty", HttpStatus.BAD_REQUEST);
+        }
+
+
+        if(stock.toString().isBlank()){
+            return new ResponseEntity<>("Product stock can not be empty", HttpStatus.BAD_REQUEST);
+        }
+
+        if(productType.toString().isBlank()){
+            return new ResponseEntity<>("Product type can not be empty", HttpStatus.BAD_REQUEST);
+        }
+
+        if(net_content.toString().isBlank()){
+            return new ResponseEntity<>("Net content cannot be blank", HttpStatus.BAD_REQUEST);
+        }
+
+
+
+        if(!authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(role -> role.equals("ADMIN"))){
+            return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
+        }
+        
+
+
+        return productService.add_product(productName, productPrice, stock, productType, net_content);
 
 
     }

@@ -39,6 +39,12 @@ public class ProductController {
             return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
         }
 
+        if(!authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(role -> role.equals("ADMIN"))){
+            return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
+        }
+
 
         if(createProductDto.getProductName().isBlank() && createProductDto.getProductPrice().toString().isBlank() && createProductDto.getStock().toString().isBlank() && createProductDto.getProductType().toString().isBlank() && createProductDto.getNet_content().toString().isBlank()){
             return new ResponseEntity<>("Empty fields", HttpStatus.BAD_REQUEST);
@@ -62,12 +68,6 @@ public class ProductController {
         }
 
 
-
-        if(!authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .anyMatch(role -> role.equals("ADMIN"))){
-            return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
-        }
 
 
         if(productService.existsByName(createProductDto.getProductName())){

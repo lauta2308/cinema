@@ -11,8 +11,17 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"name\": \"Bobby\",\r\n    \"lastName\": \"Pearce\",\r\n    \"email\": \"bobby_pearce@gmail.com.ar\",\r\n    \"password\": \"Mc1r43r!ewff\",\r\n    \"bornDate\": \"1993-07-20\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/api/register_client?name=Bobby&lastName=Pearce&email=bobby_pearce@gmail.com&password=Mc1r43r!ewff&bornDate=1993-07-20",
+					"raw": "localhost:8080/api/register_client",
 					"host": [
 						"localhost"
 					],
@@ -20,28 +29,6 @@
 					"path": [
 						"api",
 						"register_client"
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": "Bobby"
-						},
-						{
-							"key": "lastName",
-							"value": "Pearce"
-						},
-						{
-							"key": "email",
-							"value": "bobby_pearce@gmail.com"
-						},
-						{
-							"key": "password",
-							"value": "Mc1r43r!ewff"
-						},
-						{
-							"key": "bornDate",
-							"value": "1993-07-20"
-						}
 					]
 				}
 			},
@@ -129,8 +116,17 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"roomName\": \"test\",\r\n    \"capacity\": 80,\r\n    \"RoomType\": \"RoomType.ROOM_2D\"\r\n\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/api/admin/cinema_room?roomName=sala de pruebaSwssuu&capacity=85&roomType=ROOM_2D",
+					"raw": "localhost:8080/api/admin/cinema_room",
 					"host": [
 						"localhost"
 					],
@@ -139,20 +135,6 @@
 						"api",
 						"admin",
 						"cinema_room"
-					],
-					"query": [
-						{
-							"key": "roomName",
-							"value": "sala de pruebaSwssuu"
-						},
-						{
-							"key": "capacity",
-							"value": "85"
-						},
-						{
-							"key": "roomType",
-							"value": "ROOM_2D"
-						}
 					]
 				}
 			},
@@ -240,8 +222,17 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\r\n\"productName\": \"Pepsi vaso chico\",\r\n\"productPrice\": 200.00,\r\n\"stock\": 20,\r\n\"productType\": \"DRINK\",\r\n\"net_content\": 236\r\n\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/api/admin/add_product?productName=pochoclos_prueba&productPrice=500.00&stock=20&productType=DRINK&net_content=500",
+					"raw": "localhost:8080/api/admin/add_product",
 					"host": [
 						"localhost"
 					],
@@ -250,28 +241,6 @@
 						"api",
 						"admin",
 						"add_product"
-					],
-					"query": [
-						{
-							"key": "productName",
-							"value": "pochoclos_prueba"
-						},
-						{
-							"key": "productPrice",
-							"value": "500.00"
-						},
-						{
-							"key": "stock",
-							"value": "20"
-						},
-						{
-							"key": "productType",
-							"value": "DRINK"
-						},
-						{
-							"key": "net_content",
-							"value": "500"
-						}
 					]
 				}
 			},
@@ -290,8 +259,17 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n   \"purchaseId\": 2,\r\n\r\n   \"showId\": 1,\r\n\r\n   \"seatId\": 86,\r\n\r\n   \"seatPlace\": 86\r\n\r\n\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/api/current/create_ticket?showId=1&seatId=87&seatPlace=87",
+					"raw": "localhost:8080/api/current/create_ticket",
 					"host": [
 						"localhost"
 					],
@@ -300,20 +278,6 @@
 						"api",
 						"current",
 						"create_ticket"
-					],
-					"query": [
-						{
-							"key": "showId",
-							"value": "1"
-						},
-						{
-							"key": "seatId",
-							"value": "87"
-						},
-						{
-							"key": "seatPlace",
-							"value": "87"
-						}
 					]
 				}
 			},
@@ -324,8 +288,17 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\r\n\"productQuantity\": 3,\r\n\"purchaseId\": 2,\r\n\"productId\": 3\r\n\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/api/current/purchase/add_purchase_item?productQuantity=2&purchaseId=2&productId=2",
+					"raw": "localhost:8080/api/current/purchase/add_purchase_item",
 					"host": [
 						"localhost"
 					],
@@ -335,20 +308,6 @@
 						"current",
 						"purchase",
 						"add_purchase_item"
-					],
-					"query": [
-						{
-							"key": "productQuantity",
-							"value": "2"
-						},
-						{
-							"key": "purchaseId",
-							"value": "2"
-						},
-						{
-							"key": "productId",
-							"value": "2"
-						}
 					]
 				}
 			},

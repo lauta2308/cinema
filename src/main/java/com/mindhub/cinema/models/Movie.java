@@ -7,7 +7,9 @@ import com.mindhub.cinema.utils.enums.MovieType;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -30,6 +32,8 @@ public class Movie {
 
     private Integer duration;
 
+    private String languaje;
+
     private MovieGenre movieGenre;
 
     private Integer timesPlayed = 0;
@@ -40,13 +44,6 @@ public class Movie {
 
     private MovieAvailability movieAvailability;
 
-    @ManyToMany(fetch=FetchType.EAGER)
-    Set<Actor> actors = new HashSet<>();
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="director_id")
-    private Director director;
-
     @OneToMany(mappedBy="movie", fetch=FetchType.EAGER)
     private Set<Show> shows = new HashSet<>();
 
@@ -54,21 +51,18 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String movieImg, String trailer, String name, String description, MovieRestriction movieRestriction, Integer duration, MovieGenre movieGenre, MovieType movieType, MovieAvailability movieAvailability, Set<Actor> actors, Director director) {
+    public Movie(String movieImg, String movieTrailer, String name, String description, MovieRestriction movieRestriction, Integer duration, String languaje, MovieGenre movieGenre, MovieType movieType, MovieAvailability movieAvailability) {
         this.movieImg = movieImg;
-        this.movieTrailer = trailer;
+        this.movieTrailer = movieTrailer;
         this.name = name;
         this.description = description;
         this.movieRestriction = movieRestriction;
         this.duration = duration;
+        this.languaje = languaje;
         this.movieGenre = movieGenre;
         this.movieType = movieType;
         this.movieAvailability = movieAvailability;
-        this.actors = actors;
-        this.director = director;
-
     }
-
 
     public long getId() {
         return id;
@@ -122,6 +116,14 @@ public class Movie {
         this.duration = duration;
     }
 
+    public String getLanguaje() {
+        return languaje;
+    }
+
+    public void setLanguaje(String languaje) {
+        this.languaje = languaje;
+    }
+
     public MovieGenre getMovieGenre() {
         return movieGenre;
     }
@@ -163,21 +165,6 @@ public class Movie {
         this.movieAvailability = movieAvailability;
     }
 
-    public Set<Actor> getActors() {
-        return actors;
-    }
-
-    public void setActors(Set<Actor> actors) {
-        this.actors = actors;
-    }
-
-    public Director getDirector() {
-        return director;
-    }
-
-    public void setDirector(Director director) {
-        this.director = director;
-    }
 
     public Set<Show> getShows() {
         return shows;

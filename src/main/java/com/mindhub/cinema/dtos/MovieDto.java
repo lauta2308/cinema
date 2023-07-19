@@ -21,9 +21,12 @@ public class MovieDto {
 
     private String description;
 
+
     private MovieRestriction movieRestriction;
 
     private Integer duration;
+
+    private String languaje;
 
     private MovieGenre movieGenre;
 
@@ -35,9 +38,6 @@ public class MovieDto {
 
     private MovieAvailability movieAvailability;
 
-    private Set<ActorDto> actors;
-
-    private DirectorDto director;
 
 
 
@@ -49,13 +49,13 @@ public class MovieDto {
         this.description = movie.getDescription();
         this.movieRestriction = movie.getMovieRestriction();
         this.duration = movie.getDuration();
+        this.languaje = movie.getLanguaje();
         this.movieGenre = movie.getMovieGenre();
         this.timesPlayed = movie.getTimesPlayed();
         this.ticketsSold = movie.getTicketsSold();
         this.movieType = movie.getMovieType();
         this.movieAvailability = movie.getMovieAvailability();
-        this.actors = movie.getActors().stream().map(actor -> new ActorDto(actor)).collect(Collectors.toSet());
-        this.director = new DirectorDto(movie.getDirector());
+
     }
 
     public long getId() {
@@ -86,6 +86,10 @@ public class MovieDto {
         return duration;
     }
 
+    public String getLanguaje() {
+        return languaje;
+    }
+
     public MovieGenre getMovieGenre() {
         return movieGenre;
     }
@@ -106,11 +110,5 @@ public class MovieDto {
         return movieAvailability;
     }
 
-    public Set<ActorDto> getActors() {
-        return actors;
-    }
 
-    public DirectorDto getDirector() {
-        return director;
-    }
 }

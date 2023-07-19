@@ -32,7 +32,7 @@ public class CinemaApplication {
 
 
 	@Bean
-	public CommandLineRunner initData(ActorRepository actorRepository, CinemaRoomRepository cinemaRoomRepository, ClientRepository clientRepository, DirectorRepository directorRepository, MovieRepository movieRepository, ProductRepository productRepository, PurchaseItemRepository purchaseItemRepository, PurchaseRepository purchaseRepository, ReviewRepository reviewRepository, SeatRepository seatRepository, ShowRepository showRepository, TicketRepository ticketRepository) {
+	public CommandLineRunner initData(CinemaRoomRepository cinemaRoomRepository, ClientRepository clientRepository,  MovieRepository movieRepository, ProductRepository productRepository, PurchaseItemRepository purchaseItemRepository, PurchaseRepository purchaseRepository, ReviewRepository reviewRepository, SeatRepository seatRepository, ShowRepository showRepository, TicketRepository ticketRepository) {
 		return (args) -> {
 
 
@@ -104,22 +104,15 @@ public class CinemaApplication {
 			}
 
 
-			// Actores
 
-			Actor harrisonFord = actorRepository.save(new Actor("Harrison", "Ford"));
-
-			// Directores
-
-			Director jamesMangold = directorRepository.save(new Director("James", "Mangold"));
 
 
 			// PELICULAS
 
-			Movie indianaJones2d = movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.RATED_PG, 152, MovieGenre.Adventure, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE, Set.of(harrisonFord), jamesMangold));
+			Movie indianaJones2d = movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.RATED_PG, 152, "Castellano", MovieGenre.Adventure, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
 
-			harrisonFord.getMovies().add(indianaJones2d);
-			actorRepository.save(harrisonFord);
+
 
 
 

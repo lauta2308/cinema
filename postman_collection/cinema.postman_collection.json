@@ -320,6 +320,35 @@
 				"header": []
 			},
 			"response": []
+		},
+		{
+			"name": "add movie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/admin/add_movie",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"add_movie"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

@@ -62,5 +62,10 @@ public class SeatService implements SeatServiceInterface {
 
     }
 
+    @Override
+    public boolean checkValidSeatIdPlaceRoom(Long seatId, Integer seatPlace, CinemaRoom cinemaRoom) {
+        return seatRepository.existsByIdAndSeatPlaceAndCinemaRoom(seatId, seatPlace, cinemaRoom);
+    }
+
 
 }

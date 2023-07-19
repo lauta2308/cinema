@@ -45,9 +45,9 @@ public class Show {
     public Show() {
     }
 
-    public Show(LocalDateTime startTime, LocalDateTime endTime, Double standardPrice, Movie movie, CinemaRoom cinemaRoom) {
+    public Show(LocalDateTime startTime, Double standardPrice, Movie movie, CinemaRoom cinemaRoom) {
         this.startTime = startTime;
-        this.endTime = endTime;
+        this.endTime = startTime.plusMinutes(movie.getDuration());
         this.standardPrice = standardPrice;
         this.movie = movie;
         this.cinemaRoom = cinemaRoom;

@@ -23,7 +23,10 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
 
+                .antMatchers("/api/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/current/**").fullyAuthenticated()
                 .antMatchers("/api/**").permitAll();
+
 
 
 

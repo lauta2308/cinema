@@ -8,4 +8,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product findByName(String name);
+
+    boolean existsByName(String name);
 }

@@ -125,7 +125,7 @@ public class CinemaApplication {
 
 			// Creo un show
 
-			Show showOne = showRepository.save(new Show(LocalDateTime.of(2023,07,18,19,00,00), LocalDateTime.of(2023,07,15,21,30,00), 1000.00, indianaJones2d, cinemaRoomOne));
+			Show showOne = showRepository.save(new Show(LocalDateTime.of(2023,8,19,19,00,00), 1000.00, indianaJones2d, cinemaRoomOne));
 
 
 			// Creo una compra

@@ -10,4 +10,6 @@ public interface ShowServiceInterface {
 
 
     Set<ShowDto> get_movie_shows(Long movieId);
+
+    boolean existsById(Long showId);
 }

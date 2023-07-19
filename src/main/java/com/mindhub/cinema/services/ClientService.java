@@ -2,6 +2,7 @@ package com.mindhub.cinema.services;
 
 
 import com.mindhub.cinema.dtos.ClientDto;
+import com.mindhub.cinema.dtos.RegisterClientDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.repositories.ClientRepository;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
@@ -53,8 +54,8 @@ public class ClientService implements ClientServiceInterface {
     }
 
     @Override
-    public ResponseEntity<String> saveClient(String name, String lastName, String email, String password, String bornDate) {
-        clientRepository.save(new Client(name, lastName, email, passwordEncoder.encode(password), LocalDate.parse(bornDate)));
+    public ResponseEntity<String> saveClient(RegisterClientDto registerClientDto) {
+        clientRepository.save(new Client(registerClientDto.getName(), registerClientDto.getLastName(), registerClientDto.getEmail(), passwordEncoder.encode(registerClientDto.getPassword()), LocalDate.parse(registerClientDto.getBornDate())));
 
         return new ResponseEntity<>("User created", HttpStatus.CREATED);
     }

@@ -1,5 +1,6 @@
 package com.mindhub.cinema.services;
 
+import com.mindhub.cinema.dtos.CreateRoomDto;
 import com.mindhub.cinema.models.CinemaRoom;
 import com.mindhub.cinema.models.Seat;
 import com.mindhub.cinema.repositories.CinemaRoomRepository;
@@ -24,10 +25,10 @@ public class CinemaRoomService implements CinemaRoomServiceInterface {
 
     @Override
     @Transactional
-    public ResponseEntity<String> create_cinema_room(String roomName, Integer capacity, RoomType roomType) {
+    public ResponseEntity<String> create_cinema_room(CreateRoomDto createRoomDto) {
 
 
-            seatService.addSeats(capacity,  cinemaRoomRepository.save(new CinemaRoom(roomName, capacity,roomType)));
+            seatService.addSeats(createRoomDto.getCapacity(),  cinemaRoomRepository.save(new CinemaRoom(createRoomDto.getRoomName(), createRoomDto.getCapacity(), createRoomDto.getRoomType())));
 
 
                 return new ResponseEntity<>("Room made, seats added", HttpStatus.CREATED);

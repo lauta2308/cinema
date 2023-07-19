@@ -14,4 +14,6 @@ public interface SeatServiceInterface {
     Set<Seat> getRoomSeats(CinemaRoom cinemaRoom);
 
     Set<SeatDto> availableSeats(Set<Seat> show_room_seats, Set<Ticket> showTicketsSold);
+
+    boolean checkValidSeatIdPlaceRoom(Long seatId, Integer seatPlace, CinemaRoom cinemaRoom);
 }

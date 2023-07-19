@@ -26,10 +26,13 @@ public class ShowService implements ShowServiceInterface {
     @Override
     public Set<ShowDto> get_movie_shows(Long movieId) {
 
-        Set<Show> movieShows = showRepository.findAll().stream().filter(show -> show.getMovie().getId() == movieId)
-                .filter(show -> show.getStartTime().isAfter(LocalDateTime.now())).collect(Collectors.toSet());
+        return showRepository.findByMovie_IdAndStartTimeAfter(movieId, LocalDateTime.now()).stream().map(show -> new ShowDto(show)).collect(Collectors.toSet());
 
-        return movieShows.stream().map(show -> new ShowDto(show)).collect(Collectors.toSet());
 
+    }
+
+    @Override
+    public boolean existsById(Long showId) {
+        return showRepository.existsById(showId);
     }
 }

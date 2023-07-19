@@ -2,6 +2,7 @@ package com.mindhub.cinema.services.servinterfaces;
 
 import com.jayway.jsonpath.Criteria;
 import com.mindhub.cinema.dtos.ClientDto;
+import com.mindhub.cinema.dtos.RegisterClientDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.models.Purchase;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public interface ClientServiceInterface {
 
 
 
-    ResponseEntity<String> saveClient(String name, String lastName, String email, String password, String bornDate);
+    ResponseEntity<String> saveClient(RegisterClientDto registerClientDto);
 
 
 

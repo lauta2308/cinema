@@ -1,12 +1,16 @@
 package com.mindhub.cinema.controllers;
 
 
+import com.mindhub.cinema.dtos.CreateRoomDto;
 import com.mindhub.cinema.services.servinterfaces.CinemaRoomServiceInterface;
 import com.mindhub.cinema.utils.enums.RoomType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,27 +21,39 @@ public class CinemaRoomController {
     CinemaRoomServiceInterface cinemaRoomService;
 
     @PostMapping("/api/admin/cinema_room")
-    ResponseEntity<String> create_cinema_room(@RequestParam String roomName, @RequestParam Integer capacity, @RequestParam RoomType roomType){
+    ResponseEntity<String> create_cinema_room(Authentication authentication, @RequestBody CreateRoomDto createRoomDto){
 
-        if(roomName.isBlank()){
+
+      if(authentication == null){
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if(!authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(role -> role.equals("ADMIN"))){
+            return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
+        }
+
+
+        if(createRoomDto.getRoomName().isBlank()){
             return new ResponseEntity<>("Insert room name", HttpStatus.BAD_REQUEST);
         }
 
-        if(capacity <= 0){
+        if(createRoomDto.getCapacity() <= 0){
             return new ResponseEntity<>("Capacity should be more than 0", HttpStatus.BAD_REQUEST);
         }
 
-        if(roomType.toString().isBlank()){
+        if(createRoomDto.getRoomType().toString().isBlank()){
             return new ResponseEntity<>("Insert room type", HttpStatus.BAD_REQUEST);
         }
 
 
-        if(cinemaRoomService.roomNameDuplicated(roomName)){
+        if(cinemaRoomService.roomNameDuplicated(createRoomDto.getRoomName())){
            return new ResponseEntity<>("Room name duplicated", HttpStatus.CONFLICT);
         }
 
 
-        return cinemaRoomService.create_cinema_room(roomName, capacity, roomType);
+        return cinemaRoomService.create_cinema_room(createRoomDto);
 
     }
 

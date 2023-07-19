@@ -3,7 +3,6 @@ package com.mindhub.cinema.controllers;
 
 import com.mindhub.cinema.dtos.CreateRoomDto;
 import com.mindhub.cinema.services.servinterfaces.CinemaRoomServiceInterface;
-import com.mindhub.cinema.utils.enums.RoomType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController

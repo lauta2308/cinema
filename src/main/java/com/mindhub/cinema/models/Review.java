@@ -1,5 +1,6 @@
 package com.mindhub.cinema.models;
 
+import com.mindhub.cinema.utils.enums.ReviewStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -16,6 +17,8 @@ public class Review {
 
     private String comment;
 
+    private ReviewStatus reviewStatus;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
     private Client client;
@@ -25,14 +28,17 @@ public class Review {
     @JoinColumn(name="movie_id")
     private Movie movie;
 
+
+
     public Review() {
     }
 
-    public Review(Integer stars, String comment, Client client, Movie movie) {
+    public Review(Integer stars, String comment, Client client, Movie movie, ReviewStatus reviewStatus) {
         this.stars = stars;
         this.comment = comment;
         this.client = client;
         this.movie = movie;
+        this.reviewStatus = reviewStatus;
     }
 
     public long getId() {
@@ -70,5 +76,13 @@ public class Review {
 
     public void setMovie(Movie movie) {
         this.movie = movie;
+    }
+
+    public ReviewStatus getReviewStatus() {
+        return reviewStatus;
+    }
+
+    public void setReviewStatus(ReviewStatus reviewStatus) {
+        this.reviewStatus = reviewStatus;
     }
 }

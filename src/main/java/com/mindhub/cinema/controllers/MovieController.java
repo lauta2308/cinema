@@ -3,6 +3,10 @@ package com.mindhub.cinema.controllers;
 import com.mindhub.cinema.dtos.CreateMovieDto;
 import com.mindhub.cinema.dtos.MovieDto;
 import com.mindhub.cinema.services.servinterfaces.MovieServiceInterface;
+import com.mindhub.cinema.utils.enums.MovieAvailability;
+import com.mindhub.cinema.utils.enums.MovieGenre;
+import com.mindhub.cinema.utils.enums.MovieRestriction;
+import com.mindhub.cinema.utils.enums.MovieType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,9 +46,15 @@ public class MovieController {
 
 
 
-        if(createMovieDto.getMovieAvailability().toString().isBlank() && createMovieDto.getMovieGenre().toString().isBlank() && createMovieDto.getMovieRestriction().toString().isBlank() && createMovieDto.getMovieTrailer().isBlank() && createMovieDto.getMovieImg().isBlank() && createMovieDto.get)
 
-        return new ResponseEntity<String>("test", HttpStatus.CREATED);
+        if(createMovieDto.getMovieImg().isBlank() && createMovieDto.getMovieTrailer().isBlank() && createMovieDto.getName().isBlank() && createMovieDto.getDescription().isBlank() && createMovieDto.getMovieRestriction().toString().isBlank() && createMovieDto.getDuration().toString().isBlank() && createMovieDto.getLanguaje().isBlank() && createMovieDto.getMovieGenre().toString().isBlank() && createMovieDto.getMovieType().toString().isBlank() && createMovieDto.getMovieAvailability().toString().isBlank() ){
+            return new ResponseEntity<>("Empty fields", HttpStatus.BAD_REQUEST);
+        }
+
+
+        return movieService.add_movie(createMovieDto);
+
+
     }
 
 }

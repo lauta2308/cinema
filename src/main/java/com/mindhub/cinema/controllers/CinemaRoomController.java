@@ -1,7 +1,6 @@
 package com.mindhub.cinema.controllers;
 
 
-import com.mindhub.cinema.models.CinemaRoom;
 import com.mindhub.cinema.services.servinterfaces.CinemaRoomServiceInterface;
 import com.mindhub.cinema.utils.enums.RoomType;
 import org.springframework.beans.factory.annotation.Autowired;

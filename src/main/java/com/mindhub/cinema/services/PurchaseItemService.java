@@ -16,11 +16,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class PurchaseItemService implements PurchaseItemServiceInterface {
 
-    @Autowired
-    PurchaseServiceInterface purchaseService;
-
-    @Autowired
-    ProductServiceInterface productService;
 
     @Autowired
     PurchaseItemRepository purchaseItemRepository;

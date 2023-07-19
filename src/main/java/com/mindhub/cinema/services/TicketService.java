@@ -40,46 +40,21 @@ public class TicketService implements TicketServiceInterface {
       return ticketRepository.findAll().stream().filter(ticket -> ticket.getShow().getId() == showId).collect(Collectors.toSet());
     }
 
+
+    @Override
+    public Ticket checkDuplicateTicket(Long seatId, Show showSelected) {
+        return ticketRepository.findBySeatIdAndShow(seatId, showSelected);
+    }
+
     @Override
     @Transactional
-    public ResponseEntity<String> createTicket(Authentication authentication, Long purchaseId, Long showId, Long seatId, Integer seatPlace) {
-        Client clientAuth = clientService.get_full_client(authentication);
+    public ResponseEntity<String> saveTicket(Long seatId, Integer seatPlace, Purchase purchaseParam, Show showSelected) {
+        ticketRepository.save(new Ticket(seatId, seatPlace, purchaseParam, showSelected));
 
-        if(clientAuth == null){
-            return new ResponseEntity<>("User not found", HttpStatus.CONFLICT);
-        }
-
-
-        // Verifico que la compra sea del cliente y la obtengo
-
-        Purchase clientPurchase = clientAuth.getPurchases().stream().filter(purchase -> purchase.getId() == purchaseId).findFirst().get();
-
-
-        if(clientPurchase == null){
-            return new ResponseEntity<>("Could not find the purchase", HttpStatus.CONFLICT);
-        }
-
-        // Busco el show seleccionado
-
-        Show showSelected = showService.getShow(showId);
-
-
-        if(showSelected == null){
-            return new ResponseEntity<>("Could not find the show", HttpStatus.CONFLICT);
-        }
-
-        Ticket seatAlreadyTaken = ticketRepository.findBySeatIdAndShow(seatId, showSelected);
-
-        if(seatAlreadyTaken != null){
-            return new ResponseEntity<>("Seat already taken, take another", HttpStatus.CONFLICT);
-        }
-
-        Ticket ticket = ticketRepository.save(new Ticket(seatId, seatPlace, clientPurchase, showSelected));
-
-        if(ticket != null){
-            return new ResponseEntity<>("Ticket added to purchase, seat assigned", HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>("Something went wrong", HttpStatus.CONFLICT);
-        }
+        return new ResponseEntity<>("Ticked saved", HttpStatus.CREATED);
     }
+
+
+
+
 }

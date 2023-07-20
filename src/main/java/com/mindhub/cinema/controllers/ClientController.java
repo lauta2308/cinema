@@ -5,6 +5,7 @@ import com.mindhub.cinema.dtos.ClientDto;
 import com.mindhub.cinema.dtos.RegisterClientDto;
 import com.mindhub.cinema.repositories.ClientRepository;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
+import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +25,6 @@ public class ClientController {
     @Autowired
     ClientServiceInterface clientService;
 
-    @Autowired
-    ClientRepository clientRepository;
 
     // Register one client
 
@@ -44,10 +43,10 @@ public class ClientController {
 
         // validacion del nombre
 
-        if(clientService.checkNumbersAndSymbols(registerClientDto.getName()).matches()){
+        if(ValidationUtils.checkNumbersAndSymbols(registerClientDto.getName()).matches()){
 
             return new ResponseEntity<>("Name cant contain numbers or symbols", HttpStatus.BAD_REQUEST);
-        } else if (clientService.notValidNameLength(registerClientDto.getName())) {
+        } else if (ValidationUtils.notValidNameLength(registerClientDto.getName())) {
 
             return new ResponseEntity<>("Name should be at least 2 characters", HttpStatus.BAD_REQUEST);
         }
@@ -55,33 +54,36 @@ public class ClientController {
 
         // validacion apellido
 
-        if(clientService.checkNumbersAndSymbols(registerClientDto.getLastName()).matches()){
+        if(ValidationUtils.checkNumbersAndSymbols(registerClientDto.getLastName()).matches()){
 
             return new ResponseEntity<>("Last Name cant contain numbers or symbols", HttpStatus.BAD_REQUEST);
-        } else if (clientService.notValidNameLength(registerClientDto.getLastName())) {
+        } else if (ValidationUtils.notValidNameLength(registerClientDto.getLastName())) {
 
             return new ResponseEntity<>("Last name should be at least 2 characters", HttpStatus.BAD_REQUEST);
         }
 
         // validacion email
 
-        if(!clientService.checkEmail(registerClientDto.getEmail()).matches()){
+        if(!ValidationUtils.checkValidEmail(registerClientDto.getEmail()).matches()){
             return new ResponseEntity<>("Email is not valid. Req text@domain.com", HttpStatus.BAD_REQUEST);
 
         }
 
         // Validar que el password cumpla con los requisitos
 
-        if (clientService.checkInvalidPassword(registerClientDto.getPassword())) {
+
+        if (ValidationUtils.checkInvalidPassword(registerClientDto.getPassword())) {
             return new ResponseEntity<>("The password should be at least 8 characters long and include 1 uppercase, 1 lowercase, 1 number and 1 symbol", HttpStatus.BAD_REQUEST);
         }
 
 
 
-        if(clientRepository.existsByEmail(registerClientDto.getEmail())) {
+        if(clientService.existsByEmail(registerClientDto.getEmail())) {
             return new ResponseEntity<>("Email already registered", HttpStatus.CONFLICT);
         }  else {
-            return clientService.saveClient(registerClientDto);
+             clientService.saveClient(registerClientDto);
+
+             return new ResponseEntity<>("Client saved", HttpStatus.CREATED);
 
         }
 

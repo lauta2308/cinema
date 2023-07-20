@@ -18,20 +18,10 @@ public interface ClientServiceInterface {
     Client get_full_client(Authentication authentication);
 
 
-     boolean checkInvalidPassword(String password);
+    void saveClient(RegisterClientDto registerClientDto);
 
 
 
-
-    ResponseEntity<String> saveClient(RegisterClientDto registerClientDto);
-
-
-
-    Matcher checkNumbersAndSymbols(String name);
-
-    boolean notValidNameLength(String name);
-
-    Matcher checkEmail(String email);
 
     boolean existsByEmail(String email);
 }

@@ -261,7 +261,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\r\n   \"purchaseId\": 2,\r\n\r\n   \"showId\": 1,\r\n\r\n   \"seatId\": 86,\r\n\r\n   \"seatPlace\": 86\r\n\r\n\r\n\r\n}",
+					"raw": "[\r\n    \r\n    {\r\n\r\n   \"purchaseId\": 5,\r\n\r\n   \"showId\": 1,\r\n\r\n   \"seatId\": 88,\r\n\r\n   \"seatPlace\": 88\r\n\r\n\r\n\r\n},\r\n\r\n    {\r\n\r\n   \"purchaseId\": 3,\r\n\r\n   \"showId\": 1,\r\n\r\n   \"seatId\": 33,\r\n\r\n   \"seatPlace\": 33\r\n\r\n\r\n\r\n}\r\n\r\n\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"

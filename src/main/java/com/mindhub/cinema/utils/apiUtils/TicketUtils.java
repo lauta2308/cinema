@@ -60,7 +60,7 @@ public class TicketUtils {
         for (CreateTicketDto ticket : tickets) {
             if (showId == null) {
                 showId = ticket.getShowId();
-            } else if (!showId.equals(ticket.getPurchaseId())) {
+            } else if (!showId.equals(ticket.getShowId())) {
                 return false;
             }
         }

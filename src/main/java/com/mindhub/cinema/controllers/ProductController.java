@@ -74,7 +74,9 @@ public class ProductController {
         }
 
 
-        return productService.add_product(createProductDto);
+         productService.add_product(createProductDto);
+
+        return new ResponseEntity<>("Product saved", HttpStatus.CREATED);
 
 
     }

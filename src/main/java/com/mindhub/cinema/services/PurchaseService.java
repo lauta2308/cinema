@@ -16,10 +16,10 @@ public class PurchaseService implements PurchaseServiceInterface {
     PurchaseRepository purchaseRepository;
 
     @Override
-    public ResponseEntity<String> addPurchaseToClient(Client client) {
+    public String addPurchaseToClient(Client client) {
         Purchase purchase = purchaseRepository.save(new Purchase(client));
 
-        return new ResponseEntity<>(String.valueOf(purchase.getId()), HttpStatus.CREATED);
+        return String.valueOf(purchase.getId());
 
 
 

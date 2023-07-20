@@ -5,7 +5,7 @@ import com.mindhub.cinema.models.Purchase;
 import org.springframework.http.ResponseEntity;
 
 public interface PurchaseServiceInterface {
-    ResponseEntity<String> addPurchaseToClient(Client client);
+    String addPurchaseToClient(Client client);
 
     Purchase findPurchaseById(Long id);
 

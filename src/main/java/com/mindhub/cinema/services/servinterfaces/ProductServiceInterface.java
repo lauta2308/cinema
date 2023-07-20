@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface ProductServiceInterface {
-    ResponseEntity<String> add_product(CreateProductDto createProductDto);
+    void add_product(CreateProductDto createProductDto);
 
    Set<ProductDto> getAllProducts();
 

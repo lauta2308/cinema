@@ -23,12 +23,12 @@ public class ProductService implements ProductServiceInterface {
     ProductRepository productRepository;
 
     @Override
-    public ResponseEntity<String> add_product(CreateProductDto createProductDto) {
+    public void add_product(CreateProductDto createProductDto) {
 
 
         productRepository.save(new Product(createProductDto.getProductName(), createProductDto.getProductPrice(), createProductDto.getStock(), createProductDto.getProductType(), createProductDto.getNet_content()));
 
-        return new ResponseEntity<>("Product saved", HttpStatus.CREATED);
+
 
 
     }

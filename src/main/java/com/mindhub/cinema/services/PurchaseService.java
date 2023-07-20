@@ -30,11 +30,13 @@ public class PurchaseService implements PurchaseServiceInterface {
         return purchaseRepository.findById(id).get();
     }
 
+
     @Override
-    public Boolean existById(Long purchaseId) {
+    public Boolean existsById(Long purchaseId) {
 
         return purchaseRepository.existsById(purchaseId);
     }
+
 
 
 }

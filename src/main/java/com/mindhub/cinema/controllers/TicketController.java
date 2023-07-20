@@ -7,6 +7,7 @@ import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.models.Ticket;
 import com.mindhub.cinema.services.servinterfaces.*;
+import com.mindhub.cinema.utils.apiUtils.TicketUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Set;
 
 @RestController
 public class TicketController {
@@ -36,7 +39,7 @@ public class TicketController {
 
     // Create ticket
     @PostMapping("/api/current/create_ticket")
-    public ResponseEntity<String> create_ticket(Authentication authentication, @RequestBody CreateTicketDto createTicketDto){
+    public ResponseEntity<String> create_ticket(Authentication authentication, @RequestBody Set<CreateTicketDto> createTicketDtoSet){
 
 
 
@@ -46,10 +49,32 @@ public class TicketController {
             return new ResponseEntity<>("User not found", HttpStatus.CONFLICT);
         }
 
+        if (!TicketUtils.areAllPurchaseIdsEqual(createTicketDtoSet)) {
+
+           return new ResponseEntity<>("All tickets should have the same purchase Id", HttpStatus.BAD_REQUEST);
+
+        }
+
+        if (!TicketUtils.areAllSeatPlacesUnique(createTicketDtoSet)) {
+
+            return new ResponseEntity<>("Seat places of all tickets should be unique", HttpStatus.BAD_REQUEST);
+
+        }
+
+        if (!TicketUtils.areAllshowIdsEqual(createTicketDtoSet)) {
+
+            return new ResponseEntity<>("Tickets should be for the same show", HttpStatus.BAD_REQUEST);
+
+        }
+
+
 
         // Verifico que la compra existe
 
-        if(!purchaseService.existById(createTicketDto.getPurchaseId())) {
+        CreateTicketDto firstTicket = TicketUtils.getFirstTicket(createTicketDtoSet);
+
+
+        if(!purchaseService.existsById(firstTicket.getPurchaseId())) {
 
             return new ResponseEntity<>("Purchase not found", HttpStatus.CONFLICT);
         }
@@ -58,16 +83,16 @@ public class TicketController {
         // verifico que la compra sea del cliente autenticado
 
 
-        Purchase purchaseParam = purchaseService.findPurchaseById(createTicketDto.getPurchaseId());
+        Purchase purchaseParam = purchaseService.findPurchaseById(firstTicket.getPurchaseId());
 
 
         if(purchaseParam.getClient().getId() != clientAuth.getId()){
             return new ResponseEntity<>("Purchase and client dont match", HttpStatus.CONFLICT);
         }
 
-        // Verifico que la compra existe
+        // Verifico que el show existe
 
-        if(!showService.existsById(createTicketDto.getShowId())) {
+        if(!showService.existsById(firstTicket.getShowId())) {
 
             return new ResponseEntity<>("Show not found", HttpStatus.CONFLICT);
         }
@@ -75,32 +100,33 @@ public class TicketController {
 
         // Busco el show seleccionado
 
-        Show showSelected = showService.getShow(createTicketDto.getShowId());
+        Show showSelected = showService.getShow(firstTicket.getShowId());
 
 
         if(showSelected == null){
             return new ResponseEntity<>("Could not find the show", HttpStatus.CONFLICT);
         }
 
-        Ticket seatAlreadyTaken = ticketService.checkDuplicateTicket(createTicketDto.getSeatId(), showSelected);
 
-        if(seatAlreadyTaken != null){
-            return new ResponseEntity<>("Seat already taken, take another", HttpStatus.CONFLICT);
+        String seatAlreadyTaken = ticketService.checkSeatTaken(createTicketDtoSet);
+        if(seatAlreadyTaken != "All seats are valid"){
+            return new ResponseEntity<>(seatAlreadyTaken, HttpStatus.CONFLICT);
+        }
+
+        // Verifico que los asientos seleccionados corresponden a la sala
+
+
+        String checkSeatAndRoom = ticketService.validateSeatsAndRoom(createTicketDtoSet);
+
+        if(checkSeatAndRoom != "All seats are valid"){
+            return new ResponseEntity<>(checkSeatAndRoom, HttpStatus.CONFLICT);
         }
 
 
-        // Verifico que el id del asiento sea un asiento de la sala
+        ticketService.saveTickets(createTicketDtoSet, purchaseParam, showSelected);
 
 
-
-        if(!seatService.checkValidSeatIdPlaceRoom(createTicketDto.getSeatId(), createTicketDto.getSeatPlace(),showSelected.getCinemaRoom())){
-            return new ResponseEntity<>("Seat not valid", HttpStatus.CONFLICT);
-        }
-
-        ticketService.saveTicket(createTicketDto.getSeatId(), createTicketDto.getSeatPlace(), purchaseParam, showSelected);
-
-
-        return new ResponseEntity<>("Ticked saved", HttpStatus.CREATED);
+        return new ResponseEntity<>("Tickets saved", HttpStatus.CREATED);
 
     }
 

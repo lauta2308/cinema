@@ -12,4 +12,6 @@ public interface CinemaRoomRepository extends JpaRepository<CinemaRoom, Long> {
 
     boolean existsByRoomName(String roomName);
 
+    CinemaRoom findByShows_Id(Long showId);
+
 }

@@ -30,12 +30,6 @@ public class CinemaRoomService implements CinemaRoomServiceInterface {
 
             seatService.addSeats(createRoomDto.getCapacity(),  cinemaRoomRepository.save(new CinemaRoom(createRoomDto.getRoomName(), createRoomDto.getCapacity(), createRoomDto.getRoomType())));
 
-
-
-
-
-
-
     }
 
     public boolean roomNameDuplicated(String roomName){
@@ -44,4 +38,7 @@ public class CinemaRoomService implements CinemaRoomServiceInterface {
 
 
 
+    public CinemaRoom findByShow_Id(Long showId){
+        return cinemaRoomRepository.findByShows_Id(showId);
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
-    Ticket findBySeatIdAndShow(Long seatId, Show id);
+
+    boolean existsBySeatIdAndShow_id(Long seatId, Long showId);
 
 }

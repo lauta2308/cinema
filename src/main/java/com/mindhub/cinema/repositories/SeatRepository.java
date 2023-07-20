@@ -11,4 +11,5 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
 
 
     boolean existsByIdAndSeatPlaceAndCinemaRoom(Long id, Integer seatPlace, CinemaRoom cinemaRoom);
+
 }

@@ -33,7 +33,7 @@ public class PurchaseItemController {
 
         Purchase purchase;
 
-        if(!purchaseService.existById(addPurchaseItemDto.getPurchaseId())){
+        if(!purchaseService.existsById(addPurchaseItemDto.getPurchaseId())){
             return new ResponseEntity<String>("Purchase not found", HttpStatus.CONFLICT);
         } else {
             purchase = purchaseService.findPurchaseById(addPurchaseItemDto.getPurchaseId());

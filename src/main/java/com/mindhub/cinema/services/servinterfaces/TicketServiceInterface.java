@@ -1,5 +1,6 @@
 package com.mindhub.cinema.services.servinterfaces;
 
+import com.mindhub.cinema.dtos.CreateTicketDto;
 import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.models.Ticket;
@@ -11,7 +12,10 @@ import java.util.Set;
 public interface TicketServiceInterface {
     Set<Ticket> getTicketsTaken(Long showId);
 
-    Ticket checkDuplicateTicket(Long seatId, Show showSelected);
+    String checkSeatTaken(Set<CreateTicketDto> createTicketDtoSet);
 
-    void saveTicket(Long seatId, Integer seatPlace, Purchase purchaseParam, Show showSelected);
+    String validateSeatsAndRoom(Set<CreateTicketDto> createTicketDtoSet);
+
+
+    void saveTickets(Set<CreateTicketDto> createTicketDtoSet, Purchase purchaseParam, Show showSelected);
 }

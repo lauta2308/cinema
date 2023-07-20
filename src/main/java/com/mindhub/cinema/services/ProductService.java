@@ -1,16 +1,12 @@
 package com.mindhub.cinema.services;
 
+import com.mindhub.cinema.dtos.AddPurchaseItemDto;
 import com.mindhub.cinema.dtos.CreateProductDto;
 import com.mindhub.cinema.dtos.ProductDto;
 import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.repositories.ProductRepository;
 import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;
-import com.mindhub.cinema.utils.enums.ProductType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -38,15 +34,8 @@ public class ProductService implements ProductServiceInterface {
         return  productRepository.findAll().stream().map(product -> new ProductDto(product)).collect(Collectors.toSet());
     }
 
-    @Override
-    public Product findProductByid(Long productId) {
-        return productRepository.findById(productId).get();
-    }
 
-    @Override
-    public Boolean existById(Long productId) {
-        return productRepository.existsById(productId);
-    }
+
 
     @Override
     public Set<List<ProductDto>> getCombos() {
@@ -95,4 +84,36 @@ public class ProductService implements ProductServiceInterface {
     public boolean existsByName(String productName) {
         return productRepository.existsByName(productName);
     }
+
+    @Override
+    public String allProductsExist(Set<AddPurchaseItemDto> purchaseItems) {
+
+        StringBuilder message = new StringBuilder();
+        boolean allProductsExist = true;
+
+        for (AddPurchaseItemDto purchaseItem : purchaseItems) {
+            Long productId = purchaseItem.getProductId();
+            int productQuantity = purchaseItem.getProductQuantity();
+
+            Optional<Product> optionalProduct = productRepository.findById(productId);
+            if (optionalProduct.isEmpty()) {
+                allProductsExist = false;
+                message.append("the product with the id: ").append(productId).append(" does not exist.\n");
+            } else {
+                Product product = optionalProduct.get();
+                int productStock = product.getStock();
+                if (productQuantity > productStock) {
+                    allProductsExist = false;
+                    message.append("Stock not available for product: ").append(product.getName()).append("\n");
+                }
+            }
+        }
+
+        if (allProductsExist) {
+            return "All the products are valid, stock available";
+        } else {
+            return message.toString();
+        }
+    }
+
 }

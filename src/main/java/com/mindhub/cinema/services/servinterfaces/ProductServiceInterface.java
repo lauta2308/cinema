@@ -1,5 +1,6 @@
 package com.mindhub.cinema.services.servinterfaces;
 
+import com.mindhub.cinema.dtos.AddPurchaseItemDto;
 import com.mindhub.cinema.dtos.CreateProductDto;
 import com.mindhub.cinema.dtos.ProductDto;
 import com.mindhub.cinema.models.Product;
@@ -15,11 +16,10 @@ public interface ProductServiceInterface {
 
    Set<ProductDto> getAllProducts();
 
-    Product findProductByid(Long productId);
-
-    Boolean existById(Long productId);
 
     Set<List<ProductDto>> getCombos();
 
     boolean existsByName(String productName);
+
+    String allProductsExist(Set<AddPurchaseItemDto> purchaseItems);
 }

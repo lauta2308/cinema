@@ -1,8 +1,12 @@
 package com.mindhub.cinema.services.servinterfaces;
 
-import com.mindhub.cinema.models.Product;
+import com.mindhub.cinema.dtos.AddPurchaseItemDto;
 import com.mindhub.cinema.models.Purchase;
 
+import java.util.Set;
+
 public interface PurchaseItemServiceInterface {
-    void add_purchase_item(Integer productQuantity, Purchase purchase, Product product);
+
+
+    void save_purchase_items(Set<AddPurchaseItemDto> purchaseItems, Purchase purchase);
 }

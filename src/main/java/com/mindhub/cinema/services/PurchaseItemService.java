@@ -1,5 +1,6 @@
 package com.mindhub.cinema.services;
 
+import com.mindhub.cinema.dtos.AddPurchaseItemDto;
 import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.models.PurchaseItem;
@@ -13,6 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.Set;
+
 @Service
 public class PurchaseItemService implements PurchaseItemServiceInterface {
 
@@ -24,20 +28,26 @@ public class PurchaseItemService implements PurchaseItemServiceInterface {
     ProductRepository productRepository;
 
 
+
     @Override
-    public void add_purchase_item(Integer productQuantity, Purchase purchase, Product product) {
+    public void save_purchase_items(Set<AddPurchaseItemDto> purchaseItems, Purchase purchase) {
 
+        for (AddPurchaseItemDto purchaseItemDto : purchaseItems) {
+            Long productId = purchaseItemDto.getProductId();
+            int productQuantity = purchaseItemDto.getProductQuantity();
 
-        PurchaseItem purchaseItem = purchaseItemRepository.save(new PurchaseItem(productQuantity, purchase, product));
+            Optional<Product> optionalProduct = productRepository.findById(productId);
+            if (optionalProduct.isPresent()) {
+                Product product = optionalProduct.get();
+                PurchaseItem purchaseItem = new PurchaseItem(productQuantity, purchase, product);
+                purchaseItemRepository.save(purchaseItem);
+                purchaseItem.addPriceToPurchase();
+                purchaseItem.decreaseProductStock();
+                productRepository.save(product);
+            }
 
-        purchaseItem.addPriceToPurchase();
-        purchaseItem.decreaseProductStock();
-        productRepository.save(product);
-
-
+        }
 
 
     }
-
-
 }

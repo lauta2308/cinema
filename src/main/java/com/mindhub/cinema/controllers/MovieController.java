@@ -3,6 +3,7 @@ package com.mindhub.cinema.controllers;
 import com.mindhub.cinema.dtos.CreateMovieDto;
 import com.mindhub.cinema.dtos.MovieDto;
 import com.mindhub.cinema.services.servinterfaces.MovieServiceInterface;
+import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,9 +35,7 @@ public class MovieController {
             return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
         }
 
-        if(!authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .anyMatch(role -> role.equals("ADMIN"))){
+        if(!ValidationUtils.validateAdmin(authentication)){
             return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
         }
 

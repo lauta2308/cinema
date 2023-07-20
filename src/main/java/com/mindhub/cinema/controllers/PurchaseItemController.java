@@ -3,8 +3,6 @@ package com.mindhub.cinema.controllers;
 import com.mindhub.cinema.dtos.AddPurchaseItemDto;
 import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.models.Purchase;
-import com.mindhub.cinema.models.PurchaseItem;
-import com.mindhub.cinema.services.PurchaseService;
 import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.PurchaseItemServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
@@ -15,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -69,9 +66,9 @@ public class PurchaseItemController {
 
         }
 
+        purchaseItemService.add_purchase_item(addPurchaseItemDto.getProductQuantity(), purchase, product);
 
-
-       return purchaseItemService.add_purchase_item(addPurchaseItemDto.getProductQuantity(), purchase, product);
+        return new ResponseEntity<>("Item added to purchase", HttpStatus.CREATED);
 
 
     }

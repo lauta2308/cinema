@@ -25,7 +25,7 @@ public class PurchaseItemService implements PurchaseItemServiceInterface {
 
 
     @Override
-    public ResponseEntity<String> add_purchase_item(Integer productQuantity, Purchase purchase, Product product) {
+    public void add_purchase_item(Integer productQuantity, Purchase purchase, Product product) {
 
 
         PurchaseItem purchaseItem = purchaseItemRepository.save(new PurchaseItem(productQuantity, purchase, product));
@@ -35,7 +35,7 @@ public class PurchaseItemService implements PurchaseItemServiceInterface {
         productRepository.save(product);
 
 
-        return new ResponseEntity<>("Item added to purchase", HttpStatus.CREATED);
+
 
     }
 

@@ -1,5 +1,8 @@
 package com.mindhub.cinema.utils.apiUtils;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,6 +46,14 @@ public class ValidationUtils {
         Pattern pattern = Pattern.compile(regex);
 
         return pattern.matcher(email);
+    }
+
+
+    public static boolean validateAdmin(Authentication authentication){
+        return authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(role -> role.equals("ADMIN"));
+
     }
 
 

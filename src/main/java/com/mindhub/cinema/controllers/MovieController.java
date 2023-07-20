@@ -90,10 +90,10 @@ public class MovieController {
         if(movieService.existsBYNameAndMovieType(createMovieDto.getName(), createMovieDto.getMovieType())){
             return new ResponseEntity<>("Movie name and type already exist", HttpStatus.CONFLICT);
         }
-        
-        
-        
-        return movieService.add_movie(createMovieDto);
+
+        movieService.add_movie(createMovieDto);
+
+        return new ResponseEntity<>("Movie saved", HttpStatus.CREATED);
 
 
     }

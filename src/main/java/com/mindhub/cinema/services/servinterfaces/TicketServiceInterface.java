@@ -13,5 +13,5 @@ public interface TicketServiceInterface {
 
     Ticket checkDuplicateTicket(Long seatId, Show showSelected);
 
-    ResponseEntity<String> saveTicket(Long seatId, Integer seatPlace, Purchase purchaseParam, Show showSelected);
+    void saveTicket(Long seatId, Integer seatPlace, Purchase purchaseParam, Show showSelected);
 }

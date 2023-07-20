@@ -3,15 +3,16 @@ package com.mindhub.cinema.controllers;
 
 import com.mindhub.cinema.dtos.CreateProductDto;
 import com.mindhub.cinema.dtos.ProductDto;
-import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;
-import com.mindhub.cinema.utils.enums.ProductType;
+import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Set;
@@ -39,9 +40,7 @@ public class ProductController {
             return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
         }
 
-        if(!authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .anyMatch(role -> role.equals("ADMIN"))){
+        if(!ValidationUtils.validateAdmin(authentication)){
             return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
         }
 

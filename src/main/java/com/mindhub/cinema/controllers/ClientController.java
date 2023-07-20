@@ -3,14 +3,16 @@ package com.mindhub.cinema.controllers;
 
 import com.mindhub.cinema.dtos.ClientDto;
 import com.mindhub.cinema.dtos.RegisterClientDto;
-import com.mindhub.cinema.repositories.ClientRepository;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
@@ -34,7 +36,6 @@ public class ClientController {
            @RequestBody RegisterClientDto registerClientDto) {
 
 
-        System.out.println(registerClientDto.getEmail());
 
         if(registerClientDto.getName().isBlank() && registerClientDto.getLastName().isBlank() && registerClientDto.getEmail().isBlank() && registerClientDto.getPassword().isBlank() && registerClientDto.getBornDate().toString().isBlank()){
 

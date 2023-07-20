@@ -2,7 +2,10 @@ package com.mindhub.cinema.controllers;
 
 
 import com.mindhub.cinema.dtos.CreateTicketDto;
-import com.mindhub.cinema.models.*;
+import com.mindhub.cinema.models.Client;
+import com.mindhub.cinema.models.Purchase;
+import com.mindhub.cinema.models.Show;
+import com.mindhub.cinema.models.Ticket;
 import com.mindhub.cinema.services.servinterfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,10 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Set;
 
 @RestController
 public class TicketController {
@@ -97,9 +97,10 @@ public class TicketController {
             return new ResponseEntity<>("Seat not valid", HttpStatus.CONFLICT);
         }
 
+        ticketService.saveTicket(createTicketDto.getSeatId(), createTicketDto.getSeatPlace(), purchaseParam, showSelected);
 
-        return ticketService.saveTicket(createTicketDto.getSeatId(), createTicketDto.getSeatPlace(), purchaseParam, showSelected);
 
+        return new ResponseEntity<>("Ticked saved", HttpStatus.CREATED);
 
     }
 

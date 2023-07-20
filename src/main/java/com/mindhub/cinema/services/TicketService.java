@@ -48,10 +48,10 @@ public class TicketService implements TicketServiceInterface {
 
     @Override
     @Transactional
-    public ResponseEntity<String> saveTicket(Long seatId, Integer seatPlace, Purchase purchaseParam, Show showSelected) {
+    public void saveTicket(Long seatId, Integer seatPlace, Purchase purchaseParam, Show showSelected) {
         ticketRepository.save(new Ticket(seatId, seatPlace, purchaseParam, showSelected));
 
-        return new ResponseEntity<>("Ticked saved", HttpStatus.CREATED);
+
     }
 
 

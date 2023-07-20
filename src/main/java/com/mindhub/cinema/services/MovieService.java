@@ -31,11 +31,10 @@ public class MovieService implements MovieServiceInterface {
     }
 
     @Override
-    public ResponseEntity<String> add_movie(CreateMovieDto createMovieDto) {
+    public void add_movie(CreateMovieDto createMovieDto) {
 
         movieRepository.save(new Movie(createMovieDto.getMovieImg(), createMovieDto.getMovieTrailer(), createMovieDto.getName(), createMovieDto.getDescription(), createMovieDto.getMovieRestriction(), createMovieDto.getDuration(), createMovieDto.getLanguaje(), createMovieDto.getMovieGenre(), createMovieDto.getMovieType(), createMovieDto.getMovieAvailability()));
 
-        return new ResponseEntity<>("Movie saved", HttpStatus.CREATED);
     }
 
     @Override

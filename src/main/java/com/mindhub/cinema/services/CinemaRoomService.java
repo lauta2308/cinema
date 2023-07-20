@@ -25,13 +25,13 @@ public class CinemaRoomService implements CinemaRoomServiceInterface {
 
     @Override
     @Transactional
-    public ResponseEntity<String> create_cinema_room(CreateRoomDto createRoomDto) {
+    public void create_cinema_room(CreateRoomDto createRoomDto) {
 
 
             seatService.addSeats(createRoomDto.getCapacity(),  cinemaRoomRepository.save(new CinemaRoom(createRoomDto.getRoomName(), createRoomDto.getCapacity(), createRoomDto.getRoomType())));
 
 
-                return new ResponseEntity<>("Room made, seats added", HttpStatus.CREATED);
+
 
 
 

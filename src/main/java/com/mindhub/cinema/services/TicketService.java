@@ -48,12 +48,12 @@ public class TicketService implements TicketServiceInterface {
         StringBuilder message = new StringBuilder();
 
         for (CreateTicketDto ticketDto : createTicketDtoSet) {
-            Long seatId = ticketDto.getSeatId();
+            Integer seatPlace = ticketDto.getSeatPlace();
             Long showId = ticketDto.getShowId();
 
 
-            if (ticketRepository.existsBySeatIdAndShow_id(seatId, showId)) {
-                takenSeats.add("SeatId: " + seatId + ", Show: " + showId);
+            if (ticketRepository.existsBySeatPlaceAndShow_id(seatPlace, showId)) {
+                takenSeats.add("SeatPlace: " + seatPlace);
             }
         }
 

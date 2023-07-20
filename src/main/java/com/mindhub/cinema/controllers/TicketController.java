@@ -109,7 +109,8 @@ public class TicketController {
 
 
         String seatAlreadyTaken = ticketService.checkSeatTaken(createTicketDtoSet);
-        if(seatAlreadyTaken != "All seats are valid"){
+        if(!"All seats are valid.".equals(seatAlreadyTaken)){
+
             return new ResponseEntity<>(seatAlreadyTaken, HttpStatus.CONFLICT);
         }
 
@@ -118,7 +119,7 @@ public class TicketController {
 
         String checkSeatAndRoom = ticketService.validateSeatsAndRoom(createTicketDtoSet);
 
-        if(checkSeatAndRoom != "All seats are valid"){
+        if(!"All seats are valid.".equals(checkSeatAndRoom)){
             return new ResponseEntity<>(checkSeatAndRoom, HttpStatus.CONFLICT);
         }
 

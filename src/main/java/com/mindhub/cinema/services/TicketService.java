@@ -130,11 +130,11 @@ public class TicketService implements TicketServiceInterface {
        }
 
 
-
+        Ticket ticket;
         if (createTicketDtoSet != null && !createTicketDtoSet.isEmpty()) {
             for (CreateTicketDto createTicketDto : createTicketDtoSet) {
 
-               Ticket ticket = ticketRepository.save(new Ticket(createTicketDto.getSeatId(), createTicketDto.getSeatPlace(), createTicketDto.getCustomerAge(),purchase, showSelected));
+               ticket = ticketRepository.save(new Ticket(createTicketDto.getSeatId(), createTicketDto.getSeatPlace(), createTicketDto.getCustomerAge(),purchase, showSelected));
 
                ticket.updateTicketPriceByAge();
                ticket.addPriceToPurchase();

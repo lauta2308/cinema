@@ -77,10 +77,6 @@ public class TicketController {
         Show showSelected = showService.getShow(firstTicket.getShowId());
 
 
-        if(showSelected == null){
-            return new ResponseEntity<>("Could not find the show", HttpStatus.CONFLICT);
-        }
-
 
         String seatAlreadyTaken = ticketService.checkSeatTaken(createTicketDtoSet);
         if(!"All seats are valid.".equals(seatAlreadyTaken)){

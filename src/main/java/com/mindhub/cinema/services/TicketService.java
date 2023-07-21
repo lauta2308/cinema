@@ -4,10 +4,11 @@ import com.mindhub.cinema.dtos.CreateTicketDto;
 import com.mindhub.cinema.models.*;
 import com.mindhub.cinema.repositories.PurchaseRepository;
 import com.mindhub.cinema.repositories.TicketRepository;
-import com.mindhub.cinema.services.servinterfaces.*;
+import com.mindhub.cinema.services.servinterfaces.CinemaRoomServiceInterface;
+import com.mindhub.cinema.services.servinterfaces.SeatServiceInterface;
+import com.mindhub.cinema.services.servinterfaces.TicketServiceInterface;
 import com.mindhub.cinema.utils.enums.ClientRol;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -20,14 +21,11 @@ import java.util.stream.Collectors;
 public class TicketService implements TicketServiceInterface {
 
 
-    @Autowired
-    ClientServiceInterface clientService;
 
     @Autowired
     CinemaRoomServiceInterface cinemaRoomService;
 
-    @Autowired
-    PurchaseServiceInterface purchaseService;
+
 
     @Autowired
     PurchaseRepository purchaseRepository;

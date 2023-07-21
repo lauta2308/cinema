@@ -83,11 +83,6 @@ public class ProductController {
 
 
 
-    @GetMapping("/api/current/get_product_combos")
-    public Set<List<ProductDto>> get_product_combos(){
-        return productService.getCombos();
-    }
-
 
 
 }

@@ -5,7 +5,9 @@ import com.mindhub.cinema.utils.enums.ProductType;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -28,6 +30,9 @@ public class Product {
 
     @OneToMany(mappedBy="product", fetch=FetchType.EAGER)
     private Set<PurchaseItem> productCombos = new HashSet<>();
+
+    @ManyToMany(mappedBy = "products")
+    private List<ProductCombo> productComboList = new ArrayList<>();
 
 
     public Product() {
@@ -92,5 +97,14 @@ public class Product {
 
     public void setProductCombos(Set<PurchaseItem> productCombos) {
         this.productCombos = productCombos;
+    }
+
+
+    public List<ProductCombo> getProductComboList() {
+        return productComboList;
+    }
+
+    public void setProductComboList(List<ProductCombo> productComboList) {
+        this.productComboList = productComboList;
     }
 }

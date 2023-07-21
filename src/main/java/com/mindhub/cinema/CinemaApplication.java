@@ -13,7 +13,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,7 +34,7 @@ public class CinemaApplication {
 
 
 	@Bean
-	public CommandLineRunner initData(CinemaRoomRepository cinemaRoomRepository, ClientRepository clientRepository,  MovieRepository movieRepository, ProductRepository productRepository, PurchaseItemRepository purchaseItemRepository, PurchaseRepository purchaseRepository, ReviewRepository reviewRepository, SeatRepository seatRepository, ShowRepository showRepository, TicketRepository ticketRepository) {
+	public CommandLineRunner initData(CinemaRoomRepository cinemaRoomRepository, ClientRepository clientRepository,  MovieRepository movieRepository, ProductRepository productRepository, ProductComboRepository productComboRepository, PurchaseItemRepository purchaseItemRepository, PurchaseRepository purchaseRepository, ReviewRepository reviewRepository, SeatRepository seatRepository, ShowRepository showRepository, TicketRepository ticketRepository) {
 		return (args) -> {
 
 
@@ -256,6 +258,93 @@ public class CinemaApplication {
 
 
 			purchaseRepository.save(purchaseOne);
+
+
+
+			// Product Combos
+
+
+
+			ProductCombo productComboSingle = productComboRepository.save(new ProductCombo());
+
+			productComboSingle.setTemplateCombo(true);
+			productComboSingle.setProductComboType(ProductComboType.SINGLE);
+
+			List<Product> comboSingleProducts = new ArrayList<>();
+
+			comboSingleProducts.add(cocaMedia);
+			comboSingleProducts.add(pochocloMediano);
+
+			productComboSingle.setProducts(comboSingleProducts);
+
+			productComboSingle.setComboDefaultPrice(cocaMedia.getProductPrice() + pochocloMediano.getProductPrice() );
+
+			productComboSingle.updateComboPrice();
+
+			productComboRepository.save(productComboSingle);
+
+
+
+
+			ProductCombo comboElegido = productComboRepository.save(new ProductCombo());
+
+			comboElegido.getProducts().addAll(comboSingleProducts);
+			comboElegido.setProductComboType(ProductComboType.SINGLE);
+			comboElegido.setPurchase(purchaseOne);
+			comboElegido.setComboDefaultPrice(productComboSingle.getComboDefaultPrice());
+			comboElegido.updateComboPrice();
+			productComboRepository.save(comboElegido);
+
+
+
+			// Otros Combos
+
+			ProductCombo familyCombo = productComboRepository.save(new ProductCombo());
+
+			familyCombo.setTemplateCombo(true);
+			familyCombo.setProductComboType(ProductComboType.FAMILY);
+
+			List<Product> comboFamilyProducts = new ArrayList<>();
+
+
+			comboFamilyProducts.add(pochocloMediano);
+			comboFamilyProducts.add(pochocloMediano);
+			comboFamilyProducts.add(cocaMedia);
+			comboFamilyProducts.add(cocaMedia);
+			comboFamilyProducts.add(cocaMedia);
+			comboFamilyProducts.add(cocaMedia);
+
+			familyCombo.setProducts(comboFamilyProducts);
+
+			for (Product product : comboFamilyProducts) {
+				familyCombo.setComboDefaultPrice(familyCombo.getComboDefaultPrice() + product.getProductPrice());
+			}
+
+			familyCombo.updateComboPrice();
+			productComboRepository.save(familyCombo);
+
+
+
+
+
+			ProductCombo comboSingleMega = productComboRepository.save(new ProductCombo());
+
+			comboSingleMega.setTemplateCombo(true);
+			comboSingleMega.setProductComboType(ProductComboType.SINGLE_MEGA);
+
+			List<Product> comboSingleMegaProducts = new ArrayList<>();
+
+			comboSingleMegaProducts.add(pochocloGrande);
+			comboSingleMegaProducts.add(cocaGrande);
+
+			comboSingleMega.setProducts(comboSingleMegaProducts);
+
+			comboSingleMega.setComboDefaultPrice(pochocloGrande.getProductPrice() + cocaGrande.getProductPrice());
+
+			comboSingleMega.updateComboPrice();
+
+			productComboRepository.save(comboSingleMega);
+
 		};
 
 	}

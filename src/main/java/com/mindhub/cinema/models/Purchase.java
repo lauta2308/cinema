@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,6 +34,9 @@ public class Purchase {
 
     @OneToMany(mappedBy = "purchase", fetch=FetchType.EAGER)
     private Set<PurchaseItem> purchaseItems = new HashSet<>();
+
+    @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL)
+    private List<ProductCombo> productCombos;
 
 
     public Purchase() {
@@ -93,5 +97,14 @@ public class Purchase {
 
     public void setPurchaseItems(Set<PurchaseItem> purchaseItems) {
         this.purchaseItems = purchaseItems;
+    }
+
+
+    public List<ProductCombo> getProductCombos() {
+        return productCombos;
+    }
+
+    public void setProductCombos(List<ProductCombo> productCombos) {
+        this.productCombos = productCombos;
     }
 }

@@ -17,8 +17,6 @@ public interface ProductServiceInterface {
    Set<ProductDto> getAllProducts();
 
 
-    Set<List<ProductDto>> getCombos();
-
     boolean existsByName(String productName);
 
     String allProductsExist(Set<AddPurchaseItemDto> purchaseItems);

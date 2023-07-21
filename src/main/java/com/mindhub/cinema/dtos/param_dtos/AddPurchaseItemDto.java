@@ -1,4 +1,4 @@
-package com.mindhub.cinema.dtos;
+package com.mindhub.cinema.dtos.param_dtos;
 
 import org.springframework.web.bind.annotation.RequestParam;
 

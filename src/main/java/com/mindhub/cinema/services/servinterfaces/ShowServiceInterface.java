@@ -1,6 +1,6 @@
 package com.mindhub.cinema.services.servinterfaces;
 
-import com.mindhub.cinema.dtos.ShowDto;
+import com.mindhub.cinema.dtos.models_dtos.ShowDto;
 import com.mindhub.cinema.models.Show;
 
 import java.util.Set;

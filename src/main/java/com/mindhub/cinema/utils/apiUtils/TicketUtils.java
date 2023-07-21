@@ -1,6 +1,6 @@
 package com.mindhub.cinema.utils.apiUtils;
 
-import com.mindhub.cinema.dtos.CreateTicketDto;
+import com.mindhub.cinema.dtos.param_dtos.CreateTicketDto;
 
 import java.util.HashSet;
 import java.util.Set;

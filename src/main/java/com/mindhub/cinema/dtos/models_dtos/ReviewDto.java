@@ -1,5 +1,6 @@
-package com.mindhub.cinema.dtos;
+package com.mindhub.cinema.dtos.models_dtos;
 
+import com.mindhub.cinema.dtos.models_dtos.MovieDto;
 import com.mindhub.cinema.models.Review;
 import com.mindhub.cinema.utils.enums.ReviewStatus;
 

@@ -1,7 +1,6 @@
 package com.mindhub.cinema.utils.apiUtils;
 
-import com.mindhub.cinema.dtos.AddPurchaseItemDto;
-import com.mindhub.cinema.dtos.CreateTicketDto;
+import com.mindhub.cinema.dtos.param_dtos.AddPurchaseItemDto;
 
 import java.util.Set;
 

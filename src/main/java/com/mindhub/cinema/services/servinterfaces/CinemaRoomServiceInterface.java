@@ -1,9 +1,7 @@
 package com.mindhub.cinema.services.servinterfaces;
 
-import com.mindhub.cinema.dtos.CreateRoomDto;
+import com.mindhub.cinema.dtos.param_dtos.CreateRoomDto;
 import com.mindhub.cinema.models.CinemaRoom;
-import com.mindhub.cinema.utils.enums.RoomType;
-import org.springframework.http.ResponseEntity;
 
 public interface CinemaRoomServiceInterface {
     void create_cinema_room(CreateRoomDto createRoomDto);

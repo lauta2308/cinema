@@ -1,8 +1,8 @@
 package com.mindhub.cinema.services;
 
-import com.mindhub.cinema.dtos.AddPurchaseItemDto;
-import com.mindhub.cinema.dtos.CreateProductDto;
-import com.mindhub.cinema.dtos.ProductDto;
+import com.mindhub.cinema.dtos.param_dtos.AddPurchaseItemDto;
+import com.mindhub.cinema.dtos.param_dtos.CreateProductDto;
+import com.mindhub.cinema.dtos.models_dtos.ProductDto;
 import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.repositories.ProductRepository;
 import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;

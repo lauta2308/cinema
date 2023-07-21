@@ -1,6 +1,6 @@
 package com.mindhub.cinema.controllers;
 
-import com.mindhub.cinema.dtos.SeatDto;
+import com.mindhub.cinema.dtos.models_dtos.SeatDto;
 import com.mindhub.cinema.models.Seat;
 import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.models.Ticket;

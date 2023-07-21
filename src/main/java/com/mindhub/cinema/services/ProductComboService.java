@@ -1,7 +1,7 @@
 package com.mindhub.cinema.services;
 
 
-import com.mindhub.cinema.dtos.ProductComboDto;
+import com.mindhub.cinema.dtos.models_dtos.ProductComboDto;
 import com.mindhub.cinema.repositories.ProductComboRepository;
 import com.mindhub.cinema.services.servinterfaces.ProductComboServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;

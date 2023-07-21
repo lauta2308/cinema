@@ -1,7 +1,7 @@
 package com.mindhub.cinema.controllers;
 
 
-import com.mindhub.cinema.dtos.CreateRoomDto;
+import com.mindhub.cinema.dtos.param_dtos.CreateRoomDto;
 import com.mindhub.cinema.services.servinterfaces.CinemaRoomServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;

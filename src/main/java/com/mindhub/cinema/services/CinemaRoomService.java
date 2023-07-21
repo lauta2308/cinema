@@ -1,6 +1,6 @@
 package com.mindhub.cinema.services;
 
-import com.mindhub.cinema.dtos.CreateRoomDto;
+import com.mindhub.cinema.dtos.param_dtos.CreateRoomDto;
 import com.mindhub.cinema.models.CinemaRoom;
 import com.mindhub.cinema.repositories.CinemaRoomRepository;
 import com.mindhub.cinema.services.servinterfaces.CinemaRoomServiceInterface;

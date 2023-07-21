@@ -1,17 +1,9 @@
-package com.mindhub.cinema.dtos;
+package com.mindhub.cinema.dtos.models_dtos;
 
-import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.models.ProductCombo;
 import com.mindhub.cinema.utils.enums.ProductComboType;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ProductComboDto {

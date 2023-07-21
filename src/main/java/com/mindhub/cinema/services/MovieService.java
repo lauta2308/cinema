@@ -1,16 +1,14 @@
 package com.mindhub.cinema.services;
 
 
-import com.mindhub.cinema.dtos.CreateMovieDto;
-import com.mindhub.cinema.dtos.MovieDto;
+import com.mindhub.cinema.dtos.param_dtos.CreateMovieDto;
+import com.mindhub.cinema.dtos.models_dtos.MovieDto;
 import com.mindhub.cinema.models.Movie;
 import com.mindhub.cinema.repositories.MovieRepository;
 import com.mindhub.cinema.services.servinterfaces.MovieServiceInterface;
 import com.mindhub.cinema.utils.enums.MovieAvailability;
 import com.mindhub.cinema.utils.enums.MovieType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;

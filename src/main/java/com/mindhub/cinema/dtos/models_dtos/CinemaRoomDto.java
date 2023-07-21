@@ -1,4 +1,4 @@
-package com.mindhub.cinema.dtos;
+package com.mindhub.cinema.dtos.models_dtos;
 
 import com.mindhub.cinema.models.CinemaRoom;
 import com.mindhub.cinema.utils.enums.RoomStatus;

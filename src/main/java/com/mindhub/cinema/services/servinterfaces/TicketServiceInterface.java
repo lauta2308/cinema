@@ -1,12 +1,9 @@
 package com.mindhub.cinema.services.servinterfaces;
 
-import com.mindhub.cinema.dtos.CreateTicketDto;
+import com.mindhub.cinema.dtos.param_dtos.CreateTicketDto;
 import com.mindhub.cinema.models.Client;
-import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.models.Ticket;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 
 import java.util.Set;
 

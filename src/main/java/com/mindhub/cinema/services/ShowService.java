@@ -1,6 +1,6 @@
 package com.mindhub.cinema.services;
 
-import com.mindhub.cinema.dtos.ShowDto;
+import com.mindhub.cinema.dtos.models_dtos.ShowDto;
 import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.repositories.ShowRepository;
 import com.mindhub.cinema.services.servinterfaces.ShowServiceInterface;

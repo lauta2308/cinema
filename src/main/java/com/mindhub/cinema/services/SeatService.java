@@ -1,10 +1,8 @@
 package com.mindhub.cinema.services;
 
-import com.mindhub.cinema.dtos.SeatDto;
+import com.mindhub.cinema.dtos.models_dtos.SeatDto;
 import com.mindhub.cinema.models.*;
-import com.mindhub.cinema.repositories.PurchaseRepository;
 import com.mindhub.cinema.repositories.SeatRepository;
-import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.SeatServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

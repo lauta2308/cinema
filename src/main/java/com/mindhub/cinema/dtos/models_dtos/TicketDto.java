@@ -1,5 +1,6 @@
-package com.mindhub.cinema.dtos;
+package com.mindhub.cinema.dtos.models_dtos;
 
+import com.mindhub.cinema.dtos.models_dtos.ShowDto;
 import com.mindhub.cinema.models.Ticket;
 import com.mindhub.cinema.utils.enums.CustomerAge;
 import com.mindhub.cinema.utils.enums.TicketPromo;

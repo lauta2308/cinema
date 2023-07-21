@@ -1,14 +1,9 @@
 package com.mindhub.cinema.services.servinterfaces;
 
-import com.mindhub.cinema.dtos.AddPurchaseItemDto;
-import com.mindhub.cinema.dtos.CreateProductDto;
-import com.mindhub.cinema.dtos.ProductDto;
-import com.mindhub.cinema.models.Product;
-import com.mindhub.cinema.utils.enums.ProductType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
+import com.mindhub.cinema.dtos.param_dtos.AddPurchaseItemDto;
+import com.mindhub.cinema.dtos.param_dtos.CreateProductDto;
+import com.mindhub.cinema.dtos.models_dtos.ProductDto;
 
-import java.util.List;
 import java.util.Set;
 
 public interface ProductServiceInterface {

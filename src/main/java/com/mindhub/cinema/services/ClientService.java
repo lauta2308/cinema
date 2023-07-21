@@ -1,8 +1,8 @@
 package com.mindhub.cinema.services;
 
 
-import com.mindhub.cinema.dtos.ClientDto;
-import com.mindhub.cinema.dtos.RegisterClientDto;
+import com.mindhub.cinema.dtos.models_dtos.ClientDto;
+import com.mindhub.cinema.dtos.param_dtos.RegisterClientDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.repositories.ClientRepository;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;

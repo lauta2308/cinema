@@ -1,8 +1,8 @@
 package com.mindhub.cinema.controllers;
 
 
-import com.mindhub.cinema.dtos.CreateProductDto;
-import com.mindhub.cinema.dtos.ProductDto;
+import com.mindhub.cinema.dtos.param_dtos.CreateProductDto;
+import com.mindhub.cinema.dtos.models_dtos.ProductDto;
 import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Set;
 
 @RestController

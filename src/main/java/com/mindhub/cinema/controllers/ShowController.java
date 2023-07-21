@@ -1,7 +1,7 @@
 package com.mindhub.cinema.controllers;
 
 
-import com.mindhub.cinema.dtos.ShowDto;
+import com.mindhub.cinema.dtos.models_dtos.ShowDto;
 import com.mindhub.cinema.services.servinterfaces.ShowServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

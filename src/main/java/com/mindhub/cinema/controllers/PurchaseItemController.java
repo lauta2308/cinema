@@ -1,6 +1,6 @@
 package com.mindhub.cinema.controllers;
 
-import com.mindhub.cinema.dtos.AddPurchaseItemDto;
+import com.mindhub.cinema.dtos.param_dtos.AddPurchaseItemDto;
 import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.PurchaseItemServiceInterface;

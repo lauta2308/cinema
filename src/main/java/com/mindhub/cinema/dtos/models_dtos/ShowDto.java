@@ -1,11 +1,11 @@
-package com.mindhub.cinema.dtos;
+package com.mindhub.cinema.dtos.models_dtos;
 
+import com.mindhub.cinema.dtos.models_dtos.CinemaRoomDto;
+import com.mindhub.cinema.dtos.models_dtos.MovieDto;
 import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.utils.enums.ShowStatus;
 
 import java.time.LocalDateTime;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class ShowDto {
 

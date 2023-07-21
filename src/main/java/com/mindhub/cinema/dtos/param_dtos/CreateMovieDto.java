@@ -1,17 +1,11 @@
-package com.mindhub.cinema.dtos;
+package com.mindhub.cinema.dtos.param_dtos;
 
-import com.mindhub.cinema.models.Movie;
 import com.mindhub.cinema.utils.enums.MovieAvailability;
 import com.mindhub.cinema.utils.enums.MovieGenre;
 import com.mindhub.cinema.utils.enums.MovieRestriction;
 import com.mindhub.cinema.utils.enums.MovieType;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-
-public class MovieDto {
-
-    private long id;
+public class CreateMovieDto {
 
     private String movieImg;
 
@@ -21,7 +15,6 @@ public class MovieDto {
 
     private String description;
 
-
     private MovieRestriction movieRestriction;
 
     private Integer duration;
@@ -30,36 +23,21 @@ public class MovieDto {
 
     private MovieGenre movieGenre;
 
-    private Integer timesPlayed;
-
-    private Integer ticketsSold;
-
     private MovieType movieType;
 
     private MovieAvailability movieAvailability;
 
-
-
-
-    public MovieDto(Movie movie) {
-        this.id = movie.getId();
-        this.movieImg = movie.getMovieImg();
-        this.movieTrailer = movie.getMovieTrailer();
-        this.name = movie.getName();
-        this.description = movie.getDescription();
-        this.movieRestriction = movie.getMovieRestriction();
-        this.duration = movie.getDuration();
-        this.languaje = movie.getLanguaje();
-        this.movieGenre = movie.getMovieGenre();
-        this.timesPlayed = movie.getTimesPlayed();
-        this.ticketsSold = movie.getTicketsSold();
-        this.movieType = movie.getMovieType();
-        this.movieAvailability = movie.getMovieAvailability();
-
-    }
-
-    public long getId() {
-        return id;
+    public CreateMovieDto(String movieImg, String movieTrailer, String name, String description, MovieRestriction movieRestriction, Integer duration, String languaje, MovieGenre movieGenre, MovieType movieType, MovieAvailability movieAvailability) {
+        this.movieImg = movieImg;
+        this.movieTrailer = movieTrailer;
+        this.name = name;
+        this.description = description;
+        this.movieRestriction = movieRestriction;
+        this.duration = duration;
+        this.languaje = languaje;
+        this.movieGenre = movieGenre;
+        this.movieType = movieType;
+        this.movieAvailability = movieAvailability;
     }
 
     public String getMovieImg() {
@@ -94,14 +72,6 @@ public class MovieDto {
         return movieGenre;
     }
 
-    public Integer getTimesPlayed() {
-        return timesPlayed;
-    }
-
-    public Integer getTicketsSold() {
-        return ticketsSold;
-    }
-
     public MovieType getMovieType() {
         return movieType;
     }
@@ -109,6 +79,4 @@ public class MovieDto {
     public MovieAvailability getMovieAvailability() {
         return movieAvailability;
     }
-
-
 }

@@ -1,6 +1,6 @@
 package com.mindhub.cinema.services;
 
-import com.mindhub.cinema.dtos.CreateTicketDto;
+import com.mindhub.cinema.dtos.param_dtos.CreateTicketDto;
 import com.mindhub.cinema.models.*;
 import com.mindhub.cinema.repositories.PurchaseRepository;
 import com.mindhub.cinema.repositories.TicketRepository;

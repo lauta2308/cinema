@@ -49,10 +49,10 @@ public class ValidationUtils {
     }
 
 
-    public static boolean validateAdmin(Authentication authentication){
+    public static String checkUserRole(Authentication authentication){
         return authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .anyMatch(role -> role.equals("ADMIN"));
+                .map(GrantedAuthority::getAuthority).findFirst().get();
+
 
     }
 

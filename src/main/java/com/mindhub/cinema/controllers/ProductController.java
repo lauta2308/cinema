@@ -40,7 +40,7 @@ public class ProductController {
             return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
         }
 
-        if(!ValidationUtils.validateAdmin(authentication)){
+        if(ValidationUtils.checkUserRole(authentication) != "ADMIN"){
             return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
         }
 

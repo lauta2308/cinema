@@ -37,11 +37,13 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(Long seatId, Integer seatPlace, Purchase purchase, Show show) {
+    public Ticket(Long seatId, Integer seatPlace, CustomerAge customerAge, Purchase purchase, Show show) {
         this.seatId = seatId;
         this.seatPlace = seatPlace;
+        this.customerAge = customerAge;
         this.purchase = purchase;
         this.show = show;
+        this.ticketPrice = show.getStandardPrice();
     }
 
     public long getId() {
@@ -102,6 +104,14 @@ public class Ticket {
 
     public void setTicketPrice(Double ticketPrice) {
         this.ticketPrice = ticketPrice;
+    }
+
+    // Actualizar el precio según edad
+
+    public void updateTicketPriceByAge(){
+        if(this.customerAge == CustomerAge.KID || this.customerAge == CustomerAge.RETIRED){
+            this.ticketPrice = this.ticketPrice - (this.ticketPrice * 0.05);
+        }
     }
 
     // Sumo el precio del purchase item al precio de la compra

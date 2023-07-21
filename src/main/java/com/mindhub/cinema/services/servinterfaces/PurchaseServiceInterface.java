@@ -14,4 +14,5 @@ public interface PurchaseServiceInterface {
 
     Boolean existsById(Long purchaseId);
 
+    void save(Client client);
 }

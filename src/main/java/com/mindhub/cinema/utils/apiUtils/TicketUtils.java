@@ -9,6 +9,7 @@ public class TicketUtils {
 
 
 
+    /*
     public static boolean areAllPurchaseIdsEqual(Set<CreateTicketDto> tickets) {
         if (tickets == null || tickets.isEmpty()) {
             return false;
@@ -27,6 +28,7 @@ public class TicketUtils {
 
 
     }
+    */
 
 
     public static boolean areAllSeatPlacesUnique(Set<CreateTicketDto> tickets) {
@@ -46,9 +48,9 @@ public class TicketUtils {
     }
 
 
-    public static Long getPurchaseId(Set<CreateTicketDto> createTicketDtoSet) {
+    /*public static Long getPurchaseId(Set<CreateTicketDto> createTicketDtoSet) {
         return createTicketDtoSet.stream().findFirst().get().getPurchaseId();
-    }
+    }*/
 
 
     public static boolean areAllshowIdsEqual(Set<CreateTicketDto> tickets) {

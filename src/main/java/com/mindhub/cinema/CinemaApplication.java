@@ -50,12 +50,16 @@ public class CinemaApplication {
 			clientRepository.save(clientAdmin);
 
 
+			Client employee = clientRepository.save(new Client("Nannie", "Espinoza", "nannie_espinoza@gmail.com", "1234", LocalDate.of(1994, 05, 20)));
+
+			employee.setClientRol(ClientRol.EMPLOYEE);
+			clientRepository.save(employee);
 
 			/*
 			Client clientTwo = clientRepository.save(new Client("Bobby", "Pearce", "bobby_pearce@gmail.com", "1234", LocalDate.of(1993, 07, 20)));
 
 
-			Client clientThree = clientRepository.save(new Client("Nannie", "Espinoza", "nannie_espinoza@gmail.com", "1234", LocalDate.of(1994, 05, 20)));
+
 
 
 			Client clientFour = clientRepository.save(new Client("Junior", "Fowler", "junior_fowler@gmail.com", "1234", LocalDate.of(1991, 07, 20)));
@@ -176,7 +180,7 @@ public class CinemaApplication {
 
 			// Creo un ticket, le paso los parámetros del asiento y de la compra
 
-			Ticket ticketForShowOne1 = ticketRepository.save(new Ticket(seatSelected.getId(), seatSelected.getSeatPlace(), purchaseOne, showOne));
+			Ticket ticketForShowOne1 = ticketRepository.save(new Ticket(seatSelected.getId(), seatSelected.getSeatPlace(),CustomerAge.ADULT, purchaseOne, showOne));
 
 			ticketForShowOne1.setTicketPrice(ticketForShowOne1.getShow().getStandardPrice());
 			ticketForShowOne1.addPriceToPurchase();
@@ -205,7 +209,7 @@ public class CinemaApplication {
 
 			// Creo un ticket, le paso los parámetros del asiento y de la compra
 
-			Ticket ticket2ForShowOne1 = ticketRepository.save(new Ticket(seatSelected2.getId(), seatSelected2.getSeatPlace(), purchaseOne, showOne));
+			Ticket ticket2ForShowOne1 = ticketRepository.save(new Ticket(seatSelected2.getId(), seatSelected2.getSeatPlace(), CustomerAge.ADULT, purchaseOne, showOne));
 
 			ticket2ForShowOne1.setTicketPrice(ticket2ForShowOne1.getShow().getStandardPrice());
 			ticket2ForShowOne1.addPriceToPurchase();

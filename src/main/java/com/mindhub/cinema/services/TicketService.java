@@ -1,15 +1,13 @@
 package com.mindhub.cinema.services;
 
 import com.mindhub.cinema.dtos.CreateTicketDto;
-import com.mindhub.cinema.models.CinemaRoom;
-import com.mindhub.cinema.models.Purchase;
-import com.mindhub.cinema.models.Show;
-import com.mindhub.cinema.models.Ticket;
+import com.mindhub.cinema.models.*;
+import com.mindhub.cinema.repositories.PurchaseRepository;
 import com.mindhub.cinema.repositories.TicketRepository;
-import com.mindhub.cinema.services.servinterfaces.CinemaRoomServiceInterface;
-import com.mindhub.cinema.services.servinterfaces.SeatServiceInterface;
-import com.mindhub.cinema.services.servinterfaces.TicketServiceInterface;
+import com.mindhub.cinema.services.servinterfaces.*;
+import com.mindhub.cinema.utils.enums.ClientRol;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -23,7 +21,16 @@ public class TicketService implements TicketServiceInterface {
 
 
     @Autowired
+    ClientServiceInterface clientService;
+
+    @Autowired
     CinemaRoomServiceInterface cinemaRoomService;
+
+    @Autowired
+    PurchaseServiceInterface purchaseService;
+
+    @Autowired
+    PurchaseRepository purchaseRepository;
 
     @Autowired
     SeatServiceInterface seatService;
@@ -110,18 +117,36 @@ public class TicketService implements TicketServiceInterface {
 
     @Override
     @Transactional
-    public void saveTickets(Set<CreateTicketDto> createTicketDtoSet, Purchase purchaseParam, Show showSelected) {
+    public String saveTickets(Set<CreateTicketDto> createTicketDtoSet, Client client, Show showSelected) {
+
+       Purchase purchase;
+
+       if(client.getClientRol() == ClientRol.CLIENT){
+
+
+          purchase =  purchaseRepository.save(new Purchase(client));
+       } else {
+          purchase = purchaseRepository.save(new Purchase());
+       }
+
+
 
         if (createTicketDtoSet != null && !createTicketDtoSet.isEmpty()) {
             for (CreateTicketDto createTicketDto : createTicketDtoSet) {
 
-                ticketRepository.save(new Ticket(createTicketDto.getSeatId(), createTicketDto.getSeatPlace(), purchaseParam, showSelected));
+               Ticket ticket = ticketRepository.save(new Ticket(createTicketDto.getSeatId(), createTicketDto.getSeatPlace(), createTicketDto.getCustomerAge(),purchase, showSelected));
+
+               ticket.updateTicketPriceByAge();
+               ticket.addPriceToPurchase();
+
+
+
             }
         }
 
 
 
-
+        return String.valueOf(purchase.getId());
 
     }
 

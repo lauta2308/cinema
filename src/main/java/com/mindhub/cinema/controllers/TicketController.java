@@ -7,6 +7,7 @@ import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.services.servinterfaces.*;
 import com.mindhub.cinema.utils.apiUtils.TicketUtils;
+import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,17 +43,7 @@ public class TicketController {
 
 
 
-        Client clientAuth = clientService.get_full_client(authentication);
 
-        if(clientAuth == null){
-            return new ResponseEntity<>("User not found", HttpStatus.CONFLICT);
-        }
-
-        if (!TicketUtils.areAllPurchaseIdsEqual(createTicketDtoSet)) {
-
-           return new ResponseEntity<>("All tickets should have the same purchase Id", HttpStatus.BAD_REQUEST);
-
-        }
 
         if (!TicketUtils.areAllSeatPlacesUnique(createTicketDtoSet)) {
 
@@ -68,26 +59,10 @@ public class TicketController {
 
 
 
-        // Verifico que la compra existe
+        // Obtengo el primer ticket
 
         CreateTicketDto firstTicket = TicketUtils.getFirstTicket(createTicketDtoSet);
 
-
-        if(!purchaseService.existsById(firstTicket.getPurchaseId())) {
-
-            return new ResponseEntity<>("Purchase not found", HttpStatus.CONFLICT);
-        }
-
-
-        // verifico que la compra sea del cliente autenticado
-
-
-        Purchase purchaseParam = purchaseService.findPurchaseById(firstTicket.getPurchaseId());
-
-
-        if(purchaseParam.getClient().getId() != clientAuth.getId()){
-            return new ResponseEntity<>("Purchase and client dont match", HttpStatus.CONFLICT);
-        }
 
         // Verifico que el show existe
 
@@ -123,10 +98,13 @@ public class TicketController {
         }
 
 
-        ticketService.saveTickets(createTicketDtoSet, purchaseParam, showSelected);
+        Client clientAuth = clientService.get_full_client(authentication);
 
 
-        return new ResponseEntity<>("Tickets saved", HttpStatus.CREATED);
+
+
+
+        return new ResponseEntity<>(ticketService.saveTickets(createTicketDtoSet, clientAuth, showSelected), HttpStatus.CREATED);
 
     }
 

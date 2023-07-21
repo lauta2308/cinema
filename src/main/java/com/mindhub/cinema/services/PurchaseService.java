@@ -37,6 +37,10 @@ public class PurchaseService implements PurchaseServiceInterface {
         return purchaseRepository.existsById(purchaseId);
     }
 
+    @Override
+    public void save(Client client) {
+        purchaseRepository.save(new Purchase(client));
+    }
 
 
 }

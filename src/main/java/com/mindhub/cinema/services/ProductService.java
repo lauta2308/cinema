@@ -3,6 +3,7 @@ package com.mindhub.cinema.services;
 import com.mindhub.cinema.dtos.param_dtos.AddPurchaseItemDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateProductDto;
 import com.mindhub.cinema.dtos.models_dtos.ProductDto;
+import com.mindhub.cinema.dtos.param_dtos.UpdateProductStockDto;
 import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.repositories.ProductRepository;
 import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;
@@ -83,6 +84,21 @@ public class ProductService implements ProductServiceInterface {
     @Override
     public void save(Product product) {
         productRepository.save(product);
+    }
+
+    @Override
+    public boolean existsById(Long productId) {
+        return productRepository.existsById(productId);
+    }
+
+    @Override
+    public void updateProductStock(UpdateProductStockDto updateProductStockDto) {
+        Product product = productRepository.findById(updateProductStockDto.getProductId()).get();
+
+        product.setStock(updateProductStockDto.getProductStock());
+
+        productRepository.save(product);
+
     }
 
 }

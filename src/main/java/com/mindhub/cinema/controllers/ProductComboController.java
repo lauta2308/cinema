@@ -2,6 +2,7 @@ package com.mindhub.cinema.controllers;
 
 
 import com.mindhub.cinema.dtos.models_dtos.ProductComboDto;
+import com.mindhub.cinema.dtos.param_dtos.BuyProductComboDto;
 import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.services.servinterfaces.ProductComboServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
@@ -34,7 +35,7 @@ public class ProductComboController {
 
     @Transactional
     @PostMapping("/api/current/add_product_combos")
-    ResponseEntity<String> addCombosToPurchase(Authentication authentication, @RequestBody List<ProductComboDto> productComboDtoList, @RequestParam Long purchaseId){
+    ResponseEntity<String> addCombosToPurchase(Authentication authentication, @RequestBody List<BuyProductComboDto> productComboDtoList, @RequestParam Long purchaseId){
 
 
 

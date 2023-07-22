@@ -3,17 +3,16 @@ package com.mindhub.cinema.services;
 
 import com.mindhub.cinema.dtos.models_dtos.ProductComboDto;
 import com.mindhub.cinema.dtos.models_dtos.ProductDto;
+import com.mindhub.cinema.dtos.param_dtos.BuyProductComboDto;
 import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.models.ProductCombo;
 import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.repositories.ProductComboRepository;
 import com.mindhub.cinema.repositories.ProductRepository;
-import com.mindhub.cinema.repositories.PurchaseRepository;
 import com.mindhub.cinema.services.servinterfaces.ProductComboServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
 import com.mindhub.cinema.utils.exceptions.InsufficientStockException;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,8 +46,9 @@ public class ProductComboService implements ProductComboServiceInterface {
 
     @Override
     @Transactional // Asegura que se revierta la transacción para cualquier excepción
-    public String verifyProductsStock(List<ProductComboDto> productCombos) {
+    public String verifyProductsStock(List<BuyProductComboDto> productCombosIds) {
 
+        List<ProductComboDto> productCombos = new ArrayList<>();
         for (ProductComboDto productCombo : productCombos) {
             for (ProductDto productDto : productCombo.getProducts()) {
                 Product product = productService.findById(productDto.getId());
@@ -82,8 +82,10 @@ public class ProductComboService implements ProductComboServiceInterface {
 
     @Override
     @Transactional
-    public String addProductCombosToPurchase(List<ProductComboDto> productComboDtoList, Purchase purchase) {
+    public String addProductCombosToPurchase(List<BuyProductComboDto> productComboIds, Purchase purchase) {
         Double totalPrice = purchase.getPurchase_price(); // Inicializar el precio total con el precio actual de la compra
+
+        List<ProductComboDto> productComboDtoList = getProductComboDtos(productComboIds);
 
         for (ProductComboDto productComboDto : productComboDtoList) {
             ProductCombo productCombo = getProductComboById(productComboDto.getId());
@@ -132,6 +134,18 @@ public class ProductComboService implements ProductComboServiceInterface {
             }
         }
         return clonedProducts;
+    }
+
+
+
+    private List<ProductComboDto> getProductComboDtos(List<BuyProductComboDto> buyProductComboDtoList){
+
+        List<ProductComboDto> productComboDtoList = new ArrayList<>();
+        for (BuyProductComboDto buyProductComboto : buyProductComboDtoList){
+           productComboDtoList.add(new ProductComboDto(productComboRepository.findById(buyProductComboto.getProductComboId()).get()));
+        }
+
+        return productComboDtoList;
     }
 
 

@@ -1,8 +1,6 @@
 package com.mindhub.cinema.dtos.models_dtos;
-
 import com.mindhub.cinema.models.ProductCombo;
 import com.mindhub.cinema.utils.enums.ProductComboType;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +18,15 @@ public class ProductComboDto {
     private ProductComboType productComboType;
 
     private List<ProductDto> products;
+
+    public ProductComboDto(long id, double comboDefaultPrice, double comboFinalPrice, boolean isTemplateCombo, ProductComboType productComboType, List<ProductDto> products) {
+        this.id = id;
+        this.comboDefaultPrice = comboDefaultPrice;
+        this.comboFinalPrice = comboFinalPrice;
+        this.isTemplateCombo = isTemplateCombo;
+        this.productComboType = productComboType;
+        this.products = products;
+    }
 
     public ProductComboDto(ProductCombo productCombo) {
         this.id = productCombo.getId();

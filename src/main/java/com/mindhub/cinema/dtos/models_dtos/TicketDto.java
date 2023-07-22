@@ -4,6 +4,7 @@ import com.mindhub.cinema.dtos.models_dtos.ShowDto;
 import com.mindhub.cinema.models.Ticket;
 import com.mindhub.cinema.utils.enums.CustomerAge;
 import com.mindhub.cinema.utils.enums.TicketPromo;
+import com.mindhub.cinema.utils.enums.TicketStatus;
 
 public class TicketDto {
 
@@ -20,6 +21,7 @@ public class TicketDto {
     private Double ticketPrice;
 
 
+    private TicketStatus ticketStatus;
 
 
 
@@ -34,6 +36,7 @@ public class TicketDto {
         this.ticketPrice = ticket.getTicketPrice();
 
         this.show = new ShowDto(ticket.getShow());
+        this.ticketStatus = ticket.getTicketStatus();
     }
 
     public long getId() {
@@ -63,5 +66,9 @@ public class TicketDto {
 
     public ShowDto getShow() {
         return show;
+    }
+
+    public TicketStatus getTicketStatus() {
+        return ticketStatus;
     }
 }

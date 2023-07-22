@@ -11,4 +11,6 @@ public interface PurchaseServiceInterface {
     Boolean existsById(Long purchaseId);
 
     void save(Client client);
+
+    void replacePurchasePrice(Purchase purchase, Double totalPrice);
 }

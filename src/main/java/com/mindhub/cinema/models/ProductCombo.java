@@ -37,6 +37,8 @@ public class ProductCombo {
     public ProductCombo() {
     }
 
+
+
     public long getId() {
         return id;
     }
@@ -103,7 +105,7 @@ public class ProductCombo {
 
             this.comboFinalPrice = this.comboDefaultPrice - (this.comboDefaultPrice * 0.10);
         } else {
-            this.comboFinalPrice = this.comboDefaultPrice - (this.comboDefaultPrice * 0.10);
+            this.comboFinalPrice = this.comboDefaultPrice - (this.comboDefaultPrice * 0.15);
         }
 
 

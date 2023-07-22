@@ -42,5 +42,13 @@ public class PurchaseService implements PurchaseServiceInterface {
         purchaseRepository.save(new Purchase(client));
     }
 
+    @Override
+    public void replacePurchasePrice(Purchase purchase, Double totalPrice) {
+        purchase.setPurchase_price(totalPrice);
+        purchaseRepository.save(purchase);
+
+    }
+
+
 
 }

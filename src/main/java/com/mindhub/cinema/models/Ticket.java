@@ -3,6 +3,7 @@ package com.mindhub.cinema.models;
 
 import com.mindhub.cinema.utils.enums.CustomerAge;
 import com.mindhub.cinema.utils.enums.TicketPromo;
+import com.mindhub.cinema.utils.enums.TicketStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -24,6 +25,9 @@ public class Ticket {
     private CustomerAge customerAge = CustomerAge.ADULT;
 
     private Double ticketPrice;
+
+
+    private TicketStatus ticketStatus = TicketStatus.TAKEN;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="purchase_id")
@@ -104,6 +108,14 @@ public class Ticket {
 
     public void setTicketPrice(Double ticketPrice) {
         this.ticketPrice = ticketPrice;
+    }
+
+    public TicketStatus getTicketStatus() {
+        return ticketStatus;
+    }
+
+    public void setTicketStatus(TicketStatus ticketStatus) {
+        this.ticketStatus = ticketStatus;
     }
 
     // Actualizar el precio según edad

@@ -18,7 +18,8 @@ public class ProductDto {
     private Integer net_content;
 
 
-
+    public ProductDto() {
+    }
 
     public ProductDto(Product product) {
         this.id = product.getId();

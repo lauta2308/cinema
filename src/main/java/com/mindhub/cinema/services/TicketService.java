@@ -8,6 +8,7 @@ import com.mindhub.cinema.services.servinterfaces.CinemaRoomServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.SeatServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.TicketServiceInterface;
 import com.mindhub.cinema.utils.enums.ClientRol;
+import com.mindhub.cinema.utils.enums.TicketStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,7 +58,7 @@ public class TicketService implements TicketServiceInterface {
             Long showId = ticketDto.getShowId();
 
 
-            if (ticketRepository.existsBySeatPlaceAndShow_id(seatPlace, showId)) {
+            if (ticketRepository.existsBySeatPlaceAndShow_idAndTicketStatus(seatPlace, showId, TicketStatus.TAKEN)) {
                 takenSeats.add("SeatPlace: " + seatPlace);
             }
         }

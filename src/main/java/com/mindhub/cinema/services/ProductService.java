@@ -75,4 +75,14 @@ public class ProductService implements ProductServiceInterface {
         }
     }
 
+    @Override
+    public Product findById(long id) {
+        return productRepository.findById(id).get();
+    }
+
+    @Override
+    public void save(Product product) {
+        productRepository.save(product);
+    }
+
 }

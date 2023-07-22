@@ -14,7 +14,7 @@ public class CreateTicketDto {
    private CustomerAge customerAge;
 
 
-    public CreateTicketDto(Long purchaseId, Long showId, Long seatId, Integer seatPlace, CustomerAge customerAge) {
+    public CreateTicketDto(Long showId, Long seatId, Integer seatPlace, CustomerAge customerAge) {
         this.showId = showId;
         this.seatId = seatId;
         this.seatPlace = seatPlace;

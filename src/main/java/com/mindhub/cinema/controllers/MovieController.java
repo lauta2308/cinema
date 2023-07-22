@@ -67,6 +67,10 @@ public class MovieController {
             return new ResponseEntity<>("Add duration", HttpStatus.BAD_REQUEST);
         }
 
+        if(createMovieDto.getDuration() < 0){
+            return new ResponseEntity<>("Duration should be higher than 0", HttpStatus.BAD_REQUEST);
+        }
+
         if(createMovieDto.getLanguaje().isBlank()){
             return new ResponseEntity<>("Add languaje", HttpStatus.BAD_REQUEST);
         }

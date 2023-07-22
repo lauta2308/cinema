@@ -282,7 +282,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    \r\n    {\r\n\r\n\r\n   \"showId\": 1,\r\n\r\n   \"seatId\": 88,\r\n   \r\n   \"customerAge\": \"ADULT\",\r\n\r\n   \"seatPlace\": 88\r\n\r\n\r\n\r\n},\r\n\r\n    {\r\n\r\n \r\n   \"showId\": 1,\r\n\r\n   \"seatId\": 80,\r\n\r\n   \"customerAge\": \"ADULT\",\r\n\r\n   \"seatPlace\": 80\r\n\r\n\r\n\r\n},\r\n\r\n {\r\n\r\n \r\n   \"showId\": 1,\r\n\r\n   \"seatId\": 42,\r\n\r\n   \"customerAge\": \"KID\",\r\n\r\n   \"seatPlace\": 42\r\n\r\n\r\n\r\n}\r\n\r\n\r\n]",
+					"raw": "[\r\n    \r\n    {\r\n\r\n\r\n   \"showId\": 1,\r\n\r\n   \"seatId\": 24,\r\n   \r\n   \"customerAge\": \"ADULT\",\r\n\r\n   \"seatPlace\": 24\r\n\r\n\r\n\r\n},\r\n\r\n    {\r\n\r\n \r\n   \"showId\": 1,\r\n\r\n   \"seatId\": 80,\r\n\r\n   \"customerAge\": \"ADULT\",\r\n\r\n   \"seatPlace\": 80\r\n\r\n\r\n\r\n},\r\n\r\n {\r\n\r\n \r\n   \"showId\": 1,\r\n\r\n   \"seatId\": 42,\r\n\r\n   \"customerAge\": \"KID\",\r\n\r\n   \"seatPlace\": 42\r\n\r\n\r\n\r\n}\r\n\r\n\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -340,7 +340,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/current/get_product_comboes",
+					"raw": "localhost:8080/api/current/get_product_combos",
 					"host": [
 						"localhost"
 					],
@@ -348,7 +348,7 @@
 					"path": [
 						"api",
 						"current",
-						"get_product_comboes"
+						"get_product_combos"
 					]
 				}
 			},
@@ -382,7 +382,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n\r\n  \"movieImg\": \"https://boleteriacinerama.com.ar/assets/images/peliculas/9999929.jpg\",\r\n\r\n  \"movieTrailer\": \"https://www.youtube.com/watch?v=mcUvOAnBgl0\",\r\n\r\n  \"name\": \"OPPENHEIMER\",\r\n\r\n  \"description\": \"La historia del científico J. Robert Oppenheimer y su rol en el desarrollo de la bomba atómica.\",\r\n\r\n  \"movieRestriction\": \"SAM_16\",\r\n\r\n  \"duration\": 180,\r\n\r\n  \"languaje\": \"CASTELLANO\",\r\n\r\n  \"movieGenre\": \"DRAMA\",\r\n\r\n\"movieType\": \"MOVIE_2D\",\r\n\r\n\"movieAvailability\": \"AVAILABLE\"\r\n\r\n\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -399,6 +399,70 @@
 						"api",
 						"admin",
 						"add_movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add product combo to purchase",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n\r\n{\r\n \"productComboId\": 1\r\n\r\n}\r\n \r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/current/add_product_combos?purchaseId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"current",
+						"add_product_combos"
+					],
+					"query": [
+						{
+							"key": "purchaseId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update product stock",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\": 1,\r\n\r\n    \"productStock\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/admin/add_product_stock",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"add_product_stock"
 					]
 				}
 			},

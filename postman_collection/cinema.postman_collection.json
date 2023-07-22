@@ -338,7 +338,40 @@
 			"name": "get combos",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/current/get_product_comboes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"current",
+						"get_product_comboes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get purchase",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/current/purchase/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"current",
+						"purchase",
+						"1"
+					]
+				}
 			},
 			"response": []
 		},

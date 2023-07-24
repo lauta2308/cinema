@@ -18,7 +18,6 @@ public class ClientDto {
 
     private String email;
 
-    private LocalDate bornDate;
 
     private Integer age;
 
@@ -40,8 +39,6 @@ public class ClientDto {
         this.name = client.getName();
         this.lastName = client.getLastName();
         this.email = client.getEmail();
-        this.bornDate = client.getBornDate();
-        this.age = LocalDate.now().getYear() - client.getBornDate().getYear();
         this.clientRol = client.getClientRol();
         this.clientLevel = client.getClientLevel();
         this.reviews = client.getReviews().stream().map(review -> new ReviewDto(review)).collect(Collectors.toSet());
@@ -65,9 +62,6 @@ public class ClientDto {
         return email;
     }
 
-    public LocalDate getBornDate() {
-        return bornDate;
-    }
 
     public Integer getAge() {
         return age;

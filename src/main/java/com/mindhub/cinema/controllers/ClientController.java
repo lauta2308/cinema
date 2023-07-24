@@ -84,6 +84,7 @@ public class ClientController {
             return new ResponseEntity<>("The password should be at least 8 characters long and include 1 uppercase, 1 lowercase, 1 number and 1 symbol", HttpStatus.BAD_REQUEST);
         }
 
+/*
         // Validacion fecha
 
         if(registerClientDto.getBornDate().isBlank() || registerClientDto.getBornDate() == null){
@@ -96,6 +97,7 @@ public class ClientController {
         if(ValidationUtils.clientYoungerThan15(registerClientDto.getBornDate())){
             return new ResponseEntity<>("User should be at least 15 years old", HttpStatus.BAD_REQUEST);
         }
+*/
 
 
 

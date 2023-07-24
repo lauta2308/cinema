@@ -55,7 +55,6 @@ createApp({
                 "lastName": this.formLastName,
                 "email": this.formEmail,
                 "password": this.formPassword,
-                "bornDate": this.formBornDate
             })  .then(response => {
                
                 console.log(response);

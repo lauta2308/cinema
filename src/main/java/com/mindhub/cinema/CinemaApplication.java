@@ -41,16 +41,16 @@ public class CinemaApplication {
 
 			// save customers
 
-			Client clientOne = clientRepository.save(new Client("Abdul", "Randall", "abdulrandall@gmail.com", "1234", LocalDate.of(1994,07,20)));
+			Client clientOne = clientRepository.save(new Client("Abdul", "Randall", "abdulrandall@gmail.com", "1234"));
 
-			Client clientAdmin = clientRepository.save(new Client("admin", "admin", "cineadmin@cinema.com", "admin", LocalDate.parse("1994-08-23")));
+			Client clientAdmin = clientRepository.save(new Client("admin", "admin", "cineadmin@cinema.com", "admin"));
 
 
 			clientAdmin.setClientRol(ClientRol.ADMIN);
 			clientRepository.save(clientAdmin);
 
 
-			Client employee = clientRepository.save(new Client("Nannie", "Espinoza", "nannie_espinoza@gmail.com", "1234", LocalDate.of(1994, 05, 20)));
+			Client employee = clientRepository.save(new Client("Nannie", "Espinoza", "nannie_espinoza@gmail.com", "1234"));
 
 			employee.setClientRol(ClientRol.EMPLOYEE);
 			clientRepository.save(employee);
@@ -118,19 +118,7 @@ public class CinemaApplication {
 			Movie indianaJones2d = movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
 
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
-
-
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
-
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
-
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
-
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
-
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
 
 
@@ -150,9 +138,7 @@ public class CinemaApplication {
 
 			purchaseRepository.save(purchaseOne);
 
-			// Averiguo la edad del cliente 1
 
-			Integer clientAge = LocalDate.now().getYear() - clientOne.getBornDate().getYear();
 
 
 

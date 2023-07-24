@@ -45,7 +45,7 @@ public class ClientService implements ClientServiceInterface {
 
     @Override
     public void saveClient(RegisterClientDto registerClientDto) {
-        clientRepository.save(new Client(StringUtils.firstLetterUppercase(registerClientDto.getName()), StringUtils.firstLetterUppercase(registerClientDto.getLastName()), registerClientDto.getEmail(), passwordEncoder.encode(registerClientDto.getPassword()), LocalDate.parse(registerClientDto.getBornDate())));
+        clientRepository.save(new Client(StringUtils.firstLetterUppercase(registerClientDto.getName()), StringUtils.firstLetterUppercase(registerClientDto.getLastName()), registerClientDto.getEmail(), passwordEncoder.encode(registerClientDto.getPassword())));
 
     }
 

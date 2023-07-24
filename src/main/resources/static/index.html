@@ -88,7 +88,7 @@
             <h2>Movies</h2>
             
          
-                <div class="carousel">
+                <!-- <div class="carousel">
              
                     <div v-for="movie in movies" carousel-items>
                         <div v-if="movie.movieAvailability === 'AVAILABLE' " class="carousel-item">
@@ -102,7 +102,24 @@
                   </div>
                 
        
-              </div> 
+              </div>  -->
+
+
+              <div class="carrusel-container">
+               
+                <div class="carrusel" :style="{ transform: 'translateX(' + carruselOffset + 'px)' }" ref="carrusel">
+                  <div v-for="movie in movies" :key="movie.id" class="carrusel-item">
+                    <img :src="movie.movieImg" alt="Imagen de la película">
+                    <p>{{ movie.name }}</p>
+                    <button class="site-info-btn">comprar</button>
+                  </div>
+                </div>
+                <div class="carrusel-buton-container">
+                  <button class="carrusel-button site-info-btn" @click="moveCarrusel(-carruselStep)">Anterior</button>
+                  <button class="carrusel-button site-info-btn" @click="moveCarrusel(carruselStep)">Siguiente</button>
+                </div>
+           
+              </div>
 
 
             

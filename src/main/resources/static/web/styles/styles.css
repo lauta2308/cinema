@@ -88,6 +88,16 @@ p {
 }
 
 
+.site-info-btn {
+  color: red;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: none;
+}
+
+.site-info-btn:hover {
+  cursor: pointer;
+}
 
 /* MENU */
 
@@ -580,3 +590,40 @@ fieldset {
 .form-suggest-text span:hover {
   cursor:pointer;
 }
+
+
+
+/* MOVIES CARRUSEL */
+
+
+.carrusel-container {
+  display: flex;
+  flex-direction: column;
+
+  
+  overflow: hidden;
+}
+
+.carrusel-buton-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+.carrusel {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.carrusel-item {
+  flex: 0 0 calc(20% - 2rem); /* Ajusta el 33.33% según la cantidad de elementos que quieras mostrar por fila */
+  margin-right: 2rem;
+  text-align: center;
+}
+
+.carrusel-item img {
+  max-width: 100%;
+  height: auto;
+}
+

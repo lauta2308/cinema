@@ -73,7 +73,7 @@ public class ClientController {
         // validacion email
 
         if(!ValidationUtils.checkValidEmail(registerClientDto.getEmail()).matches()){
-            return new ResponseEntity<>("Email is not valid. Req text@domain.com", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Email is not valid. Req example@domain.com", HttpStatus.BAD_REQUEST);
 
         }
 

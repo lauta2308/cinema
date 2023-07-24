@@ -19,7 +19,7 @@ public class ClientDto {
     private String email;
 
 
-    private Integer age;
+
 
     private ClientRol clientRol;
 
@@ -63,9 +63,7 @@ public class ClientDto {
     }
 
 
-    public Integer getAge() {
-        return age;
-    }
+
 
     public ClientRol getClientRol() {
         return clientRol;

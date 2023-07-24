@@ -15,63 +15,75 @@
     <div id="app">
 
 
-        <div class="container-register-img">
+        <div class="container-register-img" id="video-background">
+            <video autoplay loop muted>
+                <source src="./media/cinema-login-video.mp4" type="video/mp4">
+                <source src="ruta_del_video.webm" type="video/webm">
+                Tu navegador no soporta el elemento de video.
+              </video>
 
-            <div class="form-container">
+            <div class="form-container" id="video-content">
                 <img src="./media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
-                <form class="login-form">
+                <form class="login-form" ref="loginForm">
 
                     <fieldset class="login-fieldset">
                         <legend class="login-legend">Login to your cineverse account</legend>
                         <label class="login-label">
-                            <input class="login-input" type="email" placeholder="example@mail.com" v-model="formEmail" @click="resetErrorMessage">
+                            <input class="login-input" type="email" placeholder="example@mail.com" v-model="formEmail" @click="resetErrorMessage" required>
                         </label>
                     
                         <label>
-                            <input class="login-input" type="password" placeholder="Password" v-model="formPassword" @click="resetErrorMessage">
+                            <input class="login-input" type="password" placeholder="Password" v-model="formPassword" @click="resetErrorMessage" required>
                         </label>
     
                     </fieldset>
                  
                     <p>{{errorMessage}}</p>
-                    <button type="submit" class="login-form-btn login-btn" @click.prevent="loginClient">Log in</button>
+
+                    <button v-if="formEmail === '' || formPassword === ''" class="login-form-btn login-btn" disabled>Log in</button>
+                    <button v-else type="submit" class="login-form-btn login-btn" @click.prevent="loginClient">Log in</button>
+
+                    <p class="form-suggest-text">Dont have an account? <span @click="showRegisterForm">Sign up</span></p>
 
                 </form>
 
-                <form class="register-form">
+                <form class="register-form" ref="registerForm" id="video-content">
 
                     <fieldset class="login-fieldset">
                         <legend class="login-legend">Sign up to Cineverse</legend>
 
                         <label class="login-label">
-                            <input class="login-input" type="text" placeholder="First Name" v-model="formFirstName" @click="resetErrorMessage">
+                            <input class="login-input" type="text" placeholder="First Name" v-model="formFirstName" @click="resetErrorMessage" required>
                         </label>
 
                         <label class="login-label">
-                            <input class="login-input" type="text" placeholder="Last Name" v-model="formLastName" @click="resetErrorMessage">
+                            <input class="login-input" type="text" placeholder="Last Name" v-model="formLastName" @click="resetErrorMessage" required>
                         </label>
 
                         <label class="login-label">
-                            <input class="login-input" type="email" placeholder="example@domain.com" v-model="formEmail" @click="resetErrorMessage">
+                            <input class="login-input" type="email" placeholder="example@domain.com" v-model="formEmail" @click="resetErrorMessage" required>
                         </label>
                     
                         <label>
-                            <input class="login-input" type="password" placeholder="Password" v-model="formPassword" @click="resetErrorMessage">
+                            <input class="login-input" type="password" placeholder="Password" v-model="formPassword" @click="resetErrorMessage" required>
                         </label>
     
                       
                     </fieldset>
                  
                     <p>{{errorMessage}}</p>
-                    <button type="submit" class="login-form-btn register-btn"
-                     @click.prevent="registerClient">Sign up</button>
+             
 
+
+                     <button v-if="formFirstName === '' || formLastName === '' || formEmail === '' || formPassword === ''" class="login-form-btn register-btn" disabled>Sign up</button>
+                     <button v-else type="submit" class="login-form-btn register-btn" @click.prevent="registerClient">Sign up</button>
+
+                    
+                     <p class="form-suggest-text">Already an user? <span @click="showLoginForm">Log in</span></p>
                 </form> 
             </div>
 
-            <div class="login-img-container">
-                <img src="./media/login-page-image.jpg" alt="login-page-img">
-            </div>
+          
            
           
 

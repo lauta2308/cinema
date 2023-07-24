@@ -32,7 +32,10 @@
                 <li><a href="#" class="menu-item">Movies</a></li>
                 <li><a href="#" class="menu-item">ShowRooms</a></li>
                 <li><a href="#" class="menu-item">Contact</a></li>
-                 <li><a href="#" class="menu-item">Login</a></li>
+                <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
+                <li v-else-if="clientRole === 'CLIENT'"><a href="./web/login.html" class="menu-item">{{clientName}}</a></li>
+                <li v-else-if="clientRole === 'ADMIN'"><a href="./web/login.html" class="menu-item">Admin panel</a></li>
+                <li v-else><a href="./web/login.html" class="menu-item">Tickets</a></li>
               </ul>
             </nav>
             <div class="menu-icon" @click="toggleMenu">
@@ -51,7 +54,11 @@
               <li><a href="#" class="menu-item">Movies</a></li>
               <li><a href="#" class="menu-item">ShowRooms</a></li>
               <li><a href="#" class="menu-item">Contact</a></li>
-               <li><a href="#" class="menu-item">Login</a></li>
+
+              <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
+              <li v-else-if="clientRole === 'CLIENT'"><a href="./web/login.html" class="menu-item">{{clientName}}</a></li>
+              <li v-else-if="clientRole === 'ADMIN'"><a href="./web/login.html" class="menu-item">Admin</a></li>
+              <li v-else><a href="./web/login.html" class="menu-item">Tickets</a></li>
             </ul>
           </div>
 
@@ -71,8 +78,8 @@
     <div class="slideshow">
         <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/06/Diseno-sin-titulo-2023-06-30T122103.662-1536x850.png')"></div>
         <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/05/Diseno-sin-titulo-2023-05-11T133531.416-1536x850.png')"></div>
-        <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/06/Diseno-sin-titulo-2023-06-30T122103.662-1536x850.png')"></div>
-        <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/06/Diseno-sin-titulo-2023-06-30T122103.662-1536x850.png')"></div>
+        <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/06/Diseno-sin-titulo-2023-06-30T122257.627-1536x850.png')"></div>
+        <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/06/Diseno-sin-titulo-2023-06-08T084544.341-1536x850.png')"></div>
       </div>
   
     <main>
@@ -131,7 +138,6 @@
     </main>
     <footer>
 
-<p>hey</p>
     </footer>
 
 </div>

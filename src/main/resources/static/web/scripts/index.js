@@ -8,13 +8,19 @@ createApp({
      
             isMenuOpen: false,
             movies: [],
-            slides: 7
+            slides: 7,
+            clientRole: "",
+            clientName: "",
             
         }
     },
     created() {
 
         this.loadMovies();
+
+        if(this.checkLocalAuth){
+            this.getUserLogged();
+        }
 
 
 
@@ -27,6 +33,19 @@ createApp({
 
     },
     methods: {
+
+        checkLocalAuth(){
+            return localStorage.getItem('cineverseLogin')
+        },
+
+        getUserLogged(){
+            axios.get("/api/authenticated_user")
+            .then(response => {
+                this.clientRole = response.data.clientRol,
+                this.clientName = response.data.name
+             } )
+    
+        },
       
         toggleMenu() {
             this.isMenuOpen = !this.isMenuOpen;

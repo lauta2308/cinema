@@ -3,6 +3,7 @@ package com.mindhub.cinema.utils.apiUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,6 +28,12 @@ public class ValidationUtils {
         return name.length() <= 2;
     }
 
+    // true if name and last name are same
+
+    public static boolean nameAndLastAreSame(String name, String lastName) {
+        return name.equals(lastName);
+    }
+
 
     // true if password dont contain at least 8 characters, 1 lowercase, 1 uppercase, 1 number, 1 simbol
     public static boolean checkInvalidPassword(String password) {
@@ -46,6 +53,15 @@ public class ValidationUtils {
         Pattern pattern = Pattern.compile(regex);
 
         return pattern.matcher(email);
+    }
+
+
+    // true if client younger than 15
+
+    public static boolean clientYoungerThan15(String date){
+
+            return  LocalDate.now().getYear() - LocalDate.parse(date).getYear() < 15;
+
     }
 
 

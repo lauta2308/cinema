@@ -7,9 +7,12 @@ import com.mindhub.cinema.utils.enums.MovieType;
 import java.util.Set;
 
 public interface MovieServiceInterface {
-    Set<MovieDto> getAllMovies();
+
+    Set<MovieDto> getMoviesOnSchedule();
 
     void add_movie(CreateMovieDto createMovieDto);
 
     boolean existsBYNameAndMovieType(String name, MovieType movieType);
+
+
 }

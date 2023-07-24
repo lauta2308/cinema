@@ -6,6 +6,7 @@ import com.mindhub.cinema.dtos.param_dtos.RegisterClientDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.repositories.ClientRepository;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
+import com.mindhub.cinema.utils.apiUtils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -44,7 +45,7 @@ public class ClientService implements ClientServiceInterface {
 
     @Override
     public void saveClient(RegisterClientDto registerClientDto) {
-        clientRepository.save(new Client(registerClientDto.getName(), registerClientDto.getLastName(), registerClientDto.getEmail(), passwordEncoder.encode(registerClientDto.getPassword()), LocalDate.parse(registerClientDto.getBornDate())));
+        clientRepository.save(new Client(StringUtils.firstLetterUppercase(registerClientDto.getName()), StringUtils.firstLetterUppercase(registerClientDto.getLastName()), registerClientDto.getEmail(), passwordEncoder.encode(registerClientDto.getPassword()), LocalDate.parse(registerClientDto.getBornDate())));
 
     }
 

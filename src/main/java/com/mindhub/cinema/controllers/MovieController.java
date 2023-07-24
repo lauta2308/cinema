@@ -21,9 +21,9 @@ public class MovieController {
     @Autowired
     MovieServiceInterface movieService;
 
-    @GetMapping("/api/all_movies")
-    Set<MovieDto> get_all_movies(){
-        return movieService.getAllMovies();
+    @GetMapping("/api/get_on_schedule_movies")
+    Set<MovieDto> get_on_schedule_movies(){
+        return movieService.getMoviesOnSchedule();
     }
 
 

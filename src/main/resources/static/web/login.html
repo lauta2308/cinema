@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to Cineverse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles/normalize.css">
+<link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+  
+    <div id="app">
+
+
+        <div class="container-register-img">
+
+            <div class="form-container">
+                <img src="./media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
+                <form class="login-form">
+
+                    <fieldset class="login-fieldset">
+                        <legend class="login-legend">Login to your cineverse account</legend>
+                        <label class="login-label">
+                            <input class="login-input" type="email" placeholder="example@mail.com" v-model="formEmail" @click="resetErrorMessage">
+                        </label>
+                    
+                        <label>
+                            <input class="login-input" type="password" placeholder="Password" v-model="formPassword" @click="resetErrorMessage">
+                        </label>
+    
+                    </fieldset>
+                 
+                    <p>{{errorMessage}}</p>
+                    <button type="submit" class="login-form-btn login-btn" @click.prevent="loginClient">Log in</button>
+
+                </form>
+
+                <form class="register-form">
+
+                    <fieldset class="login-fieldset">
+                        <legend class="login-legend">Sign up to Cineverse</legend>
+
+                        <label class="login-label">
+                            <input class="login-input" type="text" placeholder="First Name" v-model="formFirstName" @click="resetErrorMessage">
+                        </label>
+
+                        <label class="login-label">
+                            <input class="login-input" type="text" placeholder="Last Name" v-model="formLastName" @click="resetErrorMessage">
+                        </label>
+
+                        <label class="login-label">
+                            <input class="login-input" type="email" placeholder="example@domain.com" v-model="formEmail" @click="resetErrorMessage">
+                        </label>
+                    
+                        <label>
+                            <input class="login-input" type="password" placeholder="Password" v-model="formPassword" @click="resetErrorMessage">
+                        </label>
+    
+                        <label>
+                            <input class="login-input" type="date" pattern="\d{4}-\d{2}-\d{2}" v-model="formBornDate" @click="resetErrorMessage">
+                        </label>
+                    </fieldset>
+                 
+                    <p>{{errorMessage}}</p>
+                    <button type="submit" class="login-form-btn register-btn"
+                     @click.prevent="registerClient">Sign up</button>
+
+                </form> 
+            </div>
+
+            <div class="login-img-container">
+                <img src="./media/login-page-image.jpg" alt="login-page-img">
+            </div>
+           
+          
+
+
+        </div>
+        
+
+
+
+
+    </div>
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./scripts/login.js"></script>
+
+</body>
+</html>

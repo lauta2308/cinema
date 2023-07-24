@@ -6,6 +6,7 @@ import com.mindhub.cinema.dtos.models_dtos.MovieDto;
 import com.mindhub.cinema.models.Movie;
 import com.mindhub.cinema.repositories.MovieRepository;
 import com.mindhub.cinema.services.servinterfaces.MovieServiceInterface;
+import com.mindhub.cinema.utils.apiUtils.MovieUtils;
 import com.mindhub.cinema.utils.enums.MovieAvailability;
 import com.mindhub.cinema.utils.enums.MovieType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,10 @@ public class MovieService implements MovieServiceInterface {
     MovieRepository movieRepository;
 
     @Override
-    public Set<MovieDto> getAllMovies() {
-        Set<Movie> movies = movieRepository.findAll().stream().filter(movie -> movie.getMovieAvailability() == MovieAvailability.AVAILABLE || movie.getMovieAvailability() == MovieAvailability.COMING_SOON).collect(Collectors.toSet());
+    public Set<MovieDto> getMoviesOnSchedule() {
+        Set<Movie> movies = movieRepository.findByMovieAvailabilityOrMovieAvailability(MovieAvailability.AVAILABLE, MovieAvailability.COMING_SOON).stream().collect(Collectors.toSet());
 
-        return movies.stream().map(movie -> new MovieDto(movie)).collect(Collectors.toSet());
+        return MovieUtils.movieSetToDto(movies);
 
 
     }

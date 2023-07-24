@@ -1,34 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <title>MindHub Cinema</title>
+    <title>Welcome to Cineverse!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./web/styles/normalize.css">
+<link rel="stylesheet" href="./web/styles/styles.css">
 </head>
-
 <body>
-<div class="app">
+    <div id="app">
+
+
+
     <header>
-        s
+
+        <div class="top-bar container">
+            <div >
+              <!-- Coloca aquí tu logotipo -->
+              <!-- <img src="ruta-del-logo.png" alt="Logo"> -->
+
+              <img src="./web/media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
+            </div>
+            <nav class="menu">
+              <!-- Coloca aquí tu menú -->
+              <!-- Por ejemplo: -->
+              <ul>
+                <li><a href="#" class="menu-item">Home</a></li>
+                <li><a href="#" class="menu-item">Movies</a></li>
+                <li><a href="#" class="menu-item">ShowRooms</a></li>
+                <li><a href="#" class="menu-item">Contact</a></li>
+                 <li><a href="#" class="menu-item">Login</a></li>
+              </ul>
+            </nav>
+            <div class="menu-icon" @click="toggleMenu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M4 6l16 0" />
+                    <path d="M4 12l16 0" />
+                    <path d="M4 18l16 0" />
+                  </svg>
+            </div>
+          </div>
+          <div class="responsive-menu" :class="{ active: isMenuOpen }">
+            <!-- Menú responsive que aparecerá en dispositivos móviles -->
+            <ul>
+              <li><a href="#" class="menu-item">Home</a></li>
+              <li><a href="#" class="menu-item">Movies</a></li>
+              <li><a href="#" class="menu-item">ShowRooms</a></li>
+              <li><a href="#" class="menu-item">Contact</a></li>
+               <li><a href="#" class="menu-item">Login</a></li>
+            </ul>
+          </div>
+
+
+ 
+
+
+      
+
+      
+         
+       
+
+      
     </header>
+
+    <div class="slideshow">
+        <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/06/Diseno-sin-titulo-2023-06-30T122103.662-1536x850.png')"></div>
+        <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/05/Diseno-sin-titulo-2023-05-11T133531.416-1536x850.png')"></div>
+        <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/06/Diseno-sin-titulo-2023-06-30T122103.662-1536x850.png')"></div>
+        <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/06/Diseno-sin-titulo-2023-06-30T122103.662-1536x850.png')"></div>
+      </div>
+  
     <main>
+
+        <section class="container">
+            <h2>Movies</h2>
+            
+         
+                <div class="carousel">
+             
+                    <div v-for="movie in movies" carousel-items>
+                        <div v-if="movie.movieAvailability === 'AVAILABLE' " class="carousel-item">
+                            <img :src="movie.movieImg" alt="Movie">
+                            <h3>{{ movie.name }}</h3>
+                            <a :href="'/pelicula/' + movie.id">Comprar</a>
+                   
+                        </div>
+                  
+           
+                  </div>
+                
+       
+              </div> 
+
+
+            
+
+        </section>
+
+        <section class="container">
+            <h2>Coming soon</h2>
+
+            <div class="carousel">
+             
+                <div v-for="movie in movies" carousel-items>
+                    <div v-if="movie.movieAvailability === 'COMING_SOON' " class="carousel-item">
+                        <img :src="movie.movieImg" alt="Movie">
+                        <h3>{{ movie.name }}</h3>
+                        <a :href="'/pelicula/' + movie.id">Comprar</a>
+               
+                    </div>
+              
+       
+              </div>
+            
+   
+          </div> 
+        </section>
+
+        <section class="container">
+            <h2>ShowRooms</h2>
+
+            <div class="coming-soon-slider"></div>
+        </section>
 
     </main>
     <footer>
 
+<p>hey</p>
     </footer>
+
 </div>
-
-    <!-- Scripts -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous">
-    </script>
+    <script src="./web/scripts/index.js"></script>
+    
 </body>
-
 </html>

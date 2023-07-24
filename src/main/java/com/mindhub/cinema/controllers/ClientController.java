@@ -37,7 +37,7 @@ public class ClientController {
 
 
 
-        if(registerClientDto.getName().isBlank() && registerClientDto.getLastName().isBlank() && registerClientDto.getEmail().isBlank() && registerClientDto.getPassword().isBlank() && registerClientDto.getBornDate().toString().isBlank()){
+        if(registerClientDto.getName().isBlank() && registerClientDto.getLastName().isBlank() && registerClientDto.getEmail().isBlank() && registerClientDto.getPassword().isBlank() && registerClientDto.getBornDate().isBlank()){
 
             return new ResponseEntity<>("Empty fields", HttpStatus.BAD_REQUEST);
         }
@@ -48,6 +48,7 @@ public class ClientController {
 
             return new ResponseEntity<>("Name cant contain numbers or symbols", HttpStatus.BAD_REQUEST);
         } else if (ValidationUtils.notValidNameLength(registerClientDto.getName())) {
+
 
             return new ResponseEntity<>("Name should be at least 2 characters", HttpStatus.BAD_REQUEST);
         }
@@ -63,6 +64,12 @@ public class ClientController {
             return new ResponseEntity<>("Last name should be at least 2 characters", HttpStatus.BAD_REQUEST);
         }
 
+        // validacion nombre y apellido
+
+        if(ValidationUtils.nameAndLastAreSame(registerClientDto.getName(), registerClientDto.getLastName())){
+            return new ResponseEntity<>("Name and Last name should be different", HttpStatus.BAD_REQUEST);
+        }
+
         // validacion email
 
         if(!ValidationUtils.checkValidEmail(registerClientDto.getEmail()).matches()){
@@ -75,6 +82,19 @@ public class ClientController {
 
         if (ValidationUtils.checkInvalidPassword(registerClientDto.getPassword())) {
             return new ResponseEntity<>("The password should be at least 8 characters long and include 1 uppercase, 1 lowercase, 1 number and 1 symbol", HttpStatus.BAD_REQUEST);
+        }
+
+        // Validacion fecha
+
+        if(registerClientDto.getBornDate().isBlank() || registerClientDto.getBornDate() == null){
+            return new ResponseEntity<>("Date is empty", HttpStatus.BAD_REQUEST);
+        }
+
+        // Validar usuario +15 años
+
+
+        if(ValidationUtils.clientYoungerThan15(registerClientDto.getBornDate())){
+            return new ResponseEntity<>("User should be at least 15 years old", HttpStatus.BAD_REQUEST);
         }
 
 

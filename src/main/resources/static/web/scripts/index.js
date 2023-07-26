@@ -11,6 +11,7 @@ createApp({
             isMenuOpen: false,
             movies: [],
             slides: 7,
+            clientLogged: false,
             clientRole: "",
             clientName: "",
             movieSelected: {},
@@ -50,7 +51,8 @@ createApp({
                  axios.get("/api/authenticated_user")
                 .then(response => {
                     this.clientRole = response.data.clientRol,
-                    this.clientName = response.data.name
+                    this.clientName = response.data.name,
+                    this.clientLogged = true;
                  } )
                  .then(response => localStorage.setItem('cineverseLogin', false));
         

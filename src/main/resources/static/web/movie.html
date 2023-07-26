@@ -130,7 +130,9 @@
                             <td>{{formatEndTime(show.endTime)}}</td>
                             <td>{{ show.standardPrice }}</td>
                             <td>{{ show.cinemaRoom.roomName }}</td>
-                            <td class="site-info-btn">Buy</td>
+                            <td v-if="clientLogged === true" ><a href="../authenticated/buy-tickets.html" class="site-info-btn">Buy</a></td>
+                            <td v-else class="site-info-btn"><a href="./login.html" class="site-info-btn">Log in first</a></td>
+                            
                           </tr>
                         </tbody>
                       </table>

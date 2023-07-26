@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./web/styles/normalize.css">
 <link rel="stylesheet" href="./web/styles/styles.css">
+<link rel="icon" href="./web/media/cropped-logo-transparent.png" type="image/png">
 </head>
 <body>
     <div id="app">
@@ -75,92 +76,87 @@
       
     </header>
 
-    <div class="slideshow">
+     <div class="slideshow">
         <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/06/Diseno-sin-titulo-2023-06-30T122103.662-1536x850.png')"></div>
         <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/05/Diseno-sin-titulo-2023-05-11T133531.416-1536x850.png')"></div>
         <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/06/Diseno-sin-titulo-2023-06-30T122257.627-1536x850.png')"></div>
         <div class="slideshow-image" style="background-image: url('https://complejocinerama.com.ar/wp-content/uploads/2023/06/Diseno-sin-titulo-2023-06-08T084544.341-1536x850.png')"></div>
-      </div>
+      </div> 
+
+   
   
     <main>
 
-        <section class="container">
-            <h2>Movies</h2>
-            
-         
-                <!-- <div class="carousel">
-             
-                    <div v-for="movie in movies" carousel-items>
-                        <div v-if="movie.movieAvailability === 'AVAILABLE' " class="carousel-item">
-                            <img :src="movie.movieImg" alt="Movie">
-                            <h3>{{ movie.name }}</h3>
-                            <a :href="'/pelicula/' + movie.id">Comprar</a>
-                   
-                        </div>
-                  
-           
-                  </div>
-                
-       
-              </div>  -->
-
-
-              <div class="carrusel-container">
-               
-                <div class="carrusel" :style="{ transform: 'translateX(' + carruselOffset + 'px)' }" ref="carrusel">
-                  <div v-for="movie in movies" :key="movie.id" class="carrusel-item">
-                    <img :src="movie.movieImg" alt="Imagen de la película">
-                    <p>{{ movie.name }}</p>
-                    <button class="site-info-btn">comprar</button>
-                  </div>
-                </div>
-                <div class="carrusel-buton-container">
-                  <button class="carrusel-button site-info-btn" @click="moveCarrusel(-carruselStep)">Anterior</button>
-                  <button class="carrusel-button site-info-btn" @click="moveCarrusel(carruselStep)">Siguiente</button>
-                </div>
-           
-              </div>
-
-
-            
-
-        </section>
+    
 
         <section class="container">
-            <h2>Coming soon</h2>
+          <h2>Movies</h2>
 
-            <div class="carousel">
+          <div class="movies-container">
+            <div v-for="movie in movies" class="movie">
+              <img :src="movie.movieImg" :alt="movie.name + ' ' + 'image'">
+              <p class="movie-name">{{ movie.name }}</p>
              
-                <div v-for="movie in movies" carousel-items>
-                    <div v-if="movie.movieAvailability === 'COMING_SOON' " class="carousel-item">
-                        <img :src="movie.movieImg" alt="Movie">
-                        <h3>{{ movie.name }}</h3>
-                        <a :href="'/pelicula/' + movie.id">Comprar</a>
-               
-                    </div>
-              
-       
-              </div>
-            
-   
-          </div> 
+              <button class="site-info-btn" @click="showMovie(movie)">Ver más</button>
+
+            </div>
+          </div>
+
+
         </section>
 
         <section class="container">
             <h2>ShowRooms</h2>
 
-            <div class="coming-soon-slider"></div>
+            <div class="showRooms-container">
+              <div class="showRoom">
+                <img src="./web/media/2d-cinema.jpg" alt="2d cinema image" class="showRoom-img">
+                <p class="showRoom-description">Immerse yourself in the captivating world of storytelling with our state-of-the-art 2D cinema. </p>
+
+                <p class="showRoom-description">Feel the magic of the big screen as you embark on a cinematic journey filled with emotion, drama, and excitement. </p>
+
+                <p class="showRoom-description"> Sit back, relax, and let the power of storytelling transport you to new realms.</p>
+
+                <button class="site-info-btn">View Showtimes</button>
+              </div>
+
+              <div class="showRoom">
+                <img src="./web/media/3d-cinema.jpg" alt="3d cinema image" class="showRoom-img">
+                <p class="showRoom-description">Step into a realm of awe-inspiring realism with our cutting-edge 3D cinema experience.</p>
+                <p class="showRoom-description">Watch as characters come to life, and scenes leap off the screen, bringing you closer to the action like never before. </p>
+                <p class="showRoom-description"> Get ready to be thrilled, amazed, and fully engaged in an unforgettable cinematic adventure.</p>
+
+                <button class="site-info-btn">View Showtimes</button>
+              </div>
+
+              <div class="showRoom">
+                <img src="./web/media/imax-image.jpg" alt="IMAX cinema image" class="showRoom-img">
+
+                <p class="showRoom-description"> Experience the magic of cinema like never before</p>
+                <p class="showRoom-description"> Immerse yourself in crystal-clear images and surround sound that engulfs you in an unparalleled sensory spectacle. </p>
+
+                <p class="showRoom-description"> Witness larger-than-life visuals, heart-pounding sound, and an unforgettable movie experience that pushes the boundaries of what's possible in cinema. </p>
+
+                <button class="site-info-btn">View Showtimes</button>
+              </div>
+            </div>
         </section>
 
     </main>
     <footer>
 
+      <div class="container">
+
+        <p class="footer-copy">Developed By Lautaro Yosbere, 2023  <a href="./web/credits.html" class="footer-credits">View Credits</a></p>
+       
+      </div>
     </footer>
 
 </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="./web/scripts/index.js"></script>
+
     
 </body>
 </html>

@@ -45,7 +45,7 @@ public class MovieDto {
         this.id = movie.getId();
         this.movieImg = movie.getMovieImg();
         this.movieTrailer = movie.getMovieTrailer();
-        this.name = movie.getName();
+        this.name = movie.getName().toUpperCase();
         this.description = movie.getDescription();
         this.movieRestriction = movie.getMovieRestriction();
         this.duration = movie.getDuration();

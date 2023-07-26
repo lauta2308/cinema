@@ -12,6 +12,7 @@ import com.mindhub.cinema.utils.enums.MovieType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,10 +22,10 @@ public class MovieService implements MovieServiceInterface {
     MovieRepository movieRepository;
 
     @Override
-    public Set<MovieDto> getMoviesOnSchedule() {
-        Set<Movie> movies = movieRepository.findByMovieAvailabilityOrMovieAvailability(MovieAvailability.AVAILABLE, MovieAvailability.COMING_SOON).stream().collect(Collectors.toSet());
+    public List<MovieDto> getMoviesOnSchedule() {
 
-        return MovieUtils.movieSetToDto(movies);
+
+        return MovieUtils.movieSetToDto( movieRepository.findByMovieAvailabilityOrMovieAvailability(MovieAvailability.AVAILABLE, MovieAvailability.COMING_SOON).stream().collect(Collectors.toSet()));
 
 
     }
@@ -39,5 +40,10 @@ public class MovieService implements MovieServiceInterface {
     @Override
     public boolean existsBYNameAndMovieType(String name, MovieType movieType) {
         return movieRepository.existsByNameAndMovieType(name, movieType);
+    }
+
+    @Override
+    public MovieDto getMovie(Long movieId) {
+        return MovieUtils.movieToDto(movieRepository.findById(movieId).get());
     }
 }

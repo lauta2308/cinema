@@ -115,26 +115,28 @@ public class CinemaApplication {
 
 			// PELICULAS
 
-			Movie indianaJones2d = movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
+			Movie indianaJones2d = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/337713R1.jpg?width=270&height=405", "https://www.youtube.com/embed/dC1E_E78R48?controls=0","Indiana Jones and the Day of Destiny", "Archaeologist Indiana Jones races against time to retrieve a legendary artifact that can change the course of history.", MovieRestriction.SAM_13, 154, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
+
+
+			Movie barbie = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/215333R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi945734681/?ref_=sh_ov_vi","barbie", "Barbie suffers a crisis that leads her to question her world and her existence.", MovieRestriction.ATP, 114, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
+
+
+			Movie cobweb = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/344228R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi1253230361/?playlistId=tt9100018&ref_=tt_ov_vi","COBWEB", "Horror strikes when an eight-year-old boy named Peter tries to investigate the mysterious knocking noises that are coming from inside the walls of his house and a dark secret that his sinister parents kept hidden from him.", MovieRestriction.SAM_16, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.COMING_SOON));
+
+			Movie oppenheimerImax = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/323982R1.jpg?width=270&height=405", "https://www.youtube.com/watch?v=dC1E_E78R48","OPPENHEIMER IMAX", "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.", MovieRestriction.SAM_13, 180, "Castellano", MovieGenre.DRAMA, MovieType.MOVIE_3D, MovieAvailability.AVAILABLE));
+
+			Movie oppenheimer = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/347409R1.jpg?width=270&height=405", "https://www.youtube.com/watch?v=dC1E_E78R48","Oppenheimer 2D", "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.", MovieRestriction.SAM_13, 180, "Castellano", MovieGenre.DRAMA, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
 
 
-			 movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
+			Movie insidious = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/335198R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi3679044633/?playlistId=tt13405778&ref_=tt_ov_vi","Insidious", "The Lamberts must go deeper into The Further than ever before to put their demons to rest once and for all.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.HORROR, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
+			Movie soundOfFreedom = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/346813R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi3898393625/?playlistId=tt7599146&ref_=tt_pr_ov_vi","Sound of freedom", "The incredible true story of a former government agent turned vigilante who embarks on a dangerous mission to rescue hundreds of children from sex traffickers.", MovieRestriction.SAM_13, 131, "Castellano", MovieGenre.ACTION, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
+			Movie elemental = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/332735R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi2769667097/?playlistId=tt15789038&ref_=tt_pr_ov_vi","Elemental", "Follows Ember and Wade, in a city where fire-, water-, land- and air-residents live together.", MovieRestriction.ATP, 101, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
-
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
-
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
-
-			movieRepository.save(new Movie("https://boleteriacinerama.com.ar/assets/images/peliculas/64230120.jpg", "https://www.youtube.com/watch?v=dC1E_E78R48","Indiana Jones y el dia del destino", "Quinta entrega confirmada de Indiana Jones con Harrison Ford regresando en su icónico papel. La película estará dirigida por James Mangold (Ford vs Ferrari). Sin sinopsis por el momento.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
+			Movie litleMermaid = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/324884R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi1211810841/?playlistId=tt5971474&ref_=tt_pr_ov_vi","The litle mermaid", "A young mermaid makes a deal with a sea witch to trade her beautiful voice for human legs so she can discover the world above water and impress a prince.", MovieRestriction.SAM_13, 135, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
 
 
@@ -142,8 +144,12 @@ public class CinemaApplication {
 
 			// Creo un show
 
-			Show showOne = showRepository.save(new Show(LocalDateTime.of(2023,8,19,19,00,00), 1000.00, indianaJones2d, cinemaRoomOne));
+			Show showOne = showRepository.save(new Show(LocalDateTime.of(2023,8,19,16,00,00), 1000.00, indianaJones2d, cinemaRoomOne));
 
+
+			showRepository.save(new Show(LocalDateTime.of(2023,8,19,19,00,00), 1000.00, indianaJones2d, cinemaRoomOne));
+
+			showRepository.save(new Show(LocalDateTime.of(2023,8,19,22,00,00), 1000.00, indianaJones2d, cinemaRoomOne));
 
 			// Creo una compra
 

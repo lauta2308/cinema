@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles/normalize.css">
+<link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+    <div id="app">
+
+    
+        <header>
+
+            <div class="top-bar container">
+                <div >
+                  <!-- Coloca aquí tu logotipo -->
+                  <!-- <img src="ruta-del-logo.png" alt="Logo"> -->
+    
+                  <img src="./media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
+                </div>
+                <nav class="menu">
+                  <!-- Coloca aquí tu menú -->
+                  <!-- Por ejemplo: -->
+                  <ul>
+                    <li><a href="#" class="menu-item">Home</a></li>
+                    <li><a href="#" class="menu-item">Movies</a></li>
+                    <li><a href="#" class="menu-item">ShowRooms</a></li>
+                    <li><a href="#" class="menu-item">Contact</a></li>
+                    <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
+                    <li v-else-if="clientRole === 'CLIENT'"><a href="./web/login.html" class="menu-item">{{clientName}}</a></li>
+                    <li v-else-if="clientRole === 'ADMIN'"><a href="./web/login.html" class="menu-item">Admin panel</a></li>
+                    <li v-else><a href="./web/login.html" class="menu-item">Tickets</a></li>
+                  </ul>
+                </nav>
+                <div class="menu-icon" @click="toggleMenu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M4 6l16 0" />
+                        <path d="M4 12l16 0" />
+                        <path d="M4 18l16 0" />
+                      </svg>
+                </div>
+              </div>
+              <div class="responsive-menu" :class="{ active: isMenuOpen }">
+                <!-- Menú responsive que aparecerá en dispositivos móviles -->
+                <ul>
+                  <li><a href="#" class="menu-item">Home</a></li>
+                  <li><a href="#" class="menu-item">Movies</a></li>
+                  <li><a href="#" class="menu-item">ShowRooms</a></li>
+                  <li><a href="#" class="menu-item">Contact</a></li>
+    
+               
+                </ul>
+              </div>
+    
+          
+        </header>
+
+        <main>
+
+
+            <section class="container">
+
+                <h2>{{movieSelected.name}}</h2>
+
+                <div class="showMovieContainer">
+                    <img :src="movieSelected.movieImg" :alt="movieSelected.name + ' ' + 'image' " class="showMovie-img">
+
+                        <div class="showMovie-content-container">
+
+
+                            <div class="showMovie-content">
+                        
+                            <h4>Description</h4>
+                            <p class="showMovie-description">{{movieSelected.description}}</p>
+
+                            </div>
+
+                            <div class="showMovie-content">
+                            <h4>Genre</h4>
+                            <p class="showMovie-description">{{movieSelected.movieGenre}}</p>
+
+                            </div>
+
+                            <div class="showMovie-content">
+                            <h4>Restriction</h4>
+                            <p class="showMovie-description">{{movieSelected.movieRestriction}}</p>
+
+                            </div>
+
+                            <div class="showMovie-content">
+                            <h4>Type</h4>
+                            <p class="showMovie-description">{{movieSelected.movieType}}</p>
+                            </div>
+                        </div>
+                   
+                   
+                    </div>
+                
+               
+
+             
+            </section>
+
+            <section class="container">
+                <h2>Upcoming Showtimes</h2>
+
+
+                
+                    
+                    
+                    <table class="movie-show-table">
+                        <thead>
+                          <tr class="show-table-row">
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Standard Price</th>
+                            <th>Show Room</th>
+                            <th>Buy Ticket</th>
+                          </tr>
+                        </thead>
+                        <tbody v-if="movieShows.length > 0">
+                          <tr v-for="show in movieShows" :key="show.id" class="show-table-row">
+                            <td>{{formatStartDate(show.startTime)}}</td>
+                            <td>{{formatEndTime(show.endTime)}}</td>
+                            <td>{{ show.standardPrice }}</td>
+                            <td>{{ show.cinemaRoom.roomName }}</td>
+                            <td class="site-info-btn">Buy</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+  
+
+
+          
+
+                
+
+              
+            </section>
+
+         
+           
+        </main>
+
+   
+
+        <footer>
+
+    
+
+            <div class="container">
+      
+              <p class="footer-copy">Developed By Lautaro Yosbere, 2023  <a href="./web/credits.html" class="footer-credits">View Credits</a></p>
+             
+            </div>
+          </footer>
+
+    </div>
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./scripts/index.js"></script>
+</body>
+</html>

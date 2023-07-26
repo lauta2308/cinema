@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -22,8 +20,14 @@ public class MovieController {
     MovieServiceInterface movieService;
 
     @GetMapping("/api/get_on_schedule_movies")
-    Set<MovieDto> get_on_schedule_movies(){
-        return movieService.getMoviesOnSchedule();
+    List<MovieDto> get_on_schedule_movies(){
+        return (List<MovieDto>) movieService.getMoviesOnSchedule();
+    }
+
+    @GetMapping("/api/movies/{movieId}")
+    MovieDto get_movie(@PathVariable Long movieId){
+        return movieService.getMovie(movieId);
+
     }
 
 

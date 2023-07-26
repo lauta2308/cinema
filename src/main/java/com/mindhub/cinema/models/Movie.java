@@ -22,6 +22,7 @@ public class Movie {
 
     private String movieImg;
 
+
     private String movieTrailer;
 
     private String name;

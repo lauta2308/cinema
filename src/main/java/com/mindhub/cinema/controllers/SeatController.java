@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -26,7 +27,7 @@ public class SeatController {
     @Autowired
     TicketServiceInterface ticketService;
 
-    @GetMapping("/api/seats_available")
+    @GetMapping("/api/authenticated/seats_available")
     public Set<SeatDto> seats_available(@RequestParam Long showId){
 
         Show show = showService.getShow(showId);
@@ -39,6 +40,13 @@ public class SeatController {
 
         return seatService.availableSeats(show_room_seats, showTicketsSold);
 
+
+    }
+
+    @GetMapping("/api/authenticated/room_seats")
+    public List<SeatDto> room_seats(@RequestParam Long cinemaRoomId){
+
+        return seatService.getSeatsByCinemaRoom(cinemaRoomId);
 
     }
 

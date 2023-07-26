@@ -138,6 +138,13 @@ createApp({
             return dateFormated;
         },
 
+        saveShowId(show){
+            localStorage.setItem('showId', show.id);
+            localStorage.setItem('roomId', show.cinemaRoom.id);
+        
+            window.location.href = "../authenticated/buy-tickets.html"
+        }
+
      
 
     

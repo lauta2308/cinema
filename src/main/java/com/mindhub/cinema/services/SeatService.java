@@ -4,6 +4,7 @@ import com.mindhub.cinema.dtos.models_dtos.SeatDto;
 import com.mindhub.cinema.models.*;
 import com.mindhub.cinema.repositories.SeatRepository;
 import com.mindhub.cinema.services.servinterfaces.SeatServiceInterface;
+import com.mindhub.cinema.utils.apiUtils.SeatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -68,6 +70,13 @@ public class SeatService implements SeatServiceInterface {
     @Override
     public boolean existsByIdAndSeatPlaceAndCinemaRoom(Long seatId, Integer seatPlace, CinemaRoom cinemaRoom) {
         return seatRepository.existsByIdAndSeatPlaceAndCinemaRoom(seatId, seatPlace, cinemaRoom);
+    }
+
+    @Override
+    public List<SeatDto> getSeatsByCinemaRoom(Long cinemaRoomId) {
+
+
+        return SeatUtils.seatSetToDto(seatRepository.findByCinemaRoom_id(cinemaRoomId));
     }
 
 

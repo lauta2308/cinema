@@ -95,6 +95,24 @@ p {
   border: none;
 }
 
+.site-action-btn {
+
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.color-red {
+  background-color: red;
+}
+
+.color-green {
+  background-color: green;
+}
+
+
 .site-info-btn:hover {
   cursor: pointer;
 }
@@ -752,4 +770,132 @@ fieldset {
 
 .show-table-row td {
   margin: 2rem 0;
+}
+
+
+
+
+
+
+
+/* BUY TICKETS */
+
+.cinema-room-table-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+ align-items: center;
+ gap: 2rem;
+}
+
+@media(min-width: 768px){
+  .cinema-room-table-container{
+    flex-direction: row;
+  }
+}
+
+.cinema-room-container {
+  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media(min-width: 768px){
+  .cinema-room-container {
+    flex-basis: calc(70% - 2rem);
+  }
+}
+
+.cinema-screen {
+  width: 80%;
+  height: 30px;
+  background-color: #333;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  transform: translateY(-20px);
+}
+
+.cinema-room {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 500px; /* Ajusta el ancho máximo para limitar los asientos por fila */
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+ 
+}
+
+.seat {
+  width: 30px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  position: relative; /* Para que los estilos de .seat-options funcionen correctamente */
+}
+
+@media(min-width: 768px){
+  .seat {
+    width: 40px;
+  }
+}
+
+.not-available {
+  background-color: #f00;
+  pointer-events: none; /* Impide que los asientos no disponibles sean clickeables */
+}
+
+.selected {
+  background-color: #00f;
+  color: #fff;
+}
+
+
+
+/* Estilos para la tabla de asientos seleccionados */
+
+.selected-seats-table-section {
+
+  width: 100%;
+}
+
+@media(min-width: 768px){
+  .selected-seats-table-section {
+    flex-basis: calc(30%);
+
+  }
+}
+
+.selected-seats-table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.selected-seats-table-section th,
+.selected-seats-table-section td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+
+
+.seats-table-select {
+  color: black;
+}
+
+.seats-table-select option {
+  color: black;
 }

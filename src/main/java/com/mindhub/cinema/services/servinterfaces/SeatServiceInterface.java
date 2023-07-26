@@ -6,6 +6,7 @@ import com.mindhub.cinema.models.Seat;
 import com.mindhub.cinema.models.Ticket;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Set;
 
 public interface SeatServiceInterface {
@@ -18,4 +19,6 @@ public interface SeatServiceInterface {
     boolean checkValidSeatIdPlaceRoom(Long seatId, Integer seatPlace, CinemaRoom cinemaRoom);
 
     boolean existsByIdAndSeatPlaceAndCinemaRoom(Long seatId, Integer seatPlace, CinemaRoom cinemaRoom);
+
+    List<SeatDto> getSeatsByCinemaRoom(Long cinemaRoomId);
 }

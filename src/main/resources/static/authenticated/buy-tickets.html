@@ -68,6 +68,71 @@
 </header>
 
 
+<main>
+
+
+  <section class="container">
+
+ 
+    <div class="cinema-room-table-container">
+      <div class="cinema-room-container">
+        <h2>Select your seats</h2>
+        <div class="cinema-screen"></div> <!-- Gráfico de la pantalla de cine -->
+        <div class="cinema-room">
+          <div v-for="(row, rowIndex) in rows" :key="rowIndex" class="row">
+            <div v-for="(seat, seatIndex) in row" :key="seatIndex" class="seat" :class="{ 'not-available': !isSeatAvailable(seat), selected: selectedSeats.includes(seat) }" @click="toggleSeatSelection(seat)">
+              {{ seat.seatPlace }}
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="selected-seats-table-section">
+        <h2>Selected Seats:</h2>
+        <p>Select the customer age for each one</p>
+
+        <div v-if="selectedSeats.length > 0" class="selected-seats-table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Seat Place</th>
+                <th>Customer Age</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(seat, index) in displayedSeats" :key="index">
+                <td>{{ seat.seatPlace }}</td>
+                <td>
+                  <select v-model="seat.customerAge" class="seats-table-select">
+                    <option value="" selected disabled>Select Age</option>
+                    <option value="KID">KID</option>
+                    <option value="ADULT">ADULT</option>
+                    <option value="RETIRED">RETIRED</option>
+                  </select>
+                </td>
+                <td><button class="site-action-btn color-red" @click="removeSeat(index)">Delete</button></td>
+              </tr>
+            </tbody>
+           
+          </table>
+          <div class="pagination">
+            <button :disabled="currentPage === 1" @click="prevPage">Previous</button>
+            <span>{{ currentPage }}</span>
+            <button :disabled="currentPage === totalPages" @click="nextPage">Next</button>
+          </div>
+          <button v-if="selectedSeats.length > 0" class="site-action-btn color-green">Save and continue</button>
+        </div>
+       
+        <p v-else>No seats selected</p>
+      </div>
+    </div>
+   
+  </section>
+
+
+
+</main>
 
 
 

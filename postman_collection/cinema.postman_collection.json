@@ -467,6 +467,32 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get room seats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/authenticated/room_seats?cinemaRoomId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"authenticated",
+						"room_seats"
+					],
+					"query": [
+						{
+							"key": "cinemaRoomId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

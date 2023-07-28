@@ -10,8 +10,8 @@ import com.mindhub.cinema.services.servinterfaces.PurchaseItemServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class PurchaseItemService implements PurchaseItemServiceInterface {
@@ -26,7 +26,7 @@ public class PurchaseItemService implements PurchaseItemServiceInterface {
 
 
     @Override
-    public void save_purchase_items(Set<AddPurchaseItemDto> purchaseItems, Purchase purchase) {
+    public void save_purchase_items(List<AddPurchaseItemDto> purchaseItems, Purchase purchase) {
 
         for (AddPurchaseItemDto purchaseItemDto : purchaseItems) {
             Long productId = purchaseItemDto.getProductId();

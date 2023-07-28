@@ -5,6 +5,7 @@ import com.mindhub.cinema.utils.enums.PurchaseStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,10 +34,10 @@ public class Purchase {
 
 
     @OneToMany(mappedBy = "purchase", fetch=FetchType.EAGER)
-    private Set<PurchaseItem> purchaseItems = new HashSet<>();
+    private List<PurchaseItem> purchaseItems = new ArrayList<>();
 
     @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL)
-    private List<ProductCombo> productCombos;
+    private List<ProductCombo> productCombos = new ArrayList<>();
 
 
     public Purchase() {
@@ -91,14 +92,13 @@ public class Purchase {
         this.tickets = tickets;
     }
 
-    public Set<PurchaseItem> getPurchaseItems() {
+    public List<PurchaseItem> getPurchaseItems() {
         return purchaseItems;
     }
 
-    public void setPurchaseItems(Set<PurchaseItem> purchaseItems) {
+    public void setPurchaseItems(List<PurchaseItem> purchaseItems) {
         this.purchaseItems = purchaseItems;
     }
-
 
     public List<ProductCombo> getProductCombos() {
         return productCombos;

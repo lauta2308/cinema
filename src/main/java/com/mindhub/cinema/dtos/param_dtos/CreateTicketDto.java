@@ -7,16 +7,16 @@ public class CreateTicketDto {
 
    private Long showId;
 
-   private Long seatId;
+   private Long id;
 
    private Integer seatPlace;
 
    private CustomerAge customerAge;
 
 
-    public CreateTicketDto(Long showId, Long seatId, Integer seatPlace, CustomerAge customerAge) {
+    public CreateTicketDto(Long showId, Long id, Integer seatPlace, CustomerAge customerAge) {
         this.showId = showId;
-        this.seatId = seatId;
+        this.id = id;
         this.seatPlace = seatPlace;
         this.customerAge = customerAge;
     }
@@ -27,8 +27,8 @@ public class CreateTicketDto {
         return showId;
     }
 
-    public Long getSeatId() {
-        return seatId;
+    public Long getId() {
+        return id;
     }
 
     public Integer getSeatPlace() {

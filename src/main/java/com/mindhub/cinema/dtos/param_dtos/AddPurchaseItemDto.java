@@ -4,30 +4,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class AddPurchaseItemDto {
 
-    private Integer productQuantity;
-
-
-    private Long purchaseId;
-
-
     private Long productId;
 
+    private Integer productQuantity;
 
-    public AddPurchaseItemDto(Integer productQuantity, Long purchaseId, Long productId) {
-        this.productQuantity = productQuantity;
-        this.purchaseId = purchaseId;
+    private String productName;
+
+
+    private Double productPrice;
+
+    public AddPurchaseItemDto(Long productId, Integer productQuantity, String productName, Double productPrice) {
         this.productId = productId;
+        this.productQuantity = productQuantity;
+        this.productName = productName;
+        this.productPrice = productPrice;
+    }
+
+    public Long getProductId() {
+        return productId;
     }
 
     public Integer getProductQuantity() {
         return productQuantity;
     }
 
-    public Long getPurchaseId() {
-        return purchaseId;
+    public String getProductName() {
+        return productName;
     }
 
-    public Long getProductId() {
-        return productId;
+    public Double getProductPrice() {
+        return productPrice;
     }
 }

@@ -46,7 +46,7 @@ public class ProductService implements ProductServiceInterface {
     }
 
     @Override
-    public String allProductsExist(Set<AddPurchaseItemDto> purchaseItems) {
+    public String allProductsExist(List<AddPurchaseItemDto> purchaseItems) {
 
         StringBuilder message = new StringBuilder();
         boolean allProductsExist = true;

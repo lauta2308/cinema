@@ -22,7 +22,7 @@ public class ProductController {
     ProductServiceInterface productService;
 
 
-    @GetMapping("/api/get_all_products")
+    @GetMapping("/api/current/get_all_products")
     Set<ProductDto> get_all_products(){
         return productService.getAllProducts();
     }

@@ -27,15 +27,15 @@ public class ProductComboController {
     PurchaseServiceInterface purchaseService;
 
     @GetMapping("/api/current/get_product_combos")
-    Set<ProductComboDto> getProductCombos(){
-        return productComboService.findAll();
+    List<ProductComboDto> getProductCombos(){
+        return productComboService.getTemplateCombos();
     }
 
 
 
     @Transactional
     @PostMapping("/api/current/add_product_combos")
-    ResponseEntity<String> addCombosToPurchase(Authentication authentication, @RequestBody List<BuyProductComboDto> productComboDtoList, @RequestParam Long purchaseId){
+    ResponseEntity<String> addCombosToPurchase(Authentication authentication, @RequestBody List<ProductComboDto> productComboDtoList, @RequestParam Long purchaseId){
 
 
 

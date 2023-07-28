@@ -6,6 +6,7 @@ import com.mindhub.cinema.dtos.models_dtos.ProductDto;
 import com.mindhub.cinema.dtos.param_dtos.UpdateProductStockDto;
 import com.mindhub.cinema.models.Product;
 
+import java.util.List;
 import java.util.Set;
 
 public interface ProductServiceInterface {
@@ -16,7 +17,7 @@ public interface ProductServiceInterface {
 
     boolean existsByName(String productName);
 
-    String allProductsExist(Set<AddPurchaseItemDto> purchaseItems);
+    String allProductsExist(List<AddPurchaseItemDto> purchaseItems);
 
     Product findById(long id);
 

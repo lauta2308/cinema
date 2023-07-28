@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add products to purchase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../web/styles/normalize.css">
+    <link rel="stylesheet" href="../web/styles/styles.css">
+    <link rel="icon" href="../web/media/cropped-logo-transparent.png" type="image/png">
+</head>
+<body>
+
+    <div id="app">
+
+        <header>
+
+            <div class="top-bar container">
+              <a href="../index.html" >
+        
+                  <img src="../web/media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
+              </a>
+                <nav class="menu">
+         
+                  <ul>
+                    <li><a href="#" class="menu-item">Home</a></li>
+                    <li><a href="#" class="menu-item">Movies</a></li>
+                    <li><a href="#" class="menu-item">ShowRooms</a></li>
+                    <li><a href="#" class="menu-item">Contact</a></li>
+
+                  </ul>
+                </nav>
+                <div class="menu-icon" @click="toggleMenu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M4 6l16 0" />
+                        <path d="M4 12l16 0" />
+                        <path d="M4 18l16 0" />
+                      </svg>
+                </div>
+              </div>
+              <div class="responsive-menu" :class="{ active: isMenuOpen }">
+    
+                <ul>
+                  <li><a href="#" class="menu-item">Home</a></li>
+                  <li><a href="#" class="menu-item">Movies</a></li>
+                  <li><a href="#" class="menu-item">ShowRooms</a></li>
+                  <li><a href="#" class="menu-item">Contact</a></li>
+        
+               
+                </ul>
+              </div>
+        
+          
+        </header>
+
+        <main class="products-main container">
+         
+          <div class="product-list-sections">
+            <section>
+              <h2>Product Combos</h2>
+              <div class="product-list-container">
+                <ul>
+                  <li v-for="combo in productCombos" :key="combo.id">
+                    {{ combo.productComboType }} - ${{ combo.comboFinalPrice }}
+                    <button @click="addSelectedProductCombo(combo)" class="site-action-btn color-green"> Add </button>
+                  </li>
+                </ul>
+              </div>
+            
+            </section>
+          
+            <section>
+              <h2>Products</h2>
+              <div class="product-list-container">
+                <ul>
+                  <li v-for="product in products" :key="product.id">
+                    {{ product.name }} - ${{ product.productPrice }}
+
+                
+                    <button @click="addSelectedProduct(product)" class="site-action-btn color-green"> Add </button>
+                 
+                  </li>
+                </ul>
+              </div>
+
+            </section>
+          </div>
+
+          <div class="products-sidebar-container">
+            <section>
+              <h2>Selected Products</h2>
+              <table class="products-page-table">
+                <thead>
+                    <tr class="products-page-tr">
+                      <td>Item</td>
+                      <td>Quantity</td>
+                      <td>Single price</td>
+                      <td></td>
+                    </tr>
+                </thead>
+       
+                <tbody>
+              
+                  <tr v-for="combo in selectedProductCombos" :key="combo.id" class="products-page-tr">
+                    <td>{{ combo.productComboType }}</td>
+                    <td>1</td>
+                    <td>${{ combo.comboFinalPrice }}</td>
+                    <td>
+                      <button @click="removeSelectedProductCombo(combo.id)" class="site-action-btn color-red">Remove</button>
+                    </td>
+                  </tr>
+             
+                  <tr v-for="product in selectedProducts" :key="product.id" class="products-page-tr">
+             
+                    <td>{{ product.productName }}</td>
+               
+                    <td>{{product.productQuantity}}</td>
+                    <td>${{ product.productPrice }}</td>
+                
+                    <td>
+                      <button @click="removeSelectedProduct(product.productId)" class="site-action-btn color-red">Remove</button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot class="products-table-tfoot">
+                  <tr>
+                    <td>Total Price</td>
+                    <td>$ {{totalPrice}}</td>
+                  </tr>
+        
+                </tfoot>
+
+              </table>
+            
+              <div class="products-button-container">
+                <button class="site-action-btn color-green" @click="saveProducts">Save and continue</button>
+                <button class="site-action-btn color-red" @click="clearItems">Clear Selected Items</button>
+              </div>
+             
+        
+            </section>
+          </div>
+           
+            
+             
+
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<script src="./scripts/products.js"></script>
+    
+</body>
+</html>

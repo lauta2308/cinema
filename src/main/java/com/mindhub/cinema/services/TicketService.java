@@ -86,7 +86,7 @@ public class TicketService implements TicketServiceInterface {
         StringBuilder message = new StringBuilder();
 
         for (CreateTicketDto ticketDto : createTicketDtoSet) {
-            Long seatId = ticketDto.getSeatId();
+            Long seatId = ticketDto.getId();
             Integer seatPlace = ticketDto.getSeatPlace();
 
             boolean seatExists = seatService.existsByIdAndSeatPlaceAndCinemaRoom(seatId, seatPlace, cinemaRoom);
@@ -133,7 +133,7 @@ public class TicketService implements TicketServiceInterface {
         if (createTicketDtoSet != null && !createTicketDtoSet.isEmpty()) {
             for (CreateTicketDto createTicketDto : createTicketDtoSet) {
 
-               ticket = ticketRepository.save(new Ticket(createTicketDto.getSeatId(), createTicketDto.getSeatPlace(), createTicketDto.getCustomerAge(),purchase, showSelected));
+               ticket = ticketRepository.save(new Ticket(createTicketDto.getId(), createTicketDto.getSeatPlace(), createTicketDto.getCustomerAge(),purchase, showSelected));
 
                ticket.updateTicketPriceByAge();
                ticket.addPriceToPurchase();

@@ -19,15 +19,13 @@
     <header>
 
         <div class="top-bar container">
-            <div >
-              <!-- Coloca aquí tu logotipo -->
-              <!-- <img src="ruta-del-logo.png" alt="Logo"> -->
+            <a href="#">
+        
 
               <img src="./web/media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
-            </div>
+            </a>
             <nav class="menu">
-              <!-- Coloca aquí tu menú -->
-              <!-- Por ejemplo: -->
+
               <ul>
                 <li><a href="#" class="menu-item">Home</a></li>
                 <li><a href="#" class="menu-item">Movies</a></li>
@@ -49,7 +47,7 @@
             </div>
           </div>
           <div class="responsive-menu" :class="{ active: isMenuOpen }">
-            <!-- Menú responsive que aparecerá en dispositivos móviles -->
+     
             <ul>
               <li><a href="#" class="menu-item">Home</a></li>
               <li><a href="#" class="menu-item">Movies</a></li>
@@ -97,7 +95,7 @@
               <img :src="movie.movieImg" :alt="movie.name + ' ' + 'image'">
               <p class="movie-name">{{ movie.name }}</p>
              
-              <button class="site-info-btn" @click="showMovie(movie)">Ver más</button>
+              <button class="site-info-btn" @click="showMovie(movie)">Buy Tickets</button>
 
             </div>
           </div>
@@ -111,6 +109,7 @@
             <div class="showRooms-container">
               <div class="showRoom">
                 <img src="./web/media/2d-cinema.jpg" alt="2d cinema image" class="showRoom-img">
+                <h4>2D Rooms</h4>
                 <p class="showRoom-description">Immerse yourself in the captivating world of storytelling with our state-of-the-art 2D cinema. </p>
 
                 <p class="showRoom-description">Feel the magic of the big screen as you embark on a cinematic journey filled with emotion, drama, and excitement. </p>
@@ -122,6 +121,7 @@
 
               <div class="showRoom">
                 <img src="./web/media/3d-cinema.jpg" alt="3d cinema image" class="showRoom-img">
+                <h4>3D Rooms</h4>
                 <p class="showRoom-description">Step into a realm of awe-inspiring realism with our cutting-edge 3D cinema experience.</p>
                 <p class="showRoom-description">Watch as characters come to life, and scenes leap off the screen, bringing you closer to the action like never before. </p>
                 <p class="showRoom-description"> Get ready to be thrilled, amazed, and fully engaged in an unforgettable cinematic adventure.</p>
@@ -132,6 +132,7 @@
               <div class="showRoom">
                 <img src="./web/media/imax-image.jpg" alt="IMAX cinema image" class="showRoom-img">
 
+                <h4>IMAX Rooms</h4>
                 <p class="showRoom-description"> Experience the magic of cinema like never before</p>
                 <p class="showRoom-description"> Immerse yourself in crystal-clear images and surround sound that engulfs you in an unparalleled sensory spectacle. </p>
 

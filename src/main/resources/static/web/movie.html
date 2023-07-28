@@ -17,15 +17,13 @@
         <header>
 
             <div class="top-bar container">
-                <div >
-                  <!-- Coloca aquí tu logotipo -->
-                  <!-- <img src="ruta-del-logo.png" alt="Logo"> -->
+                <a href="../index.html">
+
     
                   <img src="./media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
-                </div>
+                </a>
                 <nav class="menu">
-                  <!-- Coloca aquí tu menú -->
-                  <!-- Por ejemplo: -->
+    
                   <ul>
                     <li><a href="#" class="menu-item">Home</a></li>
                     <li><a href="#" class="menu-item">Movies</a></li>
@@ -47,7 +45,7 @@
                 </div>
               </div>
               <div class="responsive-menu" :class="{ active: isMenuOpen }">
-                <!-- Menú responsive que aparecerá en dispositivos móviles -->
+        
                 <ul>
                   <li><a href="#" class="menu-item">Home</a></li>
                   <li><a href="#" class="menu-item">Movies</a></li>
@@ -132,7 +130,7 @@
                           <tr v-for="show in movieShows" :key="show.id" class="show-table-row">
                             <td>{{formatStartDate(show.startTime)}}</td>
                             <td>{{formatEndTime(show.endTime)}}</td>
-                            <td>{{ show.standardPrice }}</td>
+                            <td>$ {{ show.standardPrice }}</td>
                             <td>{{ show.cinemaRoom.roomName }}</td>
                             <td v-if="clientLogged === true" ><a @click="saveShowId(show)" class="site-info-btn">Buy</a></td>
                             <td v-else class="site-info-btn"><a href="./login.html" class="site-info-btn">Log in first</a></td>

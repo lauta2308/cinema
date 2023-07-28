@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy tickets for the show</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../web/styles/normalize.css">
+    <link rel="stylesheet" href="../web/styles/styles.css">
+    <link rel="icon" href="../web/media/cropped-logo-transparent.png" type="image/png">
 </head>
 <body>
     <div id="app">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../web/styles/normalize.css">
-<link rel="stylesheet" href="../web/styles/styles.css">
-<link rel="icon" href="../web/media/cropped-logo-transparent.png" type="image/png">
+
 
 
 
@@ -23,15 +24,13 @@
 <header>
 
     <div class="top-bar container">
-        <div >
-          <!-- Coloca aquí tu logotipo -->
-          <!-- <img src="ruta-del-logo.png" alt="Logo"> -->
+        <a href="../index.html">
+
 
           <img src="../web/media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
-        </div>
+        </a>
         <nav class="menu">
-          <!-- Coloca aquí tu menú -->
-          <!-- Por ejemplo: -->
+ 
           <ul>
             <li><a href="#" class="menu-item">Home</a></li>
             <li><a href="#" class="menu-item">Movies</a></li>
@@ -53,7 +52,7 @@
         </div>
       </div>
       <div class="responsive-menu" :class="{ active: isMenuOpen }">
-        <!-- Menú responsive que aparecerá en dispositivos móviles -->
+
         <ul>
           <li><a href="#" class="menu-item">Home</a></li>
           <li><a href="#" class="menu-item">Movies</a></li>
@@ -77,7 +76,7 @@
     <div class="cinema-room-table-container">
       <div class="cinema-room-container">
         <h2>Select your seats</h2>
-        <div class="cinema-screen"></div> <!-- Gráfico de la pantalla de cine -->
+        <div class="cinema-screen"></div> 
         <div class="cinema-room">
           <div v-for="(row, rowIndex) in rows" :key="rowIndex" class="row">
             <div v-for="(seat, seatIndex) in row" :key="seatIndex" class="seat" :class="{ 'not-available': !isSeatAvailable(seat), selected: selectedSeats.includes(seat) }" @click="toggleSeatSelection(seat)">
@@ -89,7 +88,7 @@
       </div>
       <div class="selected-seats-table-section">
         <h2>Selected Seats:</h2>
-        <p>Select the customer age for each one</p>
+        <p class="center">Select the customer age for each one</p>
 
         <div v-if="selectedSeats.length > 0" class="selected-seats-table-container">
           <table>
@@ -117,11 +116,11 @@
            
           </table>
           <div class="pagination">
-            <button :disabled="currentPage === 1" @click="prevPage">Previous</button>
+            <button :disabled="currentPage === 1" @click="prevPage" class="site-info-btn">Previous</button>
             <span>{{ currentPage }}</span>
-            <button :disabled="currentPage === totalPages" @click="nextPage">Next</button>
+            <button :disabled="currentPage === totalPages" @click="nextPage" class="site-info-btn">Next</button>
           </div>
-          <button v-if="selectedSeats.length > 0" class="site-action-btn color-green">Save and continue</button>
+          <button v-if="selectedSeats.length > 0" class="site-action-btn color-green" @click="createTickets">Save and continue</button>
         </div>
        
         <p v-else>No seats selected</p>

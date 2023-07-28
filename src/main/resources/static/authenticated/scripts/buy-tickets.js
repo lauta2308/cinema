@@ -92,7 +92,7 @@ createApp({
         },
 
         getRoomSeats(){
-            axios.get('/api/authenticated/room_seats', {
+            axios.get('/api/current/room_seats', {
                 params: {
                   cinemaRoomId: this.roomId
                 }
@@ -107,7 +107,7 @@ createApp({
 
                
           getSeatsAvailable(){
-            axios.get('/api/authenticated/seats_available', {
+            axios.get('/api/current/seats_available', {
                 params: {
                   showId: this.showId
                 }
@@ -120,21 +120,6 @@ createApp({
 
 
           },
-
-        //   toggleSeatSelection(seat) {
-        //     if (this.isSeatAvailable(seat)) {
-        //       const index = this.selectedSeats.indexOf(seat);
-        //       if (index === -1) {
-        //         this.selectedSeats.push(seat);
-        //       } else {
-        //         this.selectedSeats.splice(index, 1);
-        //       }
-        //     }
-        //   },
-        //   isSeatAvailable(seat) {
-        //     return this.availableSeatsFromBackend.some(availableSeat => availableSeat.id === seat.id);
-        //   },
-    
         
         toggleSeatSelection(seat) {
             if (this.isSeatAvailable(seat)) {
@@ -170,10 +155,26 @@ createApp({
         if (this.currentPage < this.totalPages) {
           this.currentPage++;
         }
-      }
+      },
 
      
 
+      createTickets(){
+
+        this.selectedSeats.forEach(element => {
+          element.showId = this.showId;
+          
+        });
+        let createTicketDto = this.selectedSeats;
+        console.log(createTicketDto);
+
+
+        localStorage.setItem('cineverse-Tickets', JSON.stringify(createTicketDto));
+
+        window.location.href = "./products.html"
+        
+
+      }
     
 
 

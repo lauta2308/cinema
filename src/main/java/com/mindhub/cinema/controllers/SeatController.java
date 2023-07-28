@@ -27,7 +27,7 @@ public class SeatController {
     @Autowired
     TicketServiceInterface ticketService;
 
-    @GetMapping("/api/authenticated/seats_available")
+    @GetMapping("/api/current/seats_available")
     public Set<SeatDto> seats_available(@RequestParam Long showId){
 
         Show show = showService.getShow(showId);
@@ -43,7 +43,7 @@ public class SeatController {
 
     }
 
-    @GetMapping("/api/authenticated/room_seats")
+    @GetMapping("/api/current/room_seats")
     public List<SeatDto> room_seats(@RequestParam Long cinemaRoomId){
 
         return seatService.getSeatsByCinemaRoom(cinemaRoomId);

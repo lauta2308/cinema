@@ -13,8 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -30,27 +32,24 @@ public class PurchaseItemController {
     ProductServiceInterface productService;
 
     @PostMapping("/api/current/purchase/add_purchase_item")
-    public ResponseEntity<String> add_purchase_item(Authentication authentication, @RequestBody Set<AddPurchaseItemDto> purchaseItems){
+    public ResponseEntity<String> add_purchase_item(Authentication authentication, @RequestBody List<AddPurchaseItemDto> purchaseItems, @RequestParam Long purchaseId){
 
 
         if (purchaseItems == null || purchaseItems.isEmpty()) {
-            return new ResponseEntity<>("Set is empty", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("List is empty", HttpStatus.OK);
         }
 
 
-        if(!PurchaseItemUtils.allPurchaseIdsAreEqual(purchaseItems)){
-            return new ResponseEntity<>("All items should contain the same purchase Id", HttpStatus.BAD_REQUEST);
-        }
 
 
         AddPurchaseItemDto firstPurchaseItem = PurchaseItemUtils.getFirstPurchaseItem(purchaseItems);
 
         Purchase purchase;
 
-        if(!purchaseService.existsById(firstPurchaseItem.getPurchaseId())){
+        if(!purchaseService.existsById(purchaseId)){
             return new ResponseEntity<String>("Purchase not found", HttpStatus.CONFLICT);
         } else {
-            purchase = purchaseService.findPurchaseById(firstPurchaseItem.getPurchaseId());
+            purchase = purchaseService.findPurchaseById(purchaseId);
         }
 
         if(purchase.getPurchaseStatus() != PurchaseStatus.IN_PROGRESS){

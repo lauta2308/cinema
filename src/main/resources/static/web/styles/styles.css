@@ -87,6 +87,10 @@ p {
     line-height: 2;
 }
 
+.center {
+  text-align: center;
+}
+
 
 .site-info-btn {
   color: red;
@@ -96,7 +100,8 @@ p {
 }
 
 .site-action-btn {
-
+  font-weight: bold;
+  text-transform: uppercase;
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -611,6 +616,7 @@ fieldset {
 }
 
 .movie {
+
   flex-basis: calc(50% - 2rem);
   display: flex;
   flex-direction: column;
@@ -628,6 +634,9 @@ fieldset {
 
 .movie-name {
   text-align: center;
+  max-height: 2.4em; /* Establecer una altura máxima equivalente a unas 2 o 3 líneas */
+  overflow: hidden;
+  text-overflow: ellipsis; 
 
 }
 
@@ -821,7 +830,7 @@ fieldset {
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
-  max-width: 500px; /* Ajusta el ancho máximo para limitar los asientos por fila */
+  max-width: 500px; 
   margin: 0 auto;
 }
 
@@ -841,7 +850,7 @@ fieldset {
   margin: 5px;
   cursor: pointer;
   font-size: 14px;
-  position: relative; /* Para que los estilos de .seat-options funcionen correctamente */
+  position: relative; 
 }
 
 @media(min-width: 768px){
@@ -852,7 +861,7 @@ fieldset {
 
 .not-available {
   background-color: #f00;
-  pointer-events: none; /* Impide que los asientos no disponibles sean clickeables */
+  pointer-events: none;
 }
 
 .selected {
@@ -898,4 +907,152 @@ fieldset {
 
 .seats-table-select option {
   color: black;
+}
+
+
+/* PRODUCTS */
+
+.products-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.products-sidebar-container section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media(min-width: 768px){
+  .products-main {
+    flex-direction: row;
+    align-items: baseline;
+  }
+
+  .product-list-sections {
+    flex-basis: calc(50%);
+  }
+
+  .products-sidebar-container {
+    flex-basis: calc(50%);
+  }
+
+}
+
+
+
+
+.product-list-container ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.product-list-container ul li {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-basis: calc(50%);
+}
+
+
+
+.products-page-table {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.products-page-tr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.products-page-tr td {
+  text-align: center;
+  flex-basis: calc(25%);
+}
+
+
+.products-table-tfoot {
+  border-top: 1px solid white;
+
+}
+
+
+.products-table-tfoot tr {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.products-button-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+
+/* CHECKOUT */
+
+.checkout-payment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkout-logo {
+  display: none;
+}
+
+
+@media(min-width: 768px){
+  .checkout-payment-container {
+    flex-direction: row;
+  }
+
+  .checkout-logo {
+    display: block;
+  }
+}
+
+
+.payment-container-right h2 {
+  text-transform: unset;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.payment-form {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  border: 1px solid orange;
+}
+
+.payment-form label {
+ 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+ 
+}
+
+.payment-form label input {
+  padding: 1rem;
+
+   flex-basis: calc(70%);
+ 
 }

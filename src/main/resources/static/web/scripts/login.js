@@ -31,14 +31,23 @@ createApp({
 
         showLoginForm(){
 
+            this.resetForm();
             this.$refs.registerForm.style.display = "none";
             this.$refs.loginForm.style.display = "block";
 
         },
 
         showRegisterForm(){
+            this.resetForm();
             this.$refs.loginForm.style.display = "none";
             this.$refs.registerForm.style.display = "block";
+        },
+
+        resetForm(){
+            this.formFirstName = "",
+            this.formLastName = "",
+            this.formEmail = "",
+            this.formPassword = ""
         },
 
         validateData(action){

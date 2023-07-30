@@ -120,12 +120,17 @@ createApp({
       return Math.round(number * factor) / factor;
     },
 
-          removeSelectedProductCombo(comboId) {
-            this.selectedProductCombos = this.selectedProductCombos.filter((combo) => combo.id !== comboId);
+          removeSelectedProductCombo(combo) {
+            this.selectedProductCombos = this.selectedProductCombos.filter((selectedCombo) => selectedCombo.id !== combo.id);
+
+            this.totalPrice = this.limitDecimals(this.totalPrice - combo.comboFinalPrice, 2);
+
           },
-          removeSelectedProduct(productId) {
-            console.log(productId);
-            this.selectedProducts = this.selectedProducts.filter((product) => product.productId !== productId);
+          removeSelectedProduct(product) {
+  
+            this.selectedProducts = this.selectedProducts.filter((selectedProduct) => selectedProduct.productId !== product.productId);
+            this.totalPrice = this.limitDecimals(this.totalPrice - product.productPrice, 2) ;
+
           },
           clearItems() {
             this.selectedProductCombos = [];

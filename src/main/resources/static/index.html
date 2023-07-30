@@ -28,8 +28,8 @@
 
               <ul>
                 <li><a href="#" class="menu-item">Home</a></li>
-                <li><a href="#" class="menu-item">Movies</a></li>
-                <li><a href="#" class="menu-item">ShowRooms</a></li>
+                <li><a href="#movies" class="menu-item">Movies</a></li>
+                <li><a href="#showRooms" class="menu-item">ShowRooms</a></li>
                 <li><a href="#" class="menu-item">Contact</a></li>
                 <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
                 <li v-else-if="clientRole === 'CLIENT'"><a href="./web/login.html" class="menu-item">{{clientName}}</a></li>
@@ -50,8 +50,8 @@
      
             <ul>
               <li><a href="#" class="menu-item">Home</a></li>
-              <li><a href="#" class="menu-item">Movies</a></li>
-              <li><a href="#" class="menu-item">ShowRooms</a></li>
+              <li><a href="#movies" class="menu-item">Movies</a></li>
+              <li><a href="#showRooms"  class="menu-item">ShowRooms</a></li>
               <li><a href="#" class="menu-item">Contact</a></li>
 
               <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
@@ -88,7 +88,7 @@
     
 
         <section class="container">
-          <h2>Movies</h2>
+          <h2 id="movies">Movies</h2>
 
           <div class="movies-container">
             <div v-for="movie in movies" class="movie">
@@ -104,7 +104,7 @@
         </section>
 
         <section class="container">
-            <h2>ShowRooms</h2>
+            <h2 id="showRooms">ShowRooms</h2>
 
             <div class="showRooms-container">
               <div class="showRoom">

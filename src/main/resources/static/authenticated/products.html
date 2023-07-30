@@ -26,8 +26,7 @@
          
                   <ul>
                     <li><a href="#" class="menu-item">Home</a></li>
-                    <li><a href="#" class="menu-item">Movies</a></li>
-                    <li><a href="#" class="menu-item">ShowRooms</a></li>
+
                     <li><a href="#" class="menu-item">Contact</a></li>
 
                   </ul>
@@ -45,8 +44,7 @@
     
                 <ul>
                   <li><a href="#" class="menu-item">Home</a></li>
-                  <li><a href="#" class="menu-item">Movies</a></li>
-                  <li><a href="#" class="menu-item">ShowRooms</a></li>
+
                   <li><a href="#" class="menu-item">Contact</a></li>
         
                
@@ -90,7 +88,7 @@
           </div>
 
           <div class="products-sidebar-container">
-            <section>
+            <section class="selected-products-container">
               <h2>Selected Products</h2>
               <table class="products-page-table">
                 <thead>
@@ -109,7 +107,7 @@
                     <td>1</td>
                     <td>${{ combo.comboFinalPrice }}</td>
                     <td>
-                      <button @click="removeSelectedProductCombo(combo.id)" class="site-action-btn color-red">Remove</button>
+                      <button @click="removeSelectedProductCombo(combo)" class="site-action-btn color-red">Remove</button>
                     </td>
                   </tr>
              
@@ -121,7 +119,7 @@
                     <td>${{ product.productPrice }}</td>
                 
                     <td>
-                      <button @click="removeSelectedProduct(product.productId)" class="site-action-btn color-red">Remove</button>
+                      <button @click="removeSelectedProduct(product)" class="site-action-btn color-red">Remove</button>
                     </td>
                   </tr>
                 </tbody>

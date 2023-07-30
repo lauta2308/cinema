@@ -219,13 +219,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/seats_available?showId=1",
+					"raw": "localhost:8080/api/current/seats_available?showId=1",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"api",
+						"current",
 						"seats_available"
 					],
 					"query": [
@@ -242,7 +243,19 @@
 			"name": "get all products",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/current/get_all_products",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"current",
+						"get_all_products"
+					]
+				}
 			},
 			"response": []
 		},
@@ -282,7 +295,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    \r\n    {\r\n\r\n\r\n   \"showId\": 1,\r\n\r\n   \"seatId\": 24,\r\n   \r\n   \"customerAge\": \"ADULT\",\r\n\r\n   \"seatPlace\": 24\r\n\r\n\r\n\r\n},\r\n\r\n    {\r\n\r\n \r\n   \"showId\": 1,\r\n\r\n   \"seatId\": 80,\r\n\r\n   \"customerAge\": \"ADULT\",\r\n\r\n   \"seatPlace\": 80\r\n\r\n\r\n\r\n},\r\n\r\n {\r\n\r\n \r\n   \"showId\": 1,\r\n\r\n   \"seatId\": 42,\r\n\r\n   \"customerAge\": \"KID\",\r\n\r\n   \"seatPlace\": 42\r\n\r\n\r\n\r\n}\r\n\r\n\r\n]",
+					"raw": "[\r\n    \r\n    {\r\n\r\n\r\n   \"showId\": 1,\r\n\r\n   \"id\": 24,\r\n   \r\n   \"customerAge\": \"ADULT\",\r\n\r\n   \"seatPlace\": 24\r\n\r\n\r\n\r\n},\r\n\r\n    {\r\n\r\n \r\n   \"showId\": 1,\r\n\r\n   \"id\": 80,\r\n\r\n   \"customerAge\": \"ADULT\",\r\n\r\n   \"seatPlace\": 80\r\n\r\n\r\n\r\n},\r\n\r\n {\r\n\r\n \r\n   \"showId\": 1,\r\n\r\n   \"id\": 42,\r\n\r\n   \"customerAge\": \"KID\",\r\n\r\n   \"seatPlace\": 42\r\n\r\n\r\n\r\n}\r\n\r\n\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -311,7 +324,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\r\n\r\n\"productQuantity\": 3,\r\n\"purchaseId\": 2,\r\n\"productId\": 3\r\n\r\n\r\n}",
+					"raw": "[\r\n{\r\n\r\n\"productQuantity\": 3,\r\n\"productId\": 1,\r\n\"productName\": \"Small Coca-Cola glass\",\r\n\"productPrice\": 4.00\r\n\r\n}\r\n\r\n\r\n]\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -319,7 +332,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/current/purchase/add_purchase_item",
+					"raw": "localhost:8080/api/current/purchase/add_purchase_item?purchaseId=2",
 					"host": [
 						"localhost"
 					],
@@ -329,6 +342,12 @@
 						"current",
 						"purchase",
 						"add_purchase_item"
+					],
+					"query": [
+						{
+							"key": "purchaseId",
+							"value": "2"
+						}
 					]
 				}
 			},
@@ -411,7 +430,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n\r\n{\r\n \"productComboId\": 1\r\n\r\n}\r\n \r\n]",
+					"raw": "[\r\n\r\n\r\n {\r\n        \"id\": 1,\r\n        \"comboDefaultPrice\": 13.0,\r\n        \"comboFinalPrice\": 12.35,\r\n        \"productComboType\": \"SINGLE\",\r\n        \"products\": [\r\n            {\r\n                \"id\": 2,\r\n                \"name\": \"Medium Coca-Cola glass\",\r\n                \"productPrice\": 6.0,\r\n                \"stock\": 17,\r\n                \"productType\": \"DRINK\",\r\n                \"net_content\": 354\r\n            },\r\n            {\r\n                \"id\": 5,\r\n                \"name\": \"Medium popcorn bucket\",\r\n                \"productPrice\": 7.0,\r\n                \"stock\": 17,\r\n                \"productType\": \"FOOD\",\r\n                \"net_content\": 500\r\n            }\r\n        ],\r\n        \"templateCombo\": true\r\n    }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -474,14 +493,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/authenticated/room_seats?cinemaRoomId=1",
+					"raw": "localhost:8080/api/current/room_seats?cinemaRoomId=1",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"api",
-						"authenticated",
+						"current",
 						"room_seats"
 					],
 					"query": [

@@ -119,8 +119,7 @@ createApp({
                 axios.post('/api/login', `email=${this.formEmail}&password=${this.formPassword}`)
                 .then(response => {
                     this.resetFormValues();
-                    localStorage.setItem('cineverseLogin', true);
-                    console.log(localStorage.getItem('cineverseLogin'));
+             
                     window.location.href = "../index.html"
                     
         
@@ -147,13 +146,13 @@ createApp({
                 })  .then(response => {
                    
                     this.loginClient();
-                    console.log(response);
+                   
                     
         
                 })
                 .catch(error => {
                         this.errorMessage = error.response.data;
-                        console.log(error);
+                  
                     
                         
                 })

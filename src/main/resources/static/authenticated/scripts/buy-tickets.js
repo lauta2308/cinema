@@ -79,14 +79,14 @@ createApp({
                     this.clientRole = response.data.clientRol,
                     this.clientName = response.data.name
                  } )
-                 .then(response => localStorage.setItem('cineverseLogin', false));
+                 .then(response => sessionStorage.setItem('cineverseLogin', false));
         
                 },
 
         getShowAndRoomId(){
 
-            this.showId = localStorage.getItem('showId');
-            this.roomId = localStorage.getItem('roomId');
+            this.showId = sessionStorage.getItem('showId');
+            this.roomId = sessionStorage.getItem('roomId');
             this.getSeatsAvailable();
             this.getRoomSeats();
         },
@@ -98,7 +98,7 @@ createApp({
                 }
               }).then(response => {
                 this.roomSeats = response.data;
-                console.log(this.roomSeats);
+           
              
                
              } )
@@ -113,7 +113,7 @@ createApp({
                 }
               }).then(response => {
                 this.availableSeatsFromBackend = response.data;
-                console.log(this.availableSeatsFromBackend);
+             
              
                
              } )
@@ -166,10 +166,10 @@ createApp({
           
         });
         let createTicketDto = this.selectedSeats;
-        console.log(createTicketDto);
+      
 
 
-        localStorage.setItem('cineverse-Tickets', JSON.stringify(createTicketDto));
+        sessionStorage.setItem('cineverse-Tickets', JSON.stringify(createTicketDto));
 
         window.location.href = "./products.html"
         

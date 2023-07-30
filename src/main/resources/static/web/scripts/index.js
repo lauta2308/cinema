@@ -26,7 +26,7 @@ createApp({
         this.getUserLogged();
         this.checkMovieInLocal();
         this.getMovieShows();
-        console.log(document);
+       
 
         
 
@@ -54,7 +54,7 @@ createApp({
                     this.clientName = response.data.name,
                     this.clientLogged = true;
                  } )
-                 .then(response => localStorage.setItem('cineverseLogin', false));
+                 .then(response => sessionStorage.setItem('cineverseLogin', false));
         
                 },
 
@@ -73,7 +73,7 @@ createApp({
             axios.get(`/api/get_on_schedule_movies`).then((response) => {
                 this.movies = response.data,
                 this.slides = this.movies.length;
-               console.log(this.movies)
+      
                 
          })
             
@@ -85,18 +85,18 @@ createApp({
                 // Verificar si el objeto movie es válido para JSON antes de guardarlo
                 const movieJson = JSON.stringify(movie);
                 // Si no hay errores en la serialización, guardar el objeto en el localStorage
-                localStorage.setItem('movie', movieJson);
+                sessionStorage.setItem('movie', movieJson);
                 // Redirigir a la página de detalles de la película
                 window.location.href = "./web/movie.html";
               } catch (error) {
-                console.error("Error al serializar el objeto movie:", error);
+                    console.log(error);
               }
 
         },
 
         checkMovieInLocal(){
-            const movieJson = localStorage.getItem('movie');
-            console.log("Valor obtenido del localStorage:", movieJson);
+            const movieJson = sessionStorage.getItem('movie');
+
             if (movieJson && typeof movieJson === 'string') {
               this.movieSelected = JSON.parse(movieJson);
               
@@ -115,7 +115,7 @@ createApp({
               }).then(response => {
                 
                 this.movieShows = response.data;
-                console.log(this.movieShows);
+     
                
              } )
 
@@ -123,7 +123,7 @@ createApp({
         },
 
         formatStartDate(date){
-            console.log(date);
+        
             const [datePart, timePart] = date.split('T');
 
             const dateFormated = `${datePart} ${timePart}`;
@@ -131,7 +131,7 @@ createApp({
         },
 
         formatEndTime(date){
-            console.log(date);
+
             const [datePart, timePart] = date.split('T');
 
             const dateFormated = `${timePart}`;
@@ -139,8 +139,8 @@ createApp({
         },
 
         saveShowId(show){
-            localStorage.setItem('showId', show.id);
-            localStorage.setItem('roomId', show.cinemaRoom.id);
+            sessionStorage.setItem('showId', show.id);
+            sessionStorage.setItem('roomId', show.cinemaRoom.id);
         
             window.location.href = "../authenticated/buy-tickets.html"
         }

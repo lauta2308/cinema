@@ -54,8 +54,8 @@ createApp({
           getProductCombos(){
                 axios.get("/api/current/get_product_combos")
                 .then(response => {
-                    this.productCombos = response.data,
-                    console.log(this.productCombos)
+                    this.productCombos = response.data
+               
                 })
 
           },
@@ -64,8 +64,8 @@ createApp({
             axios.get("/api/current/get_all_products")
             .then(response => {
                 
-                this.products = response.data,
-                console.log(this.products)
+                this.products = response.data
+        
           })
         
         
@@ -73,12 +73,12 @@ createApp({
         },
 
         getStorageTickets(){
-          this.createTicketDto = JSON.parse(localStorage.getItem('cineverse-Tickets'));
+          this.createTicketDto = JSON.parse(sessionStorage.getItem('cineverse-Tickets'));
         },
 
         addSelectedProductCombo(combo) {
             this.selectedProductCombos.push(combo);
-            console.log(typeof(combo.comboFinalPrice));
+   
 
 
 
@@ -88,12 +88,12 @@ createApp({
          
           },
           addSelectedProduct(product) {
-            console.log(product);
+       
         
 
            
             let findProduct = this.selectedProducts.find(selectedProduct => selectedProduct.productId === product.id);
-            console.log(findProduct);
+    
             if(findProduct){
               findProduct.productQuantity +=1;
             } else {
@@ -140,11 +140,10 @@ createApp({
          
     
           saveProducts(){
-            console.log(this.selectedProductCombos);
-            console.log(this.selectedProducts);
+      
 
-            localStorage.setItem("selectedCombos", JSON.stringify(this.selectedProductCombos));
-            localStorage.setItem("selectedProducts", JSON.stringify(this.selectedProducts));
+            sessionStorage.setItem("selectedCombos", JSON.stringify(this.selectedProductCombos));
+            sessionStorage.setItem("selectedProducts", JSON.stringify(this.selectedProducts));
 
             this.buyTickets();
             
@@ -159,8 +158,7 @@ createApp({
               
               this.purchaseId = response.data;
               sessionStorage.setItem('purchaseId', this.purchaseId);
-              console.log(response.data);
-              console.log(this.purchaseId);
+        
               this.buyProductCombos();
             })
         
@@ -171,7 +169,7 @@ createApp({
           },
 
           buyProductCombos(){
-            console.log(this.purchaseId);
+         
             axios.post("/api/current/add_product_combos", this.selectedProductCombos, {
                 params: {
                     purchaseId: this.purchaseId

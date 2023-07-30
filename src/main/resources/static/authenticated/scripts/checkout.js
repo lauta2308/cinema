@@ -71,17 +71,22 @@ this.getPurchaseId();
       },
 
       pay(){
-        let paymentDate = {
-          userName: this.userName,
 
-          cardNumber: this.cardNumber,
-      
-         uptoDate: this.uptoDate,
-      
-          cvv: this.cardCvv
-        }
-        axios.post(`https://localhost:9090/procesar-compra`, paymentDate)
-        .then(response => console.log(response.data));
+
+        axios.get("/payment")
+        .then(response => {
+          // Aquí puedes trabajar con la respuesta recibida desde el back-end
+          console.log('Respuesta:', response.data);
+        })
+        .catch(error => {
+          // Manejo de errores
+          console.error('Error:', error);
+        });
+        // let paymentDate = {
+          
+        // }
+        // axios.post(`https://localhost:9090/procesar-compra`, paymentDate)
+        // .then(response => console.log(response.data));
       }
 
 

@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,15 +16,23 @@ import javax.servlet.http.HttpSession;
 @Configuration
 public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
-
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:9090") // Reemplaza con la URL del origen permitido
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos HTTP permitidos
+                .allowedHeaders("*") // Encabezados permitidos
+                .allowCredentials(true); // Permitir envío de credenciales (por ejemplo, cookies)
+    }
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+
+
         http.authorizeRequests()
 
-               .antMatchers("/api/admin/**").hasAuthority("ADMIN")
+               .antMatchers("/api/admin/**", "/h2-console/**", "/rest/**").hasAuthority("ADMIN")
                 .antMatchers("/api/current/**", "/authenticated/**").fullyAuthenticated()
                 .antMatchers("/api/**").permitAll();
 
@@ -44,7 +53,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
         http.logout().logoutUrl("/api/logout");
 
         // turn off checking for CSRF tokens
-
+        http.cors().and();
         http.csrf().disable();
 
         //disabling frameOptions so h2-console can be accessed

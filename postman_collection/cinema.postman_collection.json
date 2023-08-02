@@ -295,7 +295,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    \r\n    {\r\n\r\n\r\n   \"showId\": 1,\r\n\r\n   \"id\": 24,\r\n   \r\n   \"customerAge\": \"ADULT\",\r\n\r\n   \"seatPlace\": 24\r\n\r\n\r\n\r\n},\r\n\r\n    {\r\n\r\n \r\n   \"showId\": 1,\r\n\r\n   \"id\": 80,\r\n\r\n   \"customerAge\": \"ADULT\",\r\n\r\n   \"seatPlace\": 80\r\n\r\n\r\n\r\n},\r\n\r\n {\r\n\r\n \r\n   \"showId\": 1,\r\n\r\n   \"id\": 42,\r\n\r\n   \"customerAge\": \"KID\",\r\n\r\n   \"seatPlace\": 42\r\n\r\n\r\n\r\n}\r\n\r\n\r\n]",
+					"raw": "[\r\n    \r\n    {\r\n\r\n\r\n   \"showId\": 1,\r\n\r\n   \"id\": 24,\r\n   \r\n   \"customerAge\": \"ADULT\",\r\n\r\n   \"seatPlace\": 24\r\n\r\n\r\n\r\n},\r\n\r\n    {\r\n\r\n \r\n   \"showId\": 1,\r\n\r\n   \"id\": 60,\r\n\r\n   \"customerAge\": \"ADULT\",\r\n\r\n   \"seatPlace\": 60\r\n\r\n\r\n\r\n},\r\n\r\n {\r\n\r\n \r\n   \"showId\": 1,\r\n\r\n   \"id\": 42,\r\n\r\n   \"customerAge\": \"KID\",\r\n\r\n   \"seatPlace\": 42\r\n\r\n\r\n\r\n}\r\n\r\n\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -508,6 +508,25 @@
 							"key": "cinemaRoomId",
 							"value": "1"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "procesar compra",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/procesarcompra",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"procesarcompra"
 					]
 				}
 			},

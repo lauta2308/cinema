@@ -5,6 +5,7 @@ import com.mindhub.cinema.dtos.models_dtos.ClientDto;
 import com.mindhub.cinema.dtos.param_dtos.RegisterClientDto;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
+import com.mindhub.cinema.utils.enums.ClientRol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -129,6 +130,14 @@ public class ClientController {
     }
 
 
+    @GetMapping("/api/current/isAuthenticated")
+    public Boolean isAuthenticated (Authentication authentication){
+        if(authentication != null){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 

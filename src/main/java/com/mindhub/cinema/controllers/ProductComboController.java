@@ -2,11 +2,9 @@ package com.mindhub.cinema.controllers;
 
 
 import com.mindhub.cinema.dtos.models_dtos.ProductComboDto;
-import com.mindhub.cinema.dtos.param_dtos.BuyProductComboDto;
 import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.services.servinterfaces.ProductComboServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
-import com.mindhub.cinema.utils.exceptions.InsufficientStockException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 public class ProductComboController {
@@ -53,18 +50,8 @@ public class ProductComboController {
         }
 
 
-        try {
-            String resultMessage = productComboService.verifyProductsStock(productComboDtoList);
-            if (resultMessage.equals("All products verified and stocks decreased.")) {
+        return new ResponseEntity<>(productComboService.addProductCombosToPurchase(productComboDtoList, purchase), HttpStatus.CREATED) ;
 
-
-                return new ResponseEntity<>( productComboService.addProductCombosToPurchase(productComboDtoList, purchase),HttpStatus.CREATED);
-            } else {
-                return ResponseEntity.badRequest().body(resultMessage);
-            }
-        } catch (InsufficientStockException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
 
     }
 

@@ -8,7 +8,6 @@ public class CreateProductDto {
 
     private Double productPrice;
 
-    private Integer stock;
 
     private ProductType productType;
 
@@ -18,7 +17,6 @@ public class CreateProductDto {
     public CreateProductDto(String productName, Double productPrice, Integer stock, ProductType productType, Integer net_content) {
         this.productName = productName;
         this.productPrice = productPrice;
-        this.stock = stock;
         this.productType = productType;
         this.net_content = net_content;
     }
@@ -31,9 +29,6 @@ public class CreateProductDto {
         return productPrice;
     }
 
-    public Integer getStock() {
-        return stock;
-    }
 
     public ProductType getProductType() {
         return productType;

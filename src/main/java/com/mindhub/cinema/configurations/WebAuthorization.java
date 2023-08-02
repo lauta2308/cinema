@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 @Configuration
 public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
+/*
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:9090") // Reemplaza con la URL del origen permitido
@@ -23,6 +24,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
                 .allowedHeaders("*") // Encabezados permitidos
                 .allowCredentials(true); // Permitir envío de credenciales (por ejemplo, cookies)
     }
+*/
 
 
     @Override
@@ -32,7 +34,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
 
-               .antMatchers("/api/admin/**", "/h2-console/**", "/rest/**").hasAuthority("ADMIN")
+               .antMatchers("/api/admin/**", "/rest/**").hasAuthority("ADMIN")
                 .antMatchers("/api/current/**", "/authenticated/**").fullyAuthenticated()
                 .antMatchers("/api/**").permitAll();
 

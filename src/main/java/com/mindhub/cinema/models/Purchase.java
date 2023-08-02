@@ -5,10 +5,8 @@ import com.mindhub.cinema.utils.enums.PurchaseStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Entity
 public class Purchase {
@@ -21,9 +19,12 @@ public class Purchase {
 
     private Double purchase_price = 0.0;
 
-    private PurchaseStatus purchaseStatus = PurchaseStatus.IN_PROGRESS;
+    private PurchaseStatus purchaseStatus = PurchaseStatus.PENDING_TO_PAY;
 
     private PaymentMethod paymentMethod = PaymentMethod.NOT_SELECTED;
+
+    private Date createdAt = new Date();
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
@@ -76,6 +77,14 @@ public class Purchase {
         this.paymentMethod = paymentMethod;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public Client getClient() {
         return client;
     }
@@ -107,4 +116,6 @@ public class Purchase {
     public void setProductCombos(List<ProductCombo> productCombos) {
         this.productCombos = productCombos;
     }
+
+
 }

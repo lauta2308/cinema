@@ -3,7 +3,6 @@ package com.mindhub.cinema.services;
 import com.mindhub.cinema.dtos.param_dtos.AddPurchaseItemDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateProductDto;
 import com.mindhub.cinema.dtos.models_dtos.ProductDto;
-import com.mindhub.cinema.dtos.param_dtos.UpdateProductStockDto;
 import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.repositories.ProductRepository;
 import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;
@@ -23,7 +22,7 @@ public class ProductService implements ProductServiceInterface {
     public void add_product(CreateProductDto createProductDto) {
 
 
-        productRepository.save(new Product(createProductDto.getProductName(), createProductDto.getProductPrice(), createProductDto.getStock(), createProductDto.getProductType(), createProductDto.getNet_content()));
+        productRepository.save(new Product(createProductDto.getProductName(), createProductDto.getProductPrice(), createProductDto.getProductType(), createProductDto.getNet_content()));
 
 
 
@@ -59,15 +58,9 @@ public class ProductService implements ProductServiceInterface {
             if (optionalProduct.isEmpty()) {
                 allProductsExist = false;
                 message.append("the product with the id: ").append(productId).append(" does not exist.\n");
-            } else {
-                Product product = optionalProduct.get();
-                int productStock = product.getStock();
-                if (productQuantity > productStock) {
-                    allProductsExist = false;
-                    message.append("Stock not available for product: ").append(product.getName()).append("\n");
-                }
             }
-        }
+            }
+
 
         if (allProductsExist) {
             return "All the products are valid, stock available";
@@ -76,29 +69,14 @@ public class ProductService implements ProductServiceInterface {
         }
     }
 
-    @Override
-    public Product findById(long id) {
-        return productRepository.findById(id).get();
-    }
 
     @Override
     public void save(Product product) {
         productRepository.save(product);
     }
 
-    @Override
-    public boolean existsById(Long productId) {
-        return productRepository.existsById(productId);
-    }
 
-    @Override
-    public void updateProductStock(UpdateProductStockDto updateProductStockDto) {
-        Product product = productRepository.findById(updateProductStockDto.getProductId()).get();
 
-        product.setStock(updateProductStockDto.getProductStock());
 
-        productRepository.save(product);
-
-    }
 
 }

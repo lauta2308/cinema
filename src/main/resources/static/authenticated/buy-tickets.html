@@ -35,10 +35,9 @@
             <li><a href="../index.html" class="menu-item">Home</a></li>
 
             <li><a href="#" class="menu-item">Contact</a></li>
-            <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
-            <li v-else-if="clientRole === 'CLIENT'"><a href="./web/login.html" class="menu-item">{{clientName}}</a></li>
-            <li v-else-if="clientRole === 'ADMIN'"><a href="./web/login.html" class="menu-item">Admin panel</a></li>
-            <li v-else><a href="./web/login.html" class="menu-item">Tickets</a></li>
+            <li v-if="isAuthenticated === 'false' "><a href="./login.html" class="menu-item">Login</a></li>
+              
+            <li v-else><a href="#" @click="logout" class="menu-item">Logout</a></li>
           </ul>
         </nav>
         <div class="menu-icon" @click="toggleMenu">
@@ -55,7 +54,9 @@
         <ul>
           <li><a href="../index.html" class="menu-item">Home</a></li>
           <li><a href="#" class="menu-item">Contact</a></li>
-
+          <li v-if="isAuthenticated === 'false' "><a href="./login.html" class="menu-item">Login</a></li>
+              
+          <li v-else><a href="#" @click="logout" class="menu-item">Logout</a></li>
        
         </ul>
       </div>

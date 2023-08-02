@@ -52,7 +52,7 @@ public class PurchaseItemController {
             purchase = purchaseService.findPurchaseById(purchaseId);
         }
 
-        if(purchase.getPurchaseStatus() != PurchaseStatus.IN_PROGRESS){
+        if(purchase.getPurchaseStatus() != PurchaseStatus.PENDING_TO_PAY){
             return new ResponseEntity<String>("Purchase not valid", HttpStatus.CONFLICT);
         }
 

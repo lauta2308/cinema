@@ -8,7 +8,6 @@ import java.util.List;
 public interface ProductComboServiceInterface {
     List<ProductComboDto> getTemplateCombos();
 
-    String verifyProductsStock(List<ProductComboDto> productComboDtoList);
 
     String addProductCombosToPurchase(List<ProductComboDto> productComboDtoList, Purchase purchase);
 }

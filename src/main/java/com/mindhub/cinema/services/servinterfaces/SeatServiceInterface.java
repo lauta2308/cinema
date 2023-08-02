@@ -16,7 +16,6 @@ public interface SeatServiceInterface {
 
     Set<SeatDto> availableSeats(Set<Seat> show_room_seats, Set<Ticket> showTicketsSold);
 
-    boolean checkValidSeatIdPlaceRoom(Long seatId, Integer seatPlace, CinemaRoom cinemaRoom);
 
     boolean existsByIdAndSeatPlaceAndCinemaRoom(Long seatId, Integer seatPlace, CinemaRoom cinemaRoom);
 

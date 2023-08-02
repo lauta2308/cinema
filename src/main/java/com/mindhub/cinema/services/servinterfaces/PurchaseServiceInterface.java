@@ -13,4 +13,7 @@ public interface PurchaseServiceInterface {
     void save(Client client);
 
     void replacePurchasePrice(Purchase purchase, Double totalPrice);
+
+
+    void checkAndCancelExpiredPurchases();
 }

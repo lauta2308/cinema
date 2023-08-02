@@ -10,6 +10,8 @@ import com.mindhub.cinema.services.servinterfaces.TicketServiceInterface;
 import com.mindhub.cinema.utils.enums.ClientRol;
 import com.mindhub.cinema.utils.enums.TicketStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -39,7 +41,7 @@ public class TicketService implements TicketServiceInterface {
 
     @Override
     public Set<Ticket> getTicketsTaken(Long showId) {
-      return ticketRepository.findAll().stream().filter(ticket -> ticket.getShow().getId() == showId).collect(Collectors.toSet());
+      return ticketRepository.findByShow_idAndTicketStatus(showId, TicketStatus.TAKEN);
     }
 
 
@@ -148,6 +150,17 @@ public class TicketService implements TicketServiceInterface {
         return String.valueOf(purchase.getId());
 
     }
+
+    public void ticketStatusToCancelled(Set<Ticket> tickets){
+        for (Ticket ticket : tickets){
+            ticket.setTicketStatus(TicketStatus.CANCELLED);
+            ticketRepository.save(ticket);
+        }
+
+
+    }
+
+
 
 
 }

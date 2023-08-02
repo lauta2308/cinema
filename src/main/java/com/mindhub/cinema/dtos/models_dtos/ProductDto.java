@@ -11,7 +11,7 @@ public class ProductDto {
 
     private Double productPrice;
 
-    private Integer stock;
+
 
     private ProductType productType;
 
@@ -25,7 +25,7 @@ public class ProductDto {
         this.id = product.getId();
         this.name = product.getName();
         this.productPrice = product.getProductPrice();
-        this.stock = product.getStock();
+
         this.productType = product.getProductType();
         this.net_content = product.getNet_content();
 
@@ -43,9 +43,7 @@ public class ProductDto {
         return productPrice;
     }
 
-    public Integer getStock() {
-        return stock;
-    }
+
 
     public ProductType getProductType() {
         return productType;

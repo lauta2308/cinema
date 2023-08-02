@@ -1,6 +1,11 @@
 package com.mindhub.cinema.utils.apiUtils;
 
 import com.mindhub.cinema.dtos.param_dtos.CreateTicketDto;
+import com.mindhub.cinema.models.Ticket;
+import com.mindhub.cinema.repositories.TicketRepository;
+import com.mindhub.cinema.utils.enums.TicketStatus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,27 +13,8 @@ import java.util.Set;
 public class TicketUtils {
 
 
-
-    /*
-    public static boolean areAllPurchaseIdsEqual(Set<CreateTicketDto> tickets) {
-        if (tickets == null || tickets.isEmpty()) {
-            return false;
-        }
-
-        Long firstPurchaseId = null;
-        for (CreateTicketDto ticket : tickets) {
-            if (firstPurchaseId == null) {
-                firstPurchaseId = ticket.getPurchaseId();
-            } else if (!firstPurchaseId.equals(ticket.getPurchaseId())) {
-                return false;
-            }
-        }
-
-        return true;
-
-
-    }
-    */
+    @Autowired
+    TicketRepository ticketRepository;
 
 
     public static boolean areAllSeatPlacesUnique(Set<CreateTicketDto> tickets) {
@@ -47,10 +33,6 @@ public class TicketUtils {
         return true;
     }
 
-
-    /*public static Long getPurchaseId(Set<CreateTicketDto> createTicketDtoSet) {
-        return createTicketDtoSet.stream().findFirst().get().getPurchaseId();
-    }*/
 
 
     public static boolean areAllshowIdsEqual(Set<CreateTicketDto> tickets) {
@@ -76,4 +58,6 @@ public class TicketUtils {
 
         return createTicketDtoSet.stream().findFirst().get();
     }
+
+
 }

@@ -44,7 +44,10 @@ createApp({
     },
     methods: {
 
-    
+            logout(){
+                axios.post("/api/logout")
+                .then(response => window.location.href="./index.html");
+            },
 
         
              getUserLogged(){
@@ -108,10 +111,16 @@ createApp({
 
          getMovieShows(){
 
+            console.log(this.movieSelected.id);
+
             axios.get('/api/movie_shows', {
+
                 params: {
-                  movieId: this.movieSelected.id
+                    movieId: this.movieSelected.id
                 }
+               
+                 
+                
               }).then(response => {
                 
                 this.movieShows = response.data;

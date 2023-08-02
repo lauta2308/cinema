@@ -38,7 +38,6 @@ public class PurchaseItemService implements PurchaseItemServiceInterface {
                 PurchaseItem purchaseItem = new PurchaseItem(productQuantity, purchase, product);
                 purchaseItemRepository.save(purchaseItem);
                 purchaseItem.addPriceToPurchase();
-                purchaseItem.decreaseProductStock();
                 productRepository.save(product);
             }
 

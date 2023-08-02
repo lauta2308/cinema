@@ -73,9 +73,5 @@ public class PurchaseItem {
 
     }
 
-    // Método para disminuir el stock del producto
-    public void decreaseProductStock() {
-        int updatedStock = product.getStock() - quantity;
-        product.setStock(updatedStock);
-    }
+
 }

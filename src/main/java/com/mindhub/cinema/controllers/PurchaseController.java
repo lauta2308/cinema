@@ -3,15 +3,14 @@ package com.mindhub.cinema.controllers;
 import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
+import com.mindhub.cinema.services.servinterfaces.TicketServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.PurchaseUtils;
+import com.mindhub.cinema.utils.enums.PurchaseStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PurchaseController {
@@ -20,6 +19,9 @@ public class PurchaseController {
     ClientServiceInterface clientService;
     @Autowired
     PurchaseServiceInterface purchaseService;
+
+    @Autowired
+    TicketServiceInterface ticketService;
 
     @PostMapping("/api/current/purchase")
     ResponseEntity<String> create_purchase(Authentication authentication){
@@ -46,5 +48,8 @@ public class PurchaseController {
 
        return new ResponseEntity<>(PurchaseUtils.purchaseToDto(purchase), HttpStatus.ACCEPTED);
     }
+
+
+
 
 }

@@ -16,4 +16,7 @@ public interface TicketServiceInterface {
 
 
     String saveTickets(Set<CreateTicketDto> createTicketDtoSet, Client client, Show showSelected);
+
+
+    void ticketStatusToCancelled(Set<Ticket> tickets);
 }

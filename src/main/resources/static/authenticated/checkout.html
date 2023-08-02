@@ -30,6 +30,9 @@
                     <li><a href="#" class="menu-item">Home</a></li>
 
                     <li><a href="#" class="menu-item">Contact</a></li>
+                    <li v-if="isAuthenticated === 'false' "><a href="./login.html" class="menu-item">Login</a></li>
+              
+                    <li v-else><a href="#" @click="logout" class="menu-item">Logout</a></li>
 
                   </ul>
                 </nav>
@@ -50,6 +53,9 @@
                   <li><a href="#" class="menu-item">Contact</a></li>
         
                
+                  <li v-if="isAuthenticated === 'false' "><a href="./login.html" class="menu-item">Login</a></li>
+              
+                  <li v-else><a href="#" @click="logout" class="menu-item">Logout</a></li>
                 </ul>
               </div>
         

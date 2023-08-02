@@ -2,8 +2,6 @@ package com.mindhub.cinema.services;
 
 
 import com.mindhub.cinema.dtos.models_dtos.ProductComboDto;
-import com.mindhub.cinema.dtos.models_dtos.ProductDto;
-import com.mindhub.cinema.dtos.param_dtos.BuyProductComboDto;
 import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.models.ProductCombo;
 import com.mindhub.cinema.models.Purchase;
@@ -13,7 +11,6 @@ import com.mindhub.cinema.services.servinterfaces.ProductComboServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.ProductComboUtils;
-import com.mindhub.cinema.utils.exceptions.InsufficientStockException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,40 +40,7 @@ public class ProductComboService implements ProductComboServiceInterface {
          return ProductComboUtils.productComboToDto(productComboRepository.findByIsTemplateCombo(true));
     }
 
-    @Override
-    @Transactional // Asegura que se revierta la transacción para cualquier excepción
-    public String verifyProductsStock(List<ProductComboDto> productCombosIds) {
 
-        List<ProductComboDto> productCombos = new ArrayList<>();
-        for (ProductComboDto productCombo : productCombos) {
-            for (ProductDto productDto : productCombo.getProducts()) {
-                Product product = productService.findById(productDto.getId());
-                if (product.getStock() < 1) {
-                    throw new InsufficientStockException("Insufficient stock for product: " + product.getName());
-                } else {
-                    decreaseProductsStock(product);
-                }
-            }
-        }
-
-        return "All products verified and stocks decreased.";
-
-
-
-    }
-
-
-
-
-    @Transactional
-    public void decreaseProductsStock(Product product) {
-
-        if (product.getStock() < 1) {
-            throw new InsufficientStockException("Insufficient stock for product: " + product.getName());
-        }
-        product.setStock(product.getStock() - 1);
-        productService.save(product); // Actualizar el stock en la base de datos
-    }
 
 
     @Override

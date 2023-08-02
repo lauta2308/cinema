@@ -256,30 +256,29 @@ public class CinemaApplication {
 
 			// Productos
 
-			Product cocaChica = productRepository.save(new Product("Small Coca-Cola glass", 4.00, 20, ProductType.DRINK, 236));
+			Product cocaChica = productRepository.save(new Product("Small Coca-Cola glass", 4.00,  ProductType.DRINK, 236));
 
-			Product cocaMedia = productRepository.save(new Product("Medium Coca-Cola glass", 6.00, 20, ProductType.DRINK, 354));
+			Product cocaMedia = productRepository.save(new Product("Medium Coca-Cola glass", 6.00,  ProductType.DRINK, 354));
 
-			Product cocaGrande = productRepository.save(new Product("Large Coca-Cola glass", 7.00, 20, ProductType.DRINK, 473));
+			Product cocaGrande = productRepository.save(new Product("Large Coca-Cola glass", 7.00, ProductType.DRINK, 473));
 
-			Product pochocloChico = productRepository.save(new Product("Small popcorn bucket", 5.00, 20, ProductType.FOOD, 300));
+			Product pochocloChico = productRepository.save(new Product("Small popcorn bucket", 5.00, ProductType.FOOD, 300));
 
-			Product pochocloMediano = productRepository.save(new Product("Medium popcorn bucket", 7.00, 20, ProductType.FOOD, 500));
+			Product pochocloMediano = productRepository.save(new Product("Medium popcorn bucket", 7.00, ProductType.FOOD, 500));
 
-			Product pochocloGrande = productRepository.save(new Product("Large popcorn bucket", 8.00, 20, ProductType.FOOD,800 ));
+			Product pochocloGrande = productRepository.save(new Product("Large popcorn bucket", 8.00, ProductType.FOOD,800 ));
 
 
 			PurchaseItem purchaseItem = purchaseItemRepository.save(new PurchaseItem(3,purchaseOne, cocaMedia));
 
 			purchaseItem.addPriceToPurchase();
-			purchaseItem.decreaseProductStock();
+
 			productRepository.save(cocaMedia);
 
 
 
 			PurchaseItem purchaseItem1 = purchaseItemRepository.save(new PurchaseItem(3,purchaseOne, pochocloMediano));
 			purchaseItem1.addPriceToPurchase();
-			purchaseItem1.decreaseProductStock();
 			productRepository.save(pochocloMediano);
 
 

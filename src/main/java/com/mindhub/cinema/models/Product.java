@@ -22,7 +22,6 @@ public class Product {
 
     private Double productPrice;
 
-    private Integer stock;
 
     private ProductType productType;
 
@@ -38,10 +37,9 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, Double productPrice, Integer stock, ProductType productType, Integer net_content) {
+    public Product(String name, Double productPrice, ProductType productType, Integer net_content) {
         this.name = name;
         this.productPrice = productPrice;
-        this.stock = stock;
         this.productType = productType;
         this.net_content = net_content;
     }
@@ -67,13 +65,6 @@ public class Product {
         this.productPrice = productPrice;
     }
 
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
 
     public ProductType getProductType() {
         return productType;

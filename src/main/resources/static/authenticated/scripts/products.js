@@ -1,16 +1,18 @@
 
 
 const { createApp } = Vue
+import menuBehavior from "../../web/scripts/menu.js";
 
 
 
 createApp({
+  mixins: [menuBehavior],
 
     data() {
 
         return {
           isAuthenticated: "",
-          isMenuOpen: false,
+    
           createTicketDto: [],
           productCombos: [],
           products: [],
@@ -59,9 +61,6 @@ createApp({
         .then(response => window.location.href="./index.html");
     },
 
-        toggleMenu() {
-            this.isMenuOpen = !this.isMenuOpen;
-          },
 
           getProductCombos(){
                 axios.get("/api/current/get_product_combos")

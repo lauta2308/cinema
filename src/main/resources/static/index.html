@@ -12,7 +12,7 @@
 <link rel="icon" href="./web/media/cropped-logo-transparent.png" type="image/png">
 </head>
 <body>
-    <div id="app">
+    <div id="app" >
 
 
 
@@ -37,8 +37,18 @@
 
             <nav class="menu">
               <ul>
+              
                 <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
-                <li v-else-if="clientRole === 'CLIENT'"><a href="#" class="menu-item">Welcome, {{clientName}}</a></li>
+                <li v-else-if="clientRole === 'CLIENT'" class="menu-item has-submenu" @mouseleave="toggleSubmenu">
+                  Welcome, {{clientName}}
+                  <span class="arrow" @mouseover="toggleSubmenu"  >&#9662;</span>
+                  <ul class="submenu" v-if="showSubmenu === true">
+                    <li><a href="./authenticated/profile.html">Profile</a></li>
+                    <li><a href="./authenticated/purchases.html">Purchases</a></li>
+                    <li><a href="./authenticated/reviews.html">Reviews</a></li>
+            
+                  </ul>
+                </li>
                 <li v-else-if="clientRole === 'ADMIN'"><a href="#" class="menu-item">Admin panel</a></li>
                 <li v-else><a href="#" class="menu-item">Tickets</a></li>
                 <li v-if="clientRole !== '' ">
@@ -67,7 +77,16 @@
 
             <ul>
               <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
-              <li v-else-if="clientRole === 'CLIENT'"><a href="#" class="menu-item">Welcome, {{clientName}}</a></li>
+              <li v-else-if="clientRole === 'CLIENT'" class="menu-item has-submenu" @mouseleave="toggleSubmenu">
+                Welcome, {{clientName}}
+                <span class="arrow" @click="toggleSubmenu"  >&#9662;</span>
+                <ul class="submenu" v-if="showSubmenu === true">
+                  <li><a href="./authenticated/profile.html">Profile</a></li>
+                  <li><a href="./authenticated/purchases.html">Purchases</a></li>
+                  <li><a href="./authenticated/reviews.html">Reviews</a></li>
+          
+                </ul>
+              </li>
               <li v-else-if="clientRole === 'ADMIN'"><a href="#" class="menu-item">Admin panel</a></li>
               <li v-else><a href="#" class="menu-item">Tickets</a></li>
               <li v-if="clientRole !== '' ">
@@ -210,7 +229,8 @@
 </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./web/scripts/index.js"></script>
+    <script type="module" src="./web/scripts/menu.js"></script>
+    <script type="module" src="./web/scripts/index.js" ></script>
 
     
 </body>

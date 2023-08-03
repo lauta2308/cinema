@@ -1,14 +1,18 @@
-const { createApp } = Vue
+const { createApp } = Vue;
+import menuBehavior from './menu.js';
+
+
 
 
 
 createApp({
 
+    mixins: [menuBehavior],
     data() {
 
         return {
      
-            isMenuOpen: false,
+          
             movies: [],
             slides: 7,
             clientLogged: false,
@@ -26,12 +30,11 @@ createApp({
         this.getUserLogged();
         this.checkMovieInLocal();
         this.getMovieShows();
-       
+
 
         
 
     },
-
 
 
     
@@ -43,6 +46,7 @@ createApp({
 
     },
     methods: {
+
 
             logout(){
                 axios.post("/api/logout")
@@ -65,11 +69,7 @@ createApp({
         
 
     
-      
-        toggleMenu() {
-            this.isMenuOpen = !this.isMenuOpen;
-          },
-
+    
          
          loadMovies() {
          
@@ -111,7 +111,7 @@ createApp({
 
          getMovieShows(){
 
-            console.log(this.movieSelected.id);
+  
 
             axios.get('/api/movie_shows', {
 

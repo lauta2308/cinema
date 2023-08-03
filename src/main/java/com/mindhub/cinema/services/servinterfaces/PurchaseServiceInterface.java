@@ -16,4 +16,6 @@ public interface PurchaseServiceInterface {
 
 
     void checkAndCancelExpiredPurchases();
+
+    Object complete_purchase(Purchase purchase);
 }

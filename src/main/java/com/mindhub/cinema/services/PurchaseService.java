@@ -72,6 +72,13 @@ public class PurchaseService implements PurchaseServiceInterface {
 
     }
 
+    @Override
+    public Object complete_purchase(Purchase purchase) {
+        purchase.setPurchaseStatus(PurchaseStatus.COMPLETED);
+        purchaseRepository.save(purchase);
+        return "Purchase completed";
+    }
+
     public void iteratePendingPurchasesToChangeStatus(List<Purchase> pendingPurchases){
         long currentTimeInMillis;
         long purchaseTimeInMillis;

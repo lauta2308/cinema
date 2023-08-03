@@ -121,6 +121,10 @@ p {
     line-height: 2;
 }
 
+a {
+  text-decoration: none;
+}
+
 input {
 
     width: 100%;
@@ -174,6 +178,7 @@ input {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+
   }
   
  
@@ -253,6 +258,56 @@ input {
   }
 
 
+  /* SUBMENU */
+
+  .has-submenu {
+    position: relative;
+  }
+
+  .has-submenu .arrow {
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  
+
+  .submenu {
+
+    position: absolute; /* Los subitems estarán posicionados de forma absoluta */
+    top: 100%; /* Ajusta el top para que aparezcan debajo del li principal */
+    left: 0;
+    right: 0;
+    background-color: #f9f9f9;
+    padding: 0; /* Quitamos el padding para ocupar el ancho completo del li principal */
+
+    z-index: 1; /* Asegura que el submenú esté por encima del contenido */
+  }
+  
+  .has-submenu .submenu {
+    display: block; /* Mostrar el submenú al hacer hover en el li principal */
+    background-color: black;
+    color: red;
+
+
+  }
+  
+  .submenu li {
+    /* Estilo para los elementos li dentro del submenú */
+    display: block; /* Mostrar los elementos en una lista vertical */
+    padding: 1rem 0; /* Añade un poco de espacio entre los elementos */
+    text-align: center;
+    cursor: pointer;
+    margin: 0;
+  }
+
+  .submenu li a:hover {
+    color: red;
+  }
+  
+  /* Evitar que el submenú afecte el tamaño del li principal */
+  .has-submenu {
+    display: inline-block;
+  }
+
   /* Footer */
 
 
@@ -295,6 +350,7 @@ input {
     width: 100%;
     height: 80vh;
     overflow: hidden;
+    z-index: -1;
   }
   .slideshow-image {
     position: absolute;

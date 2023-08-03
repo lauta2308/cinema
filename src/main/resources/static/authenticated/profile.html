@@ -3,33 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finish the purchase</title>
+    <title>Profile</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../web/styles/normalize.css">
     <link rel="stylesheet" href="../web/styles/styles.css">
-    <link rel="stylesheet" href="./css/postnet.css">
     <link rel="icon" href="../web/media/cropped-logo-transparent.png" type="image/png">
 </head>
 <body>
-
     <div id="app">
 
         <header>
 
             <div class="top-bar container">
-                <a href="../index.html" >
-                 
+              <a href="../index.html" >
         
                   <img src="../web/media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
-            </a>
+              </a>
                 <nav class="menu">
-            
+         
                   <ul>
-                    <li><a href="#" class="menu-item">Home</a></li>
+                    <li><a href="../index.html" class="menu-item">Home</a></li>
 
                     <li><a href="#" class="menu-item">Contact</a></li>
+
                     <li v-if="isAuthenticated === 'false' "><a href="./login.html" class="menu-item">Login</a></li>
               
                     <li v-else><a href="#" @click="logout" class="menu-item">Logout</a></li>
@@ -46,55 +44,28 @@
                 </div>
               </div>
               <div class="responsive-menu" :class="{ active: isMenuOpen }">
-                <!-- Menú responsive que aparecerá en dispositivos móviles -->
+    
                 <ul>
                   <li><a href="../index.html" class="menu-item">Home</a></li>
 
                   <li><a href="#" class="menu-item">Contact</a></li>
         
-               
                   <li v-if="isAuthenticated === 'false' "><a href="./login.html" class="menu-item">Login</a></li>
               
                   <li v-else><a href="#" @click="logout" class="menu-item">Logout</a></li>
+
+               
                 </ul>
               </div>
         
           
         </header>
 
-        <main>
-            <section class="container">
-
-              <div class="checkout-payment-container">
-                <div class="payment-container-left">
-                  <h2>Last step</h2>
-                  <img src="../web/media/original-logo.png" alt="cineverse-logo" class="checkout-logo">
-                </div>
-
-                <div class="payment-container-right">
-
-                  <h2>Complete the form below to finish your purchase!</h2>
-
-                  <form class="payment-form">
-                    <label>User name: <input type="text" placeholder="Username" v-model="username"></label>
-                    <label>Card number: <input type="text" placeholder="0000 0000 0000 0000" v-model="cardNumber"></label>
-                    <label>Valid Upto: <input type="text" placeholder="MM/YYYY" v-model="cardUpto"></label>
-                    <label>CVV: <input type="text" placeholder="CVV" v-model="cardCvv"></label>
-
-                    <button class="site-action-btn color-green" @click.prevent="pay">Pay $ {{totalPrice}}</button>
-
-                  </form>
-                </div>
-
-              </div>
-
-
-            </section>
-
-        
-     
+        <main class="products-main container">
+       
 
         </main>
+
         <footer>
 
           <div class="footer-container container">
@@ -144,14 +115,14 @@
         </footer>
 
 
+
+
+
     </div>
+
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    
-    <script type="module" src="./scripts/checkout.js"></script>
-    <script type="module" src="../web/scripts/menu.js"></script>
-        
     
 </body>
 </html>

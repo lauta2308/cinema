@@ -7,12 +7,21 @@ public class CreateTicketDto {
 
    private Long showId;
 
+   // seat id
    private Long id;
 
    private Integer seatPlace;
 
-   private CustomerAge customerAge;
+   private CustomerAge customerAge = CustomerAge.ADULT;
 
+    public CreateTicketDto() {
+    }
+
+    public CreateTicketDto(Long showId, Long id, Integer seatPlace) {
+        this.showId = showId;
+        this.id = id;
+        this.seatPlace = seatPlace;
+    }
 
     public CreateTicketDto(Long showId, Long id, Integer seatPlace, CustomerAge customerAge) {
         this.showId = showId;

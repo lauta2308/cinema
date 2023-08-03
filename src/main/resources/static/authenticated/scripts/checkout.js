@@ -1,16 +1,15 @@
-
-
 const { createApp } = Vue
+import menuBehavior from "../../web/scripts/menu.js";
 
 
 
 createApp({
+  mixins: [menuBehavior],
 
     data() {
 
         return {
           isAuthenticated: "",
-          isMenuOpen: false,
           selectedProductCombos: [],
           selectedProducts: [],
           selectedCreateTicketDto: [],
@@ -60,9 +59,6 @@ this.getPurchaseId();
         .then(response => window.location.href="./index.html");
     },
 
-        toggleMenu() {
-            this.isMenuOpen = !this.isMenuOpen;
-          },
 
           getPurchaseId(){
             this.purchaseId = sessionStorage.getItem('purchaseId');
@@ -85,19 +81,26 @@ this.getPurchaseId();
 
         axios.post("http://localhost:9090/procesarcompra")
         .then(response => {
-          // Aquí puedes trabajar con la respuesta recibida desde el back-end
           console.log('Respuesta:', response.data);
+          this.purchaseStatusToComplete();
         })
         .catch(error => {
-          // Manejo de errores
+       
           console.error('Error:', error);
         });
-        // let paymentDate = {
-          
-        // }
-        // axios.post(`https://localhost:9090/procesar-compra`, paymentDate)
-        // .then(response => console.log(response.data));
+      },
+
+      purchaseStatusToComplete(){
+
+        axios.patch(`/api/current/purchase/${this.purchaseId}`)
+        .then(response => console.log(response.data))
+        .catch(error => {
+       
+          console.error('Error:', error);
+        });
       }
+
+
 
 
 

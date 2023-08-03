@@ -1,17 +1,16 @@
 
 
 const { createApp } = Vue
+import menuBehavior from "../../web/scripts/menu.js";
 
 
 
 createApp({
-
+  mixins: [menuBehavior],
     data() {
 
         return {
-            isAuthenticated: "",
-            isMenuOpen: false,
-           
+            isAuthenticated: "",         
             clientRole: "",
             clientName: "",
             showId: "",
@@ -139,10 +138,7 @@ createApp({
 
     
       
-        toggleMenu() {
-            this.isMenuOpen = !this.isMenuOpen;
-          },
-
+    
           // Función para ir a la página anterior
     prevPage() {
         if (this.currentPage > 1) {

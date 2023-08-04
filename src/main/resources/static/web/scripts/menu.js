@@ -17,6 +17,13 @@ const menuBehavior = {
         this.showSubmenu = !this.showSubmenu;
       },
 
+      
+      logout(){
+          axios.post("/api/logout")
+          .then(response => window.location.href="./index.html");
+      },
+      
+
   },
 };
 

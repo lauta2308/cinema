@@ -1,23 +1,18 @@
 const { createApp } = Vue;
 import menuBehavior from './menu.js';
-
+import userLogged from './userLogged.js';
 
 
 
 
 createApp({
 
-    mixins: [menuBehavior],
+    mixins: [menuBehavior, userLogged],
     data() {
 
         return {
-     
-          
-            movies: [],
             slides: 7,
-            clientLogged: false,
-            clientRole: "",
-            clientName: "",
+            movies: [],
             movieSelected: {},
             movieShows: []
 
@@ -27,9 +22,8 @@ createApp({
     created() {
 
         this.loadMovies();
-        this.getUserLogged();
-        this.checkMovieInLocal();
-        this.getMovieShows();
+ 
+     
 
 
         
@@ -48,24 +42,7 @@ createApp({
     methods: {
 
 
-            logout(){
-                axios.post("/api/logout")
-                .then(response => window.location.href="./index.html");
-            },
-
-        
-             getUserLogged(){
-                 axios.get("/api/authenticated_user")
-                .then(response => {
-                    this.clientRole = response.data.clientRol,
-                    this.clientName = response.data.name,
-                    this.clientLogged = true;
-                 } )
-                 .then(response => sessionStorage.setItem('cineverseLogin', false));
-        
-                },
-
-               
+                      
         
 
     
@@ -97,62 +74,10 @@ createApp({
 
         },
 
-        checkMovieInLocal(){
-            const movieJson = sessionStorage.getItem('movie');
-
-            if (movieJson && typeof movieJson === 'string') {
-              this.movieSelected = JSON.parse(movieJson);
-              
-            }
-
-         
-        },
+    
 
 
-         getMovieShows(){
-
-  
-
-            axios.get('/api/movie_shows', {
-
-                params: {
-                    movieId: this.movieSelected.id
-                }
-               
-                 
-                
-              }).then(response => {
-                
-                this.movieShows = response.data;
-     
-               
-             } )
-
-
-        },
-
-        formatStartDate(date){
         
-            const [datePart, timePart] = date.split('T');
-
-            const dateFormated = `${datePart} ${timePart}`;
-            return dateFormated;
-        },
-
-        formatEndTime(date){
-
-            const [datePart, timePart] = date.split('T');
-
-            const dateFormated = `${timePart}`;
-            return dateFormated;
-        },
-
-        saveShowId(show){
-            sessionStorage.setItem('showId', show.id);
-            sessionStorage.setItem('roomId', show.cinemaRoom.id);
-        
-            window.location.href = "../authenticated/buy-tickets.html"
-        }
 
      
 

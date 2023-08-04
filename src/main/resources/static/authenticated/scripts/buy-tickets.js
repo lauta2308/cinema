@@ -2,17 +2,16 @@
 
 const { createApp } = Vue
 import menuBehavior from "../../web/scripts/menu.js";
+import userLogged from '../../web/scripts/userLogged.js';
 
 
 
 createApp({
-  mixins: [menuBehavior],
+  mixins: [menuBehavior, userLogged],
     data() {
 
         return {
-            isAuthenticated: "",         
-            clientRole: "",
-            clientName: "",
+              
             showId: "",
             roomSeats: [],
             availableSeatsFromBackend: [],
@@ -26,7 +25,7 @@ createApp({
     },
     created() {
 
-        this.checkUserAuth();
+      
         
         this.getShowAndRoomId();
      
@@ -70,10 +69,7 @@ createApp({
     },
     methods: {
 
-      checkUserAuth(){
-        axios.get("/api/current/isAuthenticated")
-        .then(response => this.isAuthenticated = response.data);
-      },
+    
 
       logout(){
         axios.post("/api/logout")

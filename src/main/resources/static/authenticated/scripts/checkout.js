@@ -1,15 +1,16 @@
 const { createApp } = Vue
 import menuBehavior from "../../web/scripts/menu.js";
+import userLogged from '../../web/scripts/userLogged.js';
 
 
 
 createApp({
-  mixins: [menuBehavior],
+  mixins: [menuBehavior, userLogged],
 
     data() {
 
         return {
-          isAuthenticated: "",
+       
           selectedProductCombos: [],
           selectedProducts: [],
           selectedCreateTicketDto: [],
@@ -49,15 +50,8 @@ this.getPurchaseId();
 
     },
     methods: {
-      checkUserAuth(){
-        axios.get("/api/current/isAuthenticated")
-        .then(response => this.isAuthenticated = response.data);
-      },
 
-      logout(){
-        axios.post("/api/logout")
-        .then(response => window.location.href="./index.html");
-    },
+
 
 
           getPurchaseId(){

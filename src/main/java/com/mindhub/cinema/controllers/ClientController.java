@@ -130,7 +130,7 @@ public class ClientController {
     }
 
 
-    @GetMapping("/api/current/isAuthenticated")
+    @GetMapping("/api/isAuthenticated")
     public Boolean isAuthenticated (Authentication authentication){
         if(authentication != null){
             return true;

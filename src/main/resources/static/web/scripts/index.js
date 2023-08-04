@@ -63,7 +63,7 @@ createApp({
 
             try {
                 // Verificar si el objeto movie es válido para JSON antes de guardarlo
-                const movieJson = JSON.stringify(movie);
+                const movieJson = JSON.stringify(movie.id);
                 // Si no hay errores en la serialización, guardar el objeto en el localStorage
                 sessionStorage.setItem('movie', movieJson);
                 // Redirigir a la página de detalles de la película

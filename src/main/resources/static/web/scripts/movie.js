@@ -29,12 +29,24 @@ createApp({
             const movieJson = sessionStorage.getItem('movie');
 
             if (movieJson && typeof movieJson === 'string') {
-              this.movieSelected = JSON.parse(movieJson);
-              this.getMovieShows();
+              this.loadMovie(JSON.parse(movieJson));
+    
               
             }
 
          
+        },
+
+        loadMovie(movieId){
+
+            axios.get(`/api/movies/${movieId}`)
+            .then(response => {
+                
+                
+                this.movieSelected = response.data;
+                this.getMovieShows();
+                
+            })
         },
 
 

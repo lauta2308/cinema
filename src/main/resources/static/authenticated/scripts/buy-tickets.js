@@ -18,7 +18,8 @@ createApp({
             selectedSeats: [],
             seatsPerRow: 10, // Número de asientos por fila
             seatsPerPage: 5, // Número de asientos por página
-            currentPage: 1 // Página actual
+            currentPage: 1, // Página actual
+            ageError: ""
 
             
         }
@@ -71,10 +72,7 @@ createApp({
 
     
 
-      logout(){
-        axios.post("/api/logout")
-        .then(response => window.location.href="./index.html");
-    },
+  
 
         
 
@@ -149,22 +147,36 @@ createApp({
         }
       },
 
+      
+      
+
      
 
       createTickets(){
 
-        this.selectedSeats.forEach(element => {
-          element.showId = this.showId;
-          
-        });
-        let createTicketDto = this.selectedSeats;
-      
+        if(this.selectedSeats.some(element => !element.customerAge)){
+          this.ageError = "Select the age for all tickets to continue";
+        }
 
+        else {
+          this.selectedSeats.forEach(element => {
+            element.showId = this.showId;
+            
+          });
 
-        sessionStorage.setItem('cineverse-Tickets', JSON.stringify(createTicketDto));
-
-        window.location.href = "./products.html"
+          this.ageError = "";
+          console.log(this.selectedSeats);
+          let createTicketDto = this.selectedSeats;
         
+  
+  
+          console.log(createTicketDto);
+          sessionStorage.setItem('cineverse-Tickets', JSON.stringify(createTicketDto));
+  
+           window.location.href = "./products.html"
+          
+        }
+       
 
       }
     

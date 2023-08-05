@@ -285,6 +285,7 @@ public class CinemaApplication {
 			purchaseRepository.save(purchaseOne);
 
 
+			Purchase adminPurchase = purchaseRepository.save(new Purchase(clientAdmin));
 
 			// Product Combos
 
@@ -292,6 +293,7 @@ public class CinemaApplication {
 
 			ProductCombo productComboSingle = productComboRepository.save(new ProductCombo());
 
+			productComboSingle.setPurchase(adminPurchase);
 			productComboSingle.setTemplateCombo(true);
 			productComboSingle.setProductComboType(ProductComboType.SINGLE);
 
@@ -326,6 +328,7 @@ public class CinemaApplication {
 
 			ProductCombo familyCombo = productComboRepository.save(new ProductCombo());
 
+			familyCombo.setPurchase(adminPurchase);
 			familyCombo.setTemplateCombo(true);
 			familyCombo.setProductComboType(ProductComboType.FAMILY);
 
@@ -354,6 +357,7 @@ public class CinemaApplication {
 
 			ProductCombo comboSingleMega = productComboRepository.save(new ProductCombo());
 
+			comboSingleMega.setPurchase(adminPurchase);
 			comboSingleMega.setTemplateCombo(true);
 			comboSingleMega.setProductComboType(ProductComboType.SINGLE_MEGA);
 

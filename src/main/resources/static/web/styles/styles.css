@@ -1138,23 +1138,19 @@ fieldset {
   align-items: center;
 }
 
-.checkout-logo {
-  display: none;
-}
 
 
 @media(min-width: 768px){
   .checkout-payment-container {
     flex-direction: row;
+    align-items: baseline;
   }
 
-  .checkout-logo {
-    display: block;
-  }
+
 }
 
 
-.payment-container-right h2 {
+.checkout-payment-container h3 {
   text-transform: unset;
   font-size: 2rem;
   text-align: center;

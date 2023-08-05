@@ -13,7 +13,7 @@ createApp({
 
         return {
    
-          createTicketDto: [],
+  
           productCombos: [],
           products: [],
           selectedProductCombos: [],
@@ -30,7 +30,7 @@ createApp({
 
   this.getProductCombos();
   this.getProducts();
-  this.getStorageTickets();
+
      
         
 
@@ -73,9 +73,7 @@ createApp({
         
         },
 
-        getStorageTickets(){
-          this.createTicketDto = JSON.parse(sessionStorage.getItem('cineverse-Tickets'));
-        },
+       
 
         addSelectedProductCombo(combo) {
             this.selectedProductCombos.push(combo);
@@ -146,50 +144,14 @@ createApp({
             sessionStorage.setItem("selectedCombos", JSON.stringify(this.selectedProductCombos));
             sessionStorage.setItem("selectedProducts", JSON.stringify(this.selectedProducts));
 
-            this.buyTickets();
+            window.location.href="./checkout.html"
             
 
 
           },
 
          
-          buyTickets(){
-            axios.post('/api/current/create_ticket', this.createTicketDto)
-            .then(response => {
-              
-              this.purchaseId = response.data;
-              sessionStorage.setItem('purchaseId', this.purchaseId);
-        
-              this.buyProductCombos();
-            })
-        
-         
-            
-              
-             
-          },
-
-          buyProductCombos(){
-         
-            axios.post("/api/current/add_product_combos", this.selectedProductCombos, {
-                params: {
-                    purchaseId: this.purchaseId
-                }
-            }).then(response => {
-              this.buyProducts();
-          
-            })
-            
-          },
-
-          buyProducts(){
-            axios.post("/api/current/purchase/add_purchase_item", this.selectedProducts, {
-                params: {
-                    purchaseId: this.purchaseId
-                }
-            }).then(response => window.location.href="./checkout.html");
-          }
-
+    
 
 
     },

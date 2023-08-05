@@ -107,12 +107,19 @@
                     <option value="ADULT">ADULT</option>
                     <option value="RETIRED">RETIRED</option>
                   </select>
+                 
                 </td>
                 <td><button class="site-action-btn color-red" @click="removeSeat(index)">Delete</button></td>
               </tr>
+          
             </tbody>
+     
            
           </table>
+          <p class="center color-red" v-if="ageError">
+            {{ageError}}
+               
+             </p>
           <div class="pagination">
             <button :disabled="currentPage === 1" @click="prevPage" class="site-info-btn">Previous</button>
             <span>{{ currentPage }}</span>

@@ -14,6 +14,8 @@ public class CreateTicketDto {
 
    private CustomerAge customerAge = CustomerAge.ADULT;
 
+   private boolean available = true;
+
     public CreateTicketDto() {
     }
 
@@ -23,11 +25,12 @@ public class CreateTicketDto {
         this.seatPlace = seatPlace;
     }
 
-    public CreateTicketDto(Long showId, Long id, Integer seatPlace, CustomerAge customerAge) {
+    public CreateTicketDto(Long showId, Long id, Integer seatPlace, CustomerAge customerAge, Boolean available) {
         this.showId = showId;
         this.id = id;
         this.seatPlace = seatPlace;
         this.customerAge = customerAge;
+        this.available = available;
     }
 
 
@@ -46,5 +49,9 @@ public class CreateTicketDto {
 
     public CustomerAge getCustomerAge() {
         return customerAge;
+    }
+
+    public boolean available() {
+        return available;
     }
 }

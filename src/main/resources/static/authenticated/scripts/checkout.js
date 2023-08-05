@@ -13,7 +13,10 @@ createApp({
        
           selectedProductCombos: [],
           selectedProducts: [],
-          selectedCreateTicketDto: [],
+          setCreateTicketDto: [],
+          purchaseProductCombos: [],
+          purchaseProductItems: [],
+          purchaseTickets: [],
           purchaseId: "",
           username: "",
           cardNumber: "",
@@ -29,7 +32,8 @@ createApp({
     },
     created() {
 
-this.getPurchaseId();
+
+this.getStorageTickets();
 
      
         
@@ -51,24 +55,87 @@ this.getPurchaseId();
     },
     methods: {
 
-
-
-
-          getPurchaseId(){
-            this.purchaseId = sessionStorage.getItem('purchaseId');
-            this.getPurchaseDto();
-          },
-
-        getPurchaseDto(){
-
-          axios.get(`/api/current/purchase/${this.purchaseId}`)
-          .then(response => {
-            
-            this.purchaseDto = response.data;
-            this.totalPrice = this.purchaseDto.purchase_price;
-        })
-
+      getStorageTickets(){
+        this.setCreateTicketDto = JSON.parse(sessionStorage.getItem('cineverse-Tickets'));
+        this.getStorageProductCombos();
       },
+
+      getStorageProductCombos(){
+        this.selectedProductCombos = JSON.parse(sessionStorage.getItem('selectedCombos'));
+        this.getStorageProducts();
+      },
+
+      getStorageProducts(){
+        this.selectedProducts = JSON.parse(sessionStorage.getItem('selectedProducts'))
+        
+      },
+
+
+
+      savePurchase(){
+        this.buyTickets()
+      },
+  
+
+
+      buyTickets(){
+        console.log(this.setCreateTicketDto);
+        axios.post('/api/current/create_ticket', this.setCreateTicketDto)
+        .then(response => {
+          
+          this.purchaseId = response.data;
+          sessionStorage.setItem('purchaseId', this.purchaseId);
+    
+          this.buyProductCombos();
+        })
+    
+     
+        
+          
+         
+      },
+
+      buyProductCombos(){
+     
+        axios.post("/api/current/add_product_combos", this.selectedProductCombos, {
+            params: {
+                purchaseId: this.purchaseId
+            }
+        }).then(response => {
+          this.buyProducts();
+      
+        })
+        
+      },
+
+      buyProducts(){
+        axios.post("/api/current/purchase/add_purchase_item", this.selectedProducts, {
+            params: {
+                purchaseId: this.purchaseId
+            }
+        }).then(response => this.getPurchaseDto());
+      },
+
+
+
+
+      getPurchaseDto(){
+
+        axios.get(`/api/current/purchase/${this.purchaseId}`)
+        .then(response => {
+          
+          this.purchaseDto = response.data;
+          console.log(this.purchaseDto);
+          this.purchaseTickets = this.purchaseDto.tickets;
+          this.purchaseProductCombos = this.purchaseDto.productCombos;
+          this.purchaseProductItems = this.purchaseDto.purchaseItems;
+          this.totalPrice = this.purchaseDto.purchase_price;
+      })
+
+    },
+
+
+
 
       pay(){
 

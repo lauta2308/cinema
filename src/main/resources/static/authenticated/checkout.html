@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../web/styles/normalize.css">
     <link rel="stylesheet" href="../web/styles/styles.css">
-    <link rel="stylesheet" href="./css/postnet.css">
+
     <link rel="icon" href="../web/media/cropped-logo-transparent.png" type="image/png">
 </head>
 <body>
@@ -64,16 +64,96 @@
 
         <main>
             <section class="container">
-
+              <h2>Last Step</h2>
               <div class="checkout-payment-container">
+                
                 <div class="payment-container-left">
-                  <h2>Last step</h2>
-                  <img src="../web/media/original-logo.png" alt="cineverse-logo" class="checkout-logo">
+                  <h3>Your Purchase</h3>
+
+                  <div class="purchase-tickets-container">
+                    <h4>Your Tickets</h4>
+                    <table class="purchase-table">
+                       
+                          <thead>
+                            <tr>
+                              <td>Seat Place</td>
+                              <td>Age</td>
+                             
+                            </tr>
+                           
+                          </thead>
+                        
+                          <tbody>
+                            <tr v-for="ticket in setCreateTicketDto">
+                              <td>{{ticket.seatPlace}}</td>
+                              <td>{{ticket.customerAge}}</td>
+                             
+
+                            </tr>
+                          </tbody>
+
+                      
+
+                       
+                   
+                        
+                    </table>
+
+
+                    <h4>Your Product Combos</h4>
+                 
+                    <table class="purchase-table">
+                       
+                      <thead>
+                        <tr>
+                          <td>Combo Type</td>
+                          <td>Combo Price</td>
+                         
+                        </tr>
+                       
+                      </thead>
+                    
+                      <tbody>
+                        <tr v-for="combo in selectedProductCombos">
+                          <td>{{combo.productComboType}}</td>
+                          <td>$ {{combo.comboFinalPrice}}</td>
+                         
+
+                        </tr>
+                      </tbody>
+                </table>
+                <h4>Your Products</h4>
+                 
+                    <table class="purchase-table">
+                       
+                      <thead>
+                        <tr>
+                          <td>Product Name</td>
+                          <td>Product Quantity</td>
+                          <td>Product Single price</td>
+                         
+                        </tr>
+                       
+                      </thead>
+                    
+                      <tbody>
+                        <tr v-for="product in selectedProducts">
+                          <td>{{product.productName}}</td>
+                          <td>{{product.productQuantity}}</td>
+                          <td>$ {{product.productPrice}}</td>
+                         
+
+                        </tr>
+                      </tbody>
+                </table>
+
+                  </div>
+                  
                 </div>
 
                 <div class="payment-container-right">
 
-                  <h2>Complete the form below to finish your purchase!</h2>
+                  <h3>Complete the form below to finish your purchase!</h3>
 
                   <form class="payment-form">
                     <label>User name: <input type="text" placeholder="Username" v-model="username"></label>
@@ -89,6 +169,7 @@
               </div>
 
 
+              <button @click="savePurchase" class="site-action-btn color-green">Confirm and proceed to checkout</button>
             </section>
 
         

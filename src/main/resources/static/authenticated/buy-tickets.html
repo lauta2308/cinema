@@ -116,15 +116,18 @@
      
            
           </table>
+          
+          <div v-if="totalPages > 1" class="pagination">
+            <button :disabled="currentPage === 1" @click="prevPage" class="site-action-btn color-orange">Previous</button>
+            <span>{{ currentPage }}</span>
+            <button :disabled="currentPage === totalPages" @click="nextPage" class="site-action-btn color-orange">Next</button>
+          </div>
+
           <p class="center color-red" v-if="ageError">
             {{ageError}}
                
              </p>
-          <div class="pagination">
-            <button :disabled="currentPage === 1" @click="prevPage" class="site-info-btn">Previous</button>
-            <span>{{ currentPage }}</span>
-            <button :disabled="currentPage === totalPages" @click="nextPage" class="site-info-btn">Next</button>
-          </div>
+
           <button v-if="selectedSeats.length > 0" class="site-action-btn color-green" @click="createTickets">Save and continue</button>
         </div>
        

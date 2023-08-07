@@ -41,6 +41,14 @@ public class Ticket {
     public Ticket() {
     }
 
+    public Ticket(Long seatId, Integer seatPlace, CustomerAge customerAge, Show show) {
+        this.seatId = seatId;
+        this.seatPlace = seatPlace;
+        this.customerAge = customerAge;
+        this.show = show;
+        this.ticketPrice = show.getStandardPrice();
+    }
+
     public Ticket(Long seatId, Integer seatPlace, CustomerAge customerAge, Purchase purchase, Show show) {
         this.seatId = seatId;
         this.seatPlace = seatPlace;

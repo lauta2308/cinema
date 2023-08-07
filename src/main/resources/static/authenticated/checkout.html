@@ -63,30 +63,32 @@
         </header>
 
         <main>
-            <section class="container">
-              <h2>Last Step</h2>
-              <div class="checkout-payment-container">
+            <section v-if="readyToPay === false" class="purchase-resume-section container">
+              <h2>Your Purchase</h2>
+           
                 
-                <div class="payment-container-left">
-                  <h3>Your Purchase</h3>
+                <div class="purchase-resume-container">
+                  
 
-                  <div class="purchase-tickets-container">
-                    <h4>Your Tickets</h4>
+                  <div class="purchase-category-container">
+                    <h3>Tickets</h3>
                     <table class="purchase-table">
                        
                           <thead>
                             <tr>
                               <td>Seat Place</td>
                               <td>Age</td>
+                              <td>Price</td>
                              
                             </tr>
                            
                           </thead>
                         
                           <tbody>
-                            <tr v-for="ticket in setCreateTicketDto">
+                            <tr v-for="ticket in requestTicketsDto">
                               <td>{{ticket.seatPlace}}</td>
                               <td>{{ticket.customerAge}}</td>
+                              <td>$ {{ticket.ticketPrice}}</td>
                              
 
                             </tr>
@@ -99,77 +101,118 @@
                         
                     </table>
 
+                    </div>
 
-                    <h4>Your Product Combos</h4>
+                    <div v-if="selectedProductCombos.length > 0" class="purchase-category-container">
+                      <h3>Product Combos</h3>
                  
-                    <table class="purchase-table">
-                       
-                      <thead>
-                        <tr>
-                          <td>Combo Type</td>
-                          <td>Combo Price</td>
+                      <table class="purchase-table">
                          
-                        </tr>
-                       
-                      </thead>
-                    
-                      <tbody>
-                        <tr v-for="combo in selectedProductCombos">
-                          <td>{{combo.productComboType}}</td>
-                          <td>$ {{combo.comboFinalPrice}}</td>
+                        <thead>
+                          <tr>
+                            <td>Combo Type</td>
+                            <td>Combo Price</td>
+                           
+                          </tr>
                          
+                        </thead>
+                      
+                        <tbody>
+                          <tr v-for="combo in selectedProductCombos">
+                            <td>{{combo.productComboType}}</td>
+                            <td>$ {{combo.comboFinalPrice}}</td>
+                           
+  
+                          </tr>
 
-                        </tr>
-                      </tbody>
-                </table>
-                <h4>Your Products</h4>
+                      
+                        </tbody>
+
+                        
+                        </table>
+                    </div>
+
+                    <div v-else class="purchase-category-container">
+                      <h3>Product Combos</h3>
+
+                      <div class="purchase-table">
+                        <p class="center">No Product Combos Selected</p>
+                      </div>
+                
+                      </div>
+                  
+                    <div v-if="selectedProducts.length > 0" class="purchase-category-container">
+                      <h3>Products</h3>
                  
-                    <table class="purchase-table">
-                       
-                      <thead>
-                        <tr>
-                          <td>Product Name</td>
-                          <td>Product Quantity</td>
-                          <td>Product Single price</td>
+                      <table class="purchase-table">
                          
-                        </tr>
-                       
-                      </thead>
-                    
-                      <tbody>
-                        <tr v-for="product in selectedProducts">
-                          <td>{{product.productName}}</td>
-                          <td>{{product.productQuantity}}</td>
-                          <td>$ {{product.productPrice}}</td>
+                        <thead>
+                          <tr>
+                            <td>Name</td>
+                            <td>Quantity</td>
+                            <td>Single price</td>
+                           
+                          </tr>
                          
+                        </thead>
+                      
+                        <tbody>
+                          <tr v-for="product in selectedProducts">
+                            <td>{{product.productName}}</td>
+                            <td>{{product.productQuantity}}</td>
+                            <td>$ {{product.productPrice}}</td>
+                           
+  
+                          </tr>
+                        </tbody>
+                  </table>
+                    </div>
 
-                        </tr>
-                      </tbody>
-                </table>
+                    <div v-else class="purchase-category-container">
+                      <h3>Products</h3>
+
+                      <div class="purchase-table">
+                        <p class="center">No Products Selected</p>
+                      </div>
+           
+                      </div>
+                    
+                   
 
                   </div>
                   
-                </div>
+                  <div v-if="savePurchaseError.length > 0" class="purchase-resume-footer">
+                    <p class="center color-red padding" v-if="savePurchaseError.length > 0">
+                      {{savePurchaseError}}
+                         
+                       </p>
 
-                <div class="payment-container-right">
+                    <a href="./buy-tickets.html" class="site-action-btn color-green">Back to tickets</a>   
+                  </div>
+              
+          
+                  <div v-else class="purchase-resume-footer">
+                    <button @click="savePurchase" class="site-action-btn color-green">Confirm and Proceed to checkout</button>
+                  </div>
+                
+              
+            </section>
 
-                  <h3>Complete the form below to finish your purchase!</h3>
-
-                  <form class="payment-form">
-                    <label>User name: <input type="text" placeholder="Username" v-model="username"></label>
-                    <label>Card number: <input type="text" placeholder="0000 0000 0000 0000" v-model="cardNumber"></label>
-                    <label>Valid Upto: <input type="text" placeholder="MM/YYYY" v-model="cardUpto"></label>
-                    <label>CVV: <input type="text" placeholder="CVV" v-model="cardCvv"></label>
-
-                    <button class="site-action-btn color-green" @click.prevent="pay">Pay $ {{totalPrice}}</button>
-
-                  </form>
-                </div>
-
-              </div>
+            <section v-else class="payment-container container">
 
 
-              <button @click="savePurchase" class="site-action-btn color-green">Confirm and proceed to checkout</button>
+                <h2>Fill out the form below to finish your purchase!</h2>
+
+                <form class="payment-form container">
+                  <label>User name: <input type="text" placeholder="Username" v-model="username"></label>
+                  <label>Card number: <input type="text" placeholder="0000 0000 0000 0000" v-model="cardNumber"></label>
+                  <label>Valid Upto: <input type="text" placeholder="MM/YYYY" v-model="cardUpto"></label>
+                  <label>CVV: <input type="text" placeholder="CVV" v-model="cardCvv"></label>
+
+                  <button class="site-action-btn color-green" @click.prevent="pay">Pay $ {{totalPrice}}</button>
+
+                </form>
+        
             </section>
 
         

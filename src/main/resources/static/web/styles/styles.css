@@ -17,7 +17,8 @@ html {
 
 body{
     font-family: 'Roboto', sans-serif;
-    background-color: black;
+    background: rgb(0,0,0);
+    background: linear-gradient(190deg, rgba(0,0,0,1) 0%, rgba(64,0,0,1) 50%, rgba(0,0,0,1) 100%);
     font-size: 1.6rem;
     color: white;
    
@@ -139,20 +140,30 @@ input {
   text-align: center;
 }
 
+.padding {
+  padding: 1rem;
+}
+
 
 .site-info-btn {
-  color: red;
+  background-color: #000000;
+  color: white;
+  padding: 1rem;
   text-transform: uppercase;
-  background-color: transparent;
-  border: none;
+
+  border: 1px solid red;
+  border-radius: 2rem;
+  border-style: dashed;
+
 }
 
 .site-action-btn {
   font-weight: bold;
   text-transform: uppercase;
-  color: #fff;
+  background-color: #400000;
+  color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 1rem;
   cursor: pointer;
   font-size: 14px;
 }
@@ -163,6 +174,10 @@ input {
 
 .color-green {
   background-color: green;
+}
+
+.color-orange {
+  background-color: orange;
 }
 
 
@@ -994,6 +1009,19 @@ fieldset {
   color: #fff;
 }
 
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pagination button:disabled {
+  background-color: rgb(255, 185, 56);
+  cursor: unset;
+}
+
 
 
 /* Estilos para la tabla de asientos seleccionados */
@@ -1132,23 +1160,90 @@ fieldset {
 
 /* CHECKOUT */
 
-.checkout-payment-container {
+.purchase-resume-section,
+.purchase-resume-container {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
   align-items: center;
+
 }
 
 
 
 @media(min-width: 768px){
-  .checkout-payment-container {
-    flex-direction: row;
-    align-items: baseline;
-  }
+  .purchase-resume-container {
 
+    flex-direction: row;
+
+  }
+}
+
+
+.purchase-category-container {
+  width: 100%;
+  height: 100%;
 
 }
 
+
+@media(min-width: 768px){
+  .purchase-category-container {
+    flex-basis: 33.3%;
+   
+
+  }
+}
+
+
+.purchase-category-container h3 {
+  text-transform: unset;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.purchase-table {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+
+  
+}
+
+@media(min-width: 768px){
+  .purchase-table {
+    min-height: 300px;
+  }
+}
+
+.purchase-table  thead tr,
+.purchase-table  tbody tr {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+ 
+}
+
+.purchase-table tr td {
+  flex-basis: 33.3%;
+  text-align: center;
+
+}
+
+
+.purchase-resume-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
 
 .checkout-payment-container h3 {
   text-transform: unset;
@@ -1156,11 +1251,19 @@ fieldset {
   text-align: center;
 }
 
-.payment-form {
+.payment-container h2 {
+  text-transform: none;
+  font-size: 2rem;
+  text-align: center;
 
+}
+
+.payment-form {
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   gap: 2rem;
   border: 1px solid orange;
 }

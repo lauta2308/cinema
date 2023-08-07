@@ -1,6 +1,8 @@
 package com.mindhub.cinema.utils.apiUtils;
 
+import com.mindhub.cinema.dtos.models_dtos.TicketDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateTicketDto;
+import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.models.Ticket;
 import com.mindhub.cinema.repositories.TicketRepository;
 import com.mindhub.cinema.utils.enums.TicketStatus;
@@ -58,6 +60,29 @@ public class TicketUtils {
 
         return createTicketDtoSet.stream().findFirst().get();
     }
+
+
+    public static Set<TicketDto> ticketRequest(Set<CreateTicketDto> createTicketDtoSet, Show show){
+
+        Set<TicketDto> ticketDtoSet = new HashSet<>();
+        Ticket ticket;
+        for (CreateTicketDto createTicketDto : createTicketDtoSet){
+            ticket = new Ticket(createTicketDto.getId(), createTicketDto.getSeatPlace(), createTicketDto.getCustomerAge(), show);
+            ticket.updateTicketPriceByAge();
+            ticketDtoSet.add(TicketUtils.ticketToDto(ticket));
+
+        }
+
+        return ticketDtoSet;
+
+
+    }
+
+    public static TicketDto ticketToDto(Ticket ticket){
+        return new TicketDto(ticket);
+    }
+
+
 
 
 }

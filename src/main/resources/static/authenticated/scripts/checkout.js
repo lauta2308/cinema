@@ -14,6 +14,9 @@ createApp({
           selectedProductCombos: [],
           selectedProducts: [],
           setCreateTicketDto: [],
+          savePurchaseError: "",
+          requestTicketsDto: [],
+          readyToPay: false,
           purchaseProductCombos: [],
           purchaseProductItems: [],
           purchaseTickets: [],
@@ -67,16 +70,25 @@ this.getStorageTickets();
 
       getStorageProducts(){
         this.selectedProducts = JSON.parse(sessionStorage.getItem('selectedProducts'))
+        this.requestTickets();
         
       },
 
 
 
-      savePurchase(){
-        this.buyTickets()
+
+
+      requestTickets(){
+        axios.post("/api/current/ticket_request", this.setCreateTicketDto)
+        .then(response => {
+          this.requestTicketsDto = response.data;
+        })
       },
   
 
+      savePurchase(){
+        this.buyTickets()
+      },
 
       buyTickets(){
         console.log(this.setCreateTicketDto);
@@ -87,6 +99,10 @@ this.getStorageTickets();
           sessionStorage.setItem('purchaseId', this.purchaseId);
     
           this.buyProductCombos();
+        })
+        .catch(Error => {
+          console.log(Error);
+          this.savePurchaseError = Error.response.data;
         })
     
      
@@ -105,6 +121,9 @@ this.getStorageTickets();
           this.buyProducts();
       
         })
+        .catch(Error => {
+          this.savePurchaseError = Error.message;
+        })
         
       },
 
@@ -113,7 +132,11 @@ this.getStorageTickets();
             params: {
                 purchaseId: this.purchaseId
             }
-        }).then(response => this.getPurchaseDto());
+        }).then(response => this.getPurchaseDto())
+
+        .catch(Error => {
+          this.savePurchaseError = Error.message;
+        })
       },
 
 
@@ -130,6 +153,8 @@ this.getStorageTickets();
           this.purchaseProductCombos = this.purchaseDto.productCombos;
           this.purchaseProductItems = this.purchaseDto.purchaseItems;
           this.totalPrice = this.purchaseDto.purchase_price;
+          this.readyToPay = true;
+          
       })
 
     },

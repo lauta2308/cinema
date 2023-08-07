@@ -1,6 +1,7 @@
 package com.mindhub.cinema.controllers;
 
 
+import com.mindhub.cinema.dtos.models_dtos.TicketDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateTicketDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.models.Show;
@@ -33,6 +34,30 @@ public class TicketController {
 
     @Autowired
     SeatServiceInterface seatService;
+
+
+    // Crea los tickets para mostrar el precio pero no los guarda.
+    @PostMapping("/api/current/ticket_request")
+    public ResponseEntity<Object> ticket_request(Authentication authentication, @RequestBody Set<CreateTicketDto> createTicketDtoSet){
+
+        CreateTicketDto firstTicket = TicketUtils.getFirstTicket(createTicketDtoSet);
+
+
+
+        // Verifico que el show existe
+
+        if(!showService.existsById(firstTicket.getShowId())) {
+
+            return new ResponseEntity<>("Show not found", HttpStatus.CONFLICT);
+        }
+
+        // Busco el show seleccionado
+
+        Show showSelected = showService.getShow(firstTicket.getShowId());
+
+        return new ResponseEntity<>(TicketUtils.ticketRequest(createTicketDtoSet, showSelected), HttpStatus.OK);
+
+    }
 
 
     // Create ticket

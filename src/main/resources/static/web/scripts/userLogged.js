@@ -1,5 +1,10 @@
 
+
+
+
 const userLogged = {
+
+  
     data() {
       return {
 
@@ -24,6 +29,7 @@ const userLogged = {
 
       isAuthenticated(){
 
+       
         axios.get("/api/isAuthenticated")
         .then(response => {
             

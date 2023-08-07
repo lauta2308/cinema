@@ -2,7 +2,7 @@ package com.mindhub.cinema.utils.enums;
 
 public enum TicketStatus {
 
+    CANCELLED,
     TAKEN,
-    NOT_TAKEN,
-    CANCELLED
+    USED
 }

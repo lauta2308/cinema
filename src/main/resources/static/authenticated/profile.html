@@ -14,55 +14,135 @@
 <body>
     <div id="app">
 
-        <header>
+      <header>
 
-            <div class="top-bar container">
-              <a href="../index.html" >
+        <div class="top-bar container">
+            <a href="#">
         
-                  <img src="../web/media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
-              </a>
-                <nav class="menu">
-         
-                  <ul>
-                    <li><a href="../index.html" class="menu-item">Home</a></li>
 
-                    <li><a href="#" class="menu-item">Contact</a></li>
+              <img src="../web/media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
+            </a>
+            <nav class="menu">
 
-                    <li v-if="isAuthenticated === 'false' "><a href="./login.html" class="menu-item">Login</a></li>
+              <ul>
+                <li><a href="#" class="menu-item">Home</a></li>
+                <li><a href="#movies" class="menu-item">Movies</a></li>
+                <li><a href="#showRooms" class="menu-item">ShowRooms</a></li>
+                <li><a href="#" class="menu-item">Contact</a></li>
+
+              </ul>
+            </nav>
+
+            <nav class="menu">
+              <ul>
               
-                    <li v-else><a href="#" @click="logout" class="menu-item">Logout</a></li>
-
+                <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
+                <li v-else-if="clientRole === 'CLIENT'" class="menu-item has-submenu" @mouseleave="toggleSubmenu">
+                  Welcome, {{clientName}}
+                  <span class="arrow" @mouseover="toggleSubmenu"  >&#9662;</span>
+                  <ul class="submenu" v-if="showSubmenu === true">
+                    <li><a href="./authenticated/profile.html">Profile</a></li>
+                    <li><a href="./authenticated/purchases.html">Purchases</a></li>
+                    <li><a href="./authenticated/reviews.html">Reviews</a></li>
+            
                   </ul>
-                </nav>
-                <div class="menu-icon" @click="toggleMenu">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M4 6l16 0" />
-                        <path d="M4 12l16 0" />
-                        <path d="M4 18l16 0" />
-                      </svg>
-                </div>
-              </div>
-              <div class="responsive-menu" :class="{ active: isMenuOpen }">
-    
-                <ul>
-                  <li><a href="../index.html" class="menu-item">Home</a></li>
+                </li>
+                <li v-else-if="clientRole === 'ADMIN'"><a href="#" class="menu-item">Admin panel</a></li>
+                <li v-else><a href="#" class="menu-item">Tickets</a></li>
+                <li v-if="clientRole !== '' ">
+                  <a href="#" @click="logout" class="menu-item">Logout</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="menu-icon" @click="toggleMenu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M4 6l16 0" />
+                    <path d="M4 12l16 0" />
+                    <path d="M4 18l16 0" />
+                  </svg>
+            </div>
+          </div>
+          <div class="responsive-menu" :class="{ active: isMenuOpen }">
+     
+            <ul>
+              <li><a href="#" class="menu-item">Home</a></li>
+              <li><a href="#movies" class="menu-item">Movies</a></li>
+              <li><a href="#showRooms"  class="menu-item">ShowRooms</a></li>
+              <li><a href="#" class="menu-item">Contact</a></li>
+            </ul>
 
-                  <li><a href="#" class="menu-item">Contact</a></li>
-        
-                  <li v-if="isAuthenticated === 'false' "><a href="./login.html" class="menu-item">Login</a></li>
-              
-                  <li v-else><a href="#" @click="logout" class="menu-item">Logout</a></li>
 
-               
-                </ul>
-              </div>
-        
+            <ul>
+              <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
+              <li v-else-if="clientRole === 'CLIENT'" class="menu-item has-submenu" @mouseleave="toggleSubmenu">
+                Welcome, {{clientName}}
+                <span class="arrow" @click="toggleSubmenu"  >&#9662;</span>
+                <ul class="submenu" v-if="showSubmenu === true">
+                  <li><a href="./authenticated/profile.html">Profile</a></li>
+                  <li><a href="./authenticated/purchases.html">Purchases</a></li>
+                  <li><a href="./authenticated/reviews.html">Reviews</a></li>
           
-        </header>
+                </ul>
+              </li>
+              <li v-else-if="clientRole === 'ADMIN'"><a href="#" class="menu-item">Admin panel</a></li>
+              <li v-else><a href="#" class="menu-item">Tickets</a></li>
+              <li v-if="clientRole !== '' ">
+                <a href="#" @click="logout" class="menu-item">Logout</a>
+              </li>
+            </ul>
+          </div>
 
-        <main class="products-main container">
-          <h1>Hey, {{clientName}}!</h1>
+    </header>
+
+        <main class="container">
+         
+          <h1>Profile</h1>
+
+
+          <div class="profile-forms-container">
+            <form>
+
+              <fieldset>
+                <legend>Change password</legend>
+             
+              <label>
+                
+                <input type="password" placeholder="Actual password">
+              </label>
+  
+              <label>
+              
+                <input type="password" placeholder="New password">
+              </label>
+  
+              <button class="site-action-btn color-green">Save</button>
+            </fieldset>
+
+            
+            </form>
+  
+            <form>
+  
+              <fieldset>
+                <legend>Change Email</legend>
+             
+              <label>
+          
+                <input type="email" placeholder="Actual Email">
+              </label>
+  
+              <label>
+       
+                <input type="email" placeholder="New Email">
+              </label>
+  
+              <button class="site-action-btn color-green">Save</button>
+            </fieldset>
+            </form>
+          </div>
+       
+
 
           
         </main>

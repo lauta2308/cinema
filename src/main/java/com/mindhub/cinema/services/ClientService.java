@@ -8,7 +8,10 @@ import com.mindhub.cinema.repositories.ClientRepository;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,8 @@ import java.time.LocalDate;
 
 @Service
 public class ClientService implements ClientServiceInterface {
+
+
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -42,6 +47,21 @@ public class ClientService implements ClientServiceInterface {
     public boolean existsByEmail(String email) {
         return clientRepository.existsByEmail(email);
     }
+
+    @Override
+    public void changePassword(Client client, String newPassword) {
+        client.setPassword(passwordEncoder.encode(newPassword));
+        clientRepository.save(client);
+    }
+
+    @Override
+    public void changeEmail(Client client, String newEmail) {
+        client.setEmail(newEmail);
+        clientRepository.save(client);
+
+    }
+
+
 
     @Override
     public void saveClient(RegisterClientDto registerClientDto) {

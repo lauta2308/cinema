@@ -18,4 +18,9 @@ public interface ClientServiceInterface {
 
 
     boolean existsByEmail(String email);
+
+    void changePassword(Client client, String newPassword);
+
+    void changeEmail(Client client, String newEmail);
+
 }

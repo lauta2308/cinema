@@ -56,13 +56,7 @@ public class ValidationUtils {
     }
 
 
-    // true if client younger than 15
 
-    public static boolean clientYoungerThan15(String date){
-
-            return  LocalDate.now().getYear() - LocalDate.parse(date).getYear() < 15;
-
-    }
 
 
     public static String checkUserRole(Authentication authentication){
@@ -70,6 +64,11 @@ public class ValidationUtils {
                 .map(GrantedAuthority::getAuthority).findFirst().get();
 
 
+    }
+
+    public static boolean compareStrings(String string1, String string2){
+
+        return string1.equals(string2);
     }
 
 

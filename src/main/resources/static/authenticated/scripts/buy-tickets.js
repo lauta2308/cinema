@@ -72,7 +72,9 @@ createApp({
 
     
 
-  
+      resetAgeError(){
+        this.ageError = "";
+      },
 
         
 

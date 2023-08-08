@@ -2,18 +2,22 @@ package com.mindhub.cinema.controllers;
 
 
 import com.mindhub.cinema.dtos.models_dtos.ClientDto;
+import com.mindhub.cinema.dtos.param_dtos.ChangeEmailDto;
+import com.mindhub.cinema.dtos.param_dtos.ChangePasswordDto;
 import com.mindhub.cinema.dtos.param_dtos.RegisterClientDto;
+import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
 import com.mindhub.cinema.utils.enums.ClientRol;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+
 
 
 @RestController
@@ -27,6 +31,9 @@ public class ClientController {
 
     @Autowired
     ClientServiceInterface clientService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
 
     // Register one client
@@ -85,20 +92,7 @@ public class ClientController {
             return new ResponseEntity<>("The password should be at least 8 characters long and include 1 uppercase, 1 lowercase, 1 number and 1 symbol", HttpStatus.BAD_REQUEST);
         }
 
-/*
-        // Validacion fecha
 
-        if(registerClientDto.getBornDate().isBlank() || registerClientDto.getBornDate() == null){
-            return new ResponseEntity<>("Date is empty", HttpStatus.BAD_REQUEST);
-        }
-
-        // Validar usuario +15 años
-
-
-        if(ValidationUtils.clientYoungerThan15(registerClientDto.getBornDate())){
-            return new ResponseEntity<>("User should be at least 15 years old", HttpStatus.BAD_REQUEST);
-        }
-*/
 
 
 
@@ -137,6 +131,68 @@ public class ClientController {
         } else {
             return false;
         }
+    }
+
+
+    @PatchMapping("/api/current/password")
+    public ResponseEntity<Object> changePassword(Authentication authentication, @RequestBody ChangePasswordDto changePasswordDto){
+
+        if(ValidationUtils.checkInvalidPassword(changePasswordDto.getNewPassword())){
+            return new ResponseEntity<>("New Password should contain at least 1 Uppercase, 1 LowerCase, 1 Number and 1 Symbol", HttpStatus.CONFLICT);
+        }
+
+        Client client = clientService.get_full_client(authentication);
+
+        String currentPw = changePasswordDto.getCurrentPassword();
+        String clientPw = client.getPassword();
+
+        if(passwordEncoder.matches(currentPw, clientPw)){
+            return new ResponseEntity<>("Current passwords match", HttpStatus.OK);
+        }
+
+
+
+
+
+
+
+
+
+            clientService.changePassword(client, changePasswordDto.getNewPassword());
+            return new ResponseEntity<>("Password changed", HttpStatus.OK);
+
+
+
+
+    }
+
+
+
+    @PatchMapping("/api/current/email")
+    public ResponseEntity<Object> changeEmail(Authentication authentication, @RequestBody ChangeEmailDto changeEmailDto){
+
+        Client client = clientService.get_full_client(authentication);
+
+        if(!ValidationUtils.compareStrings(client.getEmail(), changeEmailDto.getCurrentEmail())){
+            return new ResponseEntity<>("Current email do not match", HttpStatus.CONFLICT);
+        }
+
+        if(ValidationUtils.compareStrings(client.getEmail(), changeEmailDto.getNewEmail())){
+            return new ResponseEntity<>("Current and new email should be different", HttpStatus.CONFLICT);
+        }
+
+        if(!ValidationUtils.checkValidEmail(changeEmailDto.getNewEmail()).matches()){
+            return new ResponseEntity<>("Email is not valid. Req example@domain.com", HttpStatus.BAD_REQUEST);
+
+        }
+
+        else {
+            clientService.changeEmail(client, changeEmailDto.getNewEmail());
+
+
+            return new ResponseEntity<>("Email updated", HttpStatus.OK);
+        }
+
     }
 
 

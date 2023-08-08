@@ -108,17 +108,26 @@
              
               <label>
                 
-                <input type="password" placeholder="Actual password">
+                <input type="password" placeholder="Current Password" v-model="currentPassword" @click="resetErrorMessage" required>
               </label>
   
               <label>
               
-                <input type="password" placeholder="New password">
+                <input type="password" placeholder="New Password" v-model="newPassword" @click="resetErrorMessage" required>
               </label>
   
-              <button class="site-action-btn color-green">Save</button>
+              <button class="site-action-btn color-green" @click.prevent="validatePassword">Save</button>
             </fieldset>
 
+            <div v-if="errorMessage.length > 0" class="error-container">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M10 10l4 4m0 -4l-4 4" />
+                <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+              </svg>
+              <p class="error-message">{{errorMessage}}</p>
+            </div>
+       
             
             </form>
   
@@ -129,16 +138,25 @@
              
               <label>
           
-                <input type="email" placeholder="Actual Email">
+                <input type="email" placeholder="Current Email" v-model="currentEmail" @click="resetErrorMessage" required>
               </label>
   
               <label>
        
-                <input type="email" placeholder="New Email">
+                <input type="email" placeholder="New Email" v-model="newEmail" @click="resetErrorMessage" required>
               </label>
   
-              <button class="site-action-btn color-green">Save</button>
+              <button class="site-action-btn color-green" @click.prevent="validateEmail">Save</button>
             </fieldset>
+
+            <div v-if="errorMessage.length > 0" class="error-container">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M10 10l4 4m0 -4l-4 4" />
+                <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+              </svg>
+              <p class="error-message">{{errorMessage}}</p>
+            </div>
             </form>
           </div>
        

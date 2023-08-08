@@ -2,12 +2,13 @@ package com.mindhub.cinema.utils.apiUtils;
 
 import com.mindhub.cinema.dtos.models_dtos.MovieDto;
 import com.mindhub.cinema.models.Movie;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class MovieUtils {
-
 
 
     public static List<MovieDto> movieSetToDto(Set<Movie> movies) {

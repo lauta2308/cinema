@@ -201,6 +201,27 @@ input {
   cursor: pointer;
 }
 
+.error-container  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #a33a3a;
+  background-color: rgb(255, 138, 138);
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.error-message {
+ 
+  font-weight: bold;
+  text-align: center;
+  color: red;
+  
+
+}
+
+
 /* MENU */
 
 /* Estilos para la barra superior */

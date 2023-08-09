@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -21,8 +22,8 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
 
-
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return new BCryptPasswordEncoder();
+        //return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
     }
 
@@ -38,16 +39,16 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
             if (client != null) {
                 if (client.getClientRol().toString().contains("ADMIN")){
 
-                    return new User(client.getEmail(), passwordEncoder().encode(client.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList ("ADMIN"));
+                    return new User(client.getEmail(), client.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList ("ADMIN"));
 
                 } else if (client.getClientRol().toString().contains("EMPLOYEE")) {
 
-                    return new User(client.getEmail(), passwordEncoder().encode(client.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList ("EMPLOYEE"));
+                    return new User(client.getEmail(), client.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList ("EMPLOYEE"));
 
                 } else {
 
 
-                    return new User(client.getEmail(), passwordEncoder().encode(client.getPassword()),AuthorityUtils.createAuthorityList("CLIENT"));}
+                    return new User(client.getEmail(), client.getPassword(),AuthorityUtils.createAuthorityList("CLIENT"));}
 
             } else {
 

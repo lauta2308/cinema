@@ -15,7 +15,9 @@ createApp({
           newPassword: "",
           currentEmail: "",
           newEmail: "",
-          errorMessage: "",
+          emailError: "",
+          passwordError: "",
+          
            
 
             
@@ -45,7 +47,9 @@ createApp({
     methods: {
 
           resetErrorMessage(){
-            this.errorMessage = "";
+            this.emailError = "",
+            this.passwordError = "";
+           
           },
 
           validEmail(){
@@ -58,13 +62,13 @@ createApp({
         validatePassword(){
 
           if(this.currentPassword === ""){
-            this.errorMessage = "Required current password is empty";
+            this.passwordError = "Required current password is empty";
           } else if(this.newPassword === ""){
-            this.errorMessage = "Required new password is empty"
+            this.passwordError = "Required new password is empty"
           } else if(this.currentPassword === this.newPassword){
-            this.errorMessage = "Current and new password are same";
+            this.passwordError = "Current and new password are same";
           } else if(!this.validPassword()){
-            this.errorMessage = "New Password should contain at least 1 UpperCase, 1 LowerCase, 1 number and 1 Symbol";
+            this.passwordError = "New Password should contain at least 1 UpperCase, 1 LowerCase, 1 number and 1 Symbol";
           } else {
               this.updatePassword();
           }
@@ -88,19 +92,22 @@ createApp({
         }
 
         axios.patch("/api/current/password", changePasswordDto)
-        .then(response => window.location.reload(true))
-        .catch((Error) => this.errorMessage = Error.response.data)
+        .then(response => {
+          
+          console.log(response.data)
+        })
+        .catch((Error) => this.passwordError = Error.response.data)
       },
 
       validateEmail(){
         if(this.currentEmail === ""){
-          this.errorMessage = "Required current email is empty";
+          this.emailError = "Required current email is empty";
         } else if(this.newEmail === ""){
-          this.errorMessage = "Required new email is empty"
+          this.emailError = "Required new email is empty"
         } else if(this.currentEmail === this.newEmail){
-          this.errorMessage = "Current and new email are same";
+          this.emailError = "Current and new email are same";
         } else if(!this.validEmail()){
-          this.errorMessage = "Email should be example@test.com";
+          this.emailError = "Email should be example@test.com";
         } else {
             this.updateEmail();
         }

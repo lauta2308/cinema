@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -141,26 +142,22 @@ public class ClientController {
             return new ResponseEntity<>("New Password should contain at least 1 Uppercase, 1 LowerCase, 1 Number and 1 Symbol", HttpStatus.CONFLICT);
         }
 
+
+
         Client client = clientService.get_full_client(authentication);
 
-        String currentPw = changePasswordDto.getCurrentPassword();
-        String clientPw = client.getPassword();
 
-        if(passwordEncoder.matches(currentPw, clientPw)){
-            return new ResponseEntity<>("Current passwords match", HttpStatus.OK);
+        if(!passwordEncoder.matches(changePasswordDto.getCurrentPassword(), client.getPassword())) {
+            return new ResponseEntity<>("Current passwords do not match", HttpStatus.OK);
         }
 
-
-
-
-
-
-
+        if(passwordEncoder.matches(changePasswordDto.getNewPassword(), client.getPassword())){
+            return new ResponseEntity<>("New password should be different than current", HttpStatus.OK);
+        }
 
 
             clientService.changePassword(client, changePasswordDto.getNewPassword());
             return new ResponseEntity<>("Password changed", HttpStatus.OK);
-
 
 
 

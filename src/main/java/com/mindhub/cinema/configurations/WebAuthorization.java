@@ -23,11 +23,13 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
 
 
+
         http.authorizeRequests()
 
                .antMatchers("/api/admin/**", "/rest/**").hasAuthority("ADMIN")
                 .antMatchers("/api/current/**", "/authenticated/**").fullyAuthenticated()
                 .antMatchers("/api/**").permitAll();
+
 
 
 
@@ -41,6 +43,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
 
                 .loginPage("/api/login");
+
 
 
         http.logout().logoutUrl("/api/logout");

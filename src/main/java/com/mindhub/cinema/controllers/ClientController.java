@@ -148,11 +148,11 @@ public class ClientController {
 
 
         if(!passwordEncoder.matches(changePasswordDto.getCurrentPassword(), client.getPassword())) {
-            return new ResponseEntity<>("Current passwords do not match", HttpStatus.OK);
+            return new ResponseEntity<>("Current passwords do not match", HttpStatus.CONFLICT);
         }
 
         if(passwordEncoder.matches(changePasswordDto.getNewPassword(), client.getPassword())){
-            return new ResponseEntity<>("New password should be different than current", HttpStatus.OK);
+            return new ResponseEntity<>("New password should be different than current", HttpStatus.CONFLICT);
         }
 
 

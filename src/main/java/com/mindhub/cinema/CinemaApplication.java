@@ -41,16 +41,16 @@ public class CinemaApplication {
 
 			// save customers
 
-			Client clientOne = clientRepository.save(new Client("Abdul", "Randall", "abdulrandall@gmail.com", "1234"));
+			Client clientOne = clientRepository.save(new Client("Abdul", "Randall", "abdulrandall@gmail.com", passwordEncoder.encode("1234")));
 
-			Client clientAdmin = clientRepository.save(new Client("admin", "admin", "cineadmin@cinema.com", "admin"));
+			Client clientAdmin = clientRepository.save(new Client("admin", "admin", "cineadmin@cinema.com", passwordEncoder.encode("admin")));
 
 
 			clientAdmin.setClientRol(ClientRol.ADMIN);
 			clientRepository.save(clientAdmin);
 
 
-			Client employee = clientRepository.save(new Client("Nannie", "Espinoza", "nannie_espinoza@gmail.com", "1234"));
+			Client employee = clientRepository.save(new Client("Nannie", "Espinoza", "nannie_espinoza@gmail.com", passwordEncoder.encode("1234")));
 
 			employee.setClientRol(ClientRol.EMPLOYEE);
 			clientRepository.save(employee);

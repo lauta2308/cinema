@@ -124,7 +124,7 @@ createApp({
   
           axios.patch("/api/current/email", changeEmailDto)
           .then(response => window.location.href = "../web/login.html")
-          .catch((Error) => this.errorMessage = Error.response.data)
+          .catch((Error) => this.emailError = Error.response.data)
 
         }
 

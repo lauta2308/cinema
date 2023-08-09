@@ -108,15 +108,15 @@
              
               <label>
                 
-                <input type="password" placeholder="Current Password" v-model="currentPassword" @click="resetErrorMessage" required>
+                <input type="password" placeholder="Current Password" v-model="currentPassword" @click="resetErrorMessage" @mouseenter="resetErrorMessage" required>
               </label>
   
               <label>
               
-                <input type="password" placeholder="New Password" v-model="newPassword" @click="resetErrorMessage" required>
+                <input type="password" placeholder="New Password" v-model="newPassword" @click="resetErrorMessage" @mouseenter="resetErrorMessage" required>
               </label>
   
-              <button class="site-action-btn color-green" @click.prevent="validatePassword">Save</button>
+              <button v-if="currentPassword.length > 0 && newPassword.length > 0" class="site-action-btn color-green" @click.prevent="validatePassword">Save</button>
             </fieldset>
 
             <div v-if="passwordError.length > 0" class="error-container">
@@ -138,15 +138,15 @@
              
               <label>
           
-                <input type="email" placeholder="Current Email" v-model="currentEmail" @click="resetErrorMessage" required>
+                <input type="email" placeholder="Current Email" v-model="currentEmail" @click="resetErrorMessage" @mouseenter="resetErrorMessage" required>
               </label>
   
               <label>
        
-                <input type="email" placeholder="New Email" v-model="newEmail" @click="resetErrorMessage" required>
+                <input type="email" placeholder="New Email" v-model="newEmail" @click="resetErrorMessage" @mouseenter="resetErrorMessage" required>
               </label>
   
-              <button class="site-action-btn color-green" @click.prevent="validateEmail">Save</button>
+              <button v-if="currentEmail.length > 0 && newEmail.length > 0" class="site-action-btn color-green" @click.prevent="validateEmail">Save</button>
             </fieldset>
 
             <div v-if="emailError.length > 0" class="error-container">

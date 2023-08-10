@@ -1,11 +1,13 @@
 package com.mindhub.cinema.dtos.models_dtos;
 
 import com.mindhub.cinema.models.Movie;
+import com.mindhub.cinema.utils.apiUtils.ReviewUtils;
 import com.mindhub.cinema.utils.enums.MovieAvailability;
 import com.mindhub.cinema.utils.enums.MovieGenre;
 import com.mindhub.cinema.utils.enums.MovieRestriction;
 import com.mindhub.cinema.utils.enums.MovieType;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -38,6 +40,8 @@ public class MovieDto {
 
     private MovieAvailability movieAvailability;
 
+    private List<ReviewDto> reviews;
+
 
 
 
@@ -55,6 +59,7 @@ public class MovieDto {
         this.ticketsSold = movie.getTicketsSold();
         this.movieType = movie.getMovieType();
         this.movieAvailability = movie.getMovieAvailability();
+        this.reviews = ReviewUtils.sortReviewSet(movie.getReviews());
 
     }
 
@@ -110,5 +115,7 @@ public class MovieDto {
         return movieAvailability;
     }
 
-
+    public List<ReviewDto> getReviews() {
+        return reviews;
+    }
 }

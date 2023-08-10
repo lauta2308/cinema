@@ -46,6 +46,9 @@ public class Movie {
     private MovieAvailability movieAvailability;
 
     @OneToMany(mappedBy="movie", fetch=FetchType.EAGER)
+    private Set<Review> reviews = new HashSet<>();
+
+    @OneToMany(mappedBy="movie", fetch=FetchType.EAGER)
     private Set<Show> shows = new HashSet<>();
 
 
@@ -166,6 +169,13 @@ public class Movie {
         this.movieAvailability = movieAvailability;
     }
 
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public Set<Show> getShows() {
         return shows;

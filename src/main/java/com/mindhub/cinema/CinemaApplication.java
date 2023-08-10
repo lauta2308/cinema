@@ -375,7 +375,24 @@ public class CinemaApplication {
 
 			productComboRepository.save(comboSingleMega);
 
+
+
+
+			reviewRepository.save(new Review(5, "Very good", clientOne, indianaJones2d));
+
+
+
+
+
+
+
+
+
+
 		};
+
+
+
 
 	}
 

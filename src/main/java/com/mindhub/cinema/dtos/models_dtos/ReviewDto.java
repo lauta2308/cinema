@@ -13,7 +13,7 @@ public class ReviewDto {
 
     private String comment;
 
-    private MovieDto movie;
+
 
     private ReviewStatus reviewStatus;
 
@@ -24,7 +24,7 @@ public class ReviewDto {
         this.id = review.getId();
         this.stars = review.getStars();
         this.comment = review.getComment();
-        this.movie = new MovieDto(review.getMovie());
+
         this.reviewStatus =review.getReviewStatus();
         this.reviewDate = DateUtils.dateTimeFormatter(review.getReviewDate());
     }
@@ -41,9 +41,6 @@ public class ReviewDto {
         return comment;
     }
 
-    public MovieDto getMovie() {
-        return movie;
-    }
 
     public ReviewStatus getReviewStatus() {
         return reviewStatus;

@@ -18,7 +18,7 @@ public class Review {
 
     private String comment;
 
-    private ReviewStatus reviewStatus;
+    private ReviewStatus reviewStatus = ReviewStatus.PENDINGTOSEND;
 
     private LocalDateTime reviewDate = LocalDateTime.now();
 
@@ -36,12 +36,12 @@ public class Review {
     public Review() {
     }
 
-    public Review(Integer stars, String comment, Client client, Movie movie, ReviewStatus reviewStatus) {
+    public Review(Integer stars, String comment, Client client, Movie movie) {
         this.stars = stars;
         this.comment = comment;
         this.client = client;
         this.movie = movie;
-        this.reviewStatus = reviewStatus;
+
     }
 
     public long getId() {

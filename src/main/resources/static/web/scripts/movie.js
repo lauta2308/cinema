@@ -14,6 +14,7 @@ createApp({
 
         movieSelected: "",
         movieShows: [],
+        movieReviews: []
 
       };
     },
@@ -45,6 +46,7 @@ createApp({
                 
                 
                 this.movieSelected = response.data;
+                this.movieReviews = response.data.reviews;
                 this.getMovieShows();
                 
             })

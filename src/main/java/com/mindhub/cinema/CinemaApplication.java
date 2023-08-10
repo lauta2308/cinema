@@ -381,6 +381,12 @@ public class CinemaApplication {
 			reviewRepository.save(new Review(5, "Very good", clientOne, indianaJones2d));
 
 
+			Review review2 = reviewRepository.save(new Review(5, "Very after", clientOne, indianaJones2d));
+
+			review2.setReviewDate(LocalDateTime.now().plusHours(5));
+
+			reviewRepository.save(review2);
+
 
 
 

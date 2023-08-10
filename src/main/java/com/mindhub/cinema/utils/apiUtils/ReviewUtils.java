@@ -14,7 +14,7 @@ public class ReviewUtils {
 
     public static List<ReviewDto> sortReviewSet(Set<Review> reviews){
 
-        List<Review> reviewsList = reviews.stream().sorted(Comparator.comparing(Review::getReviewDate)).collect(Collectors.toList());
+        List<Review> reviewsList = reviews.stream().sorted(Comparator.comparing(Review::getReviewDate).reversed()).collect(Collectors.toList());
 
 
 

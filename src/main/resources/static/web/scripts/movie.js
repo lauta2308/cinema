@@ -5,6 +5,7 @@ import userLogged from './userLogged.js';
 
 
 
+
 createApp({
 
     mixins: [menuBehavior, userLogged],
@@ -71,21 +72,6 @@ createApp({
 
         },
 
-        formatStartDate(date){
-        
-            const [datePart, timePart] = date.split('T');
-
-            const dateFormated = `${datePart} ${timePart}`;
-            return dateFormated;
-        },
-
-        formatEndTime(date){
-
-            const [datePart, timePart] = date.split('T');
-
-            const dateFormated = `${timePart}`;
-            return dateFormated;
-        },
 
         saveShowId(show){
             sessionStorage.setItem('showId', show.id);

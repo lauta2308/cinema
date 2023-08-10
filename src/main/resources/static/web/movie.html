@@ -123,8 +123,8 @@
                         </thead>
                         <tbody v-if="movieShows.length > 0">
                           <tr v-for="show in movieShows" :key="show.id" class="show-table-row">
-                            <td>{{formatStartDate(show.startTime)}}</td>
-                            <td>{{formatEndTime(show.endTime)}}</td>
+                            <td>{{show.startTime}}</td>
+                            <td>{{show.endTime}} hs</td>
                             <td>$ {{ show.standardPrice }}</td>
                             <td>{{ show.cinemaRoom.roomName }}</td>
                  

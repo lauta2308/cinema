@@ -51,6 +51,7 @@ const userLogged = {
                         this.clientName = response.data.name;
                         this.clientPurchases = response.data.purchases;
                         this.clientReviews = response.data.reviews;
+                        console.log(this.clientPurchases[0])
                       
           })
             

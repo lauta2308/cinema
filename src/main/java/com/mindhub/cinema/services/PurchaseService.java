@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -87,7 +89,7 @@ public class PurchaseService implements PurchaseServiceInterface {
 
         for (Purchase purchase : pendingPurchases) {
             currentTimeInMillis = System.currentTimeMillis();
-            purchaseTimeInMillis = purchase.getCreatedAt().getTime();
+            purchaseTimeInMillis = LocalDateTime.parse(purchase.getCreatedAt()).atZone(ZoneOffset.UTC).toInstant().toEpochMilli();
             timeElapsedInMillis = currentTimeInMillis - purchaseTimeInMillis;
 
 

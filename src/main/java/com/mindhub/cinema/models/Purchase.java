@@ -1,10 +1,14 @@
 package com.mindhub.cinema.models;
 
+import com.mindhub.cinema.utils.apiUtils.DateUtils;
 import com.mindhub.cinema.utils.enums.PaymentMethod;
 import com.mindhub.cinema.utils.enums.PurchaseStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +27,7 @@ public class Purchase {
 
     private PaymentMethod paymentMethod = PaymentMethod.NOT_SELECTED;
 
-    private Date createdAt = new Date();
+    private String createdAt = DateUtils.dateTimeFormatter(LocalDateTime.now());
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -77,11 +81,11 @@ public class Purchase {
         this.paymentMethod = paymentMethod;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 

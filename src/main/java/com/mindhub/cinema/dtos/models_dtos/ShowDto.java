@@ -3,6 +3,7 @@ package com.mindhub.cinema.dtos.models_dtos;
 import com.mindhub.cinema.dtos.models_dtos.CinemaRoomDto;
 import com.mindhub.cinema.dtos.models_dtos.MovieDto;
 import com.mindhub.cinema.models.Show;
+import com.mindhub.cinema.utils.apiUtils.DateUtils;
 import com.mindhub.cinema.utils.enums.ShowStatus;
 
 import java.time.LocalDateTime;
@@ -11,9 +12,9 @@ public class ShowDto {
 
     private long id;
 
-    private LocalDateTime startTime;
+    private String startTime;
 
-    private LocalDateTime endTime;
+    private String endTime;
 
     private Double standardPrice;
 
@@ -33,8 +34,8 @@ public class ShowDto {
 
     public ShowDto(Show show) {
         this.id = show.getId();
-        this.startTime = show.getStartTime();
-        this.endTime = show.getEndTime();
+        this.startTime = DateUtils.dateTimeFormatter(show.getStartTime());
+        this.endTime = DateUtils.timeFormatter(show.getEndTime());
         this.standardPrice = show.getStandardPrice();
         this.ticketsSold = show.getTicketsSold();
         this.occupationPercent = show.getOccupationPercent();
@@ -47,11 +48,11 @@ public class ShowDto {
         return id;
     }
 
-    public LocalDateTime getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public LocalDateTime getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 

@@ -60,7 +60,23 @@
               
             </header>
 
-        <main></main>
+        <main>
+
+          <section class="container">
+            <h1>Purchases</h1>
+
+            <div v-for="purchase in clientPurchases" class="purchases-container">
+              <div class="purchase">
+                {{purchase.createdAt}}
+              </div>
+
+            </div>
+          </section>
+
+        </main>
+
+
+
         <footer>
 
             <div class="footer-container container">
@@ -115,5 +131,6 @@
     
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="./scripts/purchases.js"></script>
 </body>
 </html>

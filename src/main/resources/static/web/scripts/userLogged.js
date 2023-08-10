@@ -12,8 +12,9 @@ const userLogged = {
         clientRole: "",
         clientLogged: false,
         clientName: "",
-        clientPurchases: [],
-        clientReviews: []
+        clientReviews: [],
+        clientCompletedPurchases: [],
+        clientUsedPurchases: []
 
       };
     },
@@ -49,9 +50,9 @@ const userLogged = {
                         this.clientRole = response.data.clientRol;
                         this.clientLogged = true;
                         this.clientName = response.data.name;
-                        this.clientPurchases = response.data.purchases;
                         this.clientReviews = response.data.reviews;
-                        console.log(this.clientPurchases[0])
+                        this.getCompletedPurchases();
+                        this.getUsedPurchases();
                       
           })
             
@@ -63,6 +64,25 @@ const userLogged = {
     
         
                 },
+
+
+        getCompletedPurchases(){
+          axios.get("/api/current/get_completed_purchases")
+          .then(response => {
+            
+            console.log(response.data)
+            this.clientCompletedPurchases = response.data
+          
+          
+          })
+          .catch(Error => console.log(Error.response.data));
+        },
+
+        getUsedPurchases(){
+          axios.get("/api/current/get_used_purchases")
+          .then(response => this.clientUsedPurchases = response.data)
+          .catch(Error => console.log(Error.response.data));
+        },
 
              
     },

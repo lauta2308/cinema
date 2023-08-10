@@ -1,5 +1,8 @@
 package com.mindhub.cinema.controllers;
 
+import com.mindhub.cinema.dtos.models_dtos.ClientDto;
+import com.mindhub.cinema.dtos.models_dtos.PurchaseDto;
+import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
@@ -11,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class PurchaseController {
@@ -70,6 +75,27 @@ public class PurchaseController {
 
     }
 
+
+    @GetMapping("/api/current/get_completed_purchases")
+    public List<PurchaseDto> completedPurchases(Authentication authentication){
+
+        Client client = clientService.get_full_client(authentication);
+
+        return PurchaseUtils.filterAndSortCompletedPurchases(client.getPurchases());
+
+
+    }
+
+
+    @GetMapping("/api/current/get_used_purchases")
+    public List<PurchaseDto> usedPurchases(Authentication authentication){
+
+        Client client = clientService.get_full_client(authentication);
+
+        return PurchaseUtils.filterAndSortUsedPurchases(client.getPurchases());
+
+
+    }
 
 
 }

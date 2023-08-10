@@ -154,6 +154,7 @@ public class CinemaApplication {
 			// Creo una compra
 
 			Purchase purchaseOne = purchaseRepository.save(new Purchase());
+			purchaseOne.setPurchaseStatus(PurchaseStatus.COMPLETED);
 
 			// Le asigno un cliente
 

@@ -1,10 +1,13 @@
 package com.mindhub.cinema.dtos.models_dtos;
 
 import com.mindhub.cinema.models.Client;
+import com.mindhub.cinema.utils.apiUtils.PurchaseUtils;
+import com.mindhub.cinema.utils.apiUtils.ReviewUtils;
 import com.mindhub.cinema.utils.enums.ClientLevel;
 import com.mindhub.cinema.utils.enums.ClientRol;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,9 +28,9 @@ public class ClientDto {
 
     private ClientLevel clientLevel;
 
-    private Set<ReviewDto> reviews;
+    private List<ReviewDto> reviews;
 
-    private Set<PurchaseDto> purchases;
+    private List<PurchaseDto> purchases;
 
 
     public ClientDto() {
@@ -41,8 +44,8 @@ public class ClientDto {
         this.email = client.getEmail();
         this.clientRol = client.getClientRol();
         this.clientLevel = client.getClientLevel();
-        this.reviews = client.getReviews().stream().map(review -> new ReviewDto(review)).collect(Collectors.toSet());
-        this.purchases = client.getPurchases().stream().map(purchase -> new PurchaseDto(purchase)).collect(Collectors.toSet());
+        this.reviews = ReviewUtils.sortReviewSet(client.getReviews());
+        this.purchases = PurchaseUtils.sortPurchaseSet(client.getPurchases());
     }
 
 
@@ -73,11 +76,11 @@ public class ClientDto {
         return clientLevel;
     }
 
-    public Set<ReviewDto> getReviews() {
+    public List<ReviewDto> getReviews() {
         return reviews;
     }
 
-    public Set<PurchaseDto> getPurchases() {
+    public List<PurchaseDto> getPurchases() {
         return purchases;
     }
 }

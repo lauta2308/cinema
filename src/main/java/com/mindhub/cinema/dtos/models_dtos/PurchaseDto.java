@@ -2,6 +2,7 @@ package com.mindhub.cinema.dtos.models_dtos;
 
 import com.mindhub.cinema.models.ProductCombo;
 import com.mindhub.cinema.models.Purchase;
+import com.mindhub.cinema.utils.apiUtils.DateUtils;
 import com.mindhub.cinema.utils.enums.PaymentMethod;
 import com.mindhub.cinema.utils.enums.PurchaseStatus;
 
@@ -35,7 +36,7 @@ public class PurchaseDto {
         this.purchase_price = purchase.getPurchase_price();
         this.purchaseStatus = purchase.getPurchaseStatus();
         this.paymentMethod = purchase.getPaymentMethod();
-        this.createdAt = purchase.getCreatedAt();
+        this.createdAt = DateUtils.dateTimeFormatter(purchase.getCreatedAt());
         this.tickets = purchase.getTickets().stream().map(ticket -> new TicketDto(ticket)).collect(Collectors.toSet());
         this.purchaseItems = purchase.getPurchaseItems().stream().map(purchaseItem -> new PurchaseItemDto(purchaseItem)).collect(Collectors.toList());
         this.productCombos = purchase.getProductCombos().stream().map(productCombo -> new ProductComboDto(productCombo)).collect(Collectors.toList());

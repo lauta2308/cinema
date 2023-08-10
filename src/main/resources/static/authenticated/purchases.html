@@ -61,17 +61,82 @@
             </header>
 
         <main>
+          <h1>Purchases</h1>
+          <section v-if="clientCompletedPurchases.length > 0" class="container">
+            <h2>Completed Purchases</h2>
 
-          <section class="container">
-            <h1>Purchases</h1>
+            <div class="purchases-container">
+              <table class="purchase-table">
+                <thead>
+                  <tr>
+                    <td>Date</td>
+                    <td>Movie</td>
+                    <td>Tickets</td>
+                    <td>Product Combos</td>
+                    <td>Products</td>
+                    <td>Price</td>
+                    <td>Status</td>
+                    <td>Change Tickets</td>
+                  </tr>
+                </thead>
 
-            <div v-for="purchase in clientPurchases" class="purchases-container">
-              <div class="purchase">
-                {{purchase.createdAt}}
+                <tbody>
+                  <tr v-for="purchase in clientCompletedPurchases">
+
+                    <td>{{purchase.createdAt}}</td>
+                    <td>{{purchase.tickets[0].show.movie.name}}</td>
+                    <td>{{purchase.tickets.length}}</td>
+                    <td>{{purchase.productCombos.length}}</td>
+                    <td>{{purchase.purchaseItems.length}}</td>
+                    <td>$ {{purchase.purchase_price}}</td>
+                    <td>{{purchase.purchaseStatus}}</td>
+                    <td>Change Tickets</td>
+                   
+                  </tr>
+                </tbody>
+              </table>
               </div>
-
-            </div>
           </section>
+
+
+          <section v-if="clientUsedPurchases.length > 0" class="container">
+            <h2>Past Purchases</h2>
+
+            <div class="purchases-container">
+              <table class="purchase-table">
+                <thead>
+                  <tr>
+                    <td>Date</td>
+                    <td>Movie</td>
+                    <td>Tickets</td>
+                    <td>Product Combos</td>
+                    <td>Products</td>
+                    <td>Price</td>
+                    <td>Status</td>
+                    <td>Reviews</td>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr v-for="purchase in clientUsedPurchases">
+
+                    <td>{{purchase.createdAt}}</td>
+                    <td>{{purchase.tickets[0].show.movie.name}}</td>
+                    <td>{{purchase.tickets.length}}</td>
+                    <td>{{purchase.productCombos.length}}</td>
+                    <td>{{purchase.purchaseItems.length}}</td>
+                    <td>$ {{purchase.purchase_price}}</td>
+                    <td>{{purchase.purchaseStatus}}</td>
+                    <td>Write review</td>
+                   
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+          </section>
+
+
+      
 
         </main>
 

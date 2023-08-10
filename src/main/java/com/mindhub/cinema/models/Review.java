@@ -4,6 +4,7 @@ import com.mindhub.cinema.utils.enums.ReviewStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Review {
@@ -18,6 +19,8 @@ public class Review {
     private String comment;
 
     private ReviewStatus reviewStatus;
+
+    private LocalDateTime reviewDate = LocalDateTime.now();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
@@ -62,6 +65,22 @@ public class Review {
         this.comment = comment;
     }
 
+    public ReviewStatus getReviewStatus() {
+        return reviewStatus;
+    }
+
+    public void setReviewStatus(ReviewStatus reviewStatus) {
+        this.reviewStatus = reviewStatus;
+    }
+
+    public LocalDateTime getReviewDate() {
+        return reviewDate;
+    }
+
+    public void setReviewDate(LocalDateTime reviewDate) {
+        this.reviewDate = reviewDate;
+    }
+
     public Client getClient() {
         return client;
     }
@@ -78,11 +97,5 @@ public class Review {
         this.movie = movie;
     }
 
-    public ReviewStatus getReviewStatus() {
-        return reviewStatus;
-    }
 
-    public void setReviewStatus(ReviewStatus reviewStatus) {
-        this.reviewStatus = reviewStatus;
-    }
 }

@@ -2,6 +2,7 @@ package com.mindhub.cinema.dtos.models_dtos;
 
 import com.mindhub.cinema.dtos.models_dtos.MovieDto;
 import com.mindhub.cinema.models.Review;
+import com.mindhub.cinema.utils.apiUtils.DateUtils;
 import com.mindhub.cinema.utils.enums.ReviewStatus;
 
 public class ReviewDto {
@@ -16,6 +17,8 @@ public class ReviewDto {
 
     private ReviewStatus reviewStatus;
 
+    private String reviewDate;
+
 
     public ReviewDto(Review review) {
         this.id = review.getId();
@@ -23,6 +26,7 @@ public class ReviewDto {
         this.comment = review.getComment();
         this.movie = new MovieDto(review.getMovie());
         this.reviewStatus =review.getReviewStatus();
+        this.reviewDate = DateUtils.dateTimeFormatter(review.getReviewDate());
     }
 
     public long getId() {
@@ -43,5 +47,9 @@ public class ReviewDto {
 
     public ReviewStatus getReviewStatus() {
         return reviewStatus;
+    }
+
+    public String getReviewDate() {
+        return reviewDate;
     }
 }

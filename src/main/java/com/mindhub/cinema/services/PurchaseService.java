@@ -89,7 +89,7 @@ public class PurchaseService implements PurchaseServiceInterface {
 
         for (Purchase purchase : pendingPurchases) {
             currentTimeInMillis = System.currentTimeMillis();
-            purchaseTimeInMillis = LocalDateTime.parse(purchase.getCreatedAt()).atZone(ZoneOffset.UTC).toInstant().toEpochMilli();
+            purchaseTimeInMillis = purchase.getCreatedAt().atZone(ZoneOffset.UTC).toInstant().toEpochMilli();
             timeElapsedInMillis = currentTimeInMillis - purchaseTimeInMillis;
 
 

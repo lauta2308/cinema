@@ -27,7 +27,7 @@ public class Purchase {
 
     private PaymentMethod paymentMethod = PaymentMethod.NOT_SELECTED;
 
-    private String createdAt = DateUtils.dateTimeFormatter(LocalDateTime.now());
+    private LocalDateTime createdAt = LocalDateTime.now();
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -81,11 +81,11 @@ public class Purchase {
         this.paymentMethod = paymentMethod;
     }
 
-    public String getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

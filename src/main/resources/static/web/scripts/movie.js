@@ -14,7 +14,9 @@ createApp({
 
         movieSelected: "",
         movieShows: [],
-        movieReviews: []
+        movieReviews: [],
+        noReviewsFound: false,
+
 
       };
     },
@@ -46,11 +48,28 @@ createApp({
                 
                 
                 this.movieSelected = response.data;
-                this.movieReviews = response.data.reviews;
+               
+           
+                this.getMovieApprovedReviews(movieId);
                 this.getMovieShows();
                 
             })
         },
+
+        getMovieApprovedReviews(movieId){
+
+          axios.get("/api/movie/reviews", {
+            
+            params: {
+              movieId: movieId
+            }
+          })
+          .then(response => this.movieReviews = response.data)
+          .catch((Error) => this.noReviewsFound = true);
+          
+        },
+
+       
 
 
 

@@ -149,7 +149,23 @@
             <section class="container">
               <h2>Reviews</h2>
 
-              <div class="reviews-container">
+
+              <div v-if="noReviewsFound === true">
+                <p>Nothing to show</p>
+
+              </div>
+
+              <div v-else class="reviews-container">
+            
+               
+
+                <div v-if="userMovieReview.length > 0" class="review">
+                  <h3>Your review</h3>
+                  {{userMovieReview}}
+                  
+                </div>
+
+                <h3>Other reviews</h3>
                 <div v-for="review in movieReviews" class="review">
                     {{review}}
                 </div>

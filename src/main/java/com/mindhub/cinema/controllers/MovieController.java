@@ -2,6 +2,8 @@ package com.mindhub.cinema.controllers;
 
 import com.mindhub.cinema.dtos.param_dtos.CreateMovieDto;
 import com.mindhub.cinema.dtos.models_dtos.MovieDto;
+import com.mindhub.cinema.models.Client;
+import com.mindhub.cinema.models.Movie;
 import com.mindhub.cinema.services.servinterfaces.MovieServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,5 +105,9 @@ public class MovieController {
 
 
     }
+
+
+
+
 
 }

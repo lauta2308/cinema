@@ -14,7 +14,8 @@ const userLogged = {
         clientName: "",
         clientReviews: [],
         clientCompletedPurchases: [],
-        clientUsedPurchases: []
+        clientUsedPurchases: [],
+        userMovieReview: [],
 
       };
     },
@@ -51,6 +52,7 @@ const userLogged = {
                         this.clientLogged = true;
                         this.clientName = response.data.name;
                         this.clientReviews = response.data.reviews;
+                        this.getMovieIdInLocal();
                         this.getCompletedPurchases();
                         this.getUsedPurchases();
                       
@@ -62,6 +64,39 @@ const userLogged = {
             console.error("Error en la petición:", error.message);
           });
     
+        
+                },
+
+        
+                getMovieIdInLocal(){
+            
+                  console.log("from user logged");
+                  const movieJson = sessionStorage.getItem('movie');
+      
+                  if (movieJson && typeof movieJson === 'string') {
+                    this.existUserReview(JSON.parse(movieJson));
+          
+                    
+                  }
+      
+               
+              },
+
+
+      
+        existUserReview(movieIdParam){
+
+                  axios.get(`/api/current/get_user_review_by_movie`, {
+                    params: {
+                      movieId: movieIdParam
+                    }
+                  })
+                  .then(response => this.userMovieReview.push(response.data),
+            
+                    
+                    
+                  )
+                  .catch(Error => console.log(Error));
         
                 },
 

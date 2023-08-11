@@ -1,8 +1,6 @@
 package com.mindhub.cinema.utils.apiUtils;
 
-import com.mindhub.cinema.dtos.models_dtos.PurchaseDto;
 import com.mindhub.cinema.dtos.models_dtos.ReviewDto;
-import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.models.Review;
 
 import java.util.Comparator;

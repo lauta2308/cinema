@@ -2,6 +2,7 @@ package com.mindhub.cinema.services.servinterfaces;
 
 import com.mindhub.cinema.dtos.param_dtos.CreateMovieDto;
 import com.mindhub.cinema.dtos.models_dtos.MovieDto;
+import com.mindhub.cinema.models.Movie;
 import com.mindhub.cinema.utils.enums.MovieType;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface MovieServiceInterface {
 
 
     MovieDto getMovie(Long movieId);
+
+    Movie findByMovieId(Long movieId);
 }

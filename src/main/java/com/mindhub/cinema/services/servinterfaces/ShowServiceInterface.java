@@ -13,4 +13,8 @@ public interface ShowServiceInterface {
     List<ShowDto> get_movie_shows(Long movieId);
 
     boolean existsById(Long showId);
+
+    List<ShowDto> get_2d_shows();
+
+    List<ShowDto> get_3d_shows();
 }

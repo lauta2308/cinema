@@ -5,6 +5,7 @@ import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.repositories.ShowRepository;
 import com.mindhub.cinema.services.servinterfaces.ShowServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.ShowUtils;
+import com.mindhub.cinema.utils.enums.MovieType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,16 @@ public class ShowService implements ShowServiceInterface {
     @Override
     public boolean existsById(Long showId) {
         return showRepository.existsById(showId);
+    }
+
+    @Override
+    public List<ShowDto> get_2d_shows() {
+        return ShowUtils.showSetToDto(showRepository.findByMovie_movieTypeAndStartTimeAfter(MovieType.MOVIE_2D, LocalDateTime.now()).stream().collect(Collectors.toSet()));
+    }
+
+    @Override
+    public List<ShowDto> get_3d_shows() {
+
+        return ShowUtils.showSetToDto(showRepository.findByMovie_movieTypeAndStartTimeAfter(MovieType.MOVIE_3D, LocalDateTime.now()).stream().collect(Collectors.toSet()));
     }
 }

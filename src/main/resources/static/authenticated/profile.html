@@ -76,7 +76,7 @@
             <ul>
               <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
               <li v-else-if="clientRole === 'CLIENT'" class="menu-item has-submenu" @mouseleave="toggleSubmenu">
-                Welcome, {{clientName}}
+                {{clientName}}
                 <span class="arrow" @click="toggleSubmenu"  >&#9662;</span>
                 <ul class="submenu" v-if="showSubmenu === true">
                   <li><a href="./profile.html">Profile</a></li>

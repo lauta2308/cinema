@@ -39,6 +39,11 @@ public class ShowController {
         return showService.get_3d_shows();
     }
 
+    @GetMapping("/api/imax_shows")
+    public List<ShowDto> get_imax_shows(){
+        return showService.get_imax_shows();
+    }
+
 
 
 

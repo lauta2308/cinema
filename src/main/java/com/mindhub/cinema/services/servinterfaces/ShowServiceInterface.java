@@ -17,4 +17,6 @@ public interface ShowServiceInterface {
     List<ShowDto> get_2d_shows();
 
     List<ShowDto> get_3d_shows();
+
+    List<ShowDto> get_imax_shows();
 }

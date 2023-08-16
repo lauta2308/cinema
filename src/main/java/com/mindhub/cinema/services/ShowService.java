@@ -50,4 +50,9 @@ public class ShowService implements ShowServiceInterface {
 
         return ShowUtils.showSetToDto(showRepository.findByMovie_movieTypeAndStartTimeAfter(MovieType.MOVIE_3D, LocalDateTime.now()).stream().collect(Collectors.toSet()));
     }
+
+    @Override
+    public List<ShowDto> get_imax_shows() {
+        return ShowUtils.showSetToDto(showRepository.findByMovie_movieTypeAndStartTimeAfter(MovieType.MOVIE_IMAX, LocalDateTime.now()).stream().collect(Collectors.toSet()));
+    }
 }

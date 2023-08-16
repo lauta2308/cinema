@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Tickets</title>
+    <title>ShowTimes</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
@@ -64,35 +64,32 @@
 
     <main>
 
-        <h1>Change Tickets</h1>
+        <h1>ShowTimes</h1>
 
         <section class="container">
-            <h2>Fill the form to change your tickets</h2>
+            <h2>{{showTimeType}}</h2>
 
-            <form>
+            <div class="show-times-container">
+              <div v-for="showTime in showTimes" class="showTime">
+          
+                <img :src="showTime.movie.movieImg" :alt="showTime.movie.name" class="showTime-img">
 
-                <label>
-                    Change tickets for:
+                <p>{{showTime.movie.name}}</p>
 
-                    {{movie_ticket}}
-                    <select v-model="movie_ticket">
-                        <option value="same_movie">Same Movie</option>
-                        <option value="different_movie">Different movie</option>
-                    </select>
+                <p>{{showTime.startTime}}</p>
 
-                    <select v-if="movie_ticket === 'same_movie'" v-model="show_selected">
-                        <option value=""></option>
-                    </select>
+                <p>$ {{showTime.standardPrice}}</p>
 
-                    <select v-if="movie_ticket === 'different_movie'" v-model="show_selected">
+                <button @click="saveShowId(showTime)" class="site-action-btn color-green">Buy</button>
 
-
-                    </select>
-                </label>
+              </div>
+  
+            </div>
+          
+           
 
 
 
-            </form>
         </section>
     </main>
 

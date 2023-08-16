@@ -1339,3 +1339,19 @@ fieldset {
   gap: 2rem;
 }
 
+
+
+/**********  SHOWTIME *****/
+
+.showTime {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+}
+
+.showTime-img {
+  height: 300px;
+}
+

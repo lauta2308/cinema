@@ -74,6 +74,13 @@ createApp({
 
         },
 
+        saveShowTimeType(type){
+
+            sessionStorage.setItem("showtimeType", JSON.stringify(type));
+
+            window.location.href = "./web/showtimes.html";
+        }
+
     
 
 

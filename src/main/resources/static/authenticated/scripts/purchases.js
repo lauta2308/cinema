@@ -41,6 +41,13 @@ createApp({
     },
     methods: {
 
+
+      // save purchase id to change tickets
+
+      saveStoragePurchaseId(purchaseId){
+        sessionStorage.setItem("purchaseToChange", JSON.stringify(purchaseId));
+      }
+
         
      
 

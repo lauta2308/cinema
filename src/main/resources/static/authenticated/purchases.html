@@ -90,7 +90,7 @@
                     <td>{{purchase.purchaseItems.length}}</td>
                     <td>$ {{purchase.purchase_price}}</td>
                     <td>{{purchase.purchaseStatus}}</td>
-                    <td>Change Tickets</td>
+                    <td @click="saveStoragePurchaseId(purchase.id)" class="site-action-btn color-green">Change Tickets</td>
                    
                   </tr>
                 </tbody>

@@ -18,7 +18,7 @@ public interface ShowRepository extends JpaRepository<Show, Long> {
     Set<Show> findByMovie_IdAndStartTimeAfter(Long movieId, LocalDateTime startTime);
 
 
-    Set<Show> findByMovie_movieTypeAndStartTimeAfter(MovieType movie2d, LocalDateTime now);
+    Set<Show> findByMovie_movieTypeAndStartTimeAfter(MovieType movieType, LocalDateTime now);
 }
 
 

@@ -3,6 +3,7 @@ package com.mindhub.cinema.controllers;
 
 import com.mindhub.cinema.dtos.models_dtos.ShowDto;
 import com.mindhub.cinema.services.servinterfaces.ShowServiceInterface;
+import com.mindhub.cinema.utils.enums.MovieType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,21 +29,12 @@ public class ShowController {
 
 
 
-    @GetMapping("/api/2d_shows")
-    public List<ShowDto> get_2d_shows(){
-        return showService.get_2d_shows();
+    @GetMapping("/api/showtimes")
+    public List<ShowDto> get_showTimes(@RequestParam MovieType movieType){
+        return showService.get_showTimes(movieType);
     }
 
 
-    @GetMapping("/api/3d_shows")
-    public List<ShowDto> get_3d_shows(){
-        return showService.get_3d_shows();
-    }
-
-    @GetMapping("/api/imax_shows")
-    public List<ShowDto> get_imax_shows(){
-        return showService.get_imax_shows();
-    }
 
 
 

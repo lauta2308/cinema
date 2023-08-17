@@ -2,6 +2,7 @@ package com.mindhub.cinema.services.servinterfaces;
 
 import com.mindhub.cinema.dtos.models_dtos.ShowDto;
 import com.mindhub.cinema.models.Show;
+import com.mindhub.cinema.utils.enums.MovieType;
 
 import java.util.List;
 import java.util.Set;
@@ -14,9 +15,6 @@ public interface ShowServiceInterface {
 
     boolean existsById(Long showId);
 
-    List<ShowDto> get_2d_shows();
 
-    List<ShowDto> get_3d_shows();
-
-    List<ShowDto> get_imax_shows();
+    List<ShowDto> get_showTimes(MovieType movieType);
 }

@@ -40,19 +40,9 @@ public class ShowService implements ShowServiceInterface {
         return showRepository.existsById(showId);
     }
 
-    @Override
-    public List<ShowDto> get_2d_shows() {
-        return ShowUtils.showSetToDto(showRepository.findByMovie_movieTypeAndStartTimeAfter(MovieType.MOVIE_2D, LocalDateTime.now()).stream().collect(Collectors.toSet()));
-    }
 
     @Override
-    public List<ShowDto> get_3d_shows() {
-
-        return ShowUtils.showSetToDto(showRepository.findByMovie_movieTypeAndStartTimeAfter(MovieType.MOVIE_3D, LocalDateTime.now()).stream().collect(Collectors.toSet()));
-    }
-
-    @Override
-    public List<ShowDto> get_imax_shows() {
-        return ShowUtils.showSetToDto(showRepository.findByMovie_movieTypeAndStartTimeAfter(MovieType.MOVIE_IMAX, LocalDateTime.now()).stream().collect(Collectors.toSet()));
+    public List<ShowDto> get_showTimes(MovieType movieType) {
+        return ShowUtils.showSetToDto(showRepository.findByMovie_movieTypeAndStartTimeAfter(movieType, LocalDateTime.now()).stream().collect(Collectors.toSet()));
     }
 }

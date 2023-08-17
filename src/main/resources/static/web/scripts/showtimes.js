@@ -49,31 +49,24 @@ createApp({
         this.showTimeType = JSON.parse(showTimeType);
 
         if(this.showTimeType === "2d"){
-            this.load2dShowTimes()
+            this.loadShowTimes("MOVIE_2D")
         } else if(this.showTimeTyoe === "3d") {
-            this.load3dShowTimes();
+            this.loadShowTimes("MOVIE_3D")
         } 
         
         else {
-            this.loadImaxShowTimes()
+            this.loadShowTimes("MOVIE_IMAX")
         }
     },
 
-    load2dShowTimes(){
+loadShowTimes(movieType){
 
-        axios.get("/api/2d_shows")
-        .then(response => this.showTimes = response.data)
-    },
-
-    load3dShowTimes(){
-        axios.get("/api/3d_shows")
-        .then(response => this.showTimes = response.data)
-    },
-
-    loadImaxShowTimes(){
-        axios.get("/api/imax_shows")
-        .then(response => this.showTimes = response.data)
-    },
+    axios.get("/api/showtimes", {
+        params: {
+            movieType: movieType
+        }
+    }).then(response => this.showTimes = response.data)
+},
 
     saveShowId(show){
         sessionStorage.setItem('showId', show.id);

@@ -76,12 +76,14 @@
 
                 <p>{{showTime.movie.name}}</p>
 
-                <p>{{showTime.startTime}}</p>
+                <p>{{showTime.startTime}} hs</p>
 
                 <p>$ {{showTime.standardPrice}}</p>
 
-                <button @click="saveShowId(showTime)" class="site-action-btn color-green">Buy</button>
+       
+                <button v-if="clientLogged === true" @click="saveShowId(showTime)" class="site-action-btn color-green">Buy</button>
 
+                <button v-else class="site-action-btn"><a href="./login.html" >Log in to buy</a></button>
               </div>
   
             </div>

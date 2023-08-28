@@ -41,12 +41,15 @@ createApp({
     },
     methods: {
 
+      saveStoragePurchase(purchase){
+        sessionStorage.setItem("purchaseToChange", JSON.stringify(purchase.id));
+        sessionStorage.setItem("changeTickets", true);
+        sessionStorage.setItem("showtimeType", JSON.stringify(purchase.tickets[0].show.movie.movieType));
 
-      // save purchase id to change tickets
+        window.location.href = "../web/showtimes.html"
 
-      saveStoragePurchaseId(purchaseId){
-        sessionStorage.setItem("purchaseToChange", JSON.stringify(purchaseId));
       }
+
 
         
      

@@ -82,32 +82,49 @@ public class CinemaApplication {
 
 			// save cinema rooms
 
-			CinemaRoom cinemaRoomOne = cinemaRoomRepository.save(new CinemaRoom("SALA 1 2D", 100, RoomType.ROOM_2D));
+			CinemaRoom cinemaRoomOne = cinemaRoomRepository.save(new CinemaRoom("SHOWROOM 1 2D", 100, RoomType.ROOM_2D));
 
-			CinemaRoom cinemaRoomTwo = cinemaRoomRepository.save(new CinemaRoom("SALA 2 3D", 50, RoomType.ROOM_3D));
+			CinemaRoom cinemaRoomTwo2d = cinemaRoomRepository.save(new CinemaRoom("SHOWROOM 2 2D", 100, RoomType.ROOM_2D));
 
-			CinemaRoom cinemaRoomThree = cinemaRoomRepository.save(new CinemaRoom("SALA 3 IMAX", 30, RoomType.ROOM_IMAX));
+			CinemaRoom cinemaRoomThree2d = cinemaRoomRepository.save(new CinemaRoom("SHOWROOM 3 2D", 100, RoomType.ROOM_2D));
 
+			CinemaRoom cinemaRoomTwo = cinemaRoomRepository.save(new CinemaRoom("SHOWROOM 1 3D", 100, RoomType.ROOM_3D));
 
-			// Seats for room 1
+			CinemaRoom cinemaRoomtwo3d = cinemaRoomRepository.save(new CinemaRoom("SHOWROOM 2 3D", 100, RoomType.ROOM_3D));
 
-			for (int i = 1; i <= cinemaRoomOne.getCapacity() ; i++) {
-				seatRepository.save(new Seat(i, cinemaRoomOne));
+			CinemaRoom cinemaRoomthree3d = cinemaRoomRepository.save(new CinemaRoom("SHOWROOM 3 3D", 100, RoomType.ROOM_3D));
 
-			}
+			CinemaRoom cinemaRoomThree = cinemaRoomRepository.save(new CinemaRoom("SHOWROOM 1 IMAX", 100, RoomType.ROOM_IMAX));
 
-			// Seats for room 2
+			CinemaRoom cinemaRoomTwoImax = cinemaRoomRepository.save(new CinemaRoom("SHOWROOM 2 IMAX", 100, RoomType.ROOM_IMAX));
 
-			for (int i = 1; i <= cinemaRoomTwo.getCapacity() ; i++) {
-				seatRepository.save(new Seat(i, cinemaRoomTwo));
-			}
+			CinemaRoom cinemaRoomThreeImax = cinemaRoomRepository.save(new CinemaRoom("SHOWROOM 3 IMAX", 100, RoomType.ROOM_IMAX));
 
 
-			// Seats for room 3
 
-			for (int i = 1; i <= cinemaRoomThree.getCapacity() ; i++) {
-				seatRepository.save(new Seat(i, cinemaRoomThree));
-			}
+			List<CinemaRoom> cinemaRoomsList = new ArrayList<>();
+
+			cinemaRoomsList.add(cinemaRoomOne);
+			cinemaRoomsList.add(cinemaRoomTwo2d);
+			cinemaRoomsList.add(cinemaRoomThree2d);
+			cinemaRoomsList.add(cinemaRoomTwo);
+			cinemaRoomsList.add(cinemaRoomtwo3d);
+			cinemaRoomsList.add(cinemaRoomthree3d);
+			cinemaRoomsList.add(cinemaRoomThree);
+			cinemaRoomsList.add(cinemaRoomTwoImax);
+			cinemaRoomsList.add(cinemaRoomThreeImax);
+
+
+			cinemaRoomsList.forEach(cinemaRoom -> {
+				for (int i = 1; i <= cinemaRoom.getCapacity() ; i++) {
+					seatRepository.save(new Seat(i, cinemaRoom));
+				}
+			});
+
+
+
+
+
 
 
 
@@ -118,16 +135,45 @@ public class CinemaApplication {
 			Movie indianaJones2d = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/337713R1.jpg?width=270&height=405", "https://www.youtube.com/embed/dC1E_E78R48?controls=0","Indiana Jones and the Day of Destiny", "Archaeologist Indiana Jones races against time to retrieve a legendary artifact that can change the course of history.", MovieRestriction.SAM_13, 154, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
 
+			// Shows
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 12, 00, 00), 15.00, indianaJones2d, cinemaRoomOne));
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 17, 00, 00), 15.00, indianaJones2d, cinemaRoomOne));
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 15.00, indianaJones2d, cinemaRoomOne));
+
 			Movie barbie = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/215333R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi945734681/?ref_=sh_ov_vi","barbie", "Barbie suffers a crisis that leads her to question her world and her existence.", MovieRestriction.ATP, 114, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 12, 00, 00), 15.00, barbie, cinemaRoomTwo2d));
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 17, 00, 00), 15.00, barbie, cinemaRoomTwo2d));
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 15.00, barbie, cinemaRoomTwo2d));
 
 			Movie cobweb = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/344228R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi1253230361/?playlistId=tt9100018&ref_=tt_ov_vi","COBWEB", "Horror strikes when an eight-year-old boy named Peter tries to investigate the mysterious knocking noises that are coming from inside the walls of his house and a dark secret that his sinister parents kept hidden from him.", MovieRestriction.SAM_16, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.COMING_SOON));
 
-			Movie oppenheimerImax = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/323982R1.jpg?width=270&height=405", "https://www.youtube.com/watch?v=dC1E_E78R48","OPPENHEIMER IMAX", "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.", MovieRestriction.SAM_13, 180, "Castellano", MovieGenre.DRAMA, MovieType.MOVIE_3D, MovieAvailability.AVAILABLE));
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 12, 00, 00), 15.00, cobweb, cinemaRoomThree2d));
 
-			Movie oppenheimer = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/347409R1.jpg?width=270&height=405", "https://www.youtube.com/watch?v=dC1E_E78R48","Oppenheimer 2D", "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.", MovieRestriction.SAM_13, 180, "Castellano", MovieGenre.DRAMA, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 17, 00, 00), 15.00, cobweb, cinemaRoomThree2d));
 
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 15.00, cobweb, cinemaRoomThree2d));
 
+			Movie oppenheimer3d = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/323982R1.jpg?width=270&height=405", "https://www.youtube.com/watch?v=dC1E_E78R48","OPPENHEIMER IMAX", "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.", MovieRestriction.SAM_13, 180, "Castellano", MovieGenre.DRAMA, MovieType.MOVIE_3D, MovieAvailability.AVAILABLE));
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 12, 00, 00), 17.00, oppenheimer3d, cinemaRoomTwo));
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 18, 00, 00), 17.00, oppenheimer3d, cinemaRoomTwo));
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 17.00, oppenheimer3d, cinemaRoomTwo));
+
+			Movie oppenheimer = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/347409R1.jpg?width=270&height=405", "https://www.youtube.com/watch?v=dC1E_E78R48","Oppenheimer 2D", "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.", MovieRestriction.SAM_13, 180, "Castellano", MovieGenre.DRAMA, MovieType.MOVIE_IMAX, MovieAvailability.AVAILABLE));
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 13, 00, 00), 20.00, oppenheimer, cinemaRoomThree));
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 17, 00, 00), 20.00, oppenheimer, cinemaRoomThree));
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 20.00, oppenheimer, cinemaRoomThree));
 
 			Movie insidious = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/335198R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi3679044633/?playlistId=tt13405778&ref_=tt_ov_vi","Insidious", "The Lamberts must go deeper into The Further than ever before to put their demons to rest once and for all.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.HORROR, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
@@ -322,6 +368,9 @@ public class CinemaApplication {
 			comboElegido.setComboDefaultPrice(productComboSingle.getComboDefaultPrice());
 			comboElegido.updateComboPrice();
 			productComboRepository.save(comboElegido);
+
+
+
 
 
 

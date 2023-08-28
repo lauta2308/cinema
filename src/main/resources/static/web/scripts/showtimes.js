@@ -10,6 +10,7 @@ createApp({
 
         return {
               
+            changeTicketsEnabled: false,
             showTimeType: "",
             showTimes: [],
 
@@ -18,7 +19,8 @@ createApp({
     },
     created() {
 
-      this.checkShowTimesInStorage();
+      this.checkChangeTicketsStorage();
+
         
 
      
@@ -43,14 +45,25 @@ createApp({
     },
     methods: {
 
+    checkChangeTicketsStorage(){
+        const changeTicketsEnabled = sessionStorage.getItem("changeTickets");
+        this.changeTicketsEnabled = JSON.parse(changeTicketsEnabled);
+
+        this.checkShowTimesInStorage();
+
+
+    },
+
+  
+
     checkShowTimesInStorage(){
         const showTimeType = sessionStorage.getItem('showtimeType');
 
         this.showTimeType = JSON.parse(showTimeType);
 
-        if(this.showTimeType === "2d"){
+        if(this.showTimeType === "MOVIE_2D"){
             this.loadShowTimes("MOVIE_2D")
-        } else if(this.showTimeTyoe === "3d") {
+        } else if(this.showTimeTyoe === "MOVIE_3D") {
             this.loadShowTimes("MOVIE_3D")
         } 
         
@@ -69,6 +82,7 @@ loadShowTimes(movieType){
 },
 
     saveShowId(show){
+        console.log(show.cinemaRoom.id);
         sessionStorage.setItem('showId', show.id);
         sessionStorage.setItem('roomId', show.cinemaRoom.id);
     

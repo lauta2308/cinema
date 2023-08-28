@@ -82,19 +82,20 @@ createApp({
 
             this.showId = sessionStorage.getItem('showId');
             this.roomId = sessionStorage.getItem('roomId');
+
             this.getSeatsAvailable();
             this.getRoomSeats();
         },
 
         getRoomSeats(){
+         
             axios.get('/api/current/room_seats', {
                 params: {
                   cinemaRoomId: this.roomId
                 }
               }).then(response => {
                 this.roomSeats = response.data;
-           
-             
+              
                
              } )
 

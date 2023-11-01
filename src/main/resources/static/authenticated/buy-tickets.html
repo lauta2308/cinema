@@ -73,10 +73,13 @@
 
  
     <div class="cinema-room-table-container">
-      <div class="cinema-room-container">
+      <div v-if="selectedSeats.length < ticketsToChange.length" class="cinema-room-container">
         <h2>Select your seats</h2>
+        <br>
+        
+        <h3 v-if="changeTicketsProcess === true">You can select {{ticketsToChange.length}} Seats</h3>
         <div class="cinema-screen"></div> 
-        <div class="cinema-room">
+        <div class="cinema-room" ref="cinemaRoomContainer">
           <div v-for="(row, rowIndex) in rows" :key="rowIndex" class="row">
             <div v-for="(seat, seatIndex) in row" :key="seatIndex" class="seat" :class="{ 'not-available': !isSeatAvailable(seat), selected: selectedSeats.includes(seat) }" @click="toggleSeatSelection(seat)">
               {{ seat.seatPlace }}
@@ -85,7 +88,7 @@
           </div>
         </div>
       </div>
-      <div class="selected-seats-table-section">
+      <div v-if="changeTicketProcess === false" class="selected-seats-table-section">
         <h2>Selected Seats:</h2>
         <p class="center">Select the customer age for each one</p>
 
@@ -138,6 +141,59 @@
        
         <p v-else>No seats selected</p>
       </div>
+
+
+      <div v-else class="selected-seats-table-section">
+        <h2>Selected Seats:</h2>
+       
+        {{selectedSeats}}
+
+        <div v-if="selectedSeats.length > 0" class="selected-seats-table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Seat Place</th>
+                <th>Customer Age</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+          
+              <tr v-for="(seat, index) in displayedSeats" :key="index">
+                <td>{{ seat.seatPlace }}</td>
+                <td>{{setCustomerAge(index)}}
+        
+                 
+                </td>
+                <td><button class="site-action-btn color-red" @click="removeSeat(index)">Delete</button></td>
+              </tr>
+          
+            </tbody>
+     
+           
+          </table>
+          
+          <div v-if="totalPages > 1" class="pagination">
+            <button :disabled="currentPage === 1" @click="prevPage" class="site-action-btn color-orange">Previous</button>
+            <span>{{ currentPage }}</span>
+            <button :disabled="currentPage === totalPages" @click="nextPage" class="site-action-btn color-orange">Next</button>
+          </div>
+
+          <div v-if="ageError" class="error-container">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M10 10l4 4m0 -4l-4 4" />
+              <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+            </svg>
+            <p class="error-message">{{ageError}}</p>
+          </div>
+
+          <button v-if="selectedSeats.length > 0" class="site-action-btn color-green" @click="patchTickets">Save tickets</button>
+        </div>
+       
+        <p v-else>No seats selected</p>
+      </div>
+    </div>
     </div>
    
   </section>

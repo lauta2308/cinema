@@ -19,7 +19,13 @@ createApp({
             seatsPerRow: 10, // Número de asientos por fila
             seatsPerPage: 5, // Número de asientos por página
             currentPage: 1, // Página actual
-            ageError: ""
+            ageError: "",
+            changeTicketsProcess: false,
+            purchaseIdToChange: "",
+            ticketsToChange: [],
+            ticketsToChangeAmount: "",
+      
+            
 
             
         }
@@ -29,6 +35,7 @@ createApp({
       
         
         this.getShowAndRoomId();
+        this.checkTicketsToChange();
      
         
 
@@ -69,6 +76,40 @@ createApp({
 
     },
     methods: {
+
+      checkTicketsToChange(){
+
+         
+          if(JSON.parse(sessionStorage.getItem("changeTickets") === "true")){
+             
+              this.changeTicketsProcess = true;
+              this.getTicketsToChange(JSON.parse(sessionStorage.getItem('purchaseToChange')));
+          }
+      },
+
+      getTicketsToChange(purchaseId){
+        console.log("purchase is " + purchaseId);
+
+
+        axios.get(`/api/current/purchase/${purchaseId}`
+         
+        ).then(response => {
+          this.purchaseIdToChange = response.data.id;
+          console.log(response.data.tickets);
+          this.ticketsToChange = response.data.tickets;
+          this.ticketsToChangeAmount = this.ticketsToChange.length;
+          console.log(response.data);
+       
+       
+         
+       } )
+        
+
+      },
+
+      setCustomerAge(index){
+          return this.ticketsToChange[index].customerAge;
+      },
 
     
 
@@ -176,12 +217,17 @@ createApp({
           console.log(createTicketDto);
           sessionStorage.setItem('cineverse-Tickets', JSON.stringify(createTicketDto));
   
+          
            window.location.href = "./products.html"
           
         }
        
 
-      }
+      },
+
+    
+
+
     
 
 

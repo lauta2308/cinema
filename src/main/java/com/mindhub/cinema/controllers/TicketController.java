@@ -1,7 +1,7 @@
 package com.mindhub.cinema.controllers;
 
 
-import com.mindhub.cinema.dtos.models_dtos.TicketDto;
+import com.mindhub.cinema.dtos.param_dtos.ChangeTicketsDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateTicketDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.models.Show;
@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -128,6 +126,10 @@ public class TicketController {
     }
 
 
+    @PatchMapping("/api/current/change_tickets")
+    public ResponseEntity<String> change_tickets(Authentication authentication, @RequestBody Set<ChangeTicketsDto> changeTicketDtoSet, @RequestParam Long ShowId, @RequestParam Long PurchaseId) {
 
+        return new ResponseEntity<>("sup", HttpStatus.CREATED);
+    }
 
 }

@@ -1,7 +1,7 @@
 package com.mindhub.cinema.controllers;
 
 
-import com.mindhub.cinema.dtos.param_dtos.ChangeTicketsDto;
+import com.mindhub.cinema.dtos.models_dtos.PurchaseDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateTicketDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.models.Show;
@@ -33,18 +33,20 @@ public class TicketController {
     @Autowired
     SeatServiceInterface seatService;
 
+    @Autowired
+    PurchaseController purchaseController;
+
 
     // Crea los tickets para mostrar el precio pero no los guarda.
     @PostMapping("/api/current/ticket_request")
-    public ResponseEntity<Object> ticket_request(Authentication authentication, @RequestBody Set<CreateTicketDto> createTicketDtoSet){
+    public ResponseEntity<Object> ticket_request(Authentication authentication, @RequestBody Set<CreateTicketDto> createTicketDtoSet) {
 
         CreateTicketDto firstTicket = TicketUtils.getFirstTicket(createTicketDtoSet);
 
 
-
         // Verifico que el show existe
 
-        if(!showService.existsById(firstTicket.getShowId())) {
+        if (!showService.existsById(firstTicket.getShowId())) {
 
             return new ResponseEntity<>("Show not found", HttpStatus.CONFLICT);
         }
@@ -60,10 +62,7 @@ public class TicketController {
 
     // Create ticket
     @PostMapping("/api/current/create_ticket")
-    public ResponseEntity<String> create_ticket(Authentication authentication, @RequestBody Set<CreateTicketDto> createTicketDtoSet){
-
-
-
+    public ResponseEntity<String> create_ticket(Authentication authentication, @RequestBody Set<CreateTicketDto> createTicketDtoSet) {
 
 
         if (!TicketUtils.areAllSeatPlacesUnique(createTicketDtoSet)) {
@@ -79,7 +78,6 @@ public class TicketController {
         }
 
 
-
         // Obtengo el primer ticket
 
         CreateTicketDto firstTicket = TicketUtils.getFirstTicket(createTicketDtoSet);
@@ -87,7 +85,7 @@ public class TicketController {
 
         // Verifico que el show existe
 
-        if(!showService.existsById(firstTicket.getShowId())) {
+        if (!showService.existsById(firstTicket.getShowId())) {
 
             return new ResponseEntity<>("Show not found", HttpStatus.CONFLICT);
         }
@@ -98,9 +96,8 @@ public class TicketController {
         Show showSelected = showService.getShow(firstTicket.getShowId());
 
 
-
         String seatAlreadyTaken = ticketService.checkSeatTaken(createTicketDtoSet);
-        if(!"All seats are valid.".equals(seatAlreadyTaken)){
+        if (!"All seats are valid.".equals(seatAlreadyTaken)) {
 
             return new ResponseEntity<>(seatAlreadyTaken, HttpStatus.CONFLICT);
         }
@@ -110,15 +107,12 @@ public class TicketController {
 
         String checkSeatAndRoom = ticketService.validateSeatsAndRoom(createTicketDtoSet);
 
-        if(!"All seats are valid.".equals(checkSeatAndRoom)){
+        if (!"All seats are valid.".equals(checkSeatAndRoom)) {
             return new ResponseEntity<>(checkSeatAndRoom, HttpStatus.CONFLICT);
         }
 
 
         Client clientAuth = clientService.get_full_client(authentication);
-
-
-
 
 
         return new ResponseEntity<>(ticketService.saveTickets(createTicketDtoSet, clientAuth, showSelected), HttpStatus.CREATED);
@@ -127,9 +121,93 @@ public class TicketController {
 
 
     @PatchMapping("/api/current/change_tickets")
-    public ResponseEntity<String> change_tickets(Authentication authentication, @RequestBody Set<ChangeTicketsDto> changeTicketDtoSet, @RequestParam Long ShowId, @RequestParam Long PurchaseId) {
+    public ResponseEntity<Object> change_tickets(Authentication authentication, @RequestBody Set<CreateTicketDto> createTicketDtoSet, @RequestParam Long purchaseId) {
 
-        return new ResponseEntity<>("sup", HttpStatus.CREATED);
+        if (!TicketUtils.allElementsHaveTicketId(createTicketDtoSet)) {
+            return new ResponseEntity<>("All elements should have ticket id", HttpStatus.BAD_REQUEST);
+        }
+
+        if (!TicketUtils.areAllSeatPlacesUnique(createTicketDtoSet)) {
+
+            return new ResponseEntity<>("Seat places of all tickets should be unique", HttpStatus.BAD_REQUEST);
+
+        }
+
+        if (!TicketUtils.areAllshowIdsEqual(createTicketDtoSet)) {
+
+            return new ResponseEntity<>("Tickets should be for the same show", HttpStatus.BAD_REQUEST);
+
+        }
+
+
+        // Obtengo el primer ticket
+
+        CreateTicketDto firstTicket = TicketUtils.getFirstTicket(createTicketDtoSet);
+
+
+        // Verifico que el show existe
+
+        if (!showService.existsById(firstTicket.getShowId())) {
+
+            return new ResponseEntity<>("Show not found", HttpStatus.CONFLICT);
+        }
+
+
+        // Busco el show seleccionado
+
+        Show showSelected = showService.getShow(firstTicket.getShowId());
+
+
+        String seatAlreadyTaken = ticketService.checkSeatTaken(createTicketDtoSet);
+        if (!"All seats are valid.".equals(seatAlreadyTaken)) {
+
+            return new ResponseEntity<>(seatAlreadyTaken, HttpStatus.CONFLICT);
+        }
+
+        // Verifico que los asientos seleccionados corresponden a la sala
+
+
+        String checkSeatAndRoom = ticketService.validateSeatsAndRoom(createTicketDtoSet);
+
+        if (!"All seats are valid.".equals(checkSeatAndRoom)) {
+            return new ResponseEntity<>(checkSeatAndRoom, HttpStatus.CONFLICT);
+        }
+
+
+        Client clientAuth = clientService.get_full_client(authentication);
+
+
+        ResponseEntity<Object> responseEntity = purchaseController.get_purchase(authentication, purchaseId);
+        Object responseBody = responseEntity.getBody();
+
+        PurchaseDto purchaseDto;
+
+        if (responseEntity.getStatusCode().isError()) {
+
+            return responseEntity;
+        } else {
+
+            purchaseDto = (PurchaseDto) responseBody;
+
+        }
+
+        if (purchaseDto.getTickets().size() != createTicketDtoSet.size()) {
+            return new ResponseEntity<>("Different amount of tickets than original purchase", HttpStatus.CONFLICT);
+        }
+
+
+        // Obtengo el primer ticket de la compra original
+
+        if (!TicketUtils.movieTypeAreSame(showSelected, purchaseDto)) {
+            return new ResponseEntity<>("Movie type should be the same than original tickets", HttpStatus.CONFLICT);
+        }
+
+
+        ticketService.changeTickets(createTicketDtoSet, showSelected, purchaseDto);
+
+        return new ResponseEntity<>("Tickets updated", HttpStatus.OK);
+
+
     }
 
 }

@@ -1,5 +1,7 @@
 package com.mindhub.cinema.utils.apiUtils;
 
+import com.mindhub.cinema.dtos.models_dtos.PurchaseDto;
+import com.mindhub.cinema.dtos.models_dtos.ShowDto;
 import com.mindhub.cinema.dtos.models_dtos.TicketDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateTicketDto;
 import com.mindhub.cinema.models.Show;
@@ -17,6 +19,33 @@ public class TicketUtils {
 
     @Autowired
     TicketRepository ticketRepository;
+
+    public static boolean allElementsHaveTicketId(Set<CreateTicketDto> tickets){
+        if (tickets == null || tickets.isEmpty()) {
+            return false;
+        }
+
+
+        for (CreateTicketDto ticket : tickets) {
+            if (ticket.getTicketId() == null) {
+                return false; // Si un ticket no viene con ticket id
+            }
+
+        }
+
+        return true;
+
+    }
+
+    public static boolean movieTypeAreSame(Show showSelected, PurchaseDto purchaseDto){
+        ShowDto originalShow = purchaseDto.getTickets().stream().findFirst().get().getShow();
+        if (showSelected == null || originalShow == null) {
+            return false;
+        }
+
+        return showSelected.getMovie().getMovieType() == originalShow.getMovie().getMovieType();
+
+    }
 
 
     public static boolean areAllSeatPlacesUnique(Set<CreateTicketDto> tickets) {

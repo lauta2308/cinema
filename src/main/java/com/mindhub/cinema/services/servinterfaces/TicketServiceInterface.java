@@ -1,5 +1,6 @@
 package com.mindhub.cinema.services.servinterfaces;
 
+import com.mindhub.cinema.dtos.models_dtos.PurchaseDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateTicketDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.models.Show;
@@ -19,4 +20,6 @@ public interface TicketServiceInterface {
 
 
     void ticketStatusToCancelled(Set<Ticket> tickets);
+
+    void changeTickets(Set<CreateTicketDto> createTicketDtoSet, Show showSelected, PurchaseDto purchaseDto);
 }

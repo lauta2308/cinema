@@ -1,6 +1,5 @@
 package com.mindhub.cinema.controllers;
 
-import com.mindhub.cinema.dtos.models_dtos.ClientDto;
 import com.mindhub.cinema.dtos.models_dtos.PurchaseDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.models.Purchase;
@@ -8,7 +7,6 @@ import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.TicketServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.PurchaseUtils;
-import com.mindhub.cinema.utils.enums.PurchaseStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +25,8 @@ public class PurchaseController {
 
     @Autowired
     TicketServiceInterface ticketService;
+
+
 
     @PostMapping("/api/current/purchase")
     ResponseEntity<String> create_purchase(Authentication authentication){
@@ -47,7 +47,7 @@ public class PurchaseController {
         }
 
        if(purchase.getClient().getId() != clientService.get_authenticated_user(authentication).getId()){
-           return new ResponseEntity<>("Purchase dont belong to client", HttpStatus.BAD_REQUEST);
+           return new ResponseEntity<>("Purchase does not belong to client", HttpStatus.BAD_REQUEST);
        }
 
 

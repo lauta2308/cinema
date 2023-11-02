@@ -1,5 +1,7 @@
 package com.mindhub.cinema.services;
 
+import com.mindhub.cinema.dtos.models_dtos.PurchaseDto;
+import com.mindhub.cinema.dtos.models_dtos.TicketDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateTicketDto;
 import com.mindhub.cinema.models.*;
 import com.mindhub.cinema.repositories.PurchaseRepository;
@@ -15,7 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -160,7 +164,32 @@ public class TicketService implements TicketServiceInterface {
 
     }
 
+    @Override
+    public void changeTickets(Set<CreateTicketDto> createTicketDtoSet, Show showSelected, PurchaseDto purchaseDto) {
 
+        Ticket ticket;
+        CreateTicketDto createTicketDto;
+
+        List<CreateTicketDto> createTicketDtoList = new ArrayList<>(createTicketDtoSet);
+        List<TicketDto> originalTicketsList = new ArrayList<>(purchaseDto.getTickets());
+
+
+
+        for (int i = 0; i < createTicketDtoList.size(); i++) {
+            System.out.println(i);
+
+            createTicketDto = createTicketDtoList.get(i);
+
+            ticket = ticketRepository.findById(createTicketDto.getTicketId()).get();
+
+                ticket.setCustomerAge(createTicketDto.getCustomerAge());
+                ticket.setSeatId(createTicketDto.getId());
+                ticket.setSeatPlace(createTicketDto.getSeatPlace());
+                ticket.setShow(showSelected);
+                ticketRepository.save(ticket);
+            }
+
+    }
 
 
 }

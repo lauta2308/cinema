@@ -4,6 +4,7 @@ import com.mindhub.cinema.utils.enums.CustomerAge;
 
 public class CreateTicketDto {
 
+    private Long ticketId;
 
    private Long showId;
 
@@ -31,6 +32,19 @@ public class CreateTicketDto {
         this.seatPlace = seatPlace;
         this.customerAge = customerAge;
         this.available = available;
+    }
+
+    public CreateTicketDto(Long ticketId, Long showId, Long id, Integer seatPlace, CustomerAge customerAge, boolean available) {
+        this.ticketId = ticketId;
+        this.showId = showId;
+        this.id = id;
+        this.seatPlace = seatPlace;
+        this.customerAge = customerAge;
+        this.available = available;
+    }
+
+    public Long getTicketId() {
+        return ticketId;
     }
 
 

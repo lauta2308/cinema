@@ -108,6 +108,7 @@ createApp({
       },
 
       setCustomerAge(index){
+          this.selectedSeats[index].customerAge = this.ticketsToChange[index].customerAge;
           return this.ticketsToChange[index].customerAge;
       },
 
@@ -224,6 +225,30 @@ createApp({
        
 
       },
+
+      patchTickets(){
+
+     
+        this.selectedSeats.forEach((element, index) => {
+          element.ticketId = this.ticketsToChange[index].id;
+          element.customerAge = this.ticketsToChange[index].customerAge;
+          element.showId = this.showId;
+          
+        });
+
+
+        console.log(this.selectedSeats);
+
+        axios.patch("/api/current/change_tickets", this.selectedSeats, {
+          params: {
+            purchaseId: this.purchaseIdToChange
+          }
+        }).then(response => {
+
+          console.log(response.data);
+        })
+
+      }
 
     
 

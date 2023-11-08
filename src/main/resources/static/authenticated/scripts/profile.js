@@ -93,7 +93,7 @@ createApp({
 
         axios.patch("/api/current/password", changePasswordDto)
         .then(response => {
-          
+          this.cleanPasswordFields();
           console.log(response.data)
         })
         .catch((Error) => this.passwordError = Error.response.data)
@@ -126,7 +126,13 @@ createApp({
           .then(response => window.location.href = "../web/login.html")
           .catch((Error) => this.emailError = Error.response.data)
 
-        }
+        },
+
+        cleanPasswordFields(){
+          this.currentPassword = "",
+          this.newPassword = ""
+        },
+
 
      
 

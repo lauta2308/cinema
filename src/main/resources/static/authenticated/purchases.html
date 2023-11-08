@@ -16,49 +16,84 @@
     <div id="app">
 
 
-   
-            <header>
+      <header>
 
-                <div class="top-bar container">
-                    <a href="../index.html">
-            
-            
-                      <img src="../web/media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
-                    </a>
-                    <nav class="menu">
-             
-                      <ul>
-                        <li><a href="../index.html" class="menu-item">Home</a></li>
-            
-                        <li><a href="#" class="menu-item">Contact</a></li>
-                        <li v-if="isAuthenticated === 'false' "><a href="./login.html" class="menu-item">Login</a></li>
-                          
-                        <li v-else><a href="#" @click="logout" class="menu-item">Logout</a></li>
-                      </ul>
-                    </nav>
-                    <div class="menu-icon" @click="toggleMenu">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M4 6l16 0" />
-                            <path d="M4 12l16 0" />
-                            <path d="M4 18l16 0" />
-                          </svg>
-                    </div>
-                  </div>
-                  <div class="responsive-menu" :class="{ active: isMenuOpen }">
-            
-                    <ul>
-                      <li><a href="../index.html" class="menu-item">Home</a></li>
-                      <li><a href="#" class="menu-item">Contact</a></li>
-                      <li v-if="isAuthenticated === 'false' "><a href="./login.html" class="menu-item">Login</a></li>
-                          
-                      <li v-else><a href="#" @click="logout" class="menu-item">Logout</a></li>
-                   
-                    </ul>
-                  </div>
-            
+        <div class="top-bar container">
+            <a href="#">
+        
+
+              <img src="../web/media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
+            </a>
+            <nav class="menu">
+
+              <ul>
+                <li><a href="../index.html" class="menu-item">Home</a></li>
+
+                <li><a href="#" class="menu-item">Contact</a></li>
+
+              </ul>
+            </nav>
+
+            <nav class="menu">
+              <ul>
               
-            </header>
+                <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
+                <li v-else-if="clientRole === 'CLIENT'" class="menu-item has-submenu" @mouseleave="toggleSubmenu">
+                  Welcome, {{clientName}}
+                  <span class="arrow" @mouseover="toggleSubmenu"  >&#9662;</span>
+                  <ul class="submenu" v-if="showSubmenu === true">
+                    <li><a href="./profile.html">Profile</a></li>
+                    <li><a href="./purchases.html">Purchases</a></li>
+                    <li><a href="./reviews.html">Reviews</a></li>
+            
+                  </ul>
+                </li>
+                <li v-else-if="clientRole === 'ADMIN'"><a href="#" class="menu-item">Admin panel</a></li>
+                <li v-else><a href="#" class="menu-item">Tickets</a></li>
+                <li v-if="clientRole !== '' ">
+                  <a href="#" @click="logout" class="menu-item">Logout</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="menu-icon" @click="toggleMenu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M4 6l16 0" />
+                    <path d="M4 12l16 0" />
+                    <path d="M4 18l16 0" />
+                  </svg>
+            </div>
+          </div>
+          <div class="responsive-menu" :class="{ active: isMenuOpen }">
+     
+            <ul>
+              <li><a href="#" class="menu-item">Home</a></li>
+
+              <li><a href="../index.html" class="menu-item">Contact</a></li>
+            </ul>
+
+
+            <ul>
+              <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
+              <li v-else-if="clientRole === 'CLIENT'" class="menu-item has-submenu" @mouseleave="toggleSubmenu">
+                {{clientName}}
+                <span class="arrow" @click="toggleSubmenu"  >&#9662;</span>
+                <ul class="submenu" v-if="showSubmenu === true">
+                  <li><a href="./profile.html">Profile</a></li>
+                  <li><a href="./purchases.html">Purchases</a></li>
+                  <li><a href="./reviews.html">Reviews</a></li>
+          
+                </ul>
+              </li>
+              <li v-else-if="clientRole === 'ADMIN'"><a href="#" class="menu-item">Admin panel</a></li>
+              <li v-else><a href="#" class="menu-item">Tickets</a></li>
+              <li v-if="clientRole !== '' ">
+                <a href="#" @click="logout" class="menu-item">Logout</a>
+              </li>
+            </ul>
+          </div>
+
+    </header>
 
         <main>
           <h1>Purchases</h1>

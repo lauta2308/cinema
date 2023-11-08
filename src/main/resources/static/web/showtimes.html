@@ -19,23 +19,43 @@
 
     
 
-    <header>
+      <header>
 
         <div class="top-bar container">
-            <a href="../index.html">
-    
-    
+            <a href="#">
+        
+
               <img src="../web/media/cropped-logo-transparent-small.png" alt="cineverse-logo" class="logo">
             </a>
             <nav class="menu">
-     
+
               <ul>
                 <li><a href="../index.html" class="menu-item">Home</a></li>
-    
+
                 <li><a href="#" class="menu-item">Contact</a></li>
-                <li v-if="isAuthenticated === 'false' "><a href="./login.html" class="menu-item">Login</a></li>
-                  
-                <li v-else><a href="#" @click="logout" class="menu-item">Logout</a></li>
+
+              </ul>
+            </nav>
+
+            <nav class="menu">
+              <ul>
+              
+                <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
+                <li v-else-if="clientRole === 'CLIENT'" class="menu-item has-submenu" @mouseleave="toggleSubmenu">
+                  Welcome, {{clientName}}
+                  <span class="arrow" @mouseover="toggleSubmenu"  >&#9662;</span>
+                  <ul class="submenu" v-if="showSubmenu === true">
+                    <li><a href="../authenticated/profile.html">Profile</a></li>
+                    <li><a href="../authenticated/purchases.html">Purchases</a></li>
+                    <li><a href="../authenticated/reviews.html">Reviews</a></li>
+            
+                  </ul>
+                </li>
+                <li v-else-if="clientRole === 'ADMIN'"><a href="#" class="menu-item">Admin panel</a></li>
+                <li v-else><a href="#" class="menu-item">Tickets</a></li>
+                <li v-if="clientRole !== '' ">
+                  <a href="#" @click="logout" class="menu-item">Logout</a>
+                </li>
               </ul>
             </nav>
             <div class="menu-icon" @click="toggleMenu">
@@ -48,22 +68,39 @@
             </div>
           </div>
           <div class="responsive-menu" :class="{ active: isMenuOpen }">
-    
+     
             <ul>
-              <li><a href="../index.html" class="menu-item">Home</a></li>
-              <li><a href="#" class="menu-item">Contact</a></li>
-              <li v-if="isAuthenticated === 'false' "><a href="./login.html" class="menu-item">Login</a></li>
-                  
-              <li v-else><a href="#" @click="logout" class="menu-item">Logout</a></li>
-           
+              <li><a href="#" class="menu-item">Home</a></li>
+
+              <li><a href="../index.html" class="menu-item">Contact</a></li>
+            </ul>
+
+
+            <ul>
+              <li v-if="clientRole === '' "><a href="./web/login.html" class="menu-item">Login</a></li>
+              <li v-else-if="clientRole === 'CLIENT'" class="menu-item has-submenu" @mouseleave="toggleSubmenu">
+                {{clientName}}
+                <span class="arrow" @click="toggleSubmenu"  >&#9662;</span>
+                <ul class="submenu" v-if="showSubmenu === true">
+                  <li><a href="../authenticated/profile.html">Profile</a></li>
+                  <li><a href="../authenticated/purchases.html">Purchases</a></li>
+                  <li><a href="../authenticated/reviews.html">Reviews</a></li>
+          
+                </ul>
+              </li>
+              <li v-else-if="clientRole === 'ADMIN'"><a href="#" class="menu-item">Admin panel</a></li>
+              <li v-else><a href="#" class="menu-item">Tickets</a></li>
+              <li v-if="clientRole !== '' ">
+                <a href="#" @click="logout" class="menu-item">Logout</a>
+              </li>
             </ul>
           </div>
-    
-      
+
     </header>
 
     <main>
 
+      
         <h1>ShowTimes</h1>
 
         <section class="container">

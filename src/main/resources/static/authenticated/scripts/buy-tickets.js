@@ -245,6 +245,7 @@ createApp({
           }
         }).then(response => {
 
+          window.location.href = "./purchases.html"
           console.log(response.data);
         })
 

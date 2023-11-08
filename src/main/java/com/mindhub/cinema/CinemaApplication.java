@@ -159,7 +159,9 @@ public class CinemaApplication {
 
 			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 15.00, cobweb, cinemaRoomThree2d));
 
-			Movie oppenheimer3d = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/323982R1.jpg?width=270&height=405", "https://www.youtube.com/watch?v=dC1E_E78R48","OPPENHEIMER IMAX", "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.", MovieRestriction.SAM_13, 180, "Castellano", MovieGenre.DRAMA, MovieType.MOVIE_3D, MovieAvailability.AVAILABLE));
+			Movie oppenheimer3d = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/323982R1.jpg?width=270&height=405", "https://www.youtube.com/watch?v=dC1E_E78R48","OPPENHEIMER 3D", "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.", MovieRestriction.SAM_13, 180, "Castellano", MovieGenre.DRAMA, MovieType.MOVIE_3D, MovieAvailability.AVAILABLE));
+
+
 
 			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 12, 00, 00), 17.00, oppenheimer3d, cinemaRoomTwo));
 
@@ -167,15 +169,19 @@ public class CinemaApplication {
 
 			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 17.00, oppenheimer3d, cinemaRoomTwo));
 
-			Movie oppenheimer = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/347409R1.jpg?width=270&height=405", "https://www.youtube.com/watch?v=dC1E_E78R48","Oppenheimer 2D", "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.", MovieRestriction.SAM_13, 180, "Castellano", MovieGenre.DRAMA, MovieType.MOVIE_IMAX, MovieAvailability.AVAILABLE));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 13, 00, 00), 20.00, oppenheimer, cinemaRoomThree));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 17, 00, 00), 20.00, oppenheimer, cinemaRoomThree));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 20.00, oppenheimer, cinemaRoomThree));
 
-			Movie insidious = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/335198R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi3679044633/?playlistId=tt13405778&ref_=tt_ov_vi","Insidious", "The Lamberts must go deeper into The Further than ever before to put their demons to rest once and for all.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.HORROR, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
+
+			Movie insidious = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/335198R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi3679044633/?playlistId=tt13405778&ref_=tt_ov_vi","Insidious", "The Lamberts must go deeper into The Further than ever before to put their demons to rest once and for all.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.HORROR, MovieType.MOVIE_IMAX, MovieAvailability.AVAILABLE));
+
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 12, 00, 00), 17.00, insidious, cinemaRoomThree));
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 18, 00, 00), 17.00, insidious, cinemaRoomThree));
+
+			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 17.00, insidious, cinemaRoomThree));
 
 			Movie soundOfFreedom = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/346813R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi3898393625/?playlistId=tt7599146&ref_=tt_pr_ov_vi","Sound of freedom", "The incredible true story of a former government agent turned vigilante who embarks on a dangerous mission to rescue hundreds of children from sex traffickers.", MovieRestriction.SAM_13, 131, "Castellano", MovieGenre.ACTION, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 

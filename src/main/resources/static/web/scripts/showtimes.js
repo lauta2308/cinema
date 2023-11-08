@@ -63,7 +63,7 @@ createApp({
 
         if(this.showTimeType === "MOVIE_2D"){
             this.loadShowTimes("MOVIE_2D")
-        } else if(this.showTimeTyoe === "MOVIE_3D") {
+        } else if(this.showTimeType === "MOVIE_3D") {
             this.loadShowTimes("MOVIE_3D")
         } 
         
@@ -74,15 +74,19 @@ createApp({
 
 loadShowTimes(movieType){
 
+   
     axios.get("/api/showtimes", {
         params: {
             movieType: movieType
         }
-    }).then(response => this.showTimes = response.data)
+    }).then(response => {
+        this.showTimes = response.data
+        
+    })
 },
 
     saveShowId(show){
-        console.log(show.cinemaRoom.id);
+       
         sessionStorage.setItem('showId', show.id);
         sessionStorage.setItem('roomId', show.cinemaRoom.id);
     

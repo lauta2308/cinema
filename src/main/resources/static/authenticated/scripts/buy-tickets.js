@@ -33,8 +33,7 @@ createApp({
     created() {
 
       
-        
-        this.getShowAndRoomId();
+   
         this.checkTicketsToChange();
      
         
@@ -84,6 +83,8 @@ createApp({
              
               this.changeTicketsProcess = true;
               this.getTicketsToChange(JSON.parse(sessionStorage.getItem('purchaseToChange')));
+          } else {
+            this.getShowAndRoomId();
           }
       },
 
@@ -98,7 +99,7 @@ createApp({
           console.log(response.data.tickets);
           this.ticketsToChange = response.data.tickets;
           this.ticketsToChangeAmount = this.ticketsToChange.length;
-          console.log(response.data);
+          this.getShowAndRoomId();
        
        
          
@@ -244,7 +245,7 @@ createApp({
             purchaseId: this.purchaseIdToChange
           }
         }).then(response => {
-
+          sessionStorage.setItem("changeTickets", false);
           window.location.href = "./purchases.html"
           console.log(response.data);
         })

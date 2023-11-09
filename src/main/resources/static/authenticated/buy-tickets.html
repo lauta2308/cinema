@@ -71,15 +71,17 @@
 
   <section class="container">
 
+    {{roomSeats}}
+    
  
     <div class="cinema-room-table-container">
-      <div v-if="selectedSeats.length < ticketsToChange.length" class="cinema-room-container">
+      <div class="cinema-room-container">
         <h2>Select your seats</h2>
         <br>
         
         <h3 v-if="changeTicketsProcess === true">You can select {{ticketsToChange.length}} Seats</h3>
         <div class="cinema-screen"></div> 
-        <div class="cinema-room" ref="cinemaRoomContainer">
+        <div v-if="selectedSeats.length < ticketsToChange.length || changeTicketsProcess == false" class="cinema-room" ref="cinemaRoomContainer">
           <div v-for="(row, rowIndex) in rows" :key="rowIndex" class="row">
             <div v-for="(seat, seatIndex) in row" :key="seatIndex" class="seat" :class="{ 'not-available': !isSeatAvailable(seat), selected: selectedSeats.includes(seat) }" @click="toggleSeatSelection(seat)">
               {{ seat.seatPlace }}
@@ -88,7 +90,7 @@
           </div>
         </div>
       </div>
-      <div v-if="changeTicketsProcess === false" class="selected-seats-table-section">
+      <div v-if="changeTicketsProcess == false" class="selected-seats-table-section">
         <h2>Selected Seats:</h2>
         <p class="center">Select the customer age for each one</p>
 

@@ -51,7 +51,7 @@ createApp({
     
       getProducts(){
 
-        axios.get("/api/current/get_all_products")
+        axios.get("/api/admin/get_all_products")
         .then(response => {
             
             

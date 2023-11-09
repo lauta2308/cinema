@@ -30,6 +30,11 @@ public class ProductService implements ProductServiceInterface {
     }
 
     @Override
+    public Set<ProductDto> getAllProductsAvailable() {
+        return productRepository.findByAvailable(true);
+    }
+
+    @Override
     public Set<ProductDto> getAllProducts() {
         return  productRepository.findAll().stream().map(product -> new ProductDto(product)).collect(Collectors.toSet());
     }

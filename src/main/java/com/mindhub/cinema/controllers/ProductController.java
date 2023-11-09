@@ -22,10 +22,15 @@ public class ProductController {
 
 
     @GetMapping("/api/current/get_all_products")
+    Set<ProductDto> get_all_products_available(){
+        return productService.getAllProductsAvailable();
+    }
+
+
+    @GetMapping("/api/admin/get_all_products")
     Set<ProductDto> get_all_products(){
         return productService.getAllProducts();
     }
-
 
     @PostMapping("/api/admin/add_product")
     public ResponseEntity<String> add_product(Authentication authentication, @RequestBody CreateProductDto createProductDto){

@@ -11,6 +11,8 @@ import java.util.Set;
 public interface ProductServiceInterface {
     void add_product(CreateProductDto createProductDto);
 
+    Set<ProductDto> getAllProductsAvailable();
+
    Set<ProductDto> getAllProducts();
 
 
@@ -24,4 +26,6 @@ public interface ProductServiceInterface {
     boolean existsById(Long productId);
 
     void changeAvailability(Long productId);
+
+
 }

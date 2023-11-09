@@ -21,5 +21,7 @@ public interface ProductServiceInterface {
     void save(Product product);
 
 
+    boolean existsById(Long productId);
 
+    void changeAvailability(Long productId);
 }

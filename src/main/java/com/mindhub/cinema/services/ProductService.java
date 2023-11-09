@@ -75,8 +75,23 @@ public class ProductService implements ProductServiceInterface {
         productRepository.save(product);
     }
 
+    @Override
+    public boolean existsById(Long productId) {
+        return productRepository.existsById(productId);
+    }
 
+    @Override
+    public void changeAvailability(Long productId) {
+        Product product = productRepository.findById(productId).get();
 
+        if(product.getAvailable() == true){
+            product.setAvailable(false);
+        } else {
+            product.setAvailable(true);
+        }
+
+        productRepository.save(product);
+    }
 
 
 }

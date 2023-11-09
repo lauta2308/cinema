@@ -74,6 +74,32 @@ public class ProductController {
 
     }
 
+    @PatchMapping("/api/admin/product_availability/{productId}")
+    public ResponseEntity<String> product_availability(Authentication authentication, @PathVariable Long productId) {
+
+        if(authentication == null){
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if(ValidationUtils.checkUserRole(authentication) != "ADMIN"){
+            return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
+        }
+
+
+        if(productId.toString().isBlank()){
+            return new ResponseEntity<>("Insert Product Id", HttpStatus.BAD_REQUEST);
+        }
+
+
+        if(!productService.existsById(productId)){
+            return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
+        }
+
+        productService.changeAvailability(productId);
+
+
+        return new ResponseEntity<>("Product Updated", HttpStatus.OK);
+    }
 
 
 

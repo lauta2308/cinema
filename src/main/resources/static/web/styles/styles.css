@@ -145,6 +145,15 @@ input {
   legend {
     margin: 1rem 0;
   }
+
+  select {
+    color: black;
+  }
+  
+  option {
+    color: black;
+  }
+  
   
 
 
@@ -182,10 +191,12 @@ input {
 
 .color-red {
   background-color: red;
+  cursor: pointer;
 }
 
 .color-green {
   background-color: green;
+  cursor: pointer;
 }
 
 .color-orange {
@@ -1084,13 +1095,6 @@ fieldset {
 
 
 
-.seats-table-select {
-  color: black;
-}
-
-.seats-table-select option {
-  color: black;
-}
 
 
 /* PRODUCTS */
@@ -1350,4 +1354,27 @@ fieldset {
 .showTime-img {
   height: 300px;
 }
+
+
+
+/********** ADMIN ************/
+
+.admin-products-table {
+  width: 100%;
+}
+
+.admin-products-table td {
+padding: 1rem;
+text-align: center;
+border: 1px solid white;
+
+}
+
+.add-product-form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 

@@ -17,6 +17,8 @@ public class ProductDto {
 
     private Integer net_content;
 
+    private Boolean available;
+
 
     public ProductDto() {
     }
@@ -28,7 +30,7 @@ public class ProductDto {
 
         this.productType = product.getProductType();
         this.net_content = product.getNet_content();
-
+        this.available = product.getAvailable();
     }
 
     public long getId() {
@@ -53,4 +55,7 @@ public class ProductDto {
         return net_content;
     }
 
+    public Boolean getAvailable() {
+        return available;
+    }
 }

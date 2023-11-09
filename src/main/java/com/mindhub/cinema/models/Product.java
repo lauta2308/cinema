@@ -27,6 +27,8 @@ public class Product {
 
     private Integer net_content;
 
+    private Boolean available = true;
+
     @OneToMany(mappedBy="product", fetch=FetchType.EAGER)
     private Set<PurchaseItem> productCombos = new HashSet<>();
 
@@ -82,9 +84,18 @@ public class Product {
         this.net_content = net_content;
     }
 
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
+
     public Set<PurchaseItem> getProductCombos() {
         return productCombos;
     }
+
 
     public void setProductCombos(Set<PurchaseItem> productCombos) {
         this.productCombos = productCombos;

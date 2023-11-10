@@ -24,4 +24,10 @@ public class MovieUtils {
     public static MovieDto movieToDto(Movie movie){
         return new MovieDto(movie);
     }
+
+    public static Object allMoviesToDto(List<Movie> movies) {
+
+       return movies.stream().map(movie -> new MovieDto(movie)).collect(Collectors.toList());
+
+    }
 }

@@ -26,6 +26,20 @@ public class MovieController {
         return (List<MovieDto>) movieService.getMoviesOnSchedule();
     }
 
+    @GetMapping("/api/admin/get_movies")
+    public ResponseEntity <Object> get_movies(Authentication authentication){
+
+        if(authentication == null){
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if(ValidationUtils.checkUserRole(authentication) != "ADMIN"){
+            return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
+        }
+
+       return new ResponseEntity<>(movieService.getMovies(), HttpStatus.OK);
+    }
+
     @GetMapping("/api/movies/{movieId}")
     MovieDto get_movie(@PathVariable Long movieId){
         return movieService.getMovie(movieId);

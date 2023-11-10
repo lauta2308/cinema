@@ -51,4 +51,9 @@ public class MovieService implements MovieServiceInterface {
     public Movie findByMovieId(Long movieId) {
         return movieRepository.findById(movieId).get();
     }
+
+    @Override
+    public Object getMovies() {
+        return MovieUtils.allMoviesToDto(movieRepository.findAll());
+    }
 }

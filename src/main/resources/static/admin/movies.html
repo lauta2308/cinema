@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <title>Movies</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
     
                   <ul>
                     <li><a href="" class="menu-item">Combos</a></li>
-                    <li><a href="./movies.html" class="menu-item">Movies</a></li>
+                    <li><a href="" class="menu-item">Movies</a></li>
                     <li><a href="" class="menu-item">Products</a></li>
                     <li><a href="" class="menu-item">ShowTimes</a></li>
                     <li><a href="" class="menu-item">ShowRooms</a></li>
@@ -82,11 +82,16 @@
 <main>
 
 
-    
-
     <section class="container">
-        <h2>Products List</h2>
-
+        <h2>Movies List</h2>
+        <div v-if="errorMessage !== ''" class="error-container">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M10 10l4 4m0 -4l-4 4" />
+              <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+            </svg>
+            <p class="error-message">{{errorMessage}}</p>
+          </div>
 
 
 <table class="admin-products-table">
@@ -94,24 +99,26 @@
     <thead>
         <tr>
             
-            <td>Product</td>
-            <td>Net Content</td>
-            <td>Price</td>
-            <td>Type</td>
-            <td>Times sold</td>
-            <td>Action</td>
+            <td>Name</td>
+            <td>Duration</td>
+            <td>Languaje</td>
+            <td>Times Played</td>
+            <td>Tickets sold</td>
+            <td>Availability</td>
+            <td>Reviews</td>
         </tr>
     </thead>
 
     <tbody>
-        <tr v-for="product in products">
-            <td>{{product.name}}</td>
-            <td>{{product.net_content}}</td>
-            <td>$ {{product.productPrice}}</td>
-            <td>{{product.productType}}</td>
-            <td></td>
-            <td v-if="product.available == true" class="color-red" @click="patchAvailable(product.id)">Disable</td>
-            <td v-else class="color-green" @click="patchAvailable(product.id)">Enable</td>
+        <tr v-for="movie in movies">
+            <td>{{movie.name}}</td>
+            <td>{{movie.duration}}</td>
+            <td>{{movie.languaje}}</td>
+            <td>{{movie.timesPlayed}}</td>
+            <td>{{movie.ticketsSold}}</td>
+            <td>{{movie.movieAvailability}}</td>
+            <td>{{reviewsLength(movie)}}</td>
+
         </tr>
     </tbody>
 
@@ -120,45 +127,7 @@
 
 </section>
 
-
-<section class="container">
-
-    <h2>Add New Product</h2>
-
-    <form class="add-product-form">
-
-
-        <label>
-            <input type="text" placeholder="Product Name" v-model="newProductName" @click="resetProductError">
-        </label>
-        <label>
-            <input type="Number" min="0" placeholder="Product Price" v-model="newProductPrice">
-        </label>
-        <label>
-            Product Type
-           <select v-model="newProductType">
-            <option value="#" selected disabled>SELECT</option>
-            <option value="DRINK">Drink</option>
-            <option value="FOOD">Food</option>
-           </select>
-        </label>
-        <label>
-            <input type="Number" placeholder="Product Net Content" v-model="newProductContent">
-        </label>
-
-        <div v-if="productError" class="error-container">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-              <path d="M10 10l4 4m0 -4l-4 4" />
-              <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
-            </svg>
-            <p class="error-message">{{productError}}</p>
-          </div>
-
-        <button class="site-action-btn color-green" @click.prevent="saveProduct">Save Product</button>
-    </form>
-</section>
-
+  
 
 
 
@@ -218,6 +187,6 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script type="module" src="./scripts/admin.js"></script>
+<script type="module" src="./scripts/movies.js"></script>
 </body>
 </html>

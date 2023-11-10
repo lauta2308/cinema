@@ -19,7 +19,7 @@ public class CreateMovieDto {
 
     private Integer duration;
 
-    private String languaje;
+    private String language;
 
     private MovieGenre movieGenre;
 
@@ -27,14 +27,14 @@ public class CreateMovieDto {
 
     private MovieAvailability movieAvailability;
 
-    public CreateMovieDto(String movieImg, String movieTrailer, String name, String description, MovieRestriction movieRestriction, Integer duration, String languaje, MovieGenre movieGenre, MovieType movieType, MovieAvailability movieAvailability) {
+    public CreateMovieDto(String movieImg, String movieTrailer, String name, String description, MovieRestriction movieRestriction, Integer duration, String language, MovieGenre movieGenre, MovieType movieType, MovieAvailability movieAvailability) {
         this.movieImg = movieImg;
         this.movieTrailer = movieTrailer;
         this.name = name;
         this.description = description;
         this.movieRestriction = movieRestriction;
         this.duration = duration;
-        this.languaje = languaje;
+        this.language = language;
         this.movieGenre = movieGenre;
         this.movieType = movieType;
         this.movieAvailability = movieAvailability;
@@ -64,8 +64,8 @@ public class CreateMovieDto {
         return duration;
     }
 
-    public String getLanguaje() {
-        return languaje;
+    public String getLanguage() {
+        return language;
     }
 
     public MovieGenre getMovieGenre() {

@@ -59,7 +59,7 @@ public class MovieController {
         }
 
         
-        if(createMovieDto.getMovieImg().isBlank() && createMovieDto.getMovieTrailer().isBlank() && createMovieDto.getName().isBlank() && createMovieDto.getDescription().isBlank() && createMovieDto.getMovieRestriction().toString().isBlank() && createMovieDto.getDuration().toString().isBlank() && createMovieDto.getLanguaje().isBlank() && createMovieDto.getMovieGenre().toString().isBlank() && createMovieDto.getMovieType().toString().isBlank() && createMovieDto.getMovieAvailability().toString().isBlank() ){
+        if(createMovieDto.getMovieImg().isBlank() && createMovieDto.getMovieTrailer().isBlank() && createMovieDto.getName().isBlank() && createMovieDto.getDescription().isBlank() && createMovieDto.getMovieRestriction().toString().isBlank() && createMovieDto.getDuration().toString().isBlank() && createMovieDto.getLanguage().isBlank() && createMovieDto.getMovieGenre().toString().isBlank() && createMovieDto.getMovieType().toString().isBlank() && createMovieDto.getMovieAvailability().toString().isBlank() ){
             return new ResponseEntity<>("Empty fields", HttpStatus.BAD_REQUEST);
         }
 
@@ -91,8 +91,8 @@ public class MovieController {
             return new ResponseEntity<>("Duration should be higher than 0", HttpStatus.BAD_REQUEST);
         }
 
-        if(createMovieDto.getLanguaje().isBlank()){
-            return new ResponseEntity<>("Add languaje", HttpStatus.BAD_REQUEST);
+        if(createMovieDto.getLanguage().isBlank()){
+            return new ResponseEntity<>("Add language", HttpStatus.BAD_REQUEST);
         }
 
         if(createMovieDto.getMovieGenre().toString().isBlank()){

@@ -132,7 +132,7 @@
             <input type="text" placeholder="Product Name" v-model="newProductName" @click="resetProductError">
         </label>
         <label>
-            <input type="Number" min="0" placeholder="Product Price" v-model="newProductPrice">
+            <input type="Number" min="0" placeholder="Product Price" v-model="newProductPrice" @click="resetProductError">
         </label>
         <label>
             Product Type
@@ -143,7 +143,7 @@
            </select>
         </label>
         <label>
-            <input type="Number" placeholder="Product Net Content" v-model="newProductContent">
+            <input type="Number" placeholder="Product Net Content" v-model="newProductContent" @click="resetProductError">
         </label>
 
         <div v-if="productError" class="error-container">

@@ -84,14 +84,7 @@
 
     <section class="container">
         <h2>Movies List</h2>
-        <div v-if="errorMessage !== ''" class="error-container">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-              <path d="M10 10l4 4m0 -4l-4 4" />
-              <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
-            </svg>
-            <p class="error-message">{{errorMessage}}</p>
-          </div>
+       
 
 
 <table class="admin-products-table">
@@ -101,7 +94,7 @@
             
             <td>Name</td>
             <td>Duration</td>
-            <td>Languaje</td>
+            <td>Language</td>
             <td>Times Played</td>
             <td>Tickets sold</td>
             <td>Availability</td>
@@ -113,7 +106,7 @@
         <tr v-for="movie in movies">
             <td>{{movie.name}}</td>
             <td>{{movie.duration}}</td>
-            <td>{{movie.languaje}}</td>
+            <td>{{movie.language}}</td>
             <td>{{movie.timesPlayed}}</td>
             <td>{{movie.ticketsSold}}</td>
             <td>{{movie.movieAvailability}}</td>
@@ -126,6 +119,106 @@
 </table>
 
 </section>
+
+<section class="container">
+
+    <h2>Add New Movie</h2>
+
+
+
+    <form class="add-product-form">
+
+
+        <label>
+            <input type="text" placeholder="Movie img url" v-model="newMovieImage" @click="resetErrorMessage">
+        </label>
+
+        <label>
+            <input type="text" placeholder="Movie trailer url" v-model="newMovieTrailer" @click="resetErrorMessage">
+        </label>
+
+        <label>
+            <input type="text" placeholder="Movie name" v-model="newMovieName" @click="resetErrorMessage">
+        </label>
+
+        <label>
+            <input type="text" placeholder="Movie description" v-model="newMovieDescription" @click="resetErrorMessage">
+        </label>
+
+        <label>
+            Movie Restriction
+           <select v-model="newMovieRestriction">
+            <option value="#" selected disabled>SELECT</option>
+            <option value="ATP">ATP</option>
+            <option value="SAM_13">SAM_13</option>
+            <option value="SAM_16">SAM_16</option>
+            <option value="SAM_18">SAM_18</option>
+           </select>
+        </label>
+
+        <label>
+            <input type="Number" placeholder="Movie Duration (mins)" v-model="newMovieDuration" @click="resetErrorMessage">
+        </label>
+
+        <label>
+            <input type="text" placeholder="Movie Language" v-model="newMovieLanguage" @click="resetErrorMessage">
+        </label>
+
+        <label>
+
+
+            Movie Genre
+           <select v-model="newMovieGenre">
+            <option value="#" selected disabled>SELECT</option>
+            <option value="ACTION">ACTION</option>
+            <option value="ADVENTURE">ADVENTURE</option>
+            <option value="COMEDY">COMEDY</option>
+            <option value="DRAMA">DRAMA</option>
+            <option value="FANTASY">FANTASY</option>
+            <option value="HORROR">HORROR</option>
+            <option value="MISTERY">MISTERY</option>
+            <option value="ROMANCE">ROMANCE</option>
+            <option value="THRILLER">THRILLER</option>
+            <option value="WESTERN">WESTERN</option>
+            
+           </select>
+        </label>
+
+        <label>
+            Movie Type
+           <select v-model="newMovieType">
+            <option value="#" selected disabled>SELECT</option>
+            <option value="MOVIE_2D">2D</option>
+            <option value="MOVIE_3D">3D</option>
+            <option value="MOVIE_IMAX">IMAX</option>
+            
+           </select>
+        </label>
+
+        <label>
+            Movie Availability
+           <select v-model="newMovieAvailability">
+            <option value="#" selected disabled>SELECT</option>
+            <option value="AVAILABLE">Available</option>
+            <option value="COMING_SOON">Coming Soon</option>
+            <option value="NOT_AVAILABLE">Not Available</option>
+            
+           </select>
+        </label>
+
+        <div v-if="errorMessage" class="error-container">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M10 10l4 4m0 -4l-4 4" />
+              <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+            </svg>
+            <p class="error-message">{{errorMessage}}</p>
+          </div>
+
+        <button class="site-action-btn color-green" @click.prevent="saveMovie()">Save Movie</button>
+    </form>
+</section>
+
 
   
 

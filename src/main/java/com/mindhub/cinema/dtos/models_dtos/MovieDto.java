@@ -28,7 +28,7 @@ public class MovieDto {
 
     private Integer duration;
 
-    private String languaje;
+    private String language;
 
     private MovieGenre movieGenre;
 
@@ -53,7 +53,7 @@ public class MovieDto {
         this.description = movie.getDescription();
         this.movieRestriction = movie.getMovieRestriction();
         this.duration = movie.getDuration();
-        this.languaje = movie.getLanguaje();
+        this.language = movie.getLanguage();
         this.movieGenre = movie.getMovieGenre();
         this.timesPlayed = movie.getTimesPlayed();
         this.ticketsSold = movie.getTicketsSold();
@@ -91,8 +91,8 @@ public class MovieDto {
         return duration;
     }
 
-    public String getLanguaje() {
-        return languaje;
+    public String getLanguage() {
+        return language;
     }
 
     public MovieGenre getMovieGenre() {

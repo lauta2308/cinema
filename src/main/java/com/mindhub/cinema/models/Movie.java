@@ -33,7 +33,7 @@ public class Movie {
 
     private Integer duration;
 
-    private String languaje;
+    private String language;
 
     private MovieGenre movieGenre;
 
@@ -62,7 +62,7 @@ public class Movie {
         this.description = description;
         this.movieRestriction = movieRestriction;
         this.duration = duration;
-        this.languaje = languaje;
+        this.language = languaje;
         this.movieGenre = movieGenre;
         this.movieType = movieType;
         this.movieAvailability = movieAvailability;
@@ -120,12 +120,12 @@ public class Movie {
         this.duration = duration;
     }
 
-    public String getLanguaje() {
-        return languaje;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setLanguaje(String languaje) {
-        this.languaje = languaje;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     public MovieGenre getMovieGenre() {

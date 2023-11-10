@@ -33,7 +33,7 @@ public class MovieService implements MovieServiceInterface {
     @Override
     public void add_movie(CreateMovieDto createMovieDto) {
 
-        movieRepository.save(new Movie(createMovieDto.getMovieImg(), createMovieDto.getMovieTrailer(), createMovieDto.getName(), createMovieDto.getDescription(), createMovieDto.getMovieRestriction(), createMovieDto.getDuration(), createMovieDto.getLanguaje(), createMovieDto.getMovieGenre(), createMovieDto.getMovieType(), createMovieDto.getMovieAvailability()));
+        movieRepository.save(new Movie(createMovieDto.getMovieImg(), createMovieDto.getMovieTrailer(), createMovieDto.getName(), createMovieDto.getDescription(), createMovieDto.getMovieRestriction(), createMovieDto.getDuration(), createMovieDto.getLanguage(), createMovieDto.getMovieGenre(), createMovieDto.getMovieType(), createMovieDto.getMovieAvailability()));
 
     }
 

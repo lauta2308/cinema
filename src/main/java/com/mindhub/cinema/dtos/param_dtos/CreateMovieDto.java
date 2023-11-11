@@ -13,6 +13,7 @@ public class CreateMovieDto {
 
     private String name;
 
+
     private String description;
 
     private MovieRestriction movieRestriction;

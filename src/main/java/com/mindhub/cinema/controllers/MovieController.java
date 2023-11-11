@@ -122,6 +122,82 @@ public class MovieController {
 
 
 
+    @PatchMapping("/api/admin/edit_movie/{movieId}")
+    public ResponseEntity<String> edit_movie(Authentication authentication, @RequestBody CreateMovieDto createMovieDto, @PathVariable Long movieId){
+
+        if(authentication == null){
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if(ValidationUtils.checkUserRole(authentication) != "ADMIN"){
+            return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
+        }
+
+
+        if(createMovieDto.getMovieImg().isBlank() && createMovieDto.getMovieTrailer().isBlank() && createMovieDto.getName().isBlank() && createMovieDto.getDescription().isBlank() && createMovieDto.getMovieRestriction().toString().isBlank() && createMovieDto.getDuration().toString().isBlank() && createMovieDto.getLanguage().isBlank() && createMovieDto.getMovieGenre().toString().isBlank() && createMovieDto.getMovieType().toString().isBlank() && createMovieDto.getMovieAvailability().toString().isBlank() ){
+            return new ResponseEntity<>("Empty fields", HttpStatus.BAD_REQUEST);
+        }
+
+        if(createMovieDto.getMovieImg().isBlank()){
+            return new ResponseEntity<>("Add image", HttpStatus.BAD_REQUEST);
+        }
+
+        if(createMovieDto.getMovieTrailer().isBlank()){
+            return new ResponseEntity<>("Add trailer", HttpStatus.BAD_REQUEST);
+        }
+
+        if(createMovieDto.getName().isBlank()){
+            return new ResponseEntity<>("Add name", HttpStatus.BAD_REQUEST);
+        }
+
+        if(createMovieDto.getDescription().isBlank()){
+            return new ResponseEntity<>("Add description", HttpStatus.BAD_REQUEST);
+        }
+
+        if(createMovieDto.getMovieRestriction().toString().isBlank()){
+            return new ResponseEntity<>("Add movie restriction", HttpStatus.BAD_REQUEST);
+        }
+
+        if(createMovieDto.getDuration().toString().isBlank()){
+            return new ResponseEntity<>("Add duration", HttpStatus.BAD_REQUEST);
+        }
+
+        if(createMovieDto.getDuration() < 0){
+            return new ResponseEntity<>("Duration should be higher than 0", HttpStatus.BAD_REQUEST);
+        }
+
+        if(createMovieDto.getLanguage().isBlank()){
+            return new ResponseEntity<>("Add language", HttpStatus.BAD_REQUEST);
+        }
+
+        if(createMovieDto.getMovieGenre().toString().isBlank()){
+            return new ResponseEntity<>("Add movie genre", HttpStatus.BAD_REQUEST);
+        }
+
+        if(createMovieDto.getMovieType().toString().isBlank()){
+            return new ResponseEntity<>("Add movie type", HttpStatus.BAD_REQUEST);
+        }
+
+        if(createMovieDto.getMovieAvailability().toString().isBlank()){
+            return new ResponseEntity<>("Add movie availability", HttpStatus.BAD_REQUEST);
+        }
+
+
+        if(!movieService.existsById(movieId)){
+
+            return new ResponseEntity<>("Movie id not valid", HttpStatus.BAD_REQUEST);
+        }
+
+
+        movieService.edit_movie(createMovieDto, movieId);
+
+        return new ResponseEntity<>("Movie saved", HttpStatus.OK);
+
+
+    }
+
+
+
 
 
 }

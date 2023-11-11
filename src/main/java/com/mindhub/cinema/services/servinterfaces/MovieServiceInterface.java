@@ -24,4 +24,8 @@ public interface MovieServiceInterface {
 
 
     Object getMovies();
+
+    void edit_movie(CreateMovieDto createMovieDto, Long movieId);
+
+    boolean existsById(Long movieId);
 }

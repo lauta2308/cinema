@@ -8,6 +8,8 @@ import com.mindhub.cinema.repositories.MovieRepository;
 import com.mindhub.cinema.services.servinterfaces.MovieServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.MovieUtils;
 import com.mindhub.cinema.utils.enums.MovieAvailability;
+import com.mindhub.cinema.utils.enums.MovieGenre;
+import com.mindhub.cinema.utils.enums.MovieRestriction;
 import com.mindhub.cinema.utils.enums.MovieType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,5 +57,39 @@ public class MovieService implements MovieServiceInterface {
     @Override
     public Object getMovies() {
         return MovieUtils.allMoviesToDto(movieRepository.findAll());
+    }
+
+    @Override
+    public void edit_movie(CreateMovieDto createMovieDto, Long movieId) {
+        Movie movie = movieRepository.findById(movieId).get();
+
+        movie.setMovieImg(createMovieDto.getMovieImg());
+
+        movie.setMovieTrailer(createMovieDto.getMovieTrailer());
+
+        movie.setName(createMovieDto.getName());
+
+        movie.setDescription(createMovieDto.getDescription());
+
+        movie.setMovieRestriction(createMovieDto.getMovieRestriction());
+
+        movie.setDuration(createMovieDto.getDuration());
+
+        movie.setLanguage(createMovieDto.getLanguage());
+
+        movie.setMovieGenre(createMovieDto.getMovieGenre());
+
+        movie.setMovieType(createMovieDto.getMovieType());
+
+        movie.setMovieAvailability(createMovieDto.getMovieAvailability());
+
+        movieRepository.save(movie);
+
+
+    }
+
+    @Override
+    public boolean existsById(Long movieId) {
+        return movieRepository.existsById(movieId);
     }
 }

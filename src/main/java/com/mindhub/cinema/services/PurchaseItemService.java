@@ -45,4 +45,8 @@ public class PurchaseItemService implements PurchaseItemServiceInterface {
 
 
     }
+
+    public List<PurchaseItem> getPurchaseItems(Long purchaseId){
+        return purchaseItemRepository.findByPurchaseId(purchaseId);
+    }
 }

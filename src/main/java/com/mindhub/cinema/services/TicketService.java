@@ -191,5 +191,10 @@ public class TicketService implements TicketServiceInterface {
 
     }
 
+    @Override
+    public List<Ticket> findByPurchaseId(long id) {
+        return ticketRepository.findByPurchase_id(id);
+    }
+
 
 }

@@ -4,6 +4,7 @@ import com.mindhub.cinema.dtos.models_dtos.PurchaseDto;
 import com.mindhub.cinema.dtos.models_dtos.ShowDto;
 import com.mindhub.cinema.dtos.models_dtos.TicketDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateTicketDto;
+import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.models.Ticket;
 import com.mindhub.cinema.repositories.TicketRepository;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class TicketUtils {
@@ -110,7 +112,6 @@ public class TicketUtils {
     public static TicketDto ticketToDto(Ticket ticket){
         return new TicketDto(ticket);
     }
-
 
 
 

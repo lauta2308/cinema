@@ -54,6 +54,7 @@ createApp({
         axios.get("/api/admin/get_all_products")
         .then(response => {
             
+          console.log(response.data)
             
             this.products = response.data
             this.products.sort(function(a, b) {

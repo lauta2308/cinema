@@ -1,5 +1,6 @@
 package com.mindhub.cinema.services.servinterfaces;
 
+import com.mindhub.cinema.dtos.models_dtos.PurchaseItemDto;
 import com.mindhub.cinema.dtos.param_dtos.AddPurchaseItemDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateProductDto;
 import com.mindhub.cinema.dtos.models_dtos.ProductDto;
@@ -28,4 +29,5 @@ public interface ProductServiceInterface {
     void changeAvailability(Long productId);
 
 
+    void add_times_sold(List<PurchaseItemDto> purchaseProducts);
 }

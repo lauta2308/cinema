@@ -27,6 +27,8 @@ public class Product {
 
     private Integer net_content;
 
+    private Integer times_sold = 0;
+
     private Boolean available = true;
 
     @OneToMany(mappedBy="product", fetch=FetchType.EAGER)
@@ -82,6 +84,18 @@ public class Product {
 
     public void setNet_content(Integer net_content) {
         this.net_content = net_content;
+    }
+
+    public Integer getTimes_sold() {
+        return times_sold;
+    }
+
+    public void setTimes_sold(Integer times_sold) {
+        this.times_sold = times_sold;
+    }
+
+    public void addTimesSold(Integer quantity){
+        this.setTimes_sold(this.getTimes_sold() + quantity);
     }
 
     public Boolean getAvailable() {

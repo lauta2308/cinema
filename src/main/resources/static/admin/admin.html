@@ -109,7 +109,7 @@
             <td>{{product.net_content}}</td>
             <td>$ {{product.productPrice}}</td>
             <td>{{product.productType}}</td>
-            <td></td>
+            <td>{{product.times_sold}}</td>
             <td v-if="product.available == true" class="color-red" @click="patchAvailable(product.id)">Disable</td>
             <td v-else class="color-green" @click="patchAvailable(product.id)">Enable</td>
         </tr>

@@ -28,4 +28,6 @@ public interface MovieServiceInterface {
     void edit_movie(CreateMovieDto createMovieDto, Long movieId);
 
     boolean existsById(Long movieId);
+
+    void increase_tickets_sold(Long movieId, Integer quantity);
 }

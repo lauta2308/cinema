@@ -3,6 +3,11 @@ package com.mindhub.cinema;
 import com.mindhub.cinema.models.*;
 import com.mindhub.cinema.repositories.*;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
+import com.mindhub.cinema.services.servinterfaces.MovieServiceInterface;
+import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;
+import com.mindhub.cinema.services.servinterfaces.PurchaseItemServiceInterface;
+import com.mindhub.cinema.utils.apiUtils.PurchaseItemUtils;
+import com.mindhub.cinema.utils.apiUtils.PurchaseUtils;
 import com.mindhub.cinema.utils.enums.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -31,6 +36,15 @@ public class CinemaApplication {
 
 	@Autowired
 	ClientServiceInterface clientService;
+
+	@Autowired
+	MovieServiceInterface movieService;
+
+	@Autowired
+	ProductServiceInterface productService;
+
+	@Autowired
+	PurchaseItemServiceInterface purchaseItemService;
 
 
 	@Bean
@@ -208,6 +222,8 @@ public class CinemaApplication {
 			Purchase purchaseOne = purchaseRepository.save(new Purchase());
 			purchaseOne.setPurchaseStatus(PurchaseStatus.COMPLETED);
 
+
+
 			// Le asigno un cliente
 
 			purchaseOne.setClient(clientOne);
@@ -335,7 +351,20 @@ public class CinemaApplication {
 			productRepository.save(pochocloMediano);
 
 
+
+
+			productService.add_times_sold(    PurchaseItemUtils.convertPurchaseItem(purchaseItemService.getPurchaseItems(purchaseOne.getId())));
 			purchaseRepository.save(purchaseOne);
+
+
+			List <Ticket> purchaseOneTickets = ticketRepository.findByPurchase_id(purchaseOne.getId());
+
+
+			movieService.increase_tickets_sold(purchaseOneTickets.stream().findFirst().get().getShow().getMovie().getId(), purchaseOneTickets.size());
+
+
+
+
 
 
 			Purchase adminPurchase = purchaseRepository.save(new Purchase(clientAdmin));

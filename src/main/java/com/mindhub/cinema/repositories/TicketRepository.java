@@ -6,6 +6,7 @@ import com.mindhub.cinema.utils.enums.TicketStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.DoubleStream;
 
@@ -16,4 +17,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     boolean existsBySeatPlaceAndShow_idAndTicketStatus(Integer seatPlace, Long showId, TicketStatus ticketStatus);
 
     Set<Ticket> findByShow_idAndTicketStatus(Long showId, TicketStatus ticketStatus);
+
+    List<Ticket> findByPurchase_id(long id);
 }

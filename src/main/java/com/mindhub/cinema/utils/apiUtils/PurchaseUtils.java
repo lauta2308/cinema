@@ -1,8 +1,13 @@
 package com.mindhub.cinema.utils.apiUtils;
 
+import com.mindhub.cinema.dtos.models_dtos.ProductDto;
 import com.mindhub.cinema.dtos.models_dtos.PurchaseDto;
+import com.mindhub.cinema.dtos.models_dtos.PurchaseItemDto;
 import com.mindhub.cinema.models.Purchase;
+import com.mindhub.cinema.models.PurchaseItem;
+import com.mindhub.cinema.repositories.PurchaseItemRepository;
 import com.mindhub.cinema.utils.enums.PurchaseStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Comparator;
 import java.util.List;
@@ -10,6 +15,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PurchaseUtils {
+
+
 
     public static List<PurchaseDto> filterAndSortCompletedPurchases(Set<Purchase> purchases){
 
@@ -42,5 +49,14 @@ public class PurchaseUtils {
 
     public static PurchaseDto purchaseToDto(Purchase purchase){
         return new PurchaseDto(purchase);
+    }
+
+
+    public static Long getMovieId(Purchase purchase) {
+
+
+      return purchase.getTickets().stream().findFirst().get().getShow().getMovie().getId();
+
+
     }
 }

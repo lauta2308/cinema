@@ -1,9 +1,11 @@
 package com.mindhub.cinema.services;
 
+import com.mindhub.cinema.dtos.models_dtos.PurchaseItemDto;
 import com.mindhub.cinema.dtos.param_dtos.AddPurchaseItemDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateProductDto;
 import com.mindhub.cinema.dtos.models_dtos.ProductDto;
 import com.mindhub.cinema.models.Product;
+import com.mindhub.cinema.models.PurchaseItem;
 import com.mindhub.cinema.repositories.ProductRepository;
 import com.mindhub.cinema.services.servinterfaces.ProductServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +98,21 @@ public class ProductService implements ProductServiceInterface {
         }
 
         productRepository.save(product);
+    }
+
+    @Override
+    public void add_times_sold(List<PurchaseItemDto> purchaseProducts) {
+
+
+        purchaseProducts.stream().forEach(purchaseItemDto -> {
+
+          Product product =  productRepository.findById(purchaseItemDto.getProduct().getId()).get();
+
+            product.addTimesSold(purchaseItemDto.getQuantity());
+
+            productRepository.save(product);
+
+        });
     }
 
 

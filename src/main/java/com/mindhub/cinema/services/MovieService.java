@@ -92,4 +92,15 @@ public class MovieService implements MovieServiceInterface {
     public boolean existsById(Long movieId) {
         return movieRepository.existsById(movieId);
     }
+
+    @Override
+    public void increase_tickets_sold(Long movieId, Integer quantity) {
+
+        Movie movie =     movieRepository.findById(movieId).get();
+
+        movie.addTicketsSold(quantity);
+
+        movieRepository.save(movie);
+
+    }
 }

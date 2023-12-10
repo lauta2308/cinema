@@ -145,6 +145,10 @@ public class Movie {
         this.timesPlayed = timesPlayed;
     }
 
+    public void addTicketsSold(Integer quantity){
+        this.setTicketsSold(this.getTicketsSold() + quantity);
+    }
+
     public Integer getTicketsSold() {
         return ticketsSold;
     }

@@ -22,6 +22,7 @@ createApp({
     created() {
 
         this.loadMovies();
+
  
      
 
@@ -41,7 +42,9 @@ createApp({
     },
     methods: {
 
+    
 
+     
                       
         
 

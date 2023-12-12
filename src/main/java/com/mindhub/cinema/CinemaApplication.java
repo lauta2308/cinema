@@ -151,7 +151,7 @@ public class CinemaApplication {
 
 			// Shows
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 12, 00, 00), 15.00, indianaJones2d, cinemaRoomOne));
+			showRepository.save(new Show(LocalDateTime.now(), 15.00, indianaJones2d, cinemaRoomOne));
 
 			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 17, 00, 00), 15.00, indianaJones2d, cinemaRoomOne));
 

@@ -3,6 +3,7 @@ package com.mindhub.cinema.services.servinterfaces;
 import com.mindhub.cinema.dtos.param_dtos.CreateMovieDto;
 import com.mindhub.cinema.dtos.models_dtos.MovieDto;
 import com.mindhub.cinema.models.Movie;
+import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.utils.enums.MovieType;
 import org.springframework.http.ResponseEntity;
 
@@ -30,4 +31,6 @@ public interface MovieServiceInterface {
     boolean existsById(Long movieId);
 
     void increase_tickets_sold(Long movieId, Integer quantity);
+
+    void updateMovieTimesPlayed(List<Show> shows);
 }

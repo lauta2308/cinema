@@ -4,6 +4,7 @@ package com.mindhub.cinema.services;
 import com.mindhub.cinema.dtos.param_dtos.CreateMovieDto;
 import com.mindhub.cinema.dtos.models_dtos.MovieDto;
 import com.mindhub.cinema.models.Movie;
+import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.repositories.MovieRepository;
 import com.mindhub.cinema.services.servinterfaces.MovieServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.MovieUtils;
@@ -14,6 +15,7 @@ import com.mindhub.cinema.utils.enums.MovieType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -101,6 +103,24 @@ public class MovieService implements MovieServiceInterface {
         movie.addTicketsSold(quantity);
 
         movieRepository.save(movie);
+
+    }
+
+    @Override
+    public void updateMovieTimesPlayed(List<Show> shows) {
+
+
+
+        shows.forEach(show -> {
+                    Movie movie = movieRepository.findById(show.getMovie().getId()).get();
+                    movie.setTimesPlayed(movie.getTimesPlayed() + 1);
+                    movieRepository.save(movie);
+
+                }
+
+                );
+
+
 
     }
 }

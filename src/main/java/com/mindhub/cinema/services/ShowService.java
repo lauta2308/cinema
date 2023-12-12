@@ -45,4 +45,9 @@ public class ShowService implements ShowServiceInterface {
     public List<ShowDto> get_showTimes(MovieType movieType) {
         return ShowUtils.showSetToDto(showRepository.findByMovie_movieTypeAndStartTimeAfter(movieType, LocalDateTime.now()).stream().collect(Collectors.toSet()));
     }
+
+    @Override
+    public List<Show> findShowsByStartTime(Integer hours) {
+        return showRepository.findByStartTimeBetween(LocalDateTime.now().minusHours(hours), LocalDateTime.now());
+    }
 }

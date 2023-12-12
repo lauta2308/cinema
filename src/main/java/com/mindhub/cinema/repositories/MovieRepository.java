@@ -19,4 +19,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
 
     Set<Movie> findByMovieAvailabilityOrMovieAvailability(MovieAvailability movieAvailability1, MovieAvailability movieAvailability2);
+
+
 }

@@ -8,6 +8,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 @RepositoryRestResource
@@ -19,6 +20,8 @@ public interface ShowRepository extends JpaRepository<Show, Long> {
 
 
     Set<Show> findByMovie_movieTypeAndStartTimeAfter(MovieType movieType, LocalDateTime now);
+
+    List<Show> findByStartTimeBetween(LocalDateTime localDateTime, LocalDateTime localDateTime2);
 }
 
 

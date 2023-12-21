@@ -1359,18 +1359,18 @@ fieldset {
 
 /********** ADMIN - PRODUCTS ************/
 
-.admin-products-table {
+.admin-body-table {
   width: 100%;
 }
 
-.admin-products-table td {
+.admin-body-table td {
 padding: 1rem;
 text-align: center;
 border: 1px solid white;
 
 }
 
-.add-product-form {
+.admin-body-form {
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -1378,18 +1378,8 @@ border: 1px solid white;
 }
 
 
-/************* ADMIN - MOVIES *************/
 
-
-.admin-movies-form {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-
-.admin-movies-form label textarea {
+.admin-body-form label textarea {
 
   width: 100%;
   height: 20rem;

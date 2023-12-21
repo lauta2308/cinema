@@ -3,8 +3,12 @@ package com.mindhub.cinema.controllers;
 
 import com.mindhub.cinema.dtos.models_dtos.ShowDto;
 import com.mindhub.cinema.services.servinterfaces.ShowServiceInterface;
+import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
 import com.mindhub.cinema.utils.enums.MovieType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,6 +39,19 @@ public class ShowController {
     }
 
 
+
+    @GetMapping("/api/admin/get_shows")
+    public Object get_shows(Authentication authentication){
+
+        if(authentication == null){
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if(ValidationUtils.checkUserRole(authentication) != "ADMIN"){
+            return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
+        }
+        return showService.get_shows();
+    }
 
 
 

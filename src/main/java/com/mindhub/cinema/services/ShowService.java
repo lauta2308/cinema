@@ -4,9 +4,11 @@ import com.mindhub.cinema.dtos.models_dtos.ShowDto;
 import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.repositories.ShowRepository;
 import com.mindhub.cinema.services.servinterfaces.ShowServiceInterface;
+import com.mindhub.cinema.utils.apiUtils.MovieUtils;
 import com.mindhub.cinema.utils.apiUtils.ShowUtils;
 import com.mindhub.cinema.utils.enums.MovieType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -49,5 +51,14 @@ public class ShowService implements ShowServiceInterface {
     @Override
     public List<Show> findShowsByStartTime(Integer hours) {
         return showRepository.findByStartTimeBetween(LocalDateTime.now().minusHours(hours), LocalDateTime.now());
+    }
+
+    @Override
+    public Object get_shows() {
+
+        Sort sort = Sort.by(Sort.Direction.ASC, "startTime");
+
+       return ShowUtils.showsToDto( showRepository.findByStartTimeAfter( LocalDateTime.now(), sort));
+
     }
 }

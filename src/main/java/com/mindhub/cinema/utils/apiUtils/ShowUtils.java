@@ -21,4 +21,9 @@ public class ShowUtils {
 
         return showListDto;
     }
+
+    public static Object showsToDto(List<Show> shows) {
+
+        return shows.stream().map(show -> new ShowDto(show)).collect(Collectors.toList());
+    }
 }

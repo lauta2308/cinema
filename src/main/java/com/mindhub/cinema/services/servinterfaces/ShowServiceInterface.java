@@ -20,4 +20,6 @@ public interface ShowServiceInterface {
     List<ShowDto> get_showTimes(MovieType movieType);
 
     List<Show> findShowsByStartTime(Integer hours);
+
+    Object get_shows();
 }

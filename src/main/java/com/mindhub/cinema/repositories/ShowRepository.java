@@ -3,6 +3,7 @@ package com.mindhub.cinema.repositories;
 
 import com.mindhub.cinema.models.Show;
 import com.mindhub.cinema.utils.enums.MovieType;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
@@ -22,6 +23,8 @@ public interface ShowRepository extends JpaRepository<Show, Long> {
     Set<Show> findByMovie_movieTypeAndStartTimeAfter(MovieType movieType, LocalDateTime now);
 
     List<Show> findByStartTimeBetween(LocalDateTime localDateTime, LocalDateTime localDateTime2);
+
+    List<Show> findByStartTimeAfter(LocalDateTime localDateTime, Sort sort);
 }
 
 

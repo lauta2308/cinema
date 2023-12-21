@@ -2,6 +2,7 @@ package com.mindhub.cinema.services.servinterfaces;
 
 import com.mindhub.cinema.dtos.models_dtos.ShowDto;
 import com.mindhub.cinema.models.Show;
+import com.mindhub.cinema.models.Ticket;
 import com.mindhub.cinema.utils.enums.MovieType;
 
 import java.time.LocalDateTime;
@@ -22,4 +23,6 @@ public interface ShowServiceInterface {
     List<Show> findShowsByStartTime(Integer hours);
 
     Object get_shows();
+
+    void updateShowTicketsSold(List<Ticket> purchaseTickets);
 }

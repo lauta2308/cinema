@@ -143,6 +143,7 @@ public class TicketService implements TicketServiceInterface {
 
                ticket.updateTicketPriceByAge();
                ticket.addPriceToPurchase();
+               
 
 
 

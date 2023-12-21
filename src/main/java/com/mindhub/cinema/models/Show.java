@@ -54,6 +54,17 @@ public class Show {
         this.cinemaRoom = cinemaRoom;
     }
 
+    public void addTicketsSold(Integer quantity){
+        this.setTicketsSold(this.getTicketsSold() + quantity);
+        this.updateOccupationPercent();
+    }
+
+
+
+    public void updateOccupationPercent(){
+        this.setOccupationPercent(this.getTicketsSold().doubleValue() * 100 / this.getCinemaRoom().getCapacity());
+    }
+
 
     public long getId() {
         return id;

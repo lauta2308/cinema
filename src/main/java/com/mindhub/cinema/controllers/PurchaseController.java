@@ -15,6 +15,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 public class PurchaseController {
@@ -32,6 +34,9 @@ public class PurchaseController {
 
     @Autowired
     ProductServiceInterface productService;
+
+    @Autowired
+    ShowServiceInterface showService;
 
     @Autowired
     TicketServiceInterface ticketService;
@@ -83,7 +88,11 @@ public class PurchaseController {
         List <Ticket> purchaseTickets = ticketService.findByPurchaseId(purchase.getId());
 
 
-        movieService.increase_tickets_sold(purchaseTickets.stream().findFirst().get().getShow().getMovie().getId(), purchaseTickets.size());
+
+
+        showService.updateShowTicketsSold(purchaseTickets);
+
+
 
 
         movieService.increase_tickets_sold(PurchaseUtils.getMovieId(purchase), purchase.getTickets().size());

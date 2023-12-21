@@ -102,6 +102,7 @@ public class MovieService implements MovieServiceInterface {
 
         movie.addTicketsSold(quantity);
 
+
         movieRepository.save(movie);
 
     }

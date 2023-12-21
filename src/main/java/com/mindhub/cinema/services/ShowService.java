@@ -2,10 +2,12 @@ package com.mindhub.cinema.services;
 
 import com.mindhub.cinema.dtos.models_dtos.ShowDto;
 import com.mindhub.cinema.models.Show;
+import com.mindhub.cinema.models.Ticket;
 import com.mindhub.cinema.repositories.ShowRepository;
 import com.mindhub.cinema.services.servinterfaces.ShowServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.MovieUtils;
 import com.mindhub.cinema.utils.apiUtils.ShowUtils;
+import com.mindhub.cinema.utils.apiUtils.TicketUtils;
 import com.mindhub.cinema.utils.enums.MovieType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -60,5 +62,15 @@ public class ShowService implements ShowServiceInterface {
 
        return ShowUtils.showsToDto( showRepository.findByStartTimeAfter( LocalDateTime.now(), sort));
 
+    }
+
+    @Override
+    public void updateShowTicketsSold(List<Ticket> purchaseTickets) {
+
+        Show show = showRepository.findById(purchaseTickets.stream().findFirst().get().getShow().getId()).get();
+
+        show.addTicketsSold(purchaseTickets.size());
+
+        showRepository.save(show);
     }
 }

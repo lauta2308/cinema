@@ -25,6 +25,8 @@ public interface ShowRepository extends JpaRepository<Show, Long> {
     List<Show> findByStartTimeBetween(LocalDateTime localDateTime, LocalDateTime localDateTime2);
 
     List<Show> findByStartTimeAfter(LocalDateTime localDateTime, Sort sort);
+
+
 }
 
 

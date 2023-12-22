@@ -52,6 +52,8 @@ public class ShowDto {
         return startTime;
     }
 
+
+
     public String getEndTime() {
         return endTime;
     }

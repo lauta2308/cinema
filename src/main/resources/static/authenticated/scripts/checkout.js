@@ -165,26 +165,16 @@ this.getStorageTickets();
       pay(){
 
 
-        axios.post("http://localhost:9090/procesarcompra")
+        axios.patch(`/api/current/purchase/${this.purchaseId}`)
         .then(response => {
           console.log('Respuesta:', response.data);
-          this.purchaseStatusToComplete();
+
         })
         .catch(error => {
        
           console.error('Error:', error);
         });
       },
-
-      purchaseStatusToComplete(){
-
-        axios.patch(`/api/current/purchase/${this.purchaseId}`)
-        .then(response => console.log(response.data))
-        .catch(error => {
-       
-          console.error('Error:', error);
-        });
-      }
 
 
 

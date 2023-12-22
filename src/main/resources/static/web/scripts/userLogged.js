@@ -70,7 +70,6 @@ const userLogged = {
         
                 getMovieIdInLocal(){
             
-                  console.log("from user logged");
                   const movieJson = sessionStorage.getItem('movie');
       
                   if (movieJson && typeof movieJson === 'string') {
@@ -105,7 +104,7 @@ const userLogged = {
           axios.get("/api/current/get_completed_purchases")
           .then(response => {
             
-            console.log(response.data)
+ 
             this.clientCompletedPurchases = response.data
           
           

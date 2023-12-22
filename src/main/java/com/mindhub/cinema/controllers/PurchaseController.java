@@ -8,6 +8,7 @@ import com.mindhub.cinema.services.servinterfaces.*;
 import com.mindhub.cinema.utils.apiUtils.PurchaseItemUtils;
 import com.mindhub.cinema.utils.apiUtils.PurchaseUtils;
 import com.mindhub.cinema.utils.apiUtils.TicketUtils;
+import com.mindhub.cinema.utils.enums.PurchaseStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -84,6 +85,16 @@ public class PurchaseController {
             return new ResponseEntity<>("Purchase do not belong to client", HttpStatus.BAD_REQUEST);
         }
 
+        if(purchase.getPurchaseStatus().equals(PurchaseStatus.COMPLETED)){
+            return new ResponseEntity<>("Purchase already completed", HttpStatus.BAD_REQUEST);
+        }
+
+        if(purchase.getPurchaseStatus().equals(PurchaseStatus.CANCELLED)){
+            return new ResponseEntity<>("Purchase was cancelled", HttpStatus.BAD_REQUEST);
+        }
+        if(purchase.getPurchaseStatus().equals(PurchaseStatus.USED)){
+            return new ResponseEntity<>("Purchase already completed", HttpStatus.BAD_REQUEST);
+        }
 
         List <Ticket> purchaseTickets = ticketService.findByPurchaseId(purchase.getId());
 

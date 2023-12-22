@@ -147,8 +147,14 @@ public class Movie {
 
 
 
-    public void addTicketsSold(Integer quantity){
-        this.setTicketsSold(this.getTicketsSold() + quantity);
+    public void changeTicketsSold(Integer quantity, String action){
+        if(action == "increase"){
+            this.setTicketsSold(this.getTicketsSold() + quantity);
+        } else {
+            this.setTicketsSold(this.getTicketsSold() - quantity);
+        }
+
+
     }
 
     public Integer getTicketsSold() {

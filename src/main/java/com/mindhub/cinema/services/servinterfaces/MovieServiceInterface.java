@@ -30,7 +30,8 @@ public interface MovieServiceInterface {
 
     boolean existsById(Long movieId);
 
-    void increase_tickets_sold(Long movieId, Integer quantity);
 
     void updateMovieTimesPlayed(List<Show> shows);
+
+    void change_tickets_sold(Long movieId, Integer quantity, String action);
 }

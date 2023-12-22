@@ -65,11 +65,19 @@ public class ShowService implements ShowServiceInterface {
     }
 
     @Override
-    public void updateShowTicketsSold(List<Ticket> purchaseTickets) {
+    public void updateShowTicketsSold(List<Ticket> purchaseTickets, String action) {
+
 
         Show show = showRepository.findById(purchaseTickets.stream().findFirst().get().getShow().getId()).get();
 
-        show.addTicketsSold(purchaseTickets.size());
+
+        if(action == "add"){
+            show.addTicketsSold(purchaseTickets.size());
+        } else {
+
+            show.deductTicketsSold(purchaseTickets.size());
+        }
+
 
         showRepository.save(show);
     }

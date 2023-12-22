@@ -96,11 +96,14 @@ public class MovieService implements MovieServiceInterface {
     }
 
     @Override
-    public void increase_tickets_sold(Long movieId, Integer quantity) {
+    public void change_tickets_sold(Long movieId, Integer quantity, String action) {
 
         Movie movie =     movieRepository.findById(movieId).get();
 
-        movie.addTicketsSold(quantity);
+            movie.changeTicketsSold(quantity, action);
+
+
+
 
 
         movieRepository.save(movie);

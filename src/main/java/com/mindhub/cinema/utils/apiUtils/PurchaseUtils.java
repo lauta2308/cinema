@@ -59,4 +59,12 @@ public class PurchaseUtils {
 
 
     }
+
+    public static Long getMovieId(PurchaseDto purchasedto) {
+
+
+        return purchasedto.getTickets().stream().findFirst().get().getShow().getMovie().getId();
+
+
+    }
 }

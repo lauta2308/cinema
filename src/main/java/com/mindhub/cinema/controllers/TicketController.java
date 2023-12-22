@@ -5,7 +5,9 @@ import com.mindhub.cinema.dtos.models_dtos.PurchaseDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateTicketDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.models.Show;
+import com.mindhub.cinema.models.Ticket;
 import com.mindhub.cinema.services.servinterfaces.*;
+import com.mindhub.cinema.utils.apiUtils.PurchaseUtils;
 import com.mindhub.cinema.utils.apiUtils.TicketUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -20,6 +23,9 @@ public class TicketController {
 
     @Autowired
     ClientServiceInterface clientService;
+
+    @Autowired
+    MovieServiceInterface movieService;
 
     @Autowired
     PurchaseServiceInterface purchaseService;
@@ -140,6 +146,8 @@ public class TicketController {
         }
 
 
+
+
         // Obtengo el primer ticket
 
         CreateTicketDto firstTicket = TicketUtils.getFirstTicket(createTicketDtoSet);
@@ -173,6 +181,11 @@ public class TicketController {
             return new ResponseEntity<>(checkSeatAndRoom, HttpStatus.CONFLICT);
         }
 
+        // Resto los tickets vendidos del show origianl
+
+        List<Ticket> originalTickets =  ticketService.findByPurchaseId(purchaseId);
+
+        showService.updateShowTicketsSold(originalTickets, "deduct");
 
         Client clientAuth = clientService.get_full_client(authentication);
 
@@ -203,7 +216,19 @@ public class TicketController {
         }
 
 
+        movieService.change_tickets_sold(PurchaseUtils.getMovieId(purchaseDto), purchaseDto.getTickets().size(), "decrease");
+
         ticketService.changeTickets(createTicketDtoSet, showSelected, purchaseDto);
+
+
+
+        movieService.change_tickets_sold(PurchaseUtils.getMovieId(purchaseDto), purchaseDto.getTickets().size(), "increase");
+
+        // Agrego los tickets vendidos del show origianl
+
+        List<Ticket> newTickets =  ticketService.findByPurchaseId(purchaseId);
+
+        showService.updateShowTicketsSold(newTickets, "add");
 
         return new ResponseEntity<>("Tickets updated", HttpStatus.OK);
 

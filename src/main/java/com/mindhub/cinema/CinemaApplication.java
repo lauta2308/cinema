@@ -360,7 +360,7 @@ public class CinemaApplication {
 			List <Ticket> purchaseOneTickets = ticketRepository.findByPurchase_id(purchaseOne.getId());
 
 
-			movieService.increase_tickets_sold(purchaseOneTickets.stream().findFirst().get().getShow().getMovie().getId(), purchaseOneTickets.size());
+			movieService.change_tickets_sold(purchaseOneTickets.stream().findFirst().get().getShow().getMovie().getId(), purchaseOneTickets.size(), "increase");
 
 
 

@@ -24,5 +24,5 @@ public interface ShowServiceInterface {
 
     Object get_shows();
 
-    void updateShowTicketsSold(List<Ticket> purchaseTickets);
+    void updateShowTicketsSold(List<Ticket> purchaseTickets, String action);
 }

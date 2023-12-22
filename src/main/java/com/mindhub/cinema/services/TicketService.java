@@ -143,7 +143,7 @@ public class TicketService implements TicketServiceInterface {
 
                ticket.updateTicketPriceByAge();
                ticket.addPriceToPurchase();
-               
+
 
 
 
@@ -172,7 +172,7 @@ public class TicketService implements TicketServiceInterface {
         CreateTicketDto createTicketDto;
 
         List<CreateTicketDto> createTicketDtoList = new ArrayList<>(createTicketDtoSet);
-        List<TicketDto> originalTicketsList = new ArrayList<>(purchaseDto.getTickets());
+
 
 
 
@@ -187,6 +187,7 @@ public class TicketService implements TicketServiceInterface {
                 ticket.setSeatId(createTicketDto.getId());
                 ticket.setSeatPlace(createTicketDto.getSeatPlace());
                 ticket.setShow(showSelected);
+
                 ticketRepository.save(ticket);
             }
 

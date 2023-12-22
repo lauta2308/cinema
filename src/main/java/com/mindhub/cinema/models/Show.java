@@ -60,6 +60,11 @@ public class Show {
     }
 
 
+    public void deductTicketsSold(Integer quantity){
+        this.setTicketsSold(this.getTicketsSold() - quantity);
+        this.updateOccupationPercent();
+    }
+
 
     public void updateOccupationPercent(){
         this.setOccupationPercent(this.getTicketsSold().doubleValue() * 100 / this.getCinemaRoom().getCapacity());

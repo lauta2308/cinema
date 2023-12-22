@@ -90,12 +90,12 @@ public class PurchaseController {
 
 
 
-        showService.updateShowTicketsSold(purchaseTickets);
+        showService.updateShowTicketsSold(purchaseTickets, "add");
 
 
 
 
-        movieService.increase_tickets_sold(PurchaseUtils.getMovieId(purchase), purchase.getTickets().size());
+        movieService.change_tickets_sold(PurchaseUtils.getMovieId(purchase), purchase.getTickets().size(), "increase");
 
 
 

@@ -106,7 +106,7 @@
             <td>{{room.roomStatus}}</td>
             <td>{{room.roomType}}</td>
 
-            <td><button class="site-action-btn color-green" @click.prevent="saveEditRoom(room)">Edit</button></td>
+            <td><button class="site-action-btn color-green" @click.prevent="editRoom(room)">Edit</button></td>
 
 
         </tr>
@@ -159,6 +159,7 @@
           </div>
 
         <button class="site-action-btn color-green" @click.prevent="saveNewRoom()">Save Room</button>
+
     </form>
 </section>
 
@@ -180,11 +181,22 @@
 
     <label>
         Room Type
-       <select v-model="newRoomStatus">
-        <option value="#" selected disabled>SELECT</option>
+       <select v-model="newRoomType">
+        <option :value="newRoomType" selected disabled>{{newRoomType}}</option>
         <option value="ROOM_2D">ROOM 2D</option>
         <option value="ROOM_3D">ROOM 3D</option>
         <option value="ROOM_IMAX">ROOM IMAX</option>
+
+       </select>
+    </label>
+
+    <label>
+        Room Status
+       <select v-model="newRoomStatus">
+        <option :value="newRoomStatus" selected disabled>{{newRoomStatus}}</option>
+        <option value="AVAILABLE">AVAILABLE</option>
+        <option value="NOT_AVAILABLE">NOT AVAILABLE</option>
+       
 
        </select>
     </label>
@@ -199,7 +211,8 @@
         <p class="error-message">{{errorMessage}}</p>
       </div>
 
-    <button class="site-action-btn color-green" @click.prevent="saveNewRoom()">Save Room</button>
+    <button class="site-action-btn color-green" @click.prevent="saveEditRoom()">Save Room</button>
+    <button class="site-action-btn color-red" @click.prevent="cancelEditRoom()">Cancel</button>
 </form>
 </section>
 

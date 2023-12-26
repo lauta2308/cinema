@@ -2,6 +2,7 @@ package com.mindhub.cinema.services;
 
 import com.mindhub.cinema.dtos.models_dtos.CinemaRoomDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateRoomDto;
+import com.mindhub.cinema.dtos.param_dtos.EditRoomDto;
 import com.mindhub.cinema.models.CinemaRoom;
 import com.mindhub.cinema.repositories.CinemaRoomRepository;
 import com.mindhub.cinema.services.servinterfaces.CinemaRoomServiceInterface;
@@ -45,5 +46,22 @@ public class CinemaRoomService implements CinemaRoomServiceInterface {
     @Override
     public List<CinemaRoomDto> getRooms() {
         return CinemaRoomUtils.cinemaRoomsToDto(cinemaRoomRepository.findAll());
+    }
+
+    @Override
+    public boolean existById(Long roomId) {
+        return cinemaRoomRepository.existsById(roomId);
+    }
+
+    @Override
+    public void editRoom(EditRoomDto editRoomDto) {
+        CinemaRoom cinemaRoom = cinemaRoomRepository.findById(editRoomDto.getRoomId()).get();
+
+        cinemaRoom.setRoomName(editRoomDto.getRoomName());
+        cinemaRoom.setRoomType(editRoomDto.getRoomType());
+        cinemaRoom.setRoomStatus(editRoomDto.getRoomStatus());
+        cinemaRoom.setCapacity(editRoomDto.getCapacity());
+
+        cinemaRoomRepository.save(cinemaRoom);
     }
 }

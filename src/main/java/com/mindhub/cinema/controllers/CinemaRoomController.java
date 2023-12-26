@@ -2,16 +2,14 @@ package com.mindhub.cinema.controllers;
 
 
 import com.mindhub.cinema.dtos.param_dtos.CreateRoomDto;
+import com.mindhub.cinema.dtos.param_dtos.EditRoomDto;
 import com.mindhub.cinema.services.servinterfaces.CinemaRoomServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CinemaRoomController {
@@ -31,6 +29,25 @@ public class CinemaRoomController {
 
 
         return new ResponseEntity<>(cinemaRoomService.getRooms(), HttpStatus.OK);
+    }
+
+    @PatchMapping("/api/admin/cinema_room")
+    ResponseEntity<Object> edit_room(Authentication authentication, @RequestBody EditRoomDto editRoomDto) {
+        if (authentication == null) {
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if (ValidationUtils.checkUserRole(authentication) != "ADMIN") {
+            return new ResponseEntity<>("Not an admin", HttpStatus.FORBIDDEN);
+        }
+
+        if(!cinemaRoomService.existById(editRoomDto.getRoomId())){
+            return new ResponseEntity<>("Room does not exist", HttpStatus.CONFLICT);
+        }
+
+        cinemaRoomService.editRoom(editRoomDto);
+
+        return new ResponseEntity<>("Room saved", HttpStatus.OK);
     }
 
     @PostMapping("/api/admin/cinema_room")

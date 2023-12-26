@@ -1,14 +1,18 @@
 package com.mindhub.cinema.services;
 
+import com.mindhub.cinema.dtos.models_dtos.CinemaRoomDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateRoomDto;
 import com.mindhub.cinema.models.CinemaRoom;
 import com.mindhub.cinema.repositories.CinemaRoomRepository;
 import com.mindhub.cinema.services.servinterfaces.CinemaRoomServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.SeatServiceInterface;
+import com.mindhub.cinema.utils.apiUtils.CinemaRoomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class CinemaRoomService implements CinemaRoomServiceInterface {
@@ -36,5 +40,10 @@ public class CinemaRoomService implements CinemaRoomServiceInterface {
 
     public CinemaRoom findByShow_Id(Long showId){
         return cinemaRoomRepository.findByShows_Id(showId);
+    }
+
+    @Override
+    public List<CinemaRoomDto> getRooms() {
+        return CinemaRoomUtils.cinemaRoomsToDto(cinemaRoomRepository.findAll());
     }
 }

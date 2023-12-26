@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,20 @@ public class CinemaRoomController {
 
     @Autowired
     CinemaRoomServiceInterface cinemaRoomService;
+
+    @GetMapping("/api/admin/cinema_rooms")
+    ResponseEntity<Object> get_rooms(Authentication authentication){
+        if(authentication == null){
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if(ValidationUtils.checkUserRole(authentication) != "ADMIN"){
+            return new ResponseEntity<>("Not an admin", HttpStatus.FORBIDDEN);
+        }
+
+
+        return new ResponseEntity<>(cinemaRoomService.getRooms(), HttpStatus.OK);
+    }
 
     @PostMapping("/api/admin/cinema_room")
     ResponseEntity<String> create_cinema_room(Authentication authentication, @RequestBody CreateRoomDto createRoomDto){

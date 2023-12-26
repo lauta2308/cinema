@@ -792,6 +792,26 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get cinema rooms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/admin/cinema_rooms",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"cinema_rooms"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

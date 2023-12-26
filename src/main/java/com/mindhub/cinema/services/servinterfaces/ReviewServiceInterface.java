@@ -6,6 +6,7 @@ import com.mindhub.cinema.models.Review;
 import com.mindhub.cinema.utils.enums.ReviewStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Set;
 
 public interface ReviewServiceInterface {
@@ -14,4 +15,8 @@ public interface ReviewServiceInterface {
     ReviewDto findByClientAndMovie_id(Client client, Long movieId);
 
     Set<Review> findByMovie_IdAndReviewStatus(Long movieId);
+
+    List<ReviewDto> get_reviews();
+
+    void change_review_status(ReviewDto reviewDto);
 }

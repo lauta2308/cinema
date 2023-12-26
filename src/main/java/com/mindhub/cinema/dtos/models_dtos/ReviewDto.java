@@ -13,12 +13,26 @@ public class ReviewDto {
 
     private String comment;
 
-
-
     private ReviewStatus reviewStatus;
 
     private String reviewDate;
 
+    private Long userId;
+
+
+    public ReviewDto() {
+    }
+
+    public ReviewDto(long id, Integer stars, String comment, String reviewStatus, String reviewDate, Long userId
+) {
+        this.id = id;
+        this.stars = stars;
+        this.comment = comment;
+
+        this.reviewStatus = ReviewStatus.valueOf(reviewStatus);
+        this.reviewDate = reviewDate;
+        this.userId = userId;
+    }
 
     public ReviewDto(Review review) {
         this.id = review.getId();
@@ -27,6 +41,7 @@ public class ReviewDto {
 
         this.reviewStatus =review.getReviewStatus();
         this.reviewDate = DateUtils.dateTimeFormatter(review.getReviewDate());
+        this.userId = review.getClient().getId();
     }
 
     public long getId() {
@@ -48,5 +63,9 @@ public class ReviewDto {
 
     public String getReviewDate() {
         return reviewDate;
+    }
+
+    public Long getUserId() {
+        return userId;
     }
 }

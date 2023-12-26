@@ -3,9 +3,8 @@ package com.mindhub.cinema.utils.enums;
 public enum ReviewStatus {
 
 
-    APROVED,
+    APPROVED,
     DELETED,
-    PENDINGTOSEND,
-    PENDINGTOAPROVE
+    PENDINGTOAPPROVE
 
 }

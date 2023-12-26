@@ -9,15 +9,13 @@ import com.mindhub.cinema.services.ReviewService;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.ReviewServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.ReviewUtils;
+import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
 import com.mindhub.cinema.utils.enums.ReviewStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -81,6 +79,40 @@ public class ReviewController {
     }
 
 
+    @GetMapping("/api/admin/get_reviews")
+    public ResponseEntity<Object> get_reviews(Authentication authentication){
+
+        if (authentication == null) {
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if (ValidationUtils.checkUserRole(authentication) != "ADMIN") {
+            return new ResponseEntity<>("Not an admin", HttpStatus.FORBIDDEN);
+        }
+
+
+        return new ResponseEntity<>(reviewService.get_reviews(), HttpStatus.OK);
+
+
+
+    }
+
+    @PatchMapping("/api/admin/change_review_status")
+    public ResponseEntity<Object> change_review_status(Authentication authentication, @RequestBody ReviewDto reviewDto) {
+
+        if (authentication == null) {
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if (ValidationUtils.checkUserRole(authentication) != "ADMIN") {
+            return new ResponseEntity<>("Not an admin", HttpStatus.FORBIDDEN);
+        }
+
+        reviewService.change_review_status(reviewDto);
+
+        return new ResponseEntity<>("Review saved", HttpStatus.OK);
+
+    }
 
 
 

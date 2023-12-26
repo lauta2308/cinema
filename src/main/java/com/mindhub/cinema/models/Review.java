@@ -18,7 +18,7 @@ public class Review {
 
     private String comment;
 
-    private ReviewStatus reviewStatus = ReviewStatus.PENDINGTOSEND;
+    private ReviewStatus reviewStatus = ReviewStatus.PENDINGTOAPPROVE;
 
     private LocalDateTime reviewDate = LocalDateTime.now();
 

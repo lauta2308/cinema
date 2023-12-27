@@ -18,7 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-
+import java.util.List;
 
 
 @RestController
@@ -190,6 +190,23 @@ public class ClientController {
             return new ResponseEntity<>("Email updated", HttpStatus.OK);
         }
 
+    }
+
+
+    @GetMapping("/api/admin/get_users")
+    public ResponseEntity<Object> get_users(Authentication authentication){
+
+
+        if(authentication == null){
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if(ValidationUtils.checkUserRole(authentication) != "ADMIN"){
+            return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
+        }
+
+
+        return new ResponseEntity<>(clientService.get_users(), HttpStatus.OK);
     }
 
 

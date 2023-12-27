@@ -16,6 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientService implements ClientServiceInterface {
@@ -61,6 +63,10 @@ public class ClientService implements ClientServiceInterface {
 
     }
 
+    @Override
+    public List<ClientDto> get_users() {
+        return clientRepository.findAll().stream().map(client -> new ClientDto(client)).collect(Collectors.toList());
+    }
 
 
     @Override

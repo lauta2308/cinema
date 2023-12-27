@@ -7,6 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,6 +32,8 @@ public class Client {
     private ClientRol clientRol = ClientRol.CLIENT;
 
     private ClientLevel clientLevel = ClientLevel.BASIC;
+
+    private LocalDateTime joinedDate = LocalDateTime.now();
 
     @OneToMany(mappedBy="client", fetch=FetchType.EAGER)
     private Set<Review> reviews = new HashSet<>();
@@ -103,6 +106,14 @@ public class Client {
 
     public void setClientLevel(ClientLevel clientLevel) {
         this.clientLevel = clientLevel;
+    }
+
+    public LocalDateTime getJoinedDate() {
+        return joinedDate;
+    }
+
+    public void setJoinedDate(LocalDateTime joinedDate) {
+        this.joinedDate = joinedDate;
     }
 
     public Set<Review> getReviews() {

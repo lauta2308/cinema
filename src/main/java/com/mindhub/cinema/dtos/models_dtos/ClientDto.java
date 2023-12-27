@@ -1,12 +1,14 @@
 package com.mindhub.cinema.dtos.models_dtos;
 
 import com.mindhub.cinema.models.Client;
+import com.mindhub.cinema.utils.apiUtils.DateUtils;
 import com.mindhub.cinema.utils.apiUtils.PurchaseUtils;
 import com.mindhub.cinema.utils.apiUtils.ReviewUtils;
 import com.mindhub.cinema.utils.enums.ClientLevel;
 import com.mindhub.cinema.utils.enums.ClientRol;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,6 +30,8 @@ public class ClientDto {
 
     private ClientLevel clientLevel;
 
+    private String joinedDate;
+
     private List<ReviewDto> reviews;
 
     private List<PurchaseDto> purchases;
@@ -44,6 +48,7 @@ public class ClientDto {
         this.email = client.getEmail();
         this.clientRol = client.getClientRol();
         this.clientLevel = client.getClientLevel();
+        this.joinedDate = DateUtils.dateTimeFormatter(client.getJoinedDate());
         this.reviews = ReviewUtils.sortReviewSet(client.getReviews());
         this.purchases = PurchaseUtils.sortPurchaseSet(client.getPurchases());
     }
@@ -74,6 +79,10 @@ public class ClientDto {
 
     public ClientLevel getClientLevel() {
         return clientLevel;
+    }
+
+    public String getJoinedDate() {
+        return joinedDate;
     }
 
     public List<ReviewDto> getReviews() {

@@ -5,6 +5,8 @@ import com.mindhub.cinema.dtos.param_dtos.RegisterClientDto;
 import com.mindhub.cinema.models.Client;
 import org.springframework.security.core.Authentication;
 
+import java.util.List;
+
 public interface ClientServiceInterface {
     ClientDto get_authenticated_user(Authentication authentication);
 
@@ -23,4 +25,5 @@ public interface ClientServiceInterface {
 
     void changeEmail(Client client, String newEmail);
 
+    List<ClientDto> get_users();
 }

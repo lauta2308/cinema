@@ -115,5 +115,20 @@ public class ProductService implements ProductServiceInterface {
         });
     }
 
+    @Override
+    public List<Product> findProductsList(List<ProductDto> products) {
+
+
+        List<Product> productsToAdd = new ArrayList<>();
+
+        products.stream().forEach(productDto -> {
+            productsToAdd.add(productRepository.findById(productDto.getId()).get());
+
+        });
+
+        return productsToAdd;
+
+    }
+
 
 }

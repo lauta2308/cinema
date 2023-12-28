@@ -2,6 +2,8 @@ package com.mindhub.cinema.services;
 
 
 import com.mindhub.cinema.dtos.models_dtos.ProductComboDto;
+import com.mindhub.cinema.dtos.models_dtos.ProductDto;
+import com.mindhub.cinema.dtos.param_dtos.CreateProductComboDto;
 import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.models.ProductCombo;
 import com.mindhub.cinema.models.Purchase;
@@ -63,6 +65,16 @@ public class ProductComboService implements ProductComboServiceInterface {
 
 
         return "ProductCombos added to purchase successfully!";
+    }
+
+    @Override
+    public void createProductCombo(CreateProductComboDto createProductComboDto) {
+
+        List<Product> products = productService.findProductsList(createProductComboDto.getProducts());
+
+        productComboRepository.save(new ProductCombo(createProductComboDto.getComboName(), createProductComboDto.getComboPrice(), createProductComboDto.isTemplateCombo(), products));
+
+
     }
 
     private ProductCombo getProductComboById(Long productComboId) {

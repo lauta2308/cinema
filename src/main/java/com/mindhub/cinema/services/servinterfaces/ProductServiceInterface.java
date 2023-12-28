@@ -30,4 +30,6 @@ public interface ProductServiceInterface {
 
 
     void add_times_sold(List<PurchaseItemDto> purchaseProducts);
+
+    List<Product> findProductsList(List<ProductDto> products);
 }

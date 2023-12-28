@@ -2,9 +2,12 @@ package com.mindhub.cinema.controllers;
 
 
 import com.mindhub.cinema.dtos.models_dtos.ProductComboDto;
+import com.mindhub.cinema.dtos.models_dtos.ProductDto;
+import com.mindhub.cinema.dtos.param_dtos.CreateProductComboDto;
 import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.services.servinterfaces.ProductComboServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
+import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +38,6 @@ public class ProductComboController {
     ResponseEntity<String> addCombosToPurchase(Authentication authentication, @RequestBody List<ProductComboDto> productComboDtoList, @RequestParam Long purchaseId){
 
 
-
-
         Purchase purchase = null;
 
         if( purchaseService.existsById(purchaseId)){
@@ -52,6 +53,27 @@ public class ProductComboController {
 
         return new ResponseEntity<>(productComboService.addProductCombosToPurchase(productComboDtoList, purchase), HttpStatus.CREATED) ;
 
+
+    }
+
+
+    @PostMapping("/api/admin/create_product_combo")
+    public ResponseEntity<Object> create_product_combo(Authentication authentication, @RequestBody  CreateProductComboDto createProductComboDto){
+
+
+        if(authentication == null){
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if(ValidationUtils.checkUserRole(authentication) != "ADMIN"){
+            return new ResponseEntity<>("Not an admin", HttpStatus.FORBIDDEN);
+        }
+
+
+
+        productComboService.createProductCombo(createProductComboDto);
+
+        return new ResponseEntity<>("Combo saved", HttpStatus.OK);
 
     }
 

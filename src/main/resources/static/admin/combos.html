@@ -125,7 +125,7 @@
 
 </section>
 
-<section v-if="enableEditCinemaRoom === false" class="container">
+<section v-if="enableEditProductCombo === false" class="container">
 
   <h2 >Add New Combo</h2>
 
@@ -139,10 +139,17 @@
     </label>
 
         <label>
-            <input type="text" placeholder="Combo Price" v-model="comboPrice" @click="resetErrorMessage">
+            <input type="number" placeholder="Combo Price" v-model="comboPrice" @click="resetErrorMessage">
         </label>
 
+        <label v-for="product in allProducts">
+            Product: {{product.name}},  Price: $ {{product.productPrice}}
 
+            <button class="site-action-btn color-green" @click.prevent="addProductToCombo(product)">Add to combo</button>
+
+     
+           
+        </label>
 
 
         <div v-if="errorMessage" class="error-container">
@@ -154,9 +161,28 @@
             <p class="error-message">{{errorMessage}}</p>
           </div>
 
-        <button class="site-action-btn color-green" @click.prevent="saveNewRoom()">Save Room</button>
+        <button class="site-action-btn color-green" @click.prevent="saveNewCombo()">Save Combo</button>
 
     </form>
+
+    <table>
+      <thead>
+        <tr>
+          <td>Product</td>
+          <td>Price</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="product in comboProducts">
+          <td>{{product.name}}</td>
+          <td>$ {{product.productPrice}}</td>
+          <td>       <button class="site-action-btn color-red" @click.prevent="deleteProductFromCombo(product)">Delete product</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>{{newComboPrice}}</p>
 </section>
 
 <section v-else class="container">

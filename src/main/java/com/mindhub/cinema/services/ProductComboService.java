@@ -56,7 +56,7 @@ public class ProductComboService implements ProductComboServiceInterface {
             productComboRepository.save(newProductCombo);
 
 
-            totalPrice = totalPrice + newProductCombo.getComboFinalPrice();
+            totalPrice = totalPrice + newProductCombo.getPrice();
         }
 
         purchaseService.replacePurchasePrice(purchase, totalPrice);
@@ -75,10 +75,6 @@ public class ProductComboService implements ProductComboServiceInterface {
         ProductCombo newProductCombo = productComboRepository.save(new ProductCombo());
 
         newProductCombo.setTemplateCombo(false);
-        newProductCombo.setProductComboType(originalProductCombo.getProductComboType());
-        newProductCombo.setComboDefaultPrice(originalProductCombo.getComboDefaultPrice());
-        newProductCombo.setComboFinalPrice(originalProductCombo.getComboFinalPrice());
-        newProductCombo.setProductComboType(originalProductCombo.getProductComboType());
         newProductCombo.setPurchase(purchase);
 
 

@@ -1,6 +1,5 @@
 package com.mindhub.cinema.models;
 
-import com.mindhub.cinema.utils.enums.ProductComboType;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,13 +14,13 @@ public class ProductCombo {
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
 
-    private double comboDefaultPrice = 0.0;
+    private String name;
 
-    private double comboFinalPrice = 0.0;
+    private double price = 0.0;
+
 
     private boolean isTemplateCombo = false;
 
-    private ProductComboType productComboType;
 
     @ManyToOne
     @JoinColumn(name = "purchase_id")
@@ -38,6 +37,12 @@ public class ProductCombo {
     }
 
 
+    public ProductCombo(String name, double price, boolean isTemplateCombo, List<Product> products) {
+        this.name = name;
+        this.price = price;
+        this.isTemplateCombo = isTemplateCombo;
+        this.products = products;
+    }
 
     public long getId() {
         return id;
@@ -47,21 +52,7 @@ public class ProductCombo {
         this.id = id;
     }
 
-    public double getComboDefaultPrice() {
-        return comboDefaultPrice;
-    }
 
-    public void setComboDefaultPrice(double comboDefaultPrice) {
-        this.comboDefaultPrice = comboDefaultPrice;
-    }
-
-    public double getComboFinalPrice() {
-        return comboFinalPrice;
-    }
-
-    public void setComboFinalPrice(double comboFinalPrice) {
-        this.comboFinalPrice = comboFinalPrice;
-    }
 
     public boolean isTemplateCombo() {
         return isTemplateCombo;
@@ -71,13 +62,6 @@ public class ProductCombo {
         isTemplateCombo = templateCombo;
     }
 
-    public ProductComboType getProductComboType() {
-        return productComboType;
-    }
-
-    public void setProductComboType(ProductComboType productComboType) {
-        this.productComboType = productComboType;
-    }
 
     public Purchase getPurchase() {
         return purchase;
@@ -96,18 +80,19 @@ public class ProductCombo {
     }
 
 
-    public void updateComboPrice(){
+    public String getName() {
+        return name;
+    }
 
-        if(this.productComboType == ProductComboType.SINGLE){
-                this.comboFinalPrice = this.comboDefaultPrice - (this.comboDefaultPrice * 0.05);
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        } else if (this.productComboType == ProductComboType.SINGLE_MEGA) {
+    public double getPrice() {
+        return price;
+    }
 
-            this.comboFinalPrice = this.comboDefaultPrice - (this.comboDefaultPrice * 0.10);
-        } else {
-            this.comboFinalPrice = this.comboDefaultPrice - (this.comboDefaultPrice * 0.15);
-        }
-
-
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

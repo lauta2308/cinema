@@ -377,7 +377,7 @@ public class CinemaApplication {
 
 			productComboSingle.setPurchase(adminPurchase);
 			productComboSingle.setTemplateCombo(true);
-			productComboSingle.setProductComboType(ProductComboType.SINGLE);
+
 
 			List<Product> comboSingleProducts = new ArrayList<>();
 
@@ -385,10 +385,8 @@ public class CinemaApplication {
 			comboSingleProducts.add(pochocloMediano);
 
 			productComboSingle.setProducts(comboSingleProducts);
-
-			productComboSingle.setComboDefaultPrice(cocaMedia.getProductPrice() + pochocloMediano.getProductPrice() );
-
-			productComboSingle.updateComboPrice();
+			productComboSingle.setName("SINGLE");
+			productComboSingle.setPrice(13.00 + (20*13/100));
 
 			productComboRepository.save(productComboSingle);
 
@@ -398,10 +396,9 @@ public class CinemaApplication {
 			ProductCombo comboElegido = productComboRepository.save(new ProductCombo());
 
 			comboElegido.getProducts().addAll(comboSingleProducts);
-			comboElegido.setProductComboType(ProductComboType.SINGLE);
+
 			comboElegido.setPurchase(purchaseOne);
-			comboElegido.setComboDefaultPrice(productComboSingle.getComboDefaultPrice());
-			comboElegido.updateComboPrice();
+
 			productComboRepository.save(comboElegido);
 
 
@@ -415,7 +412,9 @@ public class CinemaApplication {
 
 			familyCombo.setPurchase(adminPurchase);
 			familyCombo.setTemplateCombo(true);
-			familyCombo.setProductComboType(ProductComboType.FAMILY);
+			familyCombo.setPrice(38.00 + (20 * 38 / 100));
+			familyCombo.setName("FAMILY");
+
 
 			List<Product> comboFamilyProducts = new ArrayList<>();
 
@@ -429,11 +428,9 @@ public class CinemaApplication {
 
 			familyCombo.setProducts(comboFamilyProducts);
 
-			for (Product product : comboFamilyProducts) {
-				familyCombo.setComboDefaultPrice(familyCombo.getComboDefaultPrice() + product.getProductPrice());
-			}
 
-			familyCombo.updateComboPrice();
+
+
 			productComboRepository.save(familyCombo);
 
 
@@ -444,7 +441,9 @@ public class CinemaApplication {
 
 			comboSingleMega.setPurchase(adminPurchase);
 			comboSingleMega.setTemplateCombo(true);
-			comboSingleMega.setProductComboType(ProductComboType.SINGLE_MEGA);
+			comboSingleMega.setName("SINGLE MEGA");
+			comboSingleMega.setPrice(15.00 + (20 * 15 / 100));
+
 
 			List<Product> comboSingleMegaProducts = new ArrayList<>();
 
@@ -453,9 +452,8 @@ public class CinemaApplication {
 
 			comboSingleMega.setProducts(comboSingleMegaProducts);
 
-			comboSingleMega.setComboDefaultPrice(pochocloGrande.getProductPrice() + cocaGrande.getProductPrice());
 
-			comboSingleMega.updateComboPrice();
+;
 
 			productComboRepository.save(comboSingleMega);
 

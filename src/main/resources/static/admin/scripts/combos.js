@@ -9,6 +9,9 @@ createApp({
           return {
                 
             combos: [],
+            comboName: "",
+            comboPrice: "",
+            products: [],
          
 
               

@@ -91,21 +91,19 @@
     <thead>
         <tr>
             
-            <td>ID</td>
-            <td>Combo default price</td>
-            <td>Combo final price</td>
-            <td>Combo Type</td>
+    
+            <td>Combo Name</td>
+            <td>Combo Price</td>
             <td>Products</td>
+
 
         </tr>
     </thead>
 
     <tbody>
         <tr v-for="combo in combos">
-            <td>{{combo.id}}</td>
-            <td>$ {{combo.comboDefaultPrice}}</td>
-            <td>$ {{combo.comboFinalPrice}}</td>
-            <td>{{combo.productComboType}}</td>
+            <td>{{combo.name}}</td>
+            <td>$ {{combo.price}}</td>
             <td>
 
 
@@ -129,34 +127,22 @@
 
 <section v-if="enableEditCinemaRoom === false" class="container">
 
-  <h2 >Add New Cinema Room</h2>
+  <h2 >Add New Combo</h2>
 
 
 
 
     <form class="admin-body-form">
 
+      <label>
+        <input type="text" placeholder="Combo Name" v-model="comboName" @click="resetErrorMessage">
+    </label>
 
         <label>
-            <input type="text" placeholder="Room Name" v-model="newRoomName" @click="resetErrorMessage">
-        </label>
-
-        <label>
-            <input type="number" placeholder="Room Capacity" v-model="newRoomCapacity" @click="resetErrorMessage">
+            <input type="text" placeholder="Combo Price" v-model="comboPrice" @click="resetErrorMessage">
         </label>
 
 
-
-        <label>
-            Room Type
-           <select v-model="newRoomType">
-            <option value="#" selected disabled>SELECT</option>
-            <option value="ROOM_2D">ROOM 2D</option>
-            <option value="ROOM_3D">ROOM 3D</option>
-            <option value="ROOM_IMAX">ROOM IMAX</option>
-
-           </select>
-        </label>
 
 
         <div v-if="errorMessage" class="error-container">

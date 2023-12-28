@@ -1,60 +1,43 @@
 package com.mindhub.cinema.dtos.models_dtos;
+import com.mindhub.cinema.models.Product;
 import com.mindhub.cinema.models.ProductCombo;
-import com.mindhub.cinema.utils.enums.ProductComboType;
+import com.mindhub.cinema.models.Purchase;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProductComboDto {
 
-
     private long id;
 
-    private double comboDefaultPrice;
+    private String name;
 
-    private double comboFinalPrice;
+    private double price = 0.0;
 
-    private boolean isTemplateCombo;
-
-    private ProductComboType productComboType;
 
     private List<ProductDto> products;
 
-    public ProductComboDto(long id, double comboDefaultPrice, double comboFinalPrice, boolean isTemplateCombo, ProductComboType productComboType, List<ProductDto> products) {
-        this.id = id;
-        this.comboDefaultPrice = comboDefaultPrice;
-        this.comboFinalPrice = comboFinalPrice;
-        this.isTemplateCombo = isTemplateCombo;
-        this.productComboType = productComboType;
-        this.products = products;
-    }
-
     public ProductComboDto(ProductCombo productCombo) {
         this.id = productCombo.getId();
-        this.comboDefaultPrice = productCombo.getComboDefaultPrice();
-        this.comboFinalPrice = productCombo.getComboFinalPrice();
-        this.isTemplateCombo = productCombo.isTemplateCombo();
-        this.productComboType = productCombo.getProductComboType();
+        this.name = productCombo.getName();
+        this.price = productCombo.getPrice();
         this.products = productCombo.getProducts().stream().map(product -> new ProductDto(product)).collect(Collectors.toList());
     }
+
 
     public long getId() {
         return id;
     }
 
-    public double getComboDefaultPrice() {
-        return comboDefaultPrice;
+    public String getName() {
+        return name;
     }
 
-    public double getComboFinalPrice() {
-        return comboFinalPrice;
-    }
-
-    public boolean isTemplateCombo() {
-        return isTemplateCombo;
-    }
-
-    public ProductComboType getProductComboType() {
-        return productComboType;
+    public double getPrice() {
+        return price;
     }
 
     public List<ProductDto> getProducts() {

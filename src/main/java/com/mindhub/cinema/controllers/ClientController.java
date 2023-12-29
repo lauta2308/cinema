@@ -5,6 +5,7 @@ import com.mindhub.cinema.dtos.models_dtos.ClientDto;
 import com.mindhub.cinema.dtos.param_dtos.ChangeEmailDto;
 import com.mindhub.cinema.dtos.param_dtos.ChangePasswordDto;
 import com.mindhub.cinema.dtos.param_dtos.RegisterClientDto;
+import com.mindhub.cinema.dtos.param_dtos.UserStatusDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.ValidationUtils;
@@ -209,6 +210,50 @@ public class ClientController {
         return new ResponseEntity<>(clientService.get_users(), HttpStatus.OK);
     }
 
+
+
+    @PatchMapping("/api/admin/ban_user")
+    public ResponseEntity<Object> ban_user(Authentication authentication, @RequestBody UserStatusDto userStatusDto){
+
+
+        if(authentication == null){
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if(ValidationUtils.checkUserRole(authentication) != "ADMIN"){
+            return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
+        }
+
+        if(!clientService.existsByEmail(userStatusDto.getEmail())){
+            return new ResponseEntity<>("User not found", HttpStatus.CONFLICT);
+        }
+
+        clientService.ban_user(userStatusDto);
+
+        return new ResponseEntity<>("User banned", HttpStatus.OK);
+    }
+
+
+    @PatchMapping("/api/admin/unban_user")
+    public ResponseEntity<Object> unban_user(Authentication authentication, @RequestBody UserStatusDto userStatusDto){
+
+
+        if(authentication == null){
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if(ValidationUtils.checkUserRole(authentication) != "ADMIN"){
+            return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
+        }
+
+        if(!clientService.existsByEmail(userStatusDto.getEmail())){
+            return new ResponseEntity<>("User not found", HttpStatus.CONFLICT);
+        }
+
+        clientService.unban_user(userStatusDto);
+
+        return new ResponseEntity<>("User unbanned", HttpStatus.OK);
+    }
 
 
 

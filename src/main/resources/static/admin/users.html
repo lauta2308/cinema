@@ -112,8 +112,9 @@
             <td>{{user.clientLevel}}</td>
             <td>{{user.joinedDate}}</td>
             
-            <td v-if="user.clientRol == 'CLIENT'" class="color-green" >View User</td>
-       
+            <td v-if="user.clientStatus === 'AVAILABLE'" class="color-red" @click.prevent="banUser(user)" >Ban user</td>
+            <td v-else class="color-green" @click.prevent="unBanUser(user)" >Unban user</td>
+
         </tr>
     </tbody>
 

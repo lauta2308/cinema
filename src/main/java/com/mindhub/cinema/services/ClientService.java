@@ -3,10 +3,12 @@ package com.mindhub.cinema.services;
 
 import com.mindhub.cinema.dtos.models_dtos.ClientDto;
 import com.mindhub.cinema.dtos.param_dtos.RegisterClientDto;
+import com.mindhub.cinema.dtos.param_dtos.UserStatusDto;
 import com.mindhub.cinema.models.Client;
 import com.mindhub.cinema.repositories.ClientRepository;
 import com.mindhub.cinema.services.servinterfaces.ClientServiceInterface;
 import com.mindhub.cinema.utils.apiUtils.StringUtils;
+import com.mindhub.cinema.utils.enums.ClientStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -66,6 +68,25 @@ public class ClientService implements ClientServiceInterface {
     @Override
     public List<ClientDto> get_users() {
         return clientRepository.findAll().stream().map(client -> new ClientDto(client)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void ban_user(UserStatusDto userStatusDto) {
+        Client client = clientRepository.findByEmail(userStatusDto.getEmail());
+
+        client.setClientStatus(ClientStatus.BANNED);
+
+        clientRepository.save(client);
+
+    }
+
+    @Override
+    public void unban_user(UserStatusDto userStatusDto) {
+        Client client = clientRepository.findByEmail(userStatusDto.getEmail());
+
+        client.setClientStatus(ClientStatus.AVAILABLE);
+
+        clientRepository.save(client);
     }
 
 

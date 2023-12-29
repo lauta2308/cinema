@@ -63,7 +63,28 @@ createApp({
 
       },
 
+      banUser(user){
 
+   
+        axios.patch("/api/admin/ban_user", {
+
+          "id": user.id,
+          "email": user.email
+
+        })
+        .then(this.getUsers())
+      },
+
+
+      unBanUser(user){
+        axios.patch("/api/admin/unban_user", {
+
+          "id": user.id,
+          "email": user.email
+
+        })
+        .then(this.getUsers())
+      },
          
 
 

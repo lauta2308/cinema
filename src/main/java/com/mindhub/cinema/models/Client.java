@@ -3,6 +3,7 @@ package com.mindhub.cinema.models;
 
 import com.mindhub.cinema.utils.enums.ClientLevel;
 import com.mindhub.cinema.utils.enums.ClientRol;
+import com.mindhub.cinema.utils.enums.ClientStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -34,6 +35,8 @@ public class Client {
     private ClientLevel clientLevel = ClientLevel.BASIC;
 
     private LocalDateTime joinedDate = LocalDateTime.now();
+
+    private ClientStatus clientStatus = ClientStatus.AVAILABLE;
 
     @OneToMany(mappedBy="client", fetch=FetchType.EAGER)
     private Set<Review> reviews = new HashSet<>();
@@ -114,6 +117,14 @@ public class Client {
 
     public void setJoinedDate(LocalDateTime joinedDate) {
         this.joinedDate = joinedDate;
+    }
+
+    public ClientStatus getClientStatus() {
+        return clientStatus;
+    }
+
+    public void setClientStatus(ClientStatus clientStatus) {
+        this.clientStatus = clientStatus;
     }
 
     public Set<Review> getReviews() {

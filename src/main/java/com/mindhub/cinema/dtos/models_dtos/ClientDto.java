@@ -6,6 +6,7 @@ import com.mindhub.cinema.utils.apiUtils.PurchaseUtils;
 import com.mindhub.cinema.utils.apiUtils.ReviewUtils;
 import com.mindhub.cinema.utils.enums.ClientLevel;
 import com.mindhub.cinema.utils.enums.ClientRol;
+import com.mindhub.cinema.utils.enums.ClientStatus;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -32,6 +33,8 @@ public class ClientDto {
 
     private String joinedDate;
 
+    public ClientStatus clientStatus;
+
     private List<ReviewDto> reviews;
 
     private List<PurchaseDto> purchases;
@@ -49,6 +52,7 @@ public class ClientDto {
         this.clientRol = client.getClientRol();
         this.clientLevel = client.getClientLevel();
         this.joinedDate = DateUtils.dateTimeFormatter(client.getJoinedDate());
+        this.clientStatus = client.getClientStatus();
         this.reviews = ReviewUtils.sortReviewSet(client.getReviews());
         this.purchases = PurchaseUtils.sortPurchaseSet(client.getPurchases());
     }
@@ -83,6 +87,10 @@ public class ClientDto {
 
     public String getJoinedDate() {
         return joinedDate;
+    }
+
+    public ClientStatus getClientStatus() {
+        return clientStatus;
     }
 
     public List<ReviewDto> getReviews() {

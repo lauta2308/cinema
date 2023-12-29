@@ -2,6 +2,7 @@ package com.mindhub.cinema.services.servinterfaces;
 
 import com.mindhub.cinema.dtos.models_dtos.ClientDto;
 import com.mindhub.cinema.dtos.param_dtos.RegisterClientDto;
+import com.mindhub.cinema.dtos.param_dtos.UserStatusDto;
 import com.mindhub.cinema.models.Client;
 import org.springframework.security.core.Authentication;
 
@@ -26,4 +27,8 @@ public interface ClientServiceInterface {
     void changeEmail(Client client, String newEmail);
 
     List<ClientDto> get_users();
+
+    void ban_user(UserStatusDto userStatusDto);
+
+    void unban_user(UserStatusDto userStatusDto);
 }

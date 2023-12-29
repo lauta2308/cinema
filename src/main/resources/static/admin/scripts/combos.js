@@ -10,11 +10,11 @@ createApp({
                 
             combos: [],
             comboName: "",
-            comboPrice: "",
+            comboPrice: 0,
             allProducts: [],
             comboProducts: [],
+            comboEdited: [],
             enableEditProductCombo: false,
-            newComboPrice: 0,
             errorMessage: ""
          
 
@@ -69,6 +69,8 @@ createApp({
 
       getProducts(){
 
+        this.enableEditProductCombo = false;
+
         axios.get("/api/current/get_all_products")
         .then(response => {
             
@@ -84,12 +86,12 @@ createApp({
       addProductToCombo(product){
 
         this.comboProducts.push(product);
-        this.newComboPrice = this.newComboPrice + product.productPrice;
+        this.comboPrice = this.comboPrice + product.productPrice;
       },
 
       deleteProductFromCombo(product){
 
-        this.newComboPrice = this.newComboPrice - product.productPrice;
+        this.comboPrice = this.comboPrice - product.productPrice;
         let productIndex = this.comboProducts.indexOf(product);
         
         this.comboProducts.splice(productIndex, 1);
@@ -99,22 +101,44 @@ createApp({
         
       },
 
+      editCombo(combo){
+
+        this.enableEditProductCombo = true;
+        this.comboProducts = combo.products;
+        this.comboName = combo.name;
+        this.comboPrice = combo.price;
+        this.comboEdited = combo;
+
+      },
       saveNewCombo(){
 
-        console.log(this.comboName);
-        console.log(this.comboPrice.toFixed(2));
-        console.log(this.comboProducts);
+
     
         axios.post("/api/admin/create_product_combo", {
           "comboName": this.comboName,
-          "comboPrice": this.newComboPrice.toFixed(2),
+          "comboPrice": this.comboPrice.toFixed(2),
           "products": this.comboProducts
         })
-        .then(response => this.getCombos())
+        .then(response =>  window.location.reload())
+          
 
       .catch(Error => {
         this.errorMessage = Error.message;
       })
+      },
+
+      saveEditedCombo(){
+
+        axios.patch("/api/admin/edit_combo", {
+          "id": this.comboEdited.id,
+          "comboName": this.comboName,
+          "comboPrice": this.comboPrice.toFixed(2),
+          "products": this.comboEdited.products
+        }).then(response =>  window.location.reload())
+        .catch(Error => this.errorMessage = Error.response.data);
+        
+
+
       },
 
   
@@ -125,6 +149,7 @@ createApp({
         this.errorMessage = "";
       },
 
+   
 
   
   

@@ -48,11 +48,6 @@ public class ProductCombo {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-
 
     public boolean isTemplateCombo() {
         return isTemplateCombo;

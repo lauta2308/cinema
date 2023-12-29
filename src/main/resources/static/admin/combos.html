@@ -114,7 +114,7 @@
                 </uñ>
             </td>
 
-            <td><button class="site-action-btn color-green" @click.prevent="">Edit</button></td>
+            <td><button class="site-action-btn color-green" @click.prevent="editCombo(combo)">Edit</button></td>
 
 
         </tr>
@@ -134,11 +134,11 @@
 
     <form class="admin-body-form">
 
-      <label>
+      <label> Combo Name
         <input type="text" placeholder="Combo Name" v-model="comboName" @click="resetErrorMessage">
     </label>
 
-        <label>
+        <label> Combo Price
             <input type="number" placeholder="Combo Price" v-model="comboPrice" @click="resetErrorMessage">
         </label>
 
@@ -182,59 +182,56 @@
       </tbody>
     </table>
 
-    <p>{{newComboPrice}}</p>
+    <p>{{comboPrice}}</p>
 </section>
 
 <section v-else class="container">
-  <h2>Edit Room</h2>
+  <h2>Edit Combo</h2>
 
   <form class="admin-body-form">
 
 
-    <label>
-        <input type="text" placeholder="Room Name" v-model="newRoomName" @click="resetErrorMessage">
-    </label>
+    <label> Combo Name
+      <input type="text" placeholder="Combo Name" v-model="comboName" @click="resetErrorMessage">
+  </label>
 
-    <label>
-        <input type="number" placeholder="Room Capacity" v-model="newRoomCapacity" @click="resetErrorMessage">
-    </label>
+      <label> Combo Price
+          <input type="number" placeholder="Combo Price" v-model="comboPrice" @click="resetErrorMessage">
+      </label>
 
+      <label v-for="product in comboProducts">
+          Product: {{product.name}},  Price: $ {{product.productPrice}}
 
+          <button class="site-action-btn color-red" @click.prevent="deleteProductFromCombo(product)">Delete from combo</button>
 
-    <label>
-        Room Type
-       <select v-model="newRoomType">
-        <option :value="newRoomType" selected disabled>{{newRoomType}}</option>
-        <option value="ROOM_2D">ROOM 2D</option>
-        <option value="ROOM_3D">ROOM 3D</option>
-        <option value="ROOM_IMAX">ROOM IMAX</option>
+   
+         
+      </label>
 
-       </select>
-    </label>
+      <label v-for="product in allProducts">
+        Product: {{product.name}},  Price: $ {{product.productPrice}}
 
-    <label>
-        Room Status
-       <select v-model="newRoomStatus">
-        <option :value="newRoomStatus" selected disabled>{{newRoomStatus}}</option>
-        <option value="AVAILABLE">AVAILABLE</option>
-        <option value="NOT_AVAILABLE">NOT AVAILABLE</option>
+        <button class="site-action-btn color-green" @click.prevent="addProductToCombo(product)">Add to combo</button>
+
+ 
        
-
-       </select>
     </label>
 
 
-    <div v-if="errorMessage" class="error-container">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-          <path d="M10 10l4 4m0 -4l-4 4" />
-          <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
-        </svg>
-        <p class="error-message">{{errorMessage}}</p>
-      </div>
 
-    <button class="site-action-btn color-green" @click.prevent="saveEditRoom()">Save Room</button>
-    <button class="site-action-btn color-red" @click.prevent="cancelEditRoom()">Cancel</button>
+      <div v-if="errorMessage" class="error-container">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M10 10l4 4m0 -4l-4 4" />
+            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+          </svg>
+          <p class="error-message">{{errorMessage}}</p>
+        </div>
+
+      <button class="site-action-btn color-green" @click.prevent="saveEditedCombo()">Save Combo</button>
+
+
+   
 </form>
 </section>
 

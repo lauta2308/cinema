@@ -4,6 +4,7 @@ package com.mindhub.cinema.controllers;
 import com.mindhub.cinema.dtos.models_dtos.ProductComboDto;
 import com.mindhub.cinema.dtos.models_dtos.ProductDto;
 import com.mindhub.cinema.dtos.param_dtos.CreateProductComboDto;
+import com.mindhub.cinema.dtos.param_dtos.EditProductComboDto;
 import com.mindhub.cinema.models.Purchase;
 import com.mindhub.cinema.services.servinterfaces.ProductComboServiceInterface;
 import com.mindhub.cinema.services.servinterfaces.PurchaseServiceInterface;
@@ -72,6 +73,27 @@ public class ProductComboController {
 
 
         productComboService.createProductCombo(createProductComboDto);
+
+        return new ResponseEntity<>("Combo saved", HttpStatus.OK);
+
+    }
+
+
+    @PatchMapping("/api/admin/edit_combo")
+    public ResponseEntity<Object> edit_combo(Authentication authentication, @RequestBody EditProductComboDto editProductComboDto){
+
+
+        if(authentication == null){
+            return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
+        }
+
+        if(ValidationUtils.checkUserRole(authentication) != "ADMIN"){
+            return new ResponseEntity<>("Not an admin", HttpStatus.FORBIDDEN);
+        }
+
+
+
+        productComboService.editProductCombo(editProductComboDto);
 
         return new ResponseEntity<>("Combo saved", HttpStatus.OK);
 

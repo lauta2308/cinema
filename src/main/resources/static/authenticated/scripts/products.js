@@ -81,7 +81,7 @@ createApp({
 
 
 
-            this.totalPrice = this.limitDecimals(this.totalPrice + combo.comboFinalPrice, 2);
+            this.totalPrice = this.limitDecimals(this.totalPrice + combo.price, 2);
    
 
          
@@ -122,7 +122,7 @@ createApp({
           removeSelectedProductCombo(combo) {
             this.selectedProductCombos = this.selectedProductCombos.filter((selectedCombo) => selectedCombo.id !== combo.id);
 
-            this.totalPrice = this.limitDecimals(this.totalPrice - combo.comboFinalPrice, 2);
+            this.totalPrice = this.limitDecimals(this.totalPrice - combo.price, 2);
 
           },
           removeSelectedProduct(product) {

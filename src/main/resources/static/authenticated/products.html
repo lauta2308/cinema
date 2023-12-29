@@ -70,7 +70,7 @@
               <div class="product-list-container">
                 <ul>
                   <li v-for="combo in productCombos" :key="combo.id">
-                    {{ combo.productComboType }} - ${{ combo.comboFinalPrice }}
+                    {{ combo.name }} - ${{ combo.price }}
                     <button @click="addSelectedProductCombo(combo)" class="site-action-btn color-green"> Add </button>
                   </li>
                 </ul>
@@ -113,7 +113,7 @@
                   <tr v-for="combo in selectedProductCombos" :key="combo.id" class="products-page-tr">
                     <td>{{ combo.productComboType }}</td>
                     <td>1</td>
-                    <td>${{ combo.comboFinalPrice }}</td>
+                    <td>${{ combo.price }}</td>
                     <td>
                       <button @click="removeSelectedProductCombo(combo)" class="site-action-btn color-red">Remove</button>
                     </td>

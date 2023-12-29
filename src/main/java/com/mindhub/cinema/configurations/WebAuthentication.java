@@ -41,7 +41,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
             if (client != null) {
                 if(client.getClientStatus() == ClientStatus.BANNED){
-                     
+
                     throw new RuntimeException("User banned");
                 }
                 if (client.getClientRol().toString().contains("ADMIN")){

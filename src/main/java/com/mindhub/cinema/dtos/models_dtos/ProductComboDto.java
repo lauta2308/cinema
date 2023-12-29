@@ -20,6 +20,9 @@ public class ProductComboDto {
 
     private List<ProductDto> products;
 
+    public ProductComboDto() {
+    }
+
     public ProductComboDto(ProductCombo productCombo) {
         this.id = productCombo.getId();
         this.name = productCombo.getName();

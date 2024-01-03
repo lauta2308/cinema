@@ -53,6 +53,7 @@ createApp({
             axios.get("/api/admin/get_shows")
             .then(response => {
                 this.shows = response.data;
+                console.log(response);
                 console.log(this.shows);
         
 

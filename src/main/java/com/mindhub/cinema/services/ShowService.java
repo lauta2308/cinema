@@ -60,6 +60,8 @@ public class ShowService implements ShowServiceInterface {
 
         Sort sort = Sort.by(Sort.Direction.ASC, "startTime");
 
+
+       List shows = showRepository.findByStartTimeAfter( LocalDateTime.now());
        return ShowUtils.showsToDto( showRepository.findByStartTimeAfter( LocalDateTime.now(), sort));
 
     }

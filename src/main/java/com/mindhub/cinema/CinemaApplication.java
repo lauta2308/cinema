@@ -151,37 +151,37 @@ public class CinemaApplication {
 
 			// Shows
 
-			showRepository.save(new Show(LocalDateTime.now(), 15.00, indianaJones2d, cinemaRoomOne));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 17, 00, 00), 15.00, indianaJones2d, cinemaRoomOne));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 17, 00, 00), 15.00, indianaJones2d, cinemaRoomOne));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 17, 00, 00), 15.00, indianaJones2d, cinemaRoomOne));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 15.00, indianaJones2d, cinemaRoomOne));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 22, 00, 00), 15.00, indianaJones2d, cinemaRoomOne));
 
 			Movie barbie = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/215333R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi945734681/?ref_=sh_ov_vi","barbie", "Barbie suffers a crisis that leads her to question her world and her existence.", MovieRestriction.ATP, 114, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 12, 00, 00), 15.00, barbie, cinemaRoomTwo2d));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 12, 00, 00), 15.00, barbie, cinemaRoomTwo2d));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 17, 00, 00), 15.00, barbie, cinemaRoomTwo2d));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 17, 00, 00), 15.00, barbie, cinemaRoomTwo2d));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 15.00, barbie, cinemaRoomTwo2d));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 22, 00, 00), 15.00, barbie, cinemaRoomTwo2d));
 
 			Movie cobweb = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/344228R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi1253230361/?playlistId=tt9100018&ref_=tt_ov_vi","COBWEB", "Horror strikes when an eight-year-old boy named Peter tries to investigate the mysterious knocking noises that are coming from inside the walls of his house and a dark secret that his sinister parents kept hidden from him.", MovieRestriction.SAM_16, 152, "Castellano", MovieGenre.ADVENTURE, MovieType.MOVIE_2D, MovieAvailability.COMING_SOON));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 12, 00, 00), 15.00, cobweb, cinemaRoomThree2d));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 12, 00, 00), 15.00, cobweb, cinemaRoomThree2d));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 17, 00, 00), 15.00, cobweb, cinemaRoomThree2d));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 17, 00, 00), 15.00, cobweb, cinemaRoomThree2d));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 15.00, cobweb, cinemaRoomThree2d));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 22, 00, 00), 15.00, cobweb, cinemaRoomThree2d));
 
 			Movie oppenheimer3d = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/323982R1.jpg?width=270&height=405", "https://www.youtube.com/watch?v=dC1E_E78R48","OPPENHEIMER 3D", "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.", MovieRestriction.SAM_13, 180, "Castellano", MovieGenre.DRAMA, MovieType.MOVIE_3D, MovieAvailability.AVAILABLE));
 
 
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 12, 00, 00), 17.00, oppenheimer3d, cinemaRoomTwo));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 12, 00, 00), 17.00, oppenheimer3d, cinemaRoomTwo));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 18, 00, 00), 17.00, oppenheimer3d, cinemaRoomTwo));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 18, 00, 00), 17.00, oppenheimer3d, cinemaRoomTwo));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 17.00, oppenheimer3d, cinemaRoomTwo));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 22, 00, 00), 17.00, oppenheimer3d, cinemaRoomTwo));
 
 
 
@@ -191,11 +191,11 @@ public class CinemaApplication {
 			Movie insidious = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/335198R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi3679044633/?playlistId=tt13405778&ref_=tt_ov_vi","Insidious", "The Lamberts must go deeper into The Further than ever before to put their demons to rest once and for all.", MovieRestriction.SAM_13, 152, "Castellano", MovieGenre.HORROR, MovieType.MOVIE_IMAX, MovieAvailability.AVAILABLE));
 
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 12, 00, 00), 17.00, insidious, cinemaRoomThree));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 12, 00, 00), 17.00, insidious, cinemaRoomThree));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 18, 00, 00), 17.00, insidious, cinemaRoomThree));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 18, 00, 00), 17.00, insidious, cinemaRoomThree));
 
-			showRepository.save(new Show(LocalDateTime.of(2024, 1, 1, 22, 00, 00), 17.00, insidious, cinemaRoomThree));
+			showRepository.save(new Show(LocalDateTime.of(2024, 10, 1, 22, 00, 00), 17.00, insidious, cinemaRoomThree));
 
 			Movie soundOfFreedom = movieRepository.save(new Movie("https://images.tbco.app/blob-image/www.movienewsletters.net/photos/346813R1.jpg?width=270&height=405", "https://www.imdb.com/video/vi3898393625/?playlistId=tt7599146&ref_=tt_pr_ov_vi","Sound of freedom", "The incredible true story of a former government agent turned vigilante who embarks on a dangerous mission to rescue hundreds of children from sex traffickers.", MovieRestriction.SAM_13, 131, "Castellano", MovieGenre.ACTION, MovieType.MOVIE_2D, MovieAvailability.AVAILABLE));
 
@@ -213,9 +213,9 @@ public class CinemaApplication {
 			Show showOne = showRepository.save(new Show(LocalDateTime.of(2023,8,19,16,00,00), 15.00, indianaJones2d, cinemaRoomOne));
 
 
-			showRepository.save(new Show(LocalDateTime.of(2023,8,19,19,00,00), 15.00, indianaJones2d, cinemaRoomOne));
+			showRepository.save(new Show(LocalDateTime.of(2024,10,19,19,00,00), 15.00, indianaJones2d, cinemaRoomOne));
 
-			showRepository.save(new Show(LocalDateTime.of(2023,8,19,22,00,00), 15.00, indianaJones2d, cinemaRoomOne));
+			showRepository.save(new Show(LocalDateTime.of(2024,10,19,22,00,00), 15.00, indianaJones2d, cinemaRoomOne));
 
 			// Creo una compra
 
@@ -304,6 +304,8 @@ public class CinemaApplication {
 
 			ticket2ForShowOne1.setTicketPrice(ticket2ForShowOne1.getShow().getStandardPrice());
 			ticket2ForShowOne1.addPriceToPurchase();
+
+
 
 			// Actualizo los tickets vendidos para la funcion 1
 

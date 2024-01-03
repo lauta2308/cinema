@@ -41,7 +41,7 @@ public class ShowController {
 
 
     @GetMapping("/api/admin/get_shows")
-    public Object get_shows(Authentication authentication){
+    public ResponseEntity<Object> get_shows(Authentication authentication){
 
         if(authentication == null){
             return new ResponseEntity<>("Login first", HttpStatus.FORBIDDEN);
@@ -50,7 +50,7 @@ public class ShowController {
         if(ValidationUtils.checkUserRole(authentication) != "ADMIN"){
             return new ResponseEntity<>("Not an admin", HttpStatus.CONFLICT);
         }
-        return showService.get_shows();
+        return new ResponseEntity<>(showService.get_shows(), HttpStatus.OK);
     }
 
 
